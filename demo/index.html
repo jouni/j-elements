@@ -34,7 +34,7 @@
 
 <body>
 
-  <h2>Cards</h2>
+  <h1>Cards</h1>
 
   <section class="cards">
 
@@ -125,6 +125,8 @@
     </j-card>
   </section>
 
+  <h1>Avatars</h1>
+
   <h2>Avatar types</h2>
   Empty:
   <j-avatar></j-avatar>
@@ -136,7 +138,7 @@
   <j-avatar name="User Name" abbr="N"></j-avatar>
   <br>
   Image:
-  <j-avatar name="User Name" abbr="N" image="https://placeimg.com/65/65/people"></j-avatar>
+  <j-avatar name="User Name" abbr="N" image="https://placeimg.com/80/80/people"></j-avatar>
 
 
   <h2>Avatar sizes</h2>
@@ -153,9 +155,27 @@
 
   <h2>Avatar group</h2>
   <j-avatar-group>
-    <j-avatar name="User Name" image="https://placeimg.com/80/80/people"></j-avatar>
-    <j-avatar name="User Name" image="https://placeimg.com/81/81/people"></j-avatar>
-    <j-avatar name="User Name" image="https://placeimg.com/83/83/people"></j-avatar>
+    <j-avatar name="John Doe"></j-avatar>
+    <j-avatar name="Mary Anderson"></j-avatar>
+    <j-avatar name="Sarah Turner"></j-avatar>
   </j-avatar-group>
+
+
+  <h1>Tooltips</h1>
+
+  <p>I have a plaintext tooltip.
+    <j-tooltip text="Here it is!"></j-tooltip>
+  </p>
+
+  <p>I have a tooltip with HTML content.
+    <j-tooltip>
+      <template>
+        <j-avatar name="Avatar" theme="small"></j-avatar>
+        <b>Here it is!</b> This tooltip has a lot to say.
+      </template>
+    </j-tooltip>
+  </p>
+
+  <br><br>
 
 </body>

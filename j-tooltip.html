@@ -15,7 +15,7 @@
         color: var(--lumo-base-color);
         border-radius: var(--lumo-border-radius);
         font-size: var(--lumo-font-size-s);
-        line-height: var(--lumo-font-size-xs);
+        line-height: var(--lumo-font-size-s);
         font-family: var(--lumo-font-family);
         text-transform: none;
         letter-spacing: 0;
@@ -63,6 +63,9 @@
         }
 
         _mouseMoveListener(e) {
+          if (this._overlay.opened) {
+            return;
+          }
           this._coords = { top: e.clientY, left: e.clientX };
           if (this._openTimeout) {
             clearTimeout(this._openTimeout);
