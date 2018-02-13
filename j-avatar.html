@@ -125,9 +125,7 @@
     <div part="image" style="background-image: url([[image]]);"></div>
     <dom-if if="[[_hasTooltip(name, abbr)]]">
       <template>
-        <j-tooltip>
-          <template>[[name]]</template>
-        </j-tooltip>
+        <j-tooltip text="[[name]]"></j-tooltip>
       </template>
     </dom-if>
   </template>

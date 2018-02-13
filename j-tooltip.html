@@ -34,6 +34,7 @@
         display: none;
       }
     </style>
+    <slot><template>[[text]]</template></slot>
     <j-tooltip-overlay modeless></j-tooltip-overlay>
   </template>
   <script>
@@ -97,8 +98,10 @@
 
         _openedChanged(opened) {
           if (opened && !this._instance) {
-            this._contentTemplate = this.querySelector('template');
-            if (!this._contentTemplate) {
+            this._contentTemplate = this.shadowRoot.querySelector('slot').assignedNodes({flatten: true}).filter(el => {
+              if (el.nodeName == 'TEMPLATE') return el;
+            })[0];
+            if (!this._contentTemplate || this._contentTemplate.nodeName != 'TEMPLATE') {
               return;
             }
             const Templatizer = Polymer.Templatize.templatize(this._contentTemplate, this, {
