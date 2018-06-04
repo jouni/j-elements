@@ -24,7 +24,7 @@ What you’ll find here:
     </style>
     ```
 
-    The stylable mixin is basically a more versatile replacement for [`Vaadin.ThemableMixin`](https://github.com/vaadin/vaadin-themable-mixin/), which does not depend on Polymer.
+    The stylable mixin is basically a more versatile replacement for [`Vaadin.ThemableMixin`](https://github.com/vaadin/vaadin-themable-mixin/), and does not depend on Polymer.
 
 - **Teleporting element** (`src/teleporting-element.js`): An element prototype that can escape any stacking context, by “teleporting” itself directly under the `<body>` element when set “visible” (which is needed if any of the original parent elements creates a clipping stacking context):
 
@@ -47,7 +47,7 @@ What you’ll find here:
     </div>
     ```
 
-    The “teleporting element” is basically an alternative implementation for [`<vaadin-overlay>`](https://github.com/vaadin/vaadin-overlay), which does not require the user to wrap the contents of the overlay in a `<template>`.
+    The “teleporting element” is basically an alternative implementation for [`<vaadin-overlay>`](https://github.com/vaadin/vaadin-overlay), and does not require the user to wrap the contents of the overlay in a `<template>` and does not depend on Polymer.
 
 
 
