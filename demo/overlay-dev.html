@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>Teleporting element tests</title>
+
+    <script>
+      // ShadyDOM = {force: true}
+    </script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '../src/j-dialog.js';
+      import './polymer-example.js';
+    </script>
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        j-dialog h3 {
+          font-weight: 300;
+          margin: 0;
+          font-size: 24px;
+        }
+
+        button {
+          font: inherit;
+          background-color: rgba(0,0,0,0.1);
+          color: inherit;
+          font-weight: 500;
+          border: 0;
+          padding: 0.4em 1em;
+          border-radius: 4px;
+          margin: 0;
+          outline: none;
+        }
+
+        button:hover,
+        button:focus {
+          background-color: rgba(0,0,0,0.15);
+        }
+
+        button:active {
+          background-color: rgba(0,0,0,0.2);
+        }
+      </style>
+    </custom-style>
+
+    <!-- Some visual styles for overlay -->
+    <style type="module" for="j-dialog.custom-class">
+      :host {
+        background-color: rgb(255,249,226);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+        padding: 24px;
+        border-radius: 18px;
+        width: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Creating an overlay declaratively in the global style scope</h3>
+      <demo-snippet class="declarative-global">
+        <template>
+          <button class="show">Open</button>
+
+          <j-dialog>
+            <h3>Declarative overlay</h3>
+            <p>This overlay is in the global style scope.</p>
+            <button class="hide">Close</button>
+          </j-dialog>
+
+          <script>
+            var overlay = document.querySelector('.declarative-global j-dialog');
+            var showButton = document.querySelector('.declarative-global .show');
+            var hideButton = overlay.querySelector('.hide');
+
+            showButton.addEventListener('click', function() {
+              overlay.show();
+            });
+
+            hideButton.addEventListener('click', function() {
+              overlay.hide();
+            });
+          </script>
+        </template>
+      </demo-snippet>
+
+
+
+      <h3>Creating an overlay imperatively in the global scope</h3>
+      <demo-snippet class="imperative-global">
+        <template>
+          <button class="show">Open</button>
+
+          <script>
+            var showButton = document.querySelector('.imperative-global .show');
+
+            showButton.addEventListener('click', function() {
+              var overlay = document.createElement('j-dialog');
+              overlay.className = 'custom-class';
+              overlay.innerHTML = `
+                <h3>Imperative overlay</h3>
+                <p>This overlay is in the global scope.</p>
+                <button class="hide">Close</button>
+              `;
+              document.body.appendChild(overlay);
+              overlay.show();
+
+              overlay.querySelector('.hide').addEventListener('click', function() {
+                // Close and remove the dialog from the DOM
+                overlay.destroy();
+              });
+            });
+
+          </script>
+        </template>
+      </demo-snippet>
+
+
+      <h3>Overlay in shadow DOM scope</h3>
+      <demo-snippet>
+        <template>
+          <x-scoped></x-scoped>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

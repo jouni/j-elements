@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>j-card demo</title>
+
+    <script>
+      // ShadyDOM = {force: true}
+    </script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      import './shared-styles.js';
+      import '../src/j-card.js';
+
+      // This needs to be imported last or otherwise Polymer style module includes do not work
+      import '@polymer/iron-demo-helpers/demo-snippet';
+    </script>
+
+    <custom-style>
+      <style include="shared-styles"></style>
+    </custom-style>
+  </head>
+  <body>
+
+    <h3>Simple card</h3>
+    <demo-snippet>
+      <template>
+        <j-card>
+          <h3 slot="title">Card title</h3>
+          <p>Card content lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+          <button>Action</button>
+          <button>Action</button>
+        </j-card>
+      </template>
+    </demo-snippet>
+
+    <h3>Custom style card (Lumo)</h3>
+    <demo-snippet>
+      <template>
+        <j-card class="lumo">
+          <h3 slot="title">Card title</h3>
+          <p>Card content lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+          <button>Action</button>
+          <button>Action</button>
+        </j-card>
+
+        <style type="module" for="j-card.lumo">
+          :host {
+            font-family: var(--lumo-font-family);
+            font-size: var(--lumo-font-size-m);
+            color: var(--lumo-body-text-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--lumo-base-color);
+            border-radius: var(--lumo-border-radius);
+            padding: var(--lumo-space-l);
+            border: 0;
+            /* TODO should become --lumo-box-shadow-xs */
+            box-shadow: 0 1px 4px -1px var(--lumo-shade-60pct);
+          }
+        </style>
+      </template>
+    </demo-snippet>
+
+  </body>
+</html>

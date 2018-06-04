@@ -1,0 +1,27 @@
+{
+  "name": "j-elements",
+  "homepage": "https://github.com/jouni/j-elements",
+  "repository": "https://github.com/jouni/j-elements",
+  "authors": [
+    "Jouni Koivuviita <jouni@vaadin.com>"
+  ],
+  "description": "Proof-of-concept and prototype web components to fill in some gaps in the Vaadin components collection.",
+  "main": [
+    "j-avatar.js",
+    "j-card.js",
+    "j-dialog.js",
+    "j-tooltip.js"
+  ],
+  "keywords": [
+    "web-components"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "@polymer/polymer": "^3.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@vaadin/vaadin-lumo-styles": "^1.0.0-pre.6"
+  }
+}

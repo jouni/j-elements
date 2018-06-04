@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>j-avatar demo</title>
+
+    <script>
+      // ShadyDOM = {force: true}
+    </script>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      import './shared-styles.js';
+      import '../src/j-avatar.js';
+
+      // This needs to be imported last or otherwise Polymer style module includes do not work
+      import '@polymer/iron-demo-helpers/demo-snippet';
+    </script>
+
+    <custom-style>
+      <style include="shared-styles"></style>
+    </custom-style>
+  </head>
+  <body>
+
+    <h3>Default Avatar</h3>
+    <demo-snippet>
+      <template>
+        <j-avatar></j-avatar>
+      </template>
+    </demo-snippet>
+
+    <h3>Abbreviation</h3>
+    <demo-snippet>
+      <template>
+        <!-- Computed from name -->
+        <j-avatar name="John Doe"></j-avatar>
+
+        <!-- Explicit -->
+        <j-avatar name="John Doe" abbr="J"></j-avatar>
+      </template>
+    </demo-snippet>
+
+    <h3>Image</h3>
+    <demo-snippet>
+      <template>
+        <j-avatar image="https://placeimg.com/80/80/people" name="John Doe"></j-avatar>
+      </template>
+    </demo-snippet>
+
+    <h3>Sizes</h3>
+    <demo-snippet>
+      <template>
+        <p>
+          <j-avatar size="xs"></j-avatar>
+          <j-avatar size="s"></j-avatar>
+          <j-avatar></j-avatar>
+          <j-avatar size="l"></j-avatar>
+          <j-avatar size="xl"></j-avatar>
+        </p>
+
+        <p>
+          <j-avatar name="John Doe" size="xs"></j-avatar>
+          <j-avatar name="John Doe" size="s"></j-avatar>
+          <j-avatar name="John Doe"></j-avatar>
+          <j-avatar name="John Doe" size="l"></j-avatar>
+          <j-avatar name="John Doe" size="xl"></j-avatar>
+        </p>
+
+        <p>
+          <j-avatar image="https://placeimg.com/60/60/people" name="John Doe" size="xs"></j-avatar>
+          <j-avatar image="https://placeimg.com/70/70/people" name="John Doe" size="s"></j-avatar>
+          <j-avatar image="https://placeimg.com/80/80/people" name="John Doe"></j-avatar>
+          <j-avatar image="https://placeimg.com/90/90/people" name="John Doe" size="l"></j-avatar>
+          <j-avatar image="https://placeimg.com/100/100/people" name="John Doe" size="xl"></j-avatar>
+        </p>
+      </template>
+    </demo-snippet>
+
+    <h3>Themed</h3>
+    <script type="module">
+      import '@vaadin/vaadin-lumo-styles/sizing.js';
+    </script>
+    <demo-snippet>
+      <template>
+        <j-avatar class="lumo" name="John Doe" size="xs"></j-avatar>
+        <j-avatar class="lumo" name="John Doe" size="s"></j-avatar>
+        <j-avatar class="lumo" name="John Doe"></j-avatar>
+        <j-avatar class="lumo" name="John Doe" size="l"></j-avatar>
+        <j-avatar class="lumo" name="John Doe" size="xl"></j-avatar>
+
+        <!--
+          Import the following modules after installing the 'vaadin-lumo-styles'
+          package to use Lumo CSS properties:
+
+          <script type="module">
+            import '@vaadin/vaadin-lumo-styles/sizing.js';
+            import '@vaadin/vaadin-lumo-styles/spacing.js';
+            import '@vaadin/vaadin-lumo-styles/style.js';
+            import '@vaadin/vaadin-lumo-styles/color.js';
+            import '@vaadin/vaadin-lumo-styles/typography.js';
+          </script>
+        -->
+
+        <style type="module" for="j-avatar.lumo">
+          :host {
+            --size-xs: var(--lumo-size-xs);
+            --size-s: var(--lumo-size-s);
+            --size-m: var(--lumo-size-m);
+            --size-l: var(--lumo-size-l);
+            --size-xl: var(--lumo-size-xl);
+            --box-shadow: 0 1px 2px 1px var(--lumo-shade-10pct), 0 1px 1px 0 var(--lumo-shade-10pct);
+            --background: #FFF linear-gradient(var(--lumo-contrast-40pct), var(--lumo-contrast-50pct));
+            --font-family: var(--lumo-font-family);
+            --font-size-xs: var(--lumo-font-size-xs);
+            --font-size-s: var(--lumo-font-size-s);
+            --font-size-m: var(--lumo-font-size-m);
+            --font-size-l: var(--lumo-font-size-l);
+            --font-size-xl: var(--lumo-font-size-xl);
+            --text-color: var(--lumo-base-color);
+            --font-weight: 500;
+            --border-radius: var(--lumo-border-radius);
+          }
+        </style>
+      </template>
+    </demo-snippet>
+
+  </body>
+</html>
