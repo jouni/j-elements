@@ -11,6 +11,17 @@ template.innerHTML = `
  * Add the capability to 'teleport' the element under the `<body>` element when the `visible`
  * property is set (to escape all parent stacking contexts). When the `visible` property is not set
  * the element is hidden.
+ *
+ * Limitations:
+ *
+ * - Structural CSS selectors won't work as expected, as the element is pulled out of its place in
+ *   the DOM. Styles from the originating scope root (i.e. :host) are inherited.
+ *
+ * - Similarly, it's not possible to use querySelector's that match across the teleporting
+ *   element boundary. For example `querySelector('.some-class .other-class')` won't work if
+ *   `.some-class` is outside the teleporting element and `.other-class` is inside it. As a workaround,
+ *   first query the teleportin element and then continue the query from there, for example
+ *   `querySelector('.some-class teleporting-element').querySelector('.other-class')`
  */
 export class TeleportingElement extends HTMLElement {
   static get observedAttributes() {
@@ -36,7 +47,7 @@ export class TeleportingElement extends HTMLElement {
   connectedCallback() {
     if (!this._isPlaceholder && !this.shadowRoot) {
       if (ShadyCSS && !ShadyCSS.nativeShadow) {
-        // ShadyCSS "consumes" the style element from the template, so we need to duplicate it
+        // ShadyCSS "consumes" the style element from the template, so we need to clone it
         ShadyCSS.prepareTemplate(template.cloneNode(true), this.nodeName.toLowerCase());
         ShadyCSS.styleElement(this);
       }
@@ -94,8 +105,25 @@ export class TeleportingElement extends HTMLElement {
       let scopeCssText = Array.from(this.getRootNode().querySelectorAll('style:not([type=module])'))
         .reduce((result, style) => result + style.textContent, '');
 
-      // The element root’s :host styles should not apply inside the element
-      scopeCssText = scopeCssText.replace(/:host/g, ':host-nomatch');
+      // Hide the scope container
+      scopeCssText += `
+        :host {
+          visibility: hidden !important;
+          position: absolute !important;
+          z-index: auto !important;
+          top: 0 !important;
+          left: 0 !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          width: 0 !important;
+          height: 0 !important;
+          border: 0 !important;
+        }
+
+        :host > * {
+          visibility: visible;
+        }
+      `;
 
       if (scopeCssText) {
         const style = document.createElement('style');

@@ -11,6 +11,7 @@ class XScoped extends PolymerElement {
           display: block;
           border: 1px dotted;
           padding: 10px;
+          font-weight: bold;
         }
 
         j-dialog {
@@ -32,7 +33,8 @@ class XScoped extends PolymerElement {
         }
       </style>
 
-      This is a Polymer element.
+      <p>This is a Polymer element, inside which all text is bold, including inside j-dialog.</p>
+
       <button>
         Open scoped overlay
         <j-tooltip class="opens">Opens the dialog</j-tooltip>
