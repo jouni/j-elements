@@ -1,6 +1,6 @@
 import { StylableMixin, bemToShadow } from './stylable-mixin.js';
 import { TeleportingElement } from './teleporting-element.js';
-import { style } from './styles/tooltip-style.js';
+import style from './styles/tooltip-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -14,11 +14,9 @@ template.innerHTML = `
       margin-left: 10px;
     }
   </style>
+  ${ bemToShadow(style, '.j-tooltip') }
   <slot></slot>
 `;
-
-// TODO need a nicer way to inject the styles
-template.innerHTML += bemToShadow(style, '.tooltip');
 
 export class JTooltip extends StylableMixin(TeleportingElement) {
   constructor() {

@@ -1,7 +1,7 @@
 // By using "var innerHTML" we allow IDEs (at least Atom) to use correct syntax highlighting and code completion
 var innerHTML = `
   <style>
-    .card {
+    .j-card {
       display: flex;
       flex-direction: column;
       position: relative;
@@ -11,11 +11,11 @@ var innerHTML = `
       box-sizing: border-box;
     }
 
-    .card__content {
+    .j-card__content {
       display: block;
     }
 
-    .card__title {
+    .j-card__title {
       display: block;
       font-size: 1.25em;
       font-weight: 600;
@@ -29,7 +29,7 @@ var innerHTML = `
       /* line-height: var(--lumo-line-height-xs); */
     }
 
-    .card__content {
+    .j-card__content {
       flex: auto;
       /* padding: var(--lumo-space-wide-l); */
     }
@@ -51,12 +51,12 @@ var innerHTML = `
       /* border-top: 1px solid var(--lumo-contrast-10pct); */
     }
 
-    .card__image {
+    .j-card__image {
       background-size: cover;
       padding: 0;
     }
 
-    .card[image] .card__header {
+    .j-card[image] .j-card__header {
       position: absolute;
       left: 0;
       right: 0;
@@ -71,7 +71,7 @@ var innerHTML = `
       }
     } */
 
-    .card__title {
+    .j-card__title {
       display: flex;
       /* padding: 0 var(--lumo-space-l); */
       /* margin-top: var(--lumo-space-l); */
@@ -166,4 +166,4 @@ var innerHTML = `
   </style>
 `;
 
-export { innerHTML as style };
+export default innerHTML;

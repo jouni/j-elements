@@ -1,16 +1,13 @@
-
 import { StylableMixin, bemToShadow } from './stylable-mixin.js';
-import { style } from './styles/avatar-style.js';
+import style from './styles/avatar-style.js';
 import './j-tooltip.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
+  ${ bemToShadow(style, '.j-avatar') }
   <div part="abbr"></div>
   <div part="image"></div>
 `;
-
-// TODO need a nicer way to inject the styles
-template.innerHTML += bemToShadow(style, '.avatar');
 
 export class JAvatar extends StylableMixin(HTMLElement) {
   static get observedAttributes() {

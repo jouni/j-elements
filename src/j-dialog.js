@@ -1,6 +1,6 @@
 import { TeleportingElement } from './teleporting-element.js';
 import { StylableMixin, bemToShadow } from './stylable-mixin.js';
-import { style } from './styles/dialog-style.js';
+import style from './styles/dialog-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -13,11 +13,9 @@ template.innerHTML = `
       transform: translate(-50%, -50%);
     }
   </style>
+  ${ bemToShadow(style, '.j-dialog') }
   <slot></slot>
 `;
-
-// TODO need a nicer way to inject the styles
-template.innerHTML += bemToShadow(style, '.dialog');
 
 export class JDialog extends StylableMixin(TeleportingElement) {
   connectedCallback() {

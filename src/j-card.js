@@ -1,6 +1,6 @@
 
 import { StylableMixin, bemToShadow } from './stylable-mixin.js';
-import { style } from './styles/card-style.js';
+import style from './styles/card-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -14,6 +14,7 @@ template.innerHTML = `
       padding: 0 !important;
     }
   </style>
+  ${ bemToShadow(style, '.j-card') }
 
   <div part="header">
     <slot name="header"></slot>
@@ -32,9 +33,6 @@ template.innerHTML = `
     <slot name="footer"></slot>
   </div>
 `;
-
-// TODO need a nicer way to inject the styles
-template.innerHTML += bemToShadow(style, '.card');
 
 export class JCard extends StylableMixin(HTMLElement) {
   // static get observedAttributes() {
