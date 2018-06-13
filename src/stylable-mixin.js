@@ -1,5 +1,8 @@
 // Needed for ShadyCSS
+// Module identifier
 let moduleCounter = 0;
+// Module class prefix
+const MODULE_CLASS_PREFIX = '_smod_';
 
 export const StylableMixin = superClass => class JStylableMixin extends superClass {
   _upgradeProperty(prop) {
@@ -12,65 +15,89 @@ export const StylableMixin = superClass => class JStylableMixin extends superCla
 
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
+    if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
+      ShadyCSS.styleElement(this);
+    }
+    this._gatherStyleModules();
+  }
 
-    // Store the first scope as the style scope. A teleporting element will have it's scope
-    // change during its lifecycle (when moved under the body) and we always want to refer to the
-    // original scope.
-    // if (!this._stylableElementScope) {
-    //   this._stylableElementScope = this.getRootNode();
-    // }
+  _gatherStyleModules() {
+    // Gather style modules (scoped and global)
+    let styleModules = Array.from(this.getRootNode().querySelectorAll(`style[type=scoped]`));
+    styleModules = styleModules.concat(Array.from(document.querySelectorAll(`style[type=global]`)));
 
-    // Style modules should be the last ones appened in the template
-    requestAnimationFrame(() => {
-      // Is the element still attached to the DOM?
-      if (this.parentNode) {
-        this._gatherStyleModules();
+    styleModules.forEach(style => {
+      // Test if the `for` selector matches this element
+      let match = false;
+      if (this.matches) {
+        match = this.matches(style.getAttribute('for'));
+      } else if (this.msMatchesSelector) {
+        match = this.msMatchesSelector(style.getAttribute('for'));
+      }
+
+      if (match) {
+        const clone = style.cloneNode(true);
+        clone.removeAttribute('for');
+        clone.removeAttribute('type');
+        clone.setAttribute('module', '');
+
+        if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
+          if (style.__moduleId === undefined) {
+            style.__moduleId = moduleCounter++;
+          }
+          if (style.__scopedFor === undefined) {
+            // List of elements + module that this module has already been applied to
+            // This is needed because ScopingShim always wants to scope based on a tag selector,
+            // so we need separately scoped styles for each element type
+            style.__scopedFor = [];
+          }
+
+          // F.e. 'x-foo._smod_0' (element-name + class-prefix + module-id)
+          const scope = this.nodeName.toLowerCase() + '.' + MODULE_CLASS_PREFIX + style.__moduleId;
+
+          if (style.__scopedFor.indexOf(scope) == -1) {
+            style.__scopedFor.push(scope);
+            const template = document.createElement('template');
+            template.content.appendChild(clone);
+            ShadyCSS.ScopingShim.prepareTemplate(template, scope);
+            ShadyCSS.styleElement(this);
+          }
+          const scopeClass = MODULE_CLASS_PREFIX + style.__moduleId;
+          this.classList.add(scopeClass);
+          // TODO would like to use some method from ScopingShim but I can't find a suitable one
+          // This should be recursive as well, not just the first level of children
+          Array.from(this.shadowRoot.querySelectorAll('*')).forEach(child => {
+            child.classList.add(scopeClass);
+          });
+        } else {
+          this.shadowRoot.appendChild(clone);
+        }
       }
     });
   }
 
-  _gatherStyleModules() {
-    const styleModules = this.getRootNode().querySelectorAll(`style[type=module]`);
-
-    if (styleModules.length > 0) {
-      Array.from(styleModules).forEach(style => {
-        if (Array.from(this.parentNode.querySelectorAll(style.getAttribute('for'))).indexOf(this) > -1) {
-          const clone = style.cloneNode(true);
-          clone.removeAttribute('for');
-          clone.removeAttribute('type');
-          clone.setAttribute('module', '');
-
-          if (ShadyCSS && !ShadyCSS.nativeShadow) {
-            if (style.__moduleId === undefined) {
-              style.__moduleId = moduleCounter++;
-              const template = document.createElement('template');
-              template.content.appendChild(clone);
-              ShadyCSS.ScopingShim.prepareTemplate(template, '.style-module-' + style.__moduleId);
-            }
-            const scopeClass = 'style-module-' + style.__moduleId;
-            this.classList.add(scopeClass);
-          } else {
-            this.shadowRoot.appendChild(clone);
-          }
-        }
-      });
-    }
+  __removeStyleModuleClasses(el) {
+    el.classList.forEach(c => {
+      if (c.indexOf(MODULE_CLASS_PREFIX) == 0) {
+        el.classList.remove(c);
+      }
+    });
   }
 
   disconnectedCallback() {
-    if (ShadyCSS && !ShadyCSS.nativeShadow) {
-      this.classList.forEach(c => {
-        if (c.indexOf('style-module-') == 0) {
-          this.classList.remove(c);
-        }
+    if (super.disconnectedCallback) super.disconnectedCallback();
+
+    this.__removeStyleModuleClasses(this);
+
+    if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
+      Array.from(this.shadowRoot.querySelectorAll('*')).forEach(child => {
+        this.__removeStyleModuleClasses(child);
       });
     } else {
       Array.from(this.shadowRoot.querySelectorAll('style[module]')).forEach(style => {
         this.shadowRoot.removeChild(style);
       });
     }
-
-    if (super.disconnectedCallback) super.disconnectedCallback();
   }
 }
 

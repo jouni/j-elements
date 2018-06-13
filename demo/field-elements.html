@@ -14,6 +14,7 @@
     <script type="module">
       import './shared-styles.js';
       import '../src/j-field.js';
+      import '@vaadin/vaadin-text-field/vaadin-text-field.js';
       import style from '../src/styles/field-style.js';
 
       // Use the field styles in the global scope
@@ -126,6 +127,17 @@
         <j-field>
           <label slot="label">Label</label>
           <input type="range">
+        </j-field>
+      </template>
+    </demo-snippet>
+
+    <h3>Vaadin Text Field</h3>
+    <demo-snippet>
+      <template>
+        <j-field>
+          <label slot="label">Label</label>
+          <vaadin-text-field required></vaadin-text-field>
+          <p slot="error-message">Error message</p>
         </j-field>
       </template>
     </demo-snippet>

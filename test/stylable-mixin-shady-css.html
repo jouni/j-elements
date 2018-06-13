@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>stylable-mixin shady css test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      import { StylableMixin } from '../src/stylable-mixin.js';
+
+      class XFoo extends StylableMixin(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          this.shadowRoot.innerHTML = `
+            <span>x-foo</span>
+          `;
+
+          super.connectedCallback();
+        }
+      }
+      customElements.define('x-foo', XFoo);
+
+      class XBar extends StylableMixin(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          this.shadowRoot.innerHTML = `
+            <slot></slot>
+          `;
+          this.innerHTML = `
+            <span>x-bar (light DOM)</span>
+          `;
+
+          super.connectedCallback();
+        }
+      }
+      customElements.define('x-bar', XBar);
+
+    </script>
+  </head>
+  <body>
+
+    <x-foo class="test"></x-foo>
+    <x-foo class="test"></x-foo>
+    <br>
+    <x-bar class="test"></x-bar>
+    <x-bar class="test"></x-bar>
+
+    <style type="scoped" for=".test">
+      :host {
+        font-weight: bold;
+      }
+
+      :host span {
+        border: 1px solid;
+      }
+
+      :host ::slotted(span) {
+        border: 2px solid orange;
+      }
+    </style>
+
+    <style type="scoped" for="x-foo.test">
+      :host {
+        color: red;
+      }
+    </style>
+
+    <style type="scoped" for="x-bar">
+      :host {
+        color: blue;
+      }
+    </style>
+
+  </body>
+</html>

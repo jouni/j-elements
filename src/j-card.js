@@ -53,7 +53,7 @@ export class JCard extends StylableMixin(HTMLElement) {
 
   __attachShadow() {
     if (!this.shadowRoot) {
-      if (ShadyCSS && !ShadyCSS.nativeShadow) {
+      if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
         ShadyCSS.prepareTemplate(template, this.nodeName.toLowerCase());
         ShadyCSS.styleElement(this);
       }

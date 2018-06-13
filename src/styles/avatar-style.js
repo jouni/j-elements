@@ -24,6 +24,7 @@ var innerHTML = `
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      vertical-align: middle;
       width: var(--size-m);
       height: var(--size-m);
       border-radius: var(--border-radius);

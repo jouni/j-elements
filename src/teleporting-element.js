@@ -46,10 +46,20 @@ export class TeleportingElement extends HTMLElement {
 
   connectedCallback() {
     if (!this._isPlaceholder && !this.shadowRoot) {
-      if (ShadyCSS && !ShadyCSS.nativeShadow) {
+      if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
         // ShadyCSS "consumes" the style element from the template, so we need to clone it
-        ShadyCSS.prepareTemplate(template.cloneNode(true), this.nodeName.toLowerCase());
-        ShadyCSS.styleElement(this);
+
+        if (template.__scopedFor === undefined) {
+          template.__scopedFor = [];
+        }
+
+        // Only do this once per nodeName
+        const nodeName = this.nodeName.toLowerCase();
+        if (template.__scopedFor.indexOf(nodeName) == -1) {
+          template.__scopedFor.push(nodeName);
+          ShadyCSS.prepareTemplate(template.cloneNode(true), nodeName);
+          ShadyCSS.styleElement(this);
+        }
       }
 
       this.attachShadow({mode: 'open'});

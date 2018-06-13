@@ -48,17 +48,6 @@
         }
       </style>
     </custom-style>
-
-    <!-- Some visual styles for overlay -->
-    <style type="module" for="j-dialog.custom-class">
-      :host {
-        background-color: rgb(255,249,226);
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
-        padding: 24px;
-        border-radius: 18px;
-        width: 250px;
-      }
-    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -117,6 +106,17 @@
             });
 
           </script>
+
+          <!-- Add some custom styling for the .custom-class dialog -->
+          <style type="scoped" for=".custom-class">
+            :host {
+              background-color: rgb(255,249,226);
+              box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+              padding: 24px;
+              border-radius: 18px;
+              width: 250px;
+            }
+          </style>
         </template>
       </demo-snippet>
 

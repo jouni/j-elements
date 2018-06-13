@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>j-elements proving ground</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      import '../src/j-avatar.js';
+      import '../src/j-card.js';
+      import '../src/j-dialog.js';
+      import '../src/j-field.js';
+      import '../src/j-tooltip.js';
+      import '@vaadin/vaadin-text-field/vaadin-text-field.js';
+    </script>
+  </head>
+  <body>
+
+    <custom-style>
+      <style>
+        body {
+          font-family: sans-serif;
+        }
+
+        .clip {
+          transform: translateZ(0);
+          overflow: hidden;
+          width: 80px;
+          height: 80px;
+          outline: 1px solid;
+        }
+
+        .normal-overlay {
+          position: fixed;
+          width: 100px;
+          top: 10px;
+          left: 10px;
+          border: 1px solid blue;
+        }
+
+        j-dialog j-avatar {
+          margin-right: 1em;
+        }
+      </style>
+    </custom-style>
+
+    <style type="global" for="j-tooltip">
+      :host {
+        color: orange;
+      }
+    </style>
+
+    <div class="clip">
+
+      <div class="normal-overlay">
+        I’m a normal “overlay”, stuck inside this stacking context.
+        <j-tooltip>I’m a normal “overlay”, stuck inside this stacking context.</j-tooltip>
+      </div>
+
+      <j-dialog visible>
+        <j-card>
+          <h3 slot="title">Dialog card title</h3>
+          <j-avatar name="Firstname Lastname"></j-avatar>
+          <j-field>
+            <label slot="label">Native Text Input</label>
+            <input type="text" required>
+            <p slot="error-message">Error message</p>
+          </j-field>
+
+          <j-field>
+            <label slot="label">Native Radio Buttons</label>
+            <label><input type="radio" required> Option</label>
+            <label><input type="radio" required> Option</label>
+            <label><input type="radio" required> Option</label>
+            <p slot="error-message">Error message</p>
+          </j-field>
+
+          <j-field>
+            <label slot="label">Vaadin Text Field</label>
+            <vaadin-text-field required></vaadin-text-field>
+            <p slot="error-message">Error message</p>
+          </j-field>
+        </j-card>
+      </j-dialog>
+    </div>
+
+  </body>
+</html>

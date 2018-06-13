@@ -10,7 +10,10 @@
     "j-avatar.js",
     "j-card.js",
     "j-dialog.js",
-    "j-tooltip.js"
+    "j-field.js",
+    "j-tooltip.js",
+    "stylable-mixin.js",
+    "teleportin-element.js"
   ],
   "keywords": [
     "web-components"
@@ -18,9 +21,10 @@
   "license": "Apache-2.0",
   "dependencies": {},
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "@polymer/polymer": "^3.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
-    "@vaadin/vaadin-lumo-styles": "^1.0.0-pre.6"
+    "@polymer/polymer": "^3.0.0",
+    "@vaadin/vaadin-lumo-styles": "^1.0.0-pre.6",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "@vaadin/vaadin-text-field": "^2.0.1-pre.2"
   }
 }

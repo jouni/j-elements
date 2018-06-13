@@ -10,12 +10,11 @@ template.innerHTML = `
       color: inherit !important;
       letter-spacing: inherit !important;
       text-transform: inherit !important;
-      margin: 0 !important;
-      padding: 0 !important;
+      display: inline-block !important;
     }
 
-    :host(:not([invalid])) ::slotted([slot=error-message]) {
-      display: none;
+    :host(:not([invalid])) [part="error-message"] {
+      display: none !important;
     }
   </style>
   ${ bemToShadow(style, '.j-field') }
@@ -76,7 +75,7 @@ class JField extends HTMLElement {
 
   __attachShadow() {
     if (!this.shadowRoot) {
-      if (ShadyCSS && !ShadyCSS.nativeShadow) {
+      if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
         // ShadyCSS "consumes" the style element from the template, so we need to clone it, to allow
         // extending this class with another element name
         ShadyCSS.prepareTemplate(template.cloneNode(true), this.nodeName.toLowerCase());

@@ -77,6 +77,7 @@ class XScoped extends PolymerElement {
 
     // NOTE here is one of the main caveats of this approach: you must first get a reference to
     // the overlay element before querying the contained elements inside it
+    // i.e. this.shadowRoot.querySelector('j-dialog button') would not work
     overlay.querySelector('button').addEventListener('click', e => {
       overlay.visible = false;
     });
@@ -84,9 +85,10 @@ class XScoped extends PolymerElement {
       this.foobar = this.count++;
     });
 
-    // Polymer is too eager and combines all style tags in the template into one. So we create another one here.
+    // Polymer is too eager and combines all style tags in the template into one and removes
+    // the `type` attribute. So we create one here.
     const style = document.createElement('style');
-    style.setAttribute('type', 'module');
+    style.setAttribute('type', 'scoped');
     style.setAttribute('for', '.custom-class');
     style.innerHTML = `
       :host {
