@@ -4,8 +4,23 @@ import './j-tooltip.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
+  <style>
+    svg {
+      font: inherit;
+      fill: currentColor;
+      width: 100%;
+      height: 100%;
+    }
+
+    [part="icon"] {
+      padding: 0.0625em;
+    }
+  </style>
   ${ bemToShadow(style, '.j-avatar') }
-  <div part="abbr"></div>
+  <svg part="icon" width="24" height="24" viewBox="0 0 24 24"><path d="M12 12c-1.656854 0-3-1.343146-3-3s1.343146-3 3-3 3 1.343146 3 3-1.343146 3-3 3zm-7 7c0-2.761424 3.134007-5 7-5s7 2.238576 7 5H5z"/></svg>
+  <svg part="abbr" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
+    <text dy=".31em" text-anchor="middle"></text>
+  </svg>
   <div part="image"></div>
 `;
 
@@ -49,22 +64,22 @@ export class JAvatar extends StylableMixin(HTMLElement) {
           }
           this._tooltip.innerHTML = newValue;
           if (!this.hasAttribute('abbr')) {
-            this.shadowRoot.querySelector('[part=abbr]').innerHTML = newValue.match(/\b\S/g).join('');
+            this.shadowRoot.querySelector('[part=abbr] text').innerHTML = newValue.match(/\b\S/g).join('');
           }
         } else {
           if (this._tooltip) {
             this.shadowRoot.removeChild(this._tooltip);
           }
           if (!this.hasAttribute('abbr')) {
-            this.shadowRoot.querySelector('[part=abbr]').innerHTML = '';
+            this.shadowRoot.querySelector('[part=abbr] text').innerHTML = '';
           }
         }
         break;
       case 'abbr':
         if (hasValue) {
-          this.shadowRoot.querySelector('[part=abbr]').innerHTML = newValue;
+          this.shadowRoot.querySelector('[part=abbr] text').innerHTML = newValue;
         } else {
-          this.shadowRoot.querySelector('[part=abbr]').innerHTML = '';
+          this.shadowRoot.querySelector('[part=abbr] text').innerHTML = '';
         }
         break;
       case 'image': {
