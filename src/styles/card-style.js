@@ -1,5 +1,5 @@
 // By using "var innerHTML" we allow IDEs (at least Atom) to use correct syntax highlighting and code completion
-var innerHTML = `
+let innerHTML = `
   <style>
     .j-card {
       display: flex;
