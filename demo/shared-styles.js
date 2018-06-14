@@ -1,8 +1,8 @@
-import '@vaadin/vaadin-lumo-styles/color.js';
-import '@vaadin/vaadin-lumo-styles/sizing.js';
-import '@vaadin/vaadin-lumo-styles/spacing.js';
-import '@vaadin/vaadin-lumo-styles/style.js';
-import '@vaadin/vaadin-lumo-styles/typography.js';
+import '../node_modules/@vaadin/vaadin-lumo-styles/color.js';
+import '../node_modules/@vaadin/vaadin-lumo-styles/sizing.js';
+import '../node_modules/@vaadin/vaadin-lumo-styles/spacing.js';
+import '../node_modules/@vaadin/vaadin-lumo-styles/style.js';
+import '../node_modules/@vaadin/vaadin-lumo-styles/typography.js';
 
 const $_documentContainer = document.createElement('template');
 $_documentContainer.setAttribute('style', 'display: none;');

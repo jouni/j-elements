@@ -14,31 +14,14 @@
     <script type="module">
       import './shared-styles.js';
       import '../src/j-field.js';
-      import '@vaadin/vaadin-text-field/vaadin-text-field.js';
+      import '../node_modules/@vaadin/vaadin-text-field/vaadin-text-field.js';
       import style from '../src/styles/field-style.js';
 
       // Use the field styles in the global scope
       document.body.innerHTML += style;
 
-      // const template = document.createElement('template');
-      // template.innerHTML = `
-      //   <input type="text">
-      // `;
-      //
-      // class TextField extends FieldElement {
-      //   constructor() {
-      //     super();
-      //   }
-      //
-      //   connectedCallback() {
-      //     super.connectedCallback();
-      //     this.shadowRoot.appendChild(template.content.cloneNode(true))
-      //   }
-      // }
-      // customElements.define('text-field', TextField);
-
       // This needs to be imported last or otherwise Polymer style module includes do not work
-      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
     </script>
 
     <custom-style>

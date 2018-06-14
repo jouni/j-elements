@@ -12,14 +12,14 @@
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
     <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
-      import '@polymer/iron-demo-helpers/demo-snippet';
+      import '../demo/shared-styles.js';
       import '../src/j-dialog.js';
       import './polymer-example.js';
+      import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
     </script>
 
     <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
+      <style is="custom-style" include="shared-styles">
         j-dialog h3 {
           font-weight: 300;
           margin: 0;

@@ -1,4 +1,4 @@
-import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {html, PolymerElement} from '../node_modules/@polymer/polymer/polymer-element.js';
 
 import '../src/j-dialog.js';
 import '../src/j-tooltip.js';
