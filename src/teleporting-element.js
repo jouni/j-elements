@@ -67,6 +67,12 @@ export class TeleportingElement extends HTMLElement {
     }
   }
 
+  disconnectedCallback() {
+    if (this._isPlaceholder && this.visible) {
+      this.visible = false;
+    }
+  }
+
   set visible(value) {
     if (this._isPlaceholder) return;
 

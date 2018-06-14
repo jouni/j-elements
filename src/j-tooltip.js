@@ -43,7 +43,6 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
       this._parentNode = this.parentNode;
       this._parentNode.addEventListener('mousemove', this._showListener);
       this._parentNode.addEventListener('mouseout', this._hideListener);
-      this._parentNode.addEventListener('mousedown', this._hideListener);
     }
   }
 
@@ -51,7 +50,6 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
     if (!this.visible && this._parentNode) {
       this._parentNode.removeEventListener('mousemove', this._showListener);
       this._parentNode.removeEventListener('mouseout', this._hideListener);
-      this._parentNode.removeEventListener('mousedown', this._hideListener);
       delete this._parentNode;
     }
     if (super.disconnectedCallback) super.disconnectedCallback();
