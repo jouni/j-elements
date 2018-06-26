@@ -103,7 +103,7 @@ Web components that try to fill in some gaps in the [Vaadin components collectio
 
 ### Avatar
 
-`<j-avatar>`: a simple avatar component, showing either a default user icon, name abbreviation or profile picture. Uses `<j-tooltip>` to show the full name when hovering over the avatar.
+`<j-avatar>`: An avatar element, showing either a default user icon, name abbreviation or profile picture. Uses `<j-tooltip>` to show the full name when hovering over the avatar.
 
 ```html
 <j-avatar name="John Doe"></j-avatar>
@@ -125,7 +125,7 @@ Web components that try to fill in some gaps in the [Vaadin components collectio
 
 ### Dialog
 
-`<j-dialog>`: A simple dialog element. A test for `TeleportingElement`. Does not handle accessibility or keyboard navigation in any special way.
+`<j-dialog>`: A dialog element. A test for `TeleportingElement`. Does not handle accessibility or keyboard navigation in any special way.
 
 ```html
 <j-dialog visible>
@@ -134,9 +134,27 @@ Web components that try to fill in some gaps in the [Vaadin components collectio
 ```
 
 
+### Icon
+
+`<j-icon>`: An element for showing SVG icons. Inspired by `<iron-icon>`, but rather than specifying the icon using a name which refers to a predefined named collection (`<iron-iconset-svg>`), `<j-icon>` let’s you define the SVG path using CSS:
+
+```html
+<!-- You can use any selector you like to target the icon element -->
+<j-icon class="bell"></j-icon>
+
+<style>
+  j-icon.bell {
+    --svg: <path d="M8.8 16.2H7v-6.197965C7 7.791772 8.7878 6 11.009763 6H11V5c0-.552285.443865-1 1-1 .552285 0 1 .443865 1 1v1h-.009763C15.204768 6 17 7.800076 17 10.002035V16.2h-1.8v-6.193c0-1.226974-.9861-2.207-2.202517-2.207h-1.994966C9.785974 7.8 8.8 8.788107 8.8 10.007V16.2zm-3.8.9c0-.497056.403894-.9.89706-.9h12.20588c.495432 0 .89706.39948.89706.9 0 .497057-.403894.9-.89706.9H5.89706C5.401628 18 5 17.600523 5 17.1zm5.5 1.7h3v.75c0 .414213-.344138.75-.757027.75h-1.485946c-.418095 0-.757027-.3329-.757027-.75v-.75z" fill-rule="evenodd"/>;
+  }
+</style>
+```
+
+The benefit of this is that it allows theme developers to easily change the icons in a web component with just CSS, which can affect all instances of the component across the app.
+
+
 ### Tooltip
 
-`<j-tooltip>`: A simple tooltip element. A test for `TeleportingElement`. Does not handle accessibility in any special way (f.e. does not announce the tooltip for screen readers).
+`<j-tooltip>`: A tooltip element. A test for `TeleportingElement`. Does not handle accessibility in any special way (f.e. does not announce the tooltip for screen readers).
 
 ```html
 <j-tooltip>Tooltip content</j-tooltip>
