@@ -13,7 +13,7 @@ let innerHTML = `
       overflow: hidden;
       background-color: rgba(0, 0, 0, 0.4);
       color: #fff;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 48px;
       cursor: default;
     }
