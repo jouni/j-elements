@@ -25,7 +25,7 @@ export class JDialog extends StylableMixin(TeleportingElement) {
 
     if (!this.__jdialogTemplateStamped) {
       if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
-        ShadyCSS.prepareTemplate(template, 'j-dialog');
+        ShadyCSS.prepareTemplate(template, this.nodeName.toLowerCase());
         ShadyCSS.styleElement(this);
       }
 

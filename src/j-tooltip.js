@@ -31,7 +31,7 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
 
     if (!this.__jtooltipTemplateStamped) {
       if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
-        ShadyCSS.prepareTemplate(template, 'j-tooltip');
+        ShadyCSS.prepareTemplate(template, this.nodeName.toLowerCase());
         ShadyCSS.styleElement(this);
       }
 
