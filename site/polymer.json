@@ -1,0 +1,24 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/j-site.js",
+  "npm": true,
+  "lint": {
+    "rules": [
+      "polymer-3"
+    ]
+  },
+  "sources": [
+   "src/**/*"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "node_modules/@webcomponents/webcomponentsjs/**"
+  ],
+  "builds": [
+    {
+      "name": "bundled",
+      "preset": "es5-bundled" ,
+      "addServiceWorker": false
+    }
+  ]
+}

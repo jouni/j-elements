@@ -1,0 +1,18 @@
+{
+  "name": "j-elements-site",
+  "description": "Documentation and examples for the j-elements project",
+  "dependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@polymer/polymer": "^3.0.0",
+    "@vaadin/router": "^0.4.0",
+    "@vaadin/vaadin-checkbox": "^2.2.0-alpha2",
+    "@vaadin/vaadin-lumo-styles": "^1.0.0-pre.6",
+    "@vaadin/vaadin-tabs": "^2.1.0-alpha2",
+    "@vaadin/vaadin-text-field": "^2.0.1-pre.2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "polymer-cli": "^1.7.7"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.0.0"
+  }
+}
