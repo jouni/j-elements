@@ -57,7 +57,7 @@ export class JAvatar extends StylableMixin(HTMLElement) {
     const hasValue = newValue !== null;
     switch (name) {
       case 'name':
-        if (hasValue) {
+        if (hasValue && !this.hasAttribute('no-tooltip')) {
           if (!this._tooltip) {
             this._tooltip = document.createElement('j-tooltip');
             this.shadowRoot.appendChild(this._tooltip);
