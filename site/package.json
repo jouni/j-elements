@@ -14,5 +14,8 @@
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.0.0"
+  },
+  "scripts": {
+    "build": "npm install; npm link ../; npx polymer build"
   }
 }
