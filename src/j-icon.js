@@ -40,6 +40,8 @@ export class JIcon extends HTMLElement {
     const svgPath = style.getPropertyValue('--svg');
     const viewBox = style.getPropertyValue('--viewbox');
 
+    if (!viewBox) return;
+
     // Firefox can't use innerHTML on an <svg> element, so we use this workaround
     const oldSvg = this.shadowRoot.querySelector('svg');
     if (oldSvg) {
