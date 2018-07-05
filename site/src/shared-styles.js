@@ -25,6 +25,10 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin-bottom: var(--lumo-space-m);
       }
 
+      [slot=drawer] vaadin-tabs {
+        width: 100%;
+      }
+
       [slot=drawer] vaadin-tab a {
         font: inherit;
         color: inherit;
