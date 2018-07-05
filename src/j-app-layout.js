@@ -301,6 +301,7 @@ template.innerHTML = `
       :host([type]) .support {
         flex-direction: row;
         flex-grow: 0.5;
+        flex-basis: auto;
       }
 
       :host([type]) .support {

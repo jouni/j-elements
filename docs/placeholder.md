@@ -6,7 +6,7 @@ A simpler element for showing a placeholder box. The default size is 100x100 pix
 <j-placeholder>Placeholder</j-placeholder>
 ```
 
-### Sizing
+### Styling
 
 You can size and change the color of the placeholder with CSS.
 

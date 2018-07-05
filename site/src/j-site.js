@@ -36,6 +36,7 @@ class JSite extends HTMLElement {
         <div slot="drawer">
           <vaadin-tabs orientation="vertical">
           <vaadin-tab><a href="/">About</a></vaadin-tab>
+          <vaadin-tab><a href="/howto">Get Started</a></vaadin-tab>
           <h6>Components</h6>
           <vaadin-tab><a href="/app-layout">App Layout</a></vaadin-tab>
           <vaadin-tab><a href="/avatar">Avatar</a></vaadin-tab>
