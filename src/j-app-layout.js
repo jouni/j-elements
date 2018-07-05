@@ -7,7 +7,7 @@ template.innerHTML = `
     :host {
       display: block;
       --j-app-layout-navbar-size: 56px;
-      --j-app-layout-drawer-width: 300px;
+      --j-app-layout-drawer-width: 260px;
       --j-app-layout-bottom-drawer-offset: var(--j-app-layout-bottom-drawer-offset-min);
     }
 
@@ -42,7 +42,7 @@ template.innerHTML = `
 
     .navbar {
       position: fixed;
-      z-index: 1;
+      z-index: 2;
       top: 0;
       left: 0;
       box-sizing: border-box;
@@ -50,12 +50,12 @@ template.innerHTML = `
       align-items: center;
     }
 
-    :host([type=top]) {
-      margin-top: var(--j-app-layout-navbar-size);
+    :host([type=top]) .content {
+      padding-top: var(--j-app-layout-navbar-size);
     }
 
-    :host([type=side]) {
-      margin-left: var(--j-app-layout-navbar-size);
+    :host([type=side]) .content {
+      padding-left: var(--j-app-layout-navbar-size);
     }
 
     :host([type=top]) .navbar {
@@ -82,7 +82,6 @@ template.innerHTML = `
 
     :host([type=side]) .brand {
       order: -1;
-      padding-top: 8px;
     }
 
     .navbar ::slotted([slot=menu]) {
@@ -96,8 +95,7 @@ template.innerHTML = `
 
     :host([type=top]) .support {
       flex-grow: 0.5;
-      flex-basis: calc(var(--j-app-layout-navbar-size) - 8px);
-      margin-right: 8px;
+      flex-basis: calc(var(--j-app-layout-navbar-size));
     }
 
     :host([type=side]) .brand,
@@ -108,7 +106,6 @@ template.innerHTML = `
 
     :host([type=side]) .support {
       margin-top: auto;
-      margin-bottom: 8px;
     }
 
     @media (max-width: 800px) {
@@ -131,6 +128,7 @@ template.innerHTML = `
     }
 
     .drawer-toggle j-icon {
+      --viewbox: 0 0 24 24;
       --svg: <path d="M4 7c0-.552285.44463-1 1.000872-1h13.998256C19.551895 6 20 6.443865 20 7c0 .552285-.44463 1-1.000872 1H5.000872C4.448105 8 4 7.556135 4 7zm0 5c0-.552285.44463-1 1.000872-1h13.998256C19.551895 11 20 11.443865 20 12c0 .552285-.44463 1-1.000872 1H5.000872C4.448105 13 4 12.556135 4 12zm0 5c0-.552285.44463-1 1.000872-1h13.998256C19.551895 16 20 16.443865 20 17c0 .552285-.44463 1-1.000872 1H5.000872C4.448105 18 4 17.556135 4 17z"/>;
     }
 
@@ -145,10 +143,12 @@ template.innerHTML = `
       transform: translateX(-100%);
       transition: transform 160ms;
       overflow: auto;
+      padding: 1em 0;
     }
 
     .drawer,
-    .navbar {
+    .navbar,
+    .content {
       padding-left: constant(safe-area-inset-left);
       padding-left: env(safe-area-inset-left);
     }
@@ -171,16 +171,16 @@ template.innerHTML = `
         background: transparent;
       }
 
-      :host([type=top].drawer-visible) {
-        margin-left: var(--j-app-layout-drawer-width);
+      :host([type=top].drawer-visible) .content {
+        padding-left: var(--j-app-layout-drawer-width);
       }
 
       :host([type=top].drawer-visible) .brand {
         flex-basis: var(--j-app-layout-drawer-width);
       }
 
-      :host([type=side].drawer-visible) {
-        margin-left: calc(var(--j-app-layout-navbar-size) + var(--j-app-layout-drawer-width));
+      :host([type=side].drawer-visible) .content {
+        padding-left: calc(var(--j-app-layout-navbar-size) + var(--j-app-layout-drawer-width));
       }
     }
 
@@ -191,10 +191,6 @@ template.innerHTML = `
     :host(:not(.has-drawer)) .drawer,
     :host(:not(.has-drawer)) .drawer-toggle {
       display: none;
-    }
-
-    :host([type=top]:not(.has-drawer)) .brand {
-      margin-left: 8px;
     }
 
     @media (max-width: 1000px) {
@@ -230,16 +226,16 @@ template.innerHTML = `
     /* Small touch devices */
     @media (pointer: coarse) and (max-width: 750px) {
       :host([type]) {
-        margin: 0;
-        margin-bottom: var(--j-app-layout-bottom-drawer-offset-min);
+        --j-app-layout-navbar-size: 56px;
+      }
+
+      :host([type]) .content {
+        padding: 0;
+        padding-bottom: var(--j-app-layout-bottom-drawer-offset-min);
       }
 
       .drawer-backdrop {
         display: none;
-      }
-
-      :host(:not(.has-menu)) .drawer-toggle {
-        display: flex;
       }
 
       .app-layout-drawer {
@@ -257,12 +253,22 @@ template.innerHTML = `
         display: flex;
         flex-direction: column;
         transform: translateY(calc(var(--j-app-layout-bottom-drawer-offset) * -1));
+        box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.04);
+      }
+
+      .app-layout-drawer:not(.no-anim) {
+        transition: transform 170ms cubic-bezier(0.38, 0.85, 0.81, 1.11);
+      }
+
+      :host(:not(.has-menu)) .drawer-toggle {
+        order: -1;
       }
 
       :host([type]) .navbar,
       .drawer {
         position: static;
         background: transparent;
+        color: inherit;
         width: 100%;
         height: auto;
         -webkit-backdrop-filter: none;
@@ -270,6 +276,10 @@ template.innerHTML = `
 
       :host([type]) .navbar {
         flex: none;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
       }
 
       :host(.has-menu) .navbar {
@@ -285,7 +295,11 @@ template.innerHTML = `
       :host([type]) .brand,
       :host([type]) .support {
         flex-direction: row;
-        flex: none;
+        flex-grow: 0.5;
+      }
+
+      :host([type]) .support {
+        margin: 0;
       }
 
       .navbar ::slotted([slot=menu]) {
@@ -297,9 +311,11 @@ template.innerHTML = `
       }
 
       :host([type]) .drawer {
+        display: block;
         transform: none;
         max-width: none;
         overflow: hidden;
+        padding-top: 0;
       }
 
       :host([type]) .app-layout-drawer.full .drawer {
@@ -307,20 +323,14 @@ template.innerHTML = `
         -webkit-overflow-scrolling: touch;
       }
 
-      .app-layout-drawer:not(.no-anim) {
-        transition: transform 170ms cubic-bezier(0.38, 0.85, 0.81, 1.11);
-      }
-
-      :host(.input-focused) {
-        margin-bottom: 0;
+      :host(.input-focused) .content {
+        padding-bottom: 0;
       }
 
       :host(.input-focused) .app-layout-drawer {
         display: none;
       }
     }
-
-
   </style>
 
   <div class="drawer-backdrop"></div>
@@ -356,8 +366,6 @@ const DRAG_THRESHOLD = 10;
 
 export class JAppLayout extends StylableMixin(HTMLElement) {
   connectedCallback() {
-    super.connectedCallback();
-
     if (!this.__jAppLayoutTemplateStamped) {
       this.__jAppLayoutTemplateStamped = true;
 
@@ -370,17 +378,17 @@ export class JAppLayout extends StylableMixin(HTMLElement) {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
 
       this.$ = {};
-      this.$.bottomDrawer = this.shadowRoot.querySelector('.app-layout-drawer');
       this.$.navbar = this.shadowRoot.querySelector('.navbar');
       this.$.support = this.shadowRoot.querySelector('.support');
       this.$.drawer = this.shadowRoot.querySelector('.drawer');
       this.$.drawerToggle = this.shadowRoot.querySelector('.drawer-toggle');
       this.$.drawerBackdrop = this.shadowRoot.querySelector('.drawer-backdrop');
       this.$.content = this.shadowRoot.querySelector('.content');
+      this.$.bottomDrawer = this.shadowRoot.querySelector('.app-layout-drawer');
 
       this.$.drawerToggle.addEventListener('click', e => {
         this.classList.toggle('drawer-visible');
-        if (this.classList.contains('drawer-visible')) {
+        if (this._getDrawerOffset() == this._minOffset) {
           this._setDrawerOffset(this._maxOffset / 2);
         } else {
           this._setDrawerOffset(this._minOffset);
@@ -400,25 +408,35 @@ export class JAppLayout extends StylableMixin(HTMLElement) {
       this.addEventListener('focusout', this._focusOut.bind(this));
     }
 
-    // Delay so that slotted content is processed
-    setTimeout(() => {
-      // Get a reference to the slotted menu element
-      this.$.menu = this.querySelector('[slot=menu]');
-      this.classList.toggle('has-menu', this.$.menu);
+    // Get a reference to the slotted menu element
+    this.$.menu = this.querySelector('[slot=menu]');
+    this.classList.toggle('has-menu', this.$.menu);
+
+    // Wait for any elements inside the menu to upgrade and be styled before measuring
+    requestAnimationFrame(() => {
       this._minOffset = this.$.menu ? this.$.menu.offsetHeight : Math.max(this.$.navbar.offsetHeight, 20);
       this.style.setProperty('--j-app-layout-bottom-drawer-offset-min', this._minOffset + 'px');
-      // Show the navbar initially
-      this._setDrawerOffset(this.$.navbar.offsetHeight);
+      this._setDrawerOffset(this._minOffset);
+    });
 
-      // If there’s a drawer, show some of that initially as well
-      if (this.querySelector('[slot=drawer]')) {
-        this.classList.add('has-drawer');
-        this._setDrawerOffset(this.$.navbar.offsetHeight + this.$.drawer.offsetHeight / 4);
-      } else {
-        this.classList.remove('has-drawer');
+    // If there’s a drawer, show some of that initially
+    if (this.querySelector('[slot=drawer]')) {
+      this.classList.add('has-drawer');
+
+      // Open the drawer on wide screens by default
+      if (window.innerWidth >= 1000) {
+        this.classList.add('drawer-visible');
       }
+      // Wait for any elements inside the drawer to upgrade and be styled before measuring
+      requestAnimationFrame(() => {
+        this._setDrawerOffset(this.$.bottomDrawer.offsetHeight / 2);
+      });
+    } else {
+      this.classList.remove('has-drawer');
+      this.classList.remove('drawer-visible');
+    }
 
-    }, 200);
+    super.connectedCallback();
   }
 
   _setDrawerOffset(offset) {
@@ -597,8 +615,13 @@ export class JAppLayout extends StylableMixin(HTMLElement) {
   _focusOut(e) {
     this.classList.remove('input-focused');
   }
+
+  closeDrawer() {
+    if (window.innerWidth < 1000) {
+      this.classList.remove('drawer-visible');
+    }
+    this._setDrawerOffset(this._minOffset);
+  }
 }
 
 window.customElements.define('j-app-layout', JAppLayout);
-
-export default JAppLayout;
