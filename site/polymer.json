@@ -12,6 +12,7 @@
   ],
   "extraDependencies": [
     "manifest.json",
+    "_redirects",
     "node_modules/@webcomponents/webcomponentsjs/**"
   ],
   "builds": [
