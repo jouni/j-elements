@@ -114,6 +114,11 @@ template.innerHTML = `
       }
     }
 
+    .content {
+      box-sizing: border-box;
+      min-height: 50vh;
+    }
+
     /* Drawer styles */
 
     .drawer-toggle {
