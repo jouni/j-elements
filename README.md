@@ -48,6 +48,7 @@ import { StylableMixin } from './node_modules/j-elements/src/stylable-mixin.js';
 class JCard extends StylableMixin(HTMLElement) {
   connectedCallback() {
     // You need to call this to have style modules applied
+    // NOTE: you have create a shadow root for your element before calling this
     super.connectedCallback();
   }
 }
