@@ -1,14 +1,14 @@
 import {renderMarkdown} from './render-markdown.js';
 
 class Page extends HTMLElement {
-  get route() {
-    return this._route;
+  get location() {
+    return this._location;
   }
 
-  set route(route) {
-    const page = route.pathname == '/' ? '/node_modules/j-elements/README.md' : `/node_modules/j-elements/docs${route.pathname}.md`;
+  set location(location) {
+    const page = location.pathname == '/' ? '/node_modules/j-elements/README.md' : `/node_modules/j-elements/docs${location.pathname}.md`;
     renderMarkdown(page, this);
-    this._route = route;
+    this._location = location;
   }
 }
 

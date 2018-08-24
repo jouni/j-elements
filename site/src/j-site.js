@@ -1,10 +1,11 @@
-import {Router} from '@vaadin/router/dist/vaadin-router.js';
+import {Router} from '@vaadin/router';
 import '@vaadin/vaadin-tabs';
 import '@vaadin/vaadin-text-field';
 import 'j-elements';
 import '@vaadin/vaadin-lumo-styles/color.js';
 import '@vaadin/vaadin-lumo-styles/typography.js';
 import './shared-styles.js';
+import './maturity-badge.js';
 
 // Pages
 import './index.js';
@@ -65,14 +66,13 @@ class JSite extends HTMLElement {
 
     const router = new Router(this.querySelector('j-app-layout .content'));
     router.setRoutes({
-      path: '(.*)',
-      component: 'index-page',
+      path: '(.*)', component: 'index-page'
     });
 
-    window.addEventListener('vaadin-router-route-changed', e => {
+    window.addEventListener('vaadin-router-location-changed', e => {
       // Update the selected tab
       Array.from(tabs.querySelectorAll('vaadin-tab')).find((tab, i) => {
-        if (tab.querySelector('a').getAttribute('href') == e.detail.pathname) {
+        if (tab.querySelector('a').getAttribute('href') == e.detail.location.pathname) {
           this._programmaticTabChange = true;
           tab.parentNode.selected = i;
           delete this._programmaticTabChange;
