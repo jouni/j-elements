@@ -148,7 +148,6 @@ template.innerHTML = `
       transform: translateX(-100%);
       transition: transform 160ms;
       overflow: auto;
-      padding: 1em 0;
     }
 
     .drawer,
@@ -203,8 +202,8 @@ template.innerHTML = `
         display: block;
         content: "";
         position: fixed;
-        z-index: 1;
-        top: var(--j-app-layout-navbar-size);
+        z-index: 3;
+        top: 0;
         right: 0;
         bottom: 0;
         left: 0;
@@ -214,18 +213,19 @@ template.innerHTML = `
         pointer-events: none;
       }
 
-      :host([type=side]) .drawer-backdrop {
+      :host([type]) .drawer {
         top: 0;
+        z-index: 3;
+      }
+
+      :host([type=side]) .drawer {
+        left: 0;
       }
 
       :host(.drawer-visible) .drawer-backdrop {
         opacity: 0.2;
         pointer-events: auto;
       }
-    }
-
-    .app-layout-drawer {
-      position: absolute;
     }
 
     /* Small touch devices */
