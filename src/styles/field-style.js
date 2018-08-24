@@ -20,6 +20,11 @@ let innerHTML = `
     .j-field__error-message {
       font-size: 0.875em;
       color: red;
+      margin: 0;
+    }
+
+    .j-field:not(.j-field--invalid) .j-field__error-message {
+      display: none !important;
     }
   </style>
 `;

@@ -7,7 +7,7 @@ import {JIcon} from './src/j-icon.js';
 import {JPlaceholder} from './src/j-placeholder.js';
 import {JTooltip} from './src/j-tooltip.js';
 import {StylableMixin} from './src/stylable-mixin.js';
-import {TeleportingElement} from './src/teleporting-element.js';
+import LightStyleElement from './src/light-style-element.js';
 import TeleportingElement from './src/teleporting-element.js';
 
 export {
@@ -20,5 +20,6 @@ export {
   JPlaceholder,
   JTooltip,
   StylableMixin,
+  LightStyleElement,
   TeleportingElement
 };

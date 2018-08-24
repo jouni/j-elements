@@ -5,9 +5,9 @@
 ### Text field
 ```html,live
 <j-field>
-  <label slot="label">Label</label>
+  <label>Label</label>
   <input type="text" required>
-  <p slot="error-message">Error message</p>
+  <p error-message>Error message</p>
 </j-field>
 ```
 
@@ -15,7 +15,7 @@
 ```html,live
 <j-field>
   <input type="text" required>
-  <p slot="error-message">Error message</p>
+  <p error-message>Error message</p>
 </j-field>
 ```
 
@@ -24,7 +24,7 @@
 <j-field>
   <label slot="label">Label</label>
   <textarea required></textarea>
-  <p slot="error-message">Error message</p>
+  <p error-message>Error message</p>
 </j-field>
 ```
 
@@ -33,7 +33,7 @@
     <j-field>
       <label slot="label">Label</label>
       <input type="date" required>
-      <p slot="error-message">Error message</p>
+      <p error-message>Error message</p>
     </j-field>
 ```
 
@@ -43,7 +43,7 @@
   <label slot="label">Label</label>
   <label><input type="checkbox"> Option</label>
   <label><input type="checkbox" required> Option</label>
-  <p slot="error-message">Error message</p>
+  <p error-message>Error message</p>
 </j-field>
 ```
 
@@ -54,7 +54,7 @@
   <label><input type="radio" required> Option</label>
   <label><input type="radio"> Option</label>
   <label><input type="radio"> Option</label>
-  <p slot="error-message">Error message</p>
+  <p error-message>Error message</p>
 </j-field>
 ```
 
@@ -71,6 +71,6 @@
 <j-field>
   <label slot="label">Label</label>
   <vaadin-text-field required></vaadin-text-field>
-  <p slot="error-message">Error message</p>
+  <p error-message>Error message</p>
 </j-field>
 ```
