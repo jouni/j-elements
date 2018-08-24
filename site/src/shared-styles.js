@@ -42,6 +42,7 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       vaadin-tabs[slot=drawer] {
         width: 100%;
         height: 100%;
+        box-sizing: border-box;
         padding: var(--lumo-space-m) 0;
       }
 
