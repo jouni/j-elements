@@ -33,8 +33,7 @@ template.innerHTML = `
     /* Just for fancy :) */
     @supports (-webkit-backdrop-filter: blur(1px)) {
       .navbar,
-      .drawer,
-      .app-layout-drawer {
+      .drawer {
         -webkit-backdrop-filter: blur(30px);
         background-color: rgba(240,240,240,0.7);
       }
