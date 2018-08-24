@@ -1,4 +1,4 @@
-# Placeholder
+# Placeholder <maturity-badge stable>(Stable)</maturity-badge>
 
 A simpler element for showing a placeholder box. The default size is 100x100 pixels.
 

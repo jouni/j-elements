@@ -1,4 +1,4 @@
-# Tooltip
+# Tooltip <maturity-badge proto>(Proto)</maturity-badge>
 
 ### Simple tooltip
 ```html,live

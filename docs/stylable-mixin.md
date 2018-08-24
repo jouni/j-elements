@@ -1,4 +1,4 @@
-# Stylable Mixin
+# Stylable Mixin <maturity-badge poc>(Proof of concept)</maturity-badge>
 
 `StylableMixin` is basically a more versatile replacement for [`Vaadin.ThemableMixin`](https://github.com/vaadin/vaadin-themable-mixin/), and does not depend on Polymer.
 

@@ -90,6 +90,42 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       button:active {
         background-color: var(--lumo-primary-color-50pct);
       } */
+
+      maturity-badge a {
+        color: inherit;
+        text-decoration: none !important;
+        font-size: var(--lumo-font-size-s);
+        font-weight: 500;
+        background-color: var(--lumo-contrast-10pct);
+        color: var(--lumo-contrast-70pct);
+        display: inline-block;
+        padding: 0.2em 0.4em;
+        border-radius: 0.25em;
+        vertical-align: middle;
+        margin-left: 0.5em;
+        cursor: pointer;
+      }
+
+      maturity-badge[poc] a {
+        background-color: var(--lumo-error-color-10pct);
+        color: var(--lumo-error-text-color);
+      }
+
+      maturity-badge[proto] a {
+        background-color: rgb(255,241,214);
+        color: rgb(184,121,0);
+      }
+
+      maturity-badge[rfc] a {
+        background-color: var(--lumo-success-color-10pct);
+        color: var(--lumo-success-text-color);
+      }
+
+      maturity-badge[stable] a {
+        background-color: var(--lumo-primary-color-10pct);
+        color: var(--lumo-primary-text-color);
+      }
+
     </style>
   </template>
 </dom-module>`;

@@ -1,4 +1,4 @@
-# Icon
+# Icon <maturity-badge rfc>(Request for feedback)</maturity-badge>
 
 ### Custom SVG path
 

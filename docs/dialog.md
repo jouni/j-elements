@@ -1,4 +1,4 @@
-# Dialog
+# Dialog <maturity-badge poc>(Proof of concept)</maturity-badge>
 
 A dialog is created using the `<j-dialog>` element. It is based on <a href="/teleporting-element">Teleporting Element</a>, and because of that will always show on top of other content, escaping any parent stacking contexts.
 
