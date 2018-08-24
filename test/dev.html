@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <title>j-elements proving ground</title>
 
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
     <script type="module">
       import '../src/j-avatar.js';
+      import '../src/j-button.js';
       import '../src/j-card.js';
       import '../src/j-dialog.js';
       import '../src/j-field.js';
       import '../src/j-tooltip.js';
-      import '../node_modules/@vaadin/vaadin-text-field/vaadin-text-field.js';
+      import '../site/node_modules/@vaadin/vaadin-text-field/vaadin-text-field.js';
     </script>
   </head>
   <body>
@@ -63,24 +64,27 @@
           <h3 slot="title">Dialog card title</h3>
           <j-avatar name="Firstname Lastname"></j-avatar>
           <j-field>
-            <label slot="label">Native Text Input</label>
+            <label>Native Text Input</label>
             <input type="text" required>
-            <p slot="error-message">Error message</p>
+            <p error-message>Error message</p>
           </j-field>
 
           <j-field>
-            <label slot="label">Native Radio Buttons</label>
-            <label><input type="radio" required> Option</label>
-            <label><input type="radio" required> Option</label>
-            <label><input type="radio" required> Option</label>
-            <p slot="error-message">Error message</p>
+            <label>Native Radio Buttons</label>
+            <label><input type="radio" required> Option 1</label>
+            <label><input type="radio" required> Option 2</label>
+            <label><input type="radio" required> Option 3</label>
+            <p error-message>Error message</p>
           </j-field>
 
           <j-field>
-            <label slot="label">Vaadin Text Field</label>
+            <label>Vaadin Text Field</label>
             <vaadin-text-field required></vaadin-text-field>
-            <p slot="error-message">Error message</p>
+            <p error-message>Error message</p>
           </j-field>
+
+          <j-button>Save</j-button>
+          <j-button>Cancel</j-button>
         </j-card>
       </j-dialog>
     </div>
