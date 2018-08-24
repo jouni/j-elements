@@ -4,6 +4,8 @@
 
 *Not recommended for production, but very much recommended for testing and providing feedback* 😊
 
+[Docs and demos ›](http://vigilant-northcutt-2d7143.netlify.com/)
+
 
 ## Proof-of-concept helper elements and mixins
 
@@ -47,5 +49,7 @@ Install Node.js and npm, then do the following:
 1. Run the demos and open them in your default browser:
 
     ```
-    polymer serve -o --open-path demo
+    cd site
+    npm link ../
+    polymer serve -o
     ```
