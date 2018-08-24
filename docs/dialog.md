@@ -26,16 +26,16 @@ Demonstrating how you can toggle the visibility of a dialog which has been creat
 </j-dialog>
 
 <script>
-  var dialog = document.querySelector('.declarative');
-  var showButton = document.querySelector('.show-declarative');
-  var hideButton = dialog.querySelector('.hide');
+  let declarativeDialog = document.querySelector('.declarative');
+  let showDeclarative = document.querySelector('.show-declarative');
+  let hideDeclarative = declarativeDialog.querySelector('.hide');
 
-  showButton.addEventListener('click', function() {
-    dialog.show();
+  showDeclarative.addEventListener('click', function() {
+    declarativeDialog.show();
   });
 
-  hideButton.addEventListener('click', function() {
-    dialog.hide();
+  hideDeclarative.addEventListener('click', function() {
+    declarativeDialog.hide();
   });
 </script>
 ```
@@ -49,10 +49,10 @@ Demonstrating how you can create and show a dialog using JavaScript.
 <button class="show-imperative">Open</button>
 
 <script>
-  var showButton = document.querySelector('.show-imperative');
+  let showImperative = document.querySelector('.show-imperative');
 
-  showButton.addEventListener('click', function() {
-    var dialog = document.createElement('j-dialog');
+  showImperative.addEventListener('click', function() {
+    const dialog = document.createElement('j-dialog');
     dialog.innerHTML = `
       <h3>Imperative dialog</h3>
       <p>Dialog content.</p>
@@ -93,16 +93,16 @@ Demonstrating how you can create and show a dialog using JavaScript.
 </j-dialog>
 
 <script>
-  var dialog = document.querySelector('.styled');
-  var showButton = document.querySelector('.show-styled');
-  var hideButton = dialog.querySelector('.hide');
+  let styledDialog = document.querySelector('.styled');
+  let showStyled = document.querySelector('.show-styled');
+  let hideStyled = styledDialog.querySelector('.hide');
 
-  showButton.addEventListener('click', function() {
-    dialog.show();
+  showStyled.addEventListener('click', function() {
+    styledDialog.show();
   });
 
-  hideButton.addEventListener('click', function() {
-    dialog.hide();
+  hideStyled.addEventListener('click', function() {
+    styledDialog.hide();
   });
 </script>
 ```
