@@ -23,7 +23,7 @@ template.innerHTML = `
  *   first query the teleportin element and then continue the query from there, for example
  *   `querySelector('.some-class teleporting-element').querySelector('.other-class')`
  */
-export class TeleportingElement extends HTMLElement {
+export default class TeleportingElement extends HTMLElement {
   static get observedAttributes() {
     return ['visible'];
   }
@@ -118,7 +118,7 @@ export class TeleportingElement extends HTMLElement {
       }
 
       // Collect scoped styles
-      let scopeCssText = Array.from(this.getRootNode().querySelectorAll('style:not([type=module])'))
+      let scopeCssText = Array.from(this.getRootNode().querySelectorAll('style:not([type])'))
         .reduce((result, style) => result + style.textContent, '');
 
       // Hide the scope container

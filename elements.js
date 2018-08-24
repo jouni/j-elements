@@ -8,6 +8,7 @@ import {JPlaceholder} from './src/j-placeholder.js';
 import {JTooltip} from './src/j-tooltip.js';
 import {StylableMixin} from './src/stylable-mixin.js';
 import {TeleportingElement} from './src/teleporting-element.js';
+import TeleportingElement from './src/teleporting-element.js';
 
 export {
   JAppLayout,
