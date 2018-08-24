@@ -4,7 +4,7 @@
   "homepage": "https://jouni.github.com/j-elements",
   "repository": "https://github.com/jouni/j-elements",
   "authors": [
-    "Jouni Koivuviita <jouni@vaadin.com>"
+    "Jouni Koivuviita <jouni@jouni.me>"
   ],
   "description": "Proof-of-concept and prototype web components to fill in some gaps in the Vaadin components collection.",
   "main": "elements.js",
