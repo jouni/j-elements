@@ -1,6 +1,6 @@
 # Stylable Mixin <maturity-badge poc>(Proof of concept)</maturity-badge>
 
-`StylableMixin` is basically a more versatile replacement for [`Vaadin.ThemableMixin`](https://github.com/vaadin/vaadin-themable-mixin/), and does not depend on Polymer.
+`StylableMixin` is basically a more versatile replacement for [`Vaadin.ThemableMixin`](https://github.com/vaadin/vaadin-themable-mixin/), and does not depend on Polymer. It allows the user of the web component to inject custom styles inside the component’s shadow root (allowing theming).
 
 #### Benefits
 - You can style individual component instances (scoped) in addition to all instances of a component (global)
@@ -15,6 +15,11 @@
 
   To it’s defence, the performance impact of `ThemableMixin` has not been measured.
 - Not tested in production
+
+
+### Temporary solution
+
+Both `StylableMixin` and `ThemableMixin` are temporary solutions until the web platform has a proper way to style shadow DOM elements in a controlled way. One proposal for that is the [`::part` and `::theme` pseudo-element selectors](https://tabatkins.github.io/specs/css-shadow-parts/).
 
 ## Features
 
@@ -45,15 +50,22 @@
 You can also inject styles from the global scope into any other scope (a.k.a. theme module):
 
 ```html
-<!-- This style module (when placed in
-  the global scope) will be used by all
-  <j-card> instances -->
+<!-- This style module (when placed in the global scope)
+  will be used by all <j-card> instances (you can see it
+  being applied for the cards in the above example) -->
 <style type="global" for="j-card">
   :host {
-    border: 2px solid;
+    border: 2px dotted;
+    margin-bottom: 1em;
   }
 </style>
 ```
+<style type="global" for="j-card">
+  :host {
+    border: 2px dotted;
+    margin-bottom: 1em;
+  }
+</style>
 
 ## Making a component stylable
 
@@ -65,7 +77,7 @@ import { StylableMixin } from './node_modules/j-elements/src/stylable-mixin.js';
 class JCard extends StylableMixin(HTMLElement) {
   connectedCallback() {
     // You need to call this to have style modules applied
-    // NOTE: you have create a shadow root for your element before calling this
+    // NOTE: you have to create a shadow root for your element before calling this
     super.connectedCallback();
   }
 }

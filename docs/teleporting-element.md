@@ -12,7 +12,20 @@ Moving the element under the `<body>` element is needed if any of the original p
 
 #### Drawbacks
 - When the element `visible` property is toggled the `disconnectedCallback` and `connectedCallback` are called on the main element as well as on all the child elements
-- The content is “live” (i.e. parsed and executed) even when it is not show to the user. This is similar how for example [`<paper-dialog>`](https://www.webcomponents.org/element/PolymerElements/paper-dialog) works. Wrapping the content in a `<template>` would save browser resources and bandwidth and prevent scripts from executing before the content is made visible.
+- The content is “live” (i.e. parsed and executed) even when it is not show to the user. This is similar how for example [`<paper-dialog>`](https://www.webcomponents.org/element/PolymerElements/paper-dialog) works.
+- Wrapping the content in a `<template>` would save browser resources and bandwidth and prevent scripts from executing before the content is made visible.
+- CSS selectors do not work across the element boundary. You can’t style the element or its children using a parent selector, f.e. `.parent-class .teleporting-element .child`. You should target the element directly, f.e. `.teleporting-element .child`.
+- `querySelector` and `querySelectorAll` do not work across the element boundary, f.e.
+  ```javascript
+  // Does not work
+  querySelector('.parent-class .teleporting-element .child');
+  ```
+
+  You need to have a reference to the element itself before accessing any child elements, f.e.
+  ```javascript
+  // Works
+  querySelector('.parent-class .teleporting-element').querySelector('.child');
+  ```
 
 ## Examples
 

@@ -12,10 +12,11 @@ npm install j-elements
 
 ## Import
 
-The components are delivered as JS Modules.
+The components are delivered as JavaScript Modules.
 
 ```javascript
-// If you are using something like Polymer CLI, you can use the bare module specifier
+// If you are using a build tool / bundler (Webpack, Rollup, Polymer CLI, etc),
+// you can use the bare module specifier
 import 'j-elements';
 
 // Otherwise you should specify a qualified path

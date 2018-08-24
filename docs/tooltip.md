@@ -1,5 +1,9 @@
 # Tooltip <maturity-badge proto>(Proto)</maturity-badge>
 
+A tooltip component based on [Teleporting Element](/teleporting-element), allowing it to escape any stacking contexts.
+
+> **Note:** j-tooltip does not handle accessibility in any special way, for example make sure screen readers announce the tooltip content when it’s shown.
+
 ### Simple tooltip
 ```html,live
 <div>
