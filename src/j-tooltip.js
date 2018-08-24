@@ -1,5 +1,6 @@
-import { StylableMixin, bemToShadow } from './stylable-mixin.js';
-import { TeleportingElement } from './teleporting-element.js';
+import {StylableMixin} from './stylable-mixin.js';
+import bemToShadow from './bem-to-shadow.js';
+import TeleportingElement from './teleporting-element.js';
 import style from './styles/tooltip-style.js';
 
 const template = document.createElement('template');

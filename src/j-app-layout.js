@@ -1,4 +1,4 @@
-import { StylableMixin, bemToShadow } from './stylable-mixin.js';
+import {StylableMixin} from './stylable-mixin.js';
 import './j-icon.js';
 
 const template = document.createElement('template');

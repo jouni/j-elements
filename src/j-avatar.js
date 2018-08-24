@@ -1,4 +1,5 @@
-import { StylableMixin, bemToShadow } from './stylable-mixin.js';
+import {StylableMixin} from './stylable-mixin.js';
+import bemToShadow from './bem-to-shadow.js';
 import style from './styles/avatar-style.js';
 import './j-tooltip.js';
 
