@@ -1,11 +1,17 @@
 import {StylableMixin} from './stylable-mixin.js';
 import bemToShadow from './bem-to-shadow.js';
 import style from './styles/avatar-style.js';
+import './j-icon.js';
 import './j-tooltip.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
+    :host {
+      --viewbox: 0 0 24 24;
+      --svg: <path d="M12 12c-1.656854 0-3-1.343146-3-3s1.343146-3 3-3 3 1.343146 3 3-1.343146 3-3 3zm-7 7c0-2.761424 3.134007-5 7-5s7 2.238576 7 5H5z">;
+    }
+
     svg {
       font: inherit;
       fill: currentColor;
@@ -14,11 +20,16 @@ template.innerHTML = `
     }
 
     [part="icon"] {
+      width: 100%;
+      height: 100%;
       padding: 0.0625em;
+      box-sizing: border-box;
+      --viewbox: inherit;
+      --svg: inherit;
     }
   </style>
   ${ bemToShadow(style, '.j-avatar') }
-  <svg part="icon" width="24" height="24" viewBox="0 0 24 24"><path d="M12 12c-1.656854 0-3-1.343146-3-3s1.343146-3 3-3 3 1.343146 3 3-1.343146 3-3 3zm-7 7c0-2.761424 3.134007-5 7-5s7 2.238576 7 5H5z"/></svg>
+  <j-icon part="icon"></j-icon>
   <svg part="abbr" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
     <text dy=".31em" text-anchor="middle"></text>
   </svg>
