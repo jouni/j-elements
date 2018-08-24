@@ -20,13 +20,29 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         color: inherit;
       }
 
+      .logo {
+        color: var(--lumo-primary-contrast-color);
+        background-color: var(--lumo-primary-color);
+        display: inline-block;
+        border-radius: 0.25em;
+        padding: 0.4em 0.4em 0.5em;
+        font-family: monospace;
+        font-size: 0.8em;
+        letter-spacing: -0.1em;
+        line-height: 1.4;
+        vertical-align: 0.2em;
+        margin-right: 0.5em;
+      }
+
       [slot=drawer] h6 {
         margin-top: var(--lumo-space-l);
         margin-bottom: var(--lumo-space-m);
       }
 
-      [slot=drawer] vaadin-tabs {
+      vaadin-tabs[slot=drawer] {
         width: 100%;
+        height: 100%;
+        padding: var(--lumo-space-m) 0;
       }
 
       [slot=drawer] vaadin-tab a {
@@ -41,7 +57,7 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
 
       .content {
         margin: 0 auto;
-        padding: 0 var(--lumo-space-l) var(--lumo-space-xl);
+        padding: 0 var(--lumo-space-l) calc(var(--lumo-space-xl) * 2);
         max-width: 800px;
       }
 
@@ -52,10 +68,15 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         color: inherit;
       }
 
+      .github-link:hover,
+      .github-link:focus {
+        color: var(--lumo-primary-text-color);
+      }
+
       .github-link j-icon {
         display: block;
         --viewbox: 0 0 16 16;
-        --svg: <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>;
+        --svg: <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />;
       }
 
       demo-snippet {
@@ -68,6 +89,14 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         --demo-snippet-code: {
           padding: 0.5em;
         }
+      }
+
+      blockquote {
+        border-left: 3px solid var(--lumo-primary-color);
+        margin: var(--lumo-space-m) 0;
+        padding: var(--lumo-space-xs) var(--lumo-space-l);
+        font-size: var(--lumo-font-size-s);
+        font-style: italic;
       }
 
       /* button {

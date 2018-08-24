@@ -23,7 +23,6 @@ class JSite extends HTMLElement {
         /* .navbar.navbar.navbar.navbar {
           background-color: var(--lumo-primary-color);
           color: var(--lumo-primary-contrast-color);
-          margin-bottom: 1em;
         } */
       </style>
 
@@ -34,9 +33,9 @@ class JSite extends HTMLElement {
           <j-icon class="github-icon"></j-icon>
         </a>
 
-        <div slot="drawer">
-          <vaadin-tabs orientation="vertical">
-          <vaadin-tab><a href="/">About</a></vaadin-tab>
+        <vaadin-tabs orientation="vertical" slot="drawer">
+          <h6>About</h6>
+          <vaadin-tab><a href="/">j-elements</a></vaadin-tab>
           <vaadin-tab><a href="/howto">Get Started</a></vaadin-tab>
           <vaadin-tab><a href="/maturity">Maturity Levels</a></vaadin-tab>
           <h6>Components</h6>
@@ -49,10 +48,10 @@ class JSite extends HTMLElement {
           <vaadin-tab><a href="/placeholder">Placeholder</a></vaadin-tab>
           <vaadin-tab><a href="/tooltip">Tooltip</a></vaadin-tab>
           <h6>Utilities</h6>
+          <vaadin-tab><a href="/light-style-element">Light Style Element</a></vaadin-tab>
           <vaadin-tab><a href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
           <vaadin-tab><a href="/teleporting-element">Teleporting Element</a></vaadin-tab>
-          </vaadin-tabs>
-        </div>
+        </vaadin-tabs>
 
         <div class="content"></div>
       </j-app-layout>
@@ -60,7 +59,7 @@ class JSite extends HTMLElement {
   }
 
   connectedCallback() {
-    const tabs = this.querySelector('[slot=drawer] vaadin-tabs');
+    const tabs = this.querySelector('vaadin-tabs[slot=drawer]');
     // Let router choose which tab to select
     tabs.selected = -1;
 
@@ -78,7 +77,7 @@ class JSite extends HTMLElement {
           delete this._programmaticTabChange;
 
           // Update navbar text
-          this.querySelector('h1').innerHTML = tab.textContent;
+          this.querySelector('h1').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + tab.textContent;
 
           // Finish Array.find
           return true;
