@@ -54,6 +54,7 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         text-align: left;
         margin: -0.25em -1em;
         padding: 0.25em 1em;
+        outline: none;
       }
 
       .content {
@@ -94,10 +95,18 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
 
       blockquote {
         border-left: 3px solid var(--lumo-primary-color);
-        margin: var(--lumo-space-m) 0;
-        padding: var(--lumo-space-xs) var(--lumo-space-l);
+        background-color: var(--lumo-primary-color-10pct);
+        margin: var(--lumo-space-l) 0;
+        padding: var(--lumo-space-xs) var(--lumo-space-l) 0.1em;
         font-size: var(--lumo-font-size-s);
         font-style: italic;
+      }
+
+      .hljs {
+        background-color: var(--lumo-contrast-5pct);
+        border-radius: var(--lumo-border-radius);
+        margin: var(--lumo-space-l) 0;
+        padding: var(--lumo-space-s) var(--lumo-space-m);
       }
 
       /* button {
