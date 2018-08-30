@@ -26,17 +26,19 @@ Demonstrating how you can toggle the visibility of a dialog which has been creat
 </j-dialog>
 
 <script>
-  let declarativeDialog = document.querySelector('.declarative');
-  let showDeclarative = document.querySelector('.show-declarative');
-  let hideDeclarative = declarativeDialog.querySelector('.hide');
+  {
+    let declarativeDialog = document.querySelector('.declarative');
+    let showDeclarative = document.querySelector('.show-declarative');
+    let hideDeclarative = declarativeDialog.querySelector('.hide');
 
-  showDeclarative.addEventListener('click', function() {
-    declarativeDialog.show();
-  });
+    showDeclarative.addEventListener('click', function() {
+      declarativeDialog.show();
+    });
 
-  hideDeclarative.addEventListener('click', function() {
-    declarativeDialog.hide();
-  });
+    hideDeclarative.addEventListener('click', function() {
+      declarativeDialog.hide();
+    });
+  }
 </script>
 ```
 
@@ -49,23 +51,25 @@ Demonstrating how you can create and show a dialog using JavaScript.
 <button class="show-imperative">Open</button>
 
 <script>
-  let showImperative = document.querySelector('.show-imperative');
+  {
+    let showImperative = document.querySelector('.show-imperative');
 
-  showImperative.addEventListener('click', function() {
-    const dialog = document.createElement('j-dialog');
-    dialog.innerHTML = `
-      <h3>Imperative dialog</h3>
-      <p>Dialog content.</p>
-      <button class="hide">Close</button>
-    `;
-    document.body.appendChild(dialog);
-    dialog.show();
+    showImperative.addEventListener('click', function() {
+      const dialog = document.createElement('j-dialog');
+      dialog.innerHTML = `
+        <h3>Imperative dialog</h3>
+        <p>Dialog content.</p>
+        <button class="hide">Close</button>
+      `;
+      document.body.appendChild(dialog);
+      dialog.show();
 
-    dialog.querySelector('.hide').addEventListener('click', function() {
-      // Hide and remove the dialog from the DOM
-      dialog.destroy();
+      dialog.querySelector('.hide').addEventListener('click', function() {
+        // Hide and remove the dialog from the DOM
+        dialog.destroy();
+      });
     });
-  });
+  }
 </script>
 ```
 
@@ -93,16 +97,18 @@ Demonstrating how you can create and show a dialog using JavaScript.
 </j-dialog>
 
 <script>
-  let styledDialog = document.querySelector('.styled');
-  let showStyled = document.querySelector('.show-styled');
-  let hideStyled = styledDialog.querySelector('.hide');
+  {
+    let styledDialog = document.querySelector('.styled');
+    let showStyled = document.querySelector('.show-styled');
+    let hideStyled = styledDialog.querySelector('.hide');
 
-  showStyled.addEventListener('click', function() {
-    styledDialog.show();
-  });
+    showStyled.addEventListener('click', function() {
+      styledDialog.show();
+    });
 
-  hideStyled.addEventListener('click', function() {
-    styledDialog.hide();
-  });
+    hideStyled.addEventListener('click', function() {
+      styledDialog.hide();
+    });
+  }
 </script>
 ```
