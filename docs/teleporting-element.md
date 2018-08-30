@@ -26,6 +26,7 @@ Moving the element under the `<body>` element is needed if any of the original p
   // Works
   querySelector('.parent-class .teleporting-element').querySelector('.child');
   ```
+- Nesting a `<slot>` element inside a teleporting element won’t work as expected (`<vaadin-overlay>` has the same limitation)
 
 ## Examples
 
