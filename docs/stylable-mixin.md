@@ -4,10 +4,22 @@
 
 #### Benefits
 - You can style individual component instances (scoped) in addition to all instances of a component (global)
-- Less boilerplate: just two attributes for the standard `<style>` element:  
-  `<style type="..." for="..."></style>`  
-   vs.  
-   `<dom-module id="..." theme-for="..."><template><style></style></template></dom-module>`
+- Less boilerplate: just two attributes for the standard `<style>` element:
+  ```html
+  <style type="global" for="my-component">
+    /* CSS for component's shadow DOM */
+  </style>
+  ```
+   vs.
+  ```html
+  <dom-module id="my-id" theme-for="my-component">
+    <template>
+     <style>
+      /* CSS for component's shadow DOM */
+     </style>
+   </template>
+  </dom-module>
+  ```
 - No extra dependencies and less code
 
 #### Drawbacks
@@ -15,6 +27,7 @@
 
   To it’s defence, the performance impact of `ThemableMixin` has not been measured.
 - Not tested in production
+- Does not have the ability to include other style modules (`<style include="...">`). That could be added as a feature.
 
 
 ### Temporary solution
