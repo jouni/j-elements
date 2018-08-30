@@ -33,7 +33,7 @@ export function renderMarkdown(pathToMarkdownFile, target) {
 
           Array.from(template.content.querySelectorAll('script')).forEach(function(el) {
             let newEl = document.createElement('script');
-            newEl.type = el.type;
+            if (el.type) newEl.type = el.type;
             newEl.appendChild(document.createTextNode(el.innerHTML));
             template.content.replaceChild(newEl, el);
           });
