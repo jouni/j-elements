@@ -1,5 +1,5 @@
 import 'marked';
-import '@polymer/iron-demo-helpers/demo-snippet';
+import 'highlightjs';
 
 export function renderMarkdown(pathToMarkdownFile, target) {
   fetch(pathToMarkdownFile).then(response => {
@@ -38,13 +38,20 @@ export function renderMarkdown(pathToMarkdownFile, target) {
             template.content.replaceChild(newEl, el);
           });
 
-          const demo = document.createElement('demo-snippet');
-          demo.appendChild(template);
+          const demo = document.createElement('div');
+          demo.classList.add('demo-snippet');
+          demo.appendChild(template.content.cloneNode(true));
+          const pre = document.createElement('pre');
+          pre.classList.add('demo-snippet__code')
+          const code = document.createElement('code');
+          code.textContent = snippet;
+          pre.appendChild(code);
+          demo.appendChild(pre);
 
           target.replaceChild(demo, placeholder);
         });
 
-        // Style any non-live code block
+        // Style code blocks
         Array.from(target.querySelectorAll('pre code')).forEach(block => {
           hljs.highlightBlock(block);
         });

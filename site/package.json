@@ -2,7 +2,6 @@
   "name": "j-elements-site",
   "description": "Documentation and examples for the j-elements project",
   "dependencies": {
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@polymer/polymer": "^3.0.0",
     "@vaadin/router": "^1.0.1",
     "@vaadin/vaadin-checkbox": "^2.2.0",
@@ -10,10 +9,9 @@
     "@vaadin/vaadin-tabs": "^2.1.0",
     "@vaadin/vaadin-text-field": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^2.0.0",
-    "polymer-cli": "^1.7.7"
-  },
-  "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "polymer-cli": "^1.7.7",
+    "highlightjs": "^9.10.0",
+    "marked": "^0.5.0"
   },
   "scripts": {
     "build": "npm install; npm link ../; npx polymer build"

@@ -12,6 +12,13 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
     <style include="lumo-typography lumo-color">
       body {
         margin: 0;
+        letter-spacing: -0.005em;
+      }
+
+      h1,
+      h2 {
+        letter-spacing: -0.01em;
+        font-weight: 700;
       }
 
       h1[slot=brand] {
@@ -39,6 +46,10 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin-bottom: var(--lumo-space-m);
       }
 
+      [slot=drawer] vaadin-tab + h6 {
+        margin-top: var(--lumo-space-xl);
+      }
+
       vaadin-tabs[slot=drawer] {
         width: 100%;
         height: 100%;
@@ -55,6 +66,13 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin: -0.25em -1em;
         padding: 0.25em 1em;
         outline: none;
+        pointer-events: none;
+      }
+
+      @media (pointer: fine) {
+        [slot=drawer] vaadin-tab {
+          min-height: var(--lumo-size-s);
+        }
       }
 
       .content {
@@ -81,25 +99,12 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         --svg: <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />;
       }
 
-      demo-snippet {
-        box-shadow: var(--lumo-box-shadow-s);
-        box-shadow: none;
-        border: 1px solid var(--lumo-contrast-10pct);
-        border-radius: var(--lumo-border-radius);
-        overflow: hidden;
-
-        --demo-snippet-code: {
-          padding: 0.5em;
-        }
-      }
-
       blockquote {
         border-left: 3px solid var(--lumo-primary-color);
         background-color: var(--lumo-primary-color-10pct);
         margin: var(--lumo-space-l) 0;
         padding: var(--lumo-space-xs) var(--lumo-space-l) 0.1em;
         font-size: var(--lumo-font-size-s);
-        font-style: italic;
       }
 
       .hljs {
@@ -109,7 +114,25 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         padding: var(--lumo-space-s) var(--lumo-space-m);
       }
 
-      /* button {
+      .demo-snippet {
+        border: 1px solid var(--lumo-contrast-10pct);
+        border-radius: var(--lumo-border-radius);
+        overflow: hidden;
+        padding: 1rem;
+      }
+
+      .demo-snippet__code {
+        margin: 1rem 0 0;
+      }
+
+      .demo-snippet__code .hljs {
+        border-radius: 0;
+        margin: 0 -1rem -1rem;
+        max-height: 14.5em;
+        overflow: auto;
+      }
+
+      button {
         font: inherit;
         background-color: var(--lumo-contrast-5pct);
         color: var(--lumo-primary-text-color);
@@ -128,13 +151,14 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
 
       button:active {
         background-color: var(--lumo-primary-color-50pct);
-      } */
+      }
 
       maturity-badge a {
         color: inherit;
         text-decoration: none !important;
         font-size: var(--lumo-font-size-s);
         font-weight: 500;
+        letter-spacing: 0;
         background-color: var(--lumo-contrast-10pct);
         color: var(--lumo-contrast-70pct);
         display: inline-block;
@@ -165,6 +189,15 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         color: var(--lumo-primary-text-color);
       }
 
+      code {
+        font-family: "Source Code Pro";
+        font-size: 0.875em;
+        font-weight: 500;
+        border-radius: 0.3em;
+        background-color: var(--lumo-contrast-5pct);
+        padding: 0.1em 0.3em;
+        color: var(--lumo-secondary-text-color);
+      }
     </style>
   </template>
 </dom-module>`;
