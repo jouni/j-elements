@@ -16,7 +16,7 @@
     "node_modules/j-elements/README.md",
     "node_modules/j-elements/docs/*",
     "node_modules/@webcomponents/webcomponentsjs/**",
-    "node_modules/@webcomponents/particlesjs/**"
+    "node_modules/particlesjs/**"
   ],
   "builds": [
     {
