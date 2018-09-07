@@ -34,23 +34,23 @@ class JSite extends HTMLElement {
         </a>
 
         <vaadin-tabs orientation="vertical" slot="drawer">
-          <h6>About</h6>
-          <vaadin-tab><a href="/">j-elements</a></vaadin-tab>
-          <vaadin-tab><a href="/howto">Get Started</a></vaadin-tab>
-          <vaadin-tab><a href="/maturity">Maturity Levels</a></vaadin-tab>
-          <h6>Components</h6>
-          <vaadin-tab><a href="/app-layout">App Layout</a></vaadin-tab>
-          <vaadin-tab><a href="/avatar">Avatar</a></vaadin-tab>
-          <vaadin-tab><a href="/card">Card</a></vaadin-tab>
-          <vaadin-tab><a href="/dialog">Dialog</a></vaadin-tab>
-          <vaadin-tab><a href="/field">Field</a></vaadin-tab>
-          <vaadin-tab><a href="/icon">Icon</a></vaadin-tab>
-          <vaadin-tab><a href="/placeholder">Placeholder</a></vaadin-tab>
-          <vaadin-tab><a href="/tooltip">Tooltip</a></vaadin-tab>
+          <h6>Introduction</h6>
+          <vaadin-tab><a tabindex="-1" href="/">About</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/howto">Get Started</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/maturity">Maturity Levels</a></vaadin-tab>
           <h6>Utilities</h6>
-          <vaadin-tab><a href="/light-style-element">Light Style Element</a></vaadin-tab>
-          <vaadin-tab><a href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
-          <vaadin-tab><a href="/teleporting-element">Teleporting Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
+          <h6>Components</h6>
+          <vaadin-tab><a tabindex="-1" href="/app-layout">App Layout</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/avatar">Avatar</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/card">Card</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/dialog">Dialog</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/field">Field</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/icon">Icon</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/placeholder">Placeholder</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/tooltip">Tooltip</a></vaadin-tab>
         </vaadin-tabs>
 
         <div class="content"></div>
@@ -69,12 +69,16 @@ class JSite extends HTMLElement {
     });
 
     window.addEventListener('vaadin-router-location-changed', e => {
+      if (this._blockLocationChangeListener) {
+        this._blockLocationChangeListener = false;
+        return;
+      }
+
       // Update the selected tab
       Array.from(tabs.querySelectorAll('vaadin-tab')).find((tab, i) => {
         if (tab.querySelector('a').getAttribute('href') == e.detail.location.pathname) {
-          this._programmaticTabChange = true;
+          this._blockTabChangeListener = true;
           tab.parentNode.selected = i;
-          delete this._programmaticTabChange;
 
           // Update navbar text
           this.querySelector('h1').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + tab.textContent;
@@ -86,17 +90,21 @@ class JSite extends HTMLElement {
     });
 
     tabs.addEventListener('selected-changed', e => {
-      if (!this._programmaticTabChange) {
-        // Possibly triggered by keyboard navigation, so we need to update the URL just in case
-        const tab = tabs.items[e.detail.value];
-        const path = tab.querySelector('a').getAttribute('href');
-        router.render(path);
-
-        // Close drawer
-        setTimeout(() => {
-          this.querySelector('j-app-layout').closeDrawer();
-        }, 100);
+      if (this._blockTabChangeListener) {
+        this._blockTabChangeListener = false;
+        return;
       }
+
+      // Possibly triggered by keyboard navigation, so we need to update the URL just in case
+      const tab = tabs.items[e.detail.value];
+      const path = tab.querySelector('a').getAttribute('href');
+      this._blockLocationChangeListener = true;
+      router.render(path, true);
+
+      // Close drawer
+      setTimeout(() => {
+        this.querySelector('j-app-layout').closeDrawer();
+      }, 100);
     });
   }
 }
