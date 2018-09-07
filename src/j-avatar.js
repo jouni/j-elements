@@ -48,6 +48,14 @@ export class JAvatar extends StylableMixin(HTMLElement) {
     this._upgradeProperty('image');
   }
 
+  _upgradeProperty(prop) {
+    if (this.hasOwnProperty(prop)) {
+      let value = this[prop];
+      delete this[prop];
+      this[prop] = value;
+    }
+  }
+
   connectedCallback() {
     this.__attachShadow();
     if (super.connectedCallback) super.connectedCallback();
