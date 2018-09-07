@@ -6,7 +6,7 @@ class Page extends HTMLElement {
   }
 
   set location(location) {
-    const page = location.pathname == '/' ? '/node_modules/j-elements/README.md' : `/node_modules/j-elements/docs${location.pathname}.md`;
+    const page = location.pathname == '/' ? '/src/about.md' : `/node_modules/j-elements/docs${location.pathname}.md`;
     renderMarkdown(page, this);
     this._location = location;
   }

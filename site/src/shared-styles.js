@@ -41,6 +41,39 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin-right: 0.5em;
       }
 
+      .hero {
+        position: relative;
+        height: 260px;
+        background-color: var(--lumo-primary-color);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--lumo-space-l);
+      }
+
+      .hero .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        opacity: 0.3;
+      }
+
+      .hero j-icon {
+        position: relative;
+        z-index: 0;
+        width: 232px;
+        height: 127px;
+        color: #fff;
+        --viewbox: 0 0 232 127;
+        --svg: <path d="M58.234375,37.1591797 L11.9101562,62.4150391 L11.9101562,63.4619141 L58.234375,88.7177734 L58.234375,100.887695 L0.65625,67.5839844 L0.65625,58.2929688 L58.234375,24.9892578 L58.234375,37.1591797 Z M124.12207,122.086914 L114.176758,122.086914 L148.854492,3.46289062 L158.799805,3.46289062 L124.12207,122.086914 Z M173.456055,37.1591797 L173.456055,24.9892578 L231.03418,58.2929688 L231.03418,67.5839844 L173.456055,100.887695 L173.456055,88.7177734 L219.780273,63.4619141 L219.780273,62.4150391 L173.456055,37.1591797 Z" fill-opacity="0.5"></path><path d="M105.082031,29.1767578 L105.082031,103.766602 C105.082031,118.619141 95.2021484,126.732422 77.4707031,126.732422 C75.4423828,126.732422 71.9746094,126.536133 70.7314453,126.405273 L70.7314453,109.851562 C71.3203125,109.916992 72.6289062,109.982422 73.4794922,109.982422 C79.5644531,109.982422 81.9199219,107.888672 81.9199219,102.916016 L81.9199219,29.1767578 L105.082031,29.1767578 Z M93.5009766,20.7363281 C85.3876953,20.7363281 80.4804688,16.6142578 80.4804688,10.4638672 C80.4804688,4.24804688 85.3876953,0.125976562 93.5009766,0.125976562 C101.679688,0.125976562 106.586914,4.24804688 106.586914,10.4638672 C106.586914,16.6142578 101.679688,20.7363281 93.5009766,20.7363281 Z"></path>;
+      }
+
+      .ingress {
+        font-size: var(--lumo-font-size-xl);
+      }
+
       [slot=drawer] h6 {
         margin-top: var(--lumo-space-l);
         margin-bottom: var(--lumo-space-m);
@@ -190,7 +223,7 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       }
 
       code {
-        font-family: "Source Code Pro";
+        font-family: "Source Code Pro", monospace;
         font-size: 0.875em;
         font-weight: 500;
         border-radius: 0.3em;

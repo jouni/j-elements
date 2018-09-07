@@ -87,6 +87,17 @@ class JSite extends HTMLElement {
           return true;
         }
       });
+
+      setTimeout(() => {
+        if (e.detail.location.pathname == "/") {
+          Particles.init({
+            selector: '.hero .background',
+            connectParticles: true,
+            color: '#ffffff',
+            minDistance: 80
+          });
+        }
+      }, 200);
     });
 
     tabs.addEventListener('selected-changed', e => {
@@ -100,6 +111,17 @@ class JSite extends HTMLElement {
       const path = tab.querySelector('a').getAttribute('href');
       this._blockLocationChangeListener = true;
       router.render(path, true);
+
+      setTimeout(() => {
+        if (path == "/") {
+          Particles.init({
+            selector: '.hero .background',
+            connectParticles: true,
+            color: '#ffffff',
+            minDistance: 80
+          });
+        }
+      }, 200);
 
       // Close drawer
       setTimeout(() => {

@@ -9,9 +9,10 @@
     "@vaadin/vaadin-tabs": "^2.1.0",
     "@vaadin/vaadin-text-field": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^2.0.0",
-    "polymer-cli": "^1.7.7",
     "highlightjs": "^9.10.0",
-    "marked": "^0.5.0"
+    "marked": "^0.5.0",
+    "particlesjs": "^2.2.3",
+    "polymer-cli": "^1.7.7"
   },
   "scripts": {
     "build": "npm install; npm link ../; npx polymer build"
