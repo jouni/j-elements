@@ -264,6 +264,13 @@ template.innerHTML = `
         transition: transform 170ms cubic-bezier(0.38, 0.85, 0.81, 1.11);
       }
 
+      @supports (-webkit-backdrop-filter: blur(1px)) {
+        .app-layout-drawer {
+          -webkit-backdrop-filter: blur(30px);
+          background-color: rgba(240,240,240,0.7);
+        }
+      }
+
       :host(:not(.has-menu)) .drawer-toggle {
         order: -1;
       }
