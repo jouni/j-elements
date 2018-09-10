@@ -63,41 +63,29 @@ class JSite extends HTMLElement {
     // Let router choose which tab to select
     tabs.selected = -1;
 
-    const router = new Router(this.querySelector('j-app-layout .content'));
-    router.setRoutes({
+    this._router = new Router(this.querySelector('j-app-layout .content'));
+    this._router.setRoutes({
       path: '(.*)', component: 'index-page'
     });
 
     window.addEventListener('vaadin-router-location-changed', e => {
-      if (this._blockLocationChangeListener) {
-        this._blockLocationChangeListener = false;
-        return;
-      }
-
       // Update the selected tab
       Array.from(tabs.querySelectorAll('vaadin-tab')).find((tab, i) => {
         if (tab.querySelector('a').getAttribute('href') == e.detail.location.pathname) {
+          this._updateTitle(tab.textContent);
+          if (this._blockLocationChangeListener) {
+            this._blockLocationChangeListener = false;
+            // Finish Array.find
+            return true;
+          }
+
           this._blockTabChangeListener = true;
           tab.parentNode.selected = i;
-
-          // Update navbar text
-          this.querySelector('h1').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + tab.textContent;
 
           // Finish Array.find
           return true;
         }
       });
-
-      setTimeout(() => {
-        if (e.detail.location.pathname == "/") {
-          Particles.init({
-            selector: '.hero .background',
-            connectParticles: true,
-            color: '#ffffff',
-            minDistance: 80
-          });
-        }
-      }, 200);
     });
 
     tabs.addEventListener('selected-changed', e => {
@@ -110,24 +98,32 @@ class JSite extends HTMLElement {
       const tab = tabs.items[e.detail.value];
       const path = tab.querySelector('a').getAttribute('href');
       this._blockLocationChangeListener = true;
-      router.render(path, true);
-
-      setTimeout(() => {
-        if (path == "/") {
-          Particles.init({
-            selector: '.hero .background',
-            connectParticles: true,
-            color: '#ffffff',
-            minDistance: 80
-          });
-        }
-      }, 200);
+      this._router.render(path, true);
+      this._updateTitle(tab.textContent);
 
       // Close drawer
       setTimeout(() => {
         this.querySelector('j-app-layout').closeDrawer();
       }, 100);
     });
+  }
+
+  _updateTitle(pageTitle) {
+    document.title = `j-elements: ${pageTitle}`;
+    // Update navbar text
+    this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + pageTitle;
+
+    // Restart the home page animation
+    if (this._router.location.pathname == "/") {
+      setTimeout(() => {
+        Particles.init({
+          selector: '.hero .background',
+          connectParticles: true,
+          color: '#ffffff',
+          minDistance: 60
+        });
+      }, 200);
+    }
   }
 }
 
