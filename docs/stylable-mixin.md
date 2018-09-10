@@ -87,11 +87,15 @@ To make a component “stylable”, extend it with the mixin, and call `super.co
 ```javascript
 import { StylableMixin } from './node_modules/j-elements/src/stylable-mixin.js';
 
-class JCard extends StylableMixin(HTMLElement) {
-  connectedCallback() {
-    // You need to call StylableMixin.connectedCallback to have style modules applied
+class XStylable extends StylableMixin(HTMLElement) {
+  constructor() {
+    super();
     // NOTE: your element needs to have a shadow root before StylableMixin is invoked
     this.attachShadow({mode: 'open'});
+  }
+
+  connectedCallback() {
+    // Call super.connectedCallback() to have style modules applied
     super.connectedCallback();
   }
 }
