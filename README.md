@@ -4,7 +4,7 @@
 
 *Not recommended for production, but very much recommended for testing and providing feedback* 😊
 
-[Docs and demos ›](http://vigilant-northcutt-2d7143.netlify.com/)
+[Docs and demos ›](https://jelements.netlify.com)
 
 
 ## Proof-of-concept helper elements and mixins
