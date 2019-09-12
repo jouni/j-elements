@@ -1,4 +1,4 @@
-# Avatar <maturity-badge rfc>(Request for feedback)</maturity-badge>
+# Avatar <maturity-badge beta>(Beta)</maturity-badge>
 
 ### Default avatar
 

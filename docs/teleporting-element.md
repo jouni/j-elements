@@ -1,4 +1,4 @@
-# Teleporting Element <maturity-badge poc>(Proof of concept)</maturity-badge>
+# Teleporting Element <maturity-badge deprecated>(Deprecated)</maturity-badge>
 
 A teleporting element can escape any stacking context, by moving itself directly under the `<body>` element when set “visible”.
 

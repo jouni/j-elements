@@ -1,4 +1,4 @@
-# Card <maturity-badge proto>(Prototype)</maturity-badge>
+# Card <maturity-badge preview>(Preview)</maturity-badge>
 
 ### Simple card
 ```html,live

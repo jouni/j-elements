@@ -1,4 +1,4 @@
-# Tooltip <maturity-badge proto>(Proto)</maturity-badge>
+# Tooltip <maturity-badge preview>(Preview)</maturity-badge>
 
 A tooltip component based on [Teleporting Element](/teleporting-element), allowing it to escape any stacking contexts.
 

@@ -1,4 +1,4 @@
-# App Layout <maturity-badge proto>(Prototype)</maturity-badge>
+# App Layout <maturity-badge preview>(Preview)</maturity-badge>
 
 The `<j-app-layout>` is a responsive application layout that covers multiple common application layout patterns.
 

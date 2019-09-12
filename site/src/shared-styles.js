@@ -207,12 +207,12 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         color: var(--lumo-error-text-color);
       }
 
-      maturity-badge[proto] a {
+      maturity-badge[preview] a {
         background-color: rgb(255,241,214);
         color: rgb(184,121,0);
       }
 
-      maturity-badge[rfc] a {
+      maturity-badge[beta] a {
         background-color: var(--lumo-success-color-10pct);
         color: var(--lumo-success-text-color);
       }
@@ -220,6 +220,11 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       maturity-badge[stable] a {
         background-color: var(--lumo-primary-color-10pct);
         color: var(--lumo-primary-text-color);
+      }
+
+      maturity-badge[deprecated] a {
+        background-color: var(--lumo-error-color);
+        color: var(--lumo-error-contrast-color);
       }
 
       code {
