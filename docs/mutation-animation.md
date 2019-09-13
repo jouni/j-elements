@@ -75,7 +75,7 @@ Then we can use the new element and apply animations for inserted and removed el
 </style>
 
 <script>
-  const list = document.querySelector('my-list');
+  let list = document.querySelector('my-list');
   let i = list.children.length;
 
   function addItem() {
