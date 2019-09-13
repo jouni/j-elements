@@ -52,14 +52,6 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin-bottom: var(--lumo-space-l);
       }
 
-      .hero .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0;
-        opacity: 0.3;
-      }
-
       .hero j-icon {
         position: relative;
         z-index: 0;

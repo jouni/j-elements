@@ -1,13 +1,14 @@
 # About
 
 <div class="hero">
-  <canvas class="background"></canvas>
   <j-icon></j-icon>
 </div>
 
-<p class="ingress"><b>J-elements is a web development research project</b>, looking at some of the current problems around authoring and using Web Components and how to provide solutions to those problems while the browsers improve their capabilities.</p>
+<p class="ingress"><b>JElements is a web development research project</b>, looking at some of the current problems around authoring and using Web Components and how to provide solutions to those problems while the browsers improve their capabilities.</p>
 
 <p class="ingress">It also includes a collection or ready-to-use web components which test the solutions first-hand.</p>
+
+<p>The package has zero dependencies, so it is lightweight to use in your projects.</p>
 
 > Since it’s research project, **j-elements is not recommended for production use**. It is mainly looking for feedback from other developers, if the concepts are viable for production. See [Maturity Levels](/maturity) for more info.
 

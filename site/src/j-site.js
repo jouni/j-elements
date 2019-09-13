@@ -112,18 +112,6 @@ class JSite extends HTMLElement {
     document.title = `j-elements: ${pageTitle}`;
     // Update navbar text
     this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + pageTitle;
-
-    // Restart the home page animation
-    if (this._router.location.pathname == "/") {
-      setTimeout(() => {
-        Particles.init({
-          selector: '.hero .background',
-          connectParticles: true,
-          color: '#ffffff',
-          minDistance: 60
-        });
-      }, 200);
-    }
   }
 }
 
