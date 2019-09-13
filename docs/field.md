@@ -22,7 +22,7 @@ It handles accessibility for you automatically, without the need to manually use
 ```html,live
 <j-field>
   <label>Label</label>
-  <j-input required></j-input>
+  <j-input required minlength="3"></j-input>
 </j-field>
 ```
 
