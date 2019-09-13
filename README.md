@@ -1,4 +1,4 @@
-# j-elements
+# JElements
 
 > Proof-of-concept helpers and prototype web components
 

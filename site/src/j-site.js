@@ -27,7 +27,7 @@ class JSite extends HTMLElement {
       </style>
 
       <j-app-layout type="top">
-        <h1 slot="brand">j-elements</h1>
+        <h1 slot="brand">JElements</h1>
 
         <a href="https://github.com/jouni/j-elements" slot="support" title="View on GitHub" class="github-link">
           <j-icon class="github-icon"></j-icon>
@@ -111,7 +111,7 @@ class JSite extends HTMLElement {
   }
 
   _updateTitle(pageTitle) {
-    document.title = `j-elements: ${pageTitle}`;
+    document.title = `JElements: ${pageTitle}`;
     // Update navbar text
     this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + pageTitle;
   }

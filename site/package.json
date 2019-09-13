@@ -1,6 +1,6 @@
 {
   "name": "j-elements-site",
-  "description": "Documentation and examples for the j-elements project",
+  "description": "Documentation and examples for the JElements project",
   "dependencies": {
     "@polymer/polymer": "^3.3.0",
     "@vaadin/router": "^1.4.2",

@@ -1,7 +1,7 @@
 {
-  "name": "j-elements docs and demos",
-  "short_name": "j-elements docs and demos",
-  "description": "Documentation and examples for the j-elements project",
+  "name": "JElements docs and demos",
+  "short_name": "JElements docs and demos",
+  "description": "Documentation and examples for the JElements project",
   "start_url": "/",
   "display": "standalone"
 }

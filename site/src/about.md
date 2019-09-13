@@ -10,7 +10,9 @@
 
 <p>The package has zero dependencies, so it is lightweight to use in your projects.</p>
 
-> Since it’s research project, **j-elements is not recommended for production use**. It is mainly looking for feedback from other developers, if the concepts are viable for production. See [Maturity Levels](/maturity) for more info.
+> Since it’s research project, **JElements is not recommended for production use**. It is mainly looking for feedback from other developers, if the concepts are viable for production. See [Maturity Levels](/maturity) for more info.
+
+> **Browser support:** Evergreen browsers (not IE11 or pre-Chromium Edge)
 
 ## [Get Started ›](/howto)
 
