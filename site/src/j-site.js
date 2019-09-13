@@ -18,12 +18,12 @@ class JSite extends HTMLElement {
         <style include="shared-styles"></style>
       </custom-style>
 
-      <style type="scoped" for="j-app-layout">
+      <style media="j-app-layout">
         /* Uncomment this to have a colored navbar */
-        /* .navbar.navbar.navbar.navbar {
+        .navbar.navbar.navbar.navbar {
           background-color: var(--lumo-primary-color);
           color: var(--lumo-primary-contrast-color);
-        } */
+        }
       </style>
 
       <j-app-layout type="top">
@@ -38,10 +38,6 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/">About</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/howto">Get Started</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/maturity">Maturity Levels</a></vaadin-tab>
-          <h6>Utilities</h6>
-          <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
           <h6>Components</h6>
           <vaadin-tab><a tabindex="-1" href="/app-layout">App Layout</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/avatar">Avatar</a></vaadin-tab>
@@ -49,8 +45,14 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/dialog">Dialog</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/field">Field</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/icon">Icon</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/input">Input</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/placeholder">Placeholder</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/tooltip">Tooltip</a></vaadin-tab>
+          <h6>Utilities</h6>
+          <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/portal-element">Portal Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
         </vaadin-tabs>
 
         <div class="content"></div>

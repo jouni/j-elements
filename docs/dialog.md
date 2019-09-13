@@ -1,8 +1,8 @@
 # Dialog <maturity-badge poc>(Proof of concept)</maturity-badge>
 
-A dialog is created using the `<j-dialog>` element. It is based on [Teleporting Element](/teleporting-element), and because of that will always show on top of other content, escaping any parent stacking contexts.
+A dialog is created using the `<j-dialog>` element. It is based on [Portal Element](/portal-element), and because of that will always show on top of other content, escaping any parent stacking contexts.
 
-Place any content you wish to show inside the dialog as the children, and use the `visible` attribute/property or the `show()` and `hide()` methods for opening and closing it.
+Place any content you wish to show inside the dialog as the children, and use the `show()` and `hide()` methods for opening and closing it.
 
 ```html
 <j-dialog visible>
@@ -17,12 +17,12 @@ Place any content you wish to show inside the dialog as the children, and use th
 Demonstrating how you can toggle the visibility of a dialog which has been created declaratively with HTML.
 
 ```html,live
-<button class="show-declarative">Open</button>
+<j-button class="show-declarative">Open</j-button>
 
 <j-dialog class="declarative">
   <h3>Declarative dialog</h3>
   <p>Dialog content.</p>
-  <button class="hide">Close</button>
+  <j-button class="hide">Close</j-button>
 </j-dialog>
 
 <script>

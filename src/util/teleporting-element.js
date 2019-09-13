@@ -8,6 +8,10 @@ template.innerHTML = `
 `;
 
 /**
+ * @deprecated
+ *
+ * THIS UTILITY IS DEPRECATED. Consider using PortalElement instead.
+ *
  * Add the capability to 'teleport' the element under the `<body>` element when the `visible`
  * property is set (to escape all parent stacking contexts). When the `visible` property is not set
  * the element is hidden.

@@ -1,5 +1,7 @@
 # Teleporting Element <maturity-badge deprecated>(Deprecated)</maturity-badge>
 
+> This utility is deprecated. Consider using `PortalElement` instead, which is an improved iteration of the same concept.
+
 A teleporting element can escape any stacking context, by moving itself directly under the `<body>` element when set “visible”.
 
 Moving the element under the `<body>` element is needed if any of the original parent elements create a clipping stacking context. Some libraries call this a “portal element” or “hoisting” an element under the `<body>`.

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>custom select test</title>
+
+    <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script type="module" src='./custom-select.js'></script>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .clipping-context {
+        outline: 1px dashed red;
+        overflow: hidden;
+        transform: translate3d(1px, 1px, 0);
+        padding: 10px;
+      }
+
+      [item] h4 {
+        margin: 0;
+      }
+
+      [item] p {
+        margin: 0;
+        color: #999;
+      }
+
+      .sub [item] {
+        color: blue;
+      }
+
+      .fixed {
+        position: fixed;
+        outline: 1px dotted blue;
+        top: 10px;
+        right: 10px;
+        height: 100%;
+        margin: 0;
+      }
+
+      .sub {
+        background: transparent;
+      }
+    </style>
+
+    <div class="clipping-context">
+      <custom-select>
+        <div item>
+          <h4>Option 1</h4>
+          <p>Secondary text for this item</p>
+        </div>
+        <div item>
+          <h4>Option 2</h4>
+          <p>Secondary text for this item</p>
+        </div>
+        <div item>
+          <h4>Option 3</h4>
+          <p>Secondary text for this item</p>
+        </div>
+        <custom-select class="sub">
+          <div item>
+            <h4>Sub-item 1</h4>
+            <p>Secondary text for this item</p>
+          </div>
+          <div item>
+            <h4>Sub-item 2</h4>
+            <p>Secondary text for this item</p>
+          </div>
+          <div item>
+            <h4>Sub-item 3</h4>
+            <p>Secondary text for this item</p>
+          </div>
+        </custom-select>
+      </custom-select>
+      <p class="fixed">position: fixed;</p>
+    </div>
+  </body>
+</html>

@@ -1,10 +1,32 @@
+// Works with <link rel="stylesheet" href="theme.css" media="x-button">
+
 // Needed for ShadyCSS
 // Module identifier
 let moduleCounter = 0;
 // Module class prefix
 const MODULE_CLASS_PREFIX = '_smod_';
 
+const themes = {};
+
 export const StylableMixin = superClass => class JStylableMixin extends superClass {
+  constructor() {
+    super();
+
+    // Do only once per component type (not for every instance)
+    if (!themes[this.nodeName]) {
+      // document.querySelectorAll is faster than document.styleSheets in the common case where
+      // there is only one stylesheet per component. And we get to remove the link element from the
+      // DOM after processing (probably reduces memory consumption)
+      Array.prototype.forEach.call(document.querySelectorAll(`link[media="${this.nodeName.toLowerCase()}"]`), link => {
+        themes[this.nodeName] = document.createElement('style');
+        Array.prototype.forEach.call(link.sheet.cssRules, rule => {
+          themes[this.nodeName].innerHTML += rule.cssText;
+        });
+        link.parentNode.removeChild(link);
+      });
+    }
+  }
+
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
     if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
@@ -14,6 +36,12 @@ export const StylableMixin = superClass => class JStylableMixin extends superCla
   }
 
   _gatherStyleModules() {
+    if (themes[this.nodeName] && !this._themeApplied) {
+      const theme = themes[this.nodeName].cloneNode(true);
+      this.shadowRoot.appendChild(theme);
+      this._themeApplied = true;
+    }
+
     // Gather style modules (scoped and global)
     let styleModules = Array.from(this.getRootNode().querySelectorAll(`style[type=scoped]`));
     styleModules = styleModules.concat(Array.from(document.querySelectorAll(`style[type=global]`)));
@@ -96,14 +124,4 @@ function matches(el, selector) {
   }
 
   return el.msMatchesSelector ? el.msMatchesSelector(selector) : el.matches(selector)
-}
-
-export function applyStyles(styleStr, component, scope) {
-  if (scope) {
-    styleStr = styleStr.replace('<style>', `<style type="global" for="${scope} ${component}, :host(${scope}) ${component}">`);
-  } else {
-    styleStr = styleStr.replace('<style>', `<style type="global" for="${component}">`);
-  }
-  // TODO this is probably a bad way to inject it
-  document.body.innerHTML += styleStr;
 }

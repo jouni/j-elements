@@ -23,16 +23,9 @@ template.innerHTML = `
 
 export class JIcon extends HTMLElement {
   connectedCallback() {
-    if (!this.__jIconTemplateStamped) {
+    if (!this.shadowRoot) {
       this.attachShadow({mode: 'open'});
-
-      if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
-        ShadyCSS.prepareTemplate(template, this.nodeName.toLowerCase());
-        ShadyCSS.styleElement(this);
-      }
-
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this.__jIconTemplateStamped = true;
     }
 
     // Need to defer so that polyfilled browsers can catch up
@@ -62,3 +55,5 @@ export class JIcon extends HTMLElement {
 }
 
 window.customElements.define('j-icon', JIcon);
+
+export default JIcon;

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>teleport slot test</title>
+
+    <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      // import StylableMixin from '../src/util/StylableMixin';
+      import { PortalElement } from '../src/util/PortalElement';
+
+      class XFoo extends HTMLElement {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          this.shadowRoot.innerHTML = `
+            <style>
+              tele-port {
+                color: red;
+              }
+            </style>
+            <tele-port>
+              <div class="header">
+                <slot name="header"></slot>
+              </div>
+              <slot></slot>
+            </tele-port>
+          `;
+        }
+      }
+      customElements.define('x-foo', XFoo);
+
+      class Teleport extends PortalElement {}
+      customElements.define('tele-port', Teleport);
+
+
+      class Drawer extends HTMLElement {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          this.shadowRoot.innerHTML = `
+            <style>
+              :host {
+                display: block;
+              }
+
+              tele-port {
+                display: block !important;
+                height: 200px;
+                width: 200px;
+                background: gray;
+              }
+
+              tele-port:not([disabled]) {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+              }
+
+              .foo tele-port {
+                background-color: red;
+              }
+            </style>
+            <div class="foo">
+            <tele-port disabled>
+              <button>Toggle</button>
+              <slot></slot>
+            </tele-port>
+            </div>
+          `;
+          this.shadowRoot.querySelector('button').addEventListener('click', e => {
+            this.toggle();
+          });
+        }
+
+        toggle() {
+          this.classList.toggle('open');
+          const portal = this.shadowRoot.querySelector('tele-port');
+          portal.disabled = !portal.disabled;
+        }
+      }
+      customElements.define('x-drawer', Drawer);
+    </script>
+
+    <style>
+      tele-port {
+        display: block;
+        color: blue;
+      }
+
+      tele-port p {
+        font-weight: bold;
+      }
+
+      .parent .child {
+        color: orange;
+      }
+
+      .parent tele-port {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+
+    <x-foo>
+      <h3 slot="header">Named slot</h3>
+      <p>Default slot</p>
+    </x-foo>
+
+    <div class="parent">
+      <tele-port>
+        <p class="child">Teleported 2</p>
+      </tele-port>
+    </div>
+
+    <x-drawer>
+      Drawer content
+    </x-drawer>
+
+  </body>
+</html>

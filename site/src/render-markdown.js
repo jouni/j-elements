@@ -4,7 +4,7 @@ import 'highlightjs';
 export function renderMarkdown(pathToMarkdownFile, target) {
   fetch(pathToMarkdownFile).then(response => {
     if (response.status == 404) {
-      target.innerHTML = '<h1>404</h1><p>Sorry, this page was not found.</p>'
+      target.innerHTML = '<h1>404</h1><p>Sorry, this page was not found.</p><p><a href="/">Home</a></p>'
     } else {
       response.text().then(text => {
 
