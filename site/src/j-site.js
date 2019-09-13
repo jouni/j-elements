@@ -7,6 +7,11 @@ import '@vaadin/vaadin-lumo-styles/typography.js';
 import './shared-styles.js';
 import './maturity-badge.js';
 
+// Needed for docs Example
+import {MutationAnimationMixin} from 'j-elements';
+class MyList extends MutationAnimationMixin(HTMLElement) {}
+window.customElements.define('my-list', MyList);
+
 // Pages
 import './index.js';
 
@@ -50,6 +55,7 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/tooltip">Tooltip</a></vaadin-tab>
           <h6>Utilities</h6>
           <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/mutation-animation">Mutation Animation Mixin</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/portal-element">Portal Element</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>

@@ -11,10 +11,11 @@ import {JPlaceholder} from './src/components/j-placeholder.js';
 import {JTooltip} from './src/components/j-tooltip.js';
 
 // Utilities
-import StylableMixin from './src/util/StylableMixin.js';
 import LightStyleElement from './src/util/LightStyleElement.js';
-import TeleportingElement from './src/util/teleporting-element.js';
+import MutationAnimationMixin from './src/util/MutationAnimationMixin.js';
 import PortalElement from './src/util/PortalElement.js';
+import StylableMixin from './src/util/StylableMixin.js';
+import TeleportingElement from './src/util/teleporting-element.js';
 
 export {
   JAppLayout,
@@ -27,8 +28,9 @@ export {
   JInput,
   JPlaceholder,
   JTooltip,
-  StylableMixin,
   LightStyleElement,
-  TeleportingElement,
-  PortalElement
+  MutationAnimationMixin,
+  PortalElement,
+  StylableMixin,
+  TeleportingElement
 };
