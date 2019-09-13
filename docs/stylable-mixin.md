@@ -1,12 +1,12 @@
-# Stylable Mixin <maturity-badge poc>(Proof of concept)</maturity-badge>
+# Stylable Mixin <maturity-badge preview>(Preview)</maturity-badge>
 
 `StylableMixin` is basically a more versatile replacement for [`Vaadin.ThemableMixin`](https://github.com/vaadin/vaadin-themable-mixin/), and does not depend on Polymer. It allows the user of the web component to inject custom styles inside the component’s shadow root (allowing theming).
 
 #### Benefits
 - You can style individual component instances (scoped) in addition to all instances of a component (global)
-- Less boilerplate: just two attributes for the standard `<style>` element:
+- Less boilerplate: just one attribute for the standard `<style>` element:
   ```html
-  <style type="global" for="my-component">
+  <style media="my-component">
     /* CSS for component's shadow DOM */
   </style>
   ```
@@ -41,7 +41,7 @@ Both `StylableMixin` and `ThemableMixin` are temporary solutions until the web p
 `StylableMixin` allows you to easily inject styles into a web component’s shadow DOM from the same style scope where a component instance is used:
 
 ```html,live
-<style type="scoped" for=".special-card">
+<style media=".special-card">
   [part="title"] {
     color: red;
   }
@@ -66,26 +66,26 @@ You can also inject styles from the global scope into any other scope (a.k.a. th
 <!-- This style module (when placed in the global scope)
   will be used by all <j-card> instances (you can see it
   being applied for the cards in the above example) -->
-<style type="global" for="j-card">
+<style media="j-card">
   :host {
     border: 2px dotted;
     margin-bottom: 1em;
   }
 </style>
 ```
-<style type="global" for="j-card">
+<style media="j-card">
   :host {
     border: 2px dotted;
     margin-bottom: 1em;
   }
 </style>
 
-## Making a component stylable
+## How to make a component stylable
 
 To make a component “stylable”, extend it with the mixin, and call `super.connectedCallback()` in the component’s `connectedCallback()`:
 
 ```javascript
-import { StylableMixin } from './node_modules/j-elements/src/stylable-mixin.js';
+import { StylableMixin } from 'j-elements';
 
 class XStylable extends StylableMixin(HTMLElement) {
   constructor() {

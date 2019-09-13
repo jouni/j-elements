@@ -7,6 +7,11 @@ import '@vaadin/vaadin-lumo-styles/typography.js';
 import './shared-styles.js';
 import './maturity-badge.js';
 
+// Needed for docs Example
+import {MutationAnimationMixin} from 'j-elements';
+class MyList extends MutationAnimationMixin(HTMLElement) {}
+window.customElements.define('my-list', MyList);
+
 // Pages
 import './index.js';
 
@@ -18,16 +23,16 @@ class JSite extends HTMLElement {
         <style include="shared-styles"></style>
       </custom-style>
 
-      <style type="scoped" for="j-app-layout">
+      <style media="j-app-layout">
         /* Uncomment this to have a colored navbar */
-        /* .navbar.navbar.navbar.navbar {
+        .navbar.navbar.navbar.navbar {
           background-color: var(--lumo-primary-color);
           color: var(--lumo-primary-contrast-color);
-        } */
+        }
       </style>
 
       <j-app-layout type="top">
-        <h1 slot="brand">j-elements</h1>
+        <h1 slot="brand">JElements</h1>
 
         <a href="https://github.com/jouni/j-elements" slot="support" title="View on GitHub" class="github-link">
           <j-icon class="github-icon"></j-icon>
@@ -38,10 +43,6 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/">About</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/howto">Get Started</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/maturity">Maturity Levels</a></vaadin-tab>
-          <h6>Utilities</h6>
-          <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
           <h6>Components</h6>
           <vaadin-tab><a tabindex="-1" href="/app-layout">App Layout</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/avatar">Avatar</a></vaadin-tab>
@@ -49,8 +50,15 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/dialog">Dialog</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/field">Field</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/icon">Icon</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/input">Input</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/placeholder">Placeholder</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/tooltip">Tooltip</a></vaadin-tab>
+          <h6>Utilities</h6>
+          <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/mutation-animation">Mutation Animation Mixin</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/portal-element">Portal Element</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
+          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
         </vaadin-tabs>
 
         <div class="content"></div>
@@ -109,21 +117,9 @@ class JSite extends HTMLElement {
   }
 
   _updateTitle(pageTitle) {
-    document.title = `j-elements: ${pageTitle}`;
+    document.title = `JElements: ${pageTitle}`;
     // Update navbar text
     this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + pageTitle;
-
-    // Restart the home page animation
-    if (this._router.location.pathname == "/") {
-      setTimeout(() => {
-        Particles.init({
-          selector: '.hero .background',
-          connectParticles: true,
-          color: '#ffffff',
-          minDistance: 60
-        });
-      }, 200);
-    }
   }
 }
 

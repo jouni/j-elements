@@ -1,6 +1,6 @@
-# Tooltip <maturity-badge proto>(Proto)</maturity-badge>
+# Tooltip <maturity-badge preview>(Preview)</maturity-badge>
 
-A tooltip component based on [Teleporting Element](/teleporting-element), allowing it to escape any stacking contexts.
+A tooltip component based on [Portal Element](/portal-element), allowing it to escape any stacking contexts.
 
 > **Note:** j-tooltip does not handle accessibility in any special way, for example make sure screen readers announce the tooltip content when it’s shown.
 
@@ -52,19 +52,8 @@ A tooltip component based on [Teleporting Element](/teleporting-element), allowi
   <j-tooltip class="lumo">Tooltip styled with Lumo properties</j-tooltip>
 </div>
 
-<!--
-  Import the following modules after installing the 'vaadin-lumo-styles'
-  package to use Lumo CSS properties:
-
-  <script type="module">
-    import '@vaadin/vaadin-lumo-styles/style.js';
-    import '@vaadin/vaadin-lumo-styles/color.js';
-    import '@vaadin/vaadin-lumo-styles/typography.js';
-  </script>
--->
-
-<style type="scoped" for="j-tooltip.lumo">
-  :host {
+<style>
+  j-tooltip.lumo {
     box-shadow: var(--lumo-box-shadow-s);
     background-color: var(--lumo-contrast-80pct);
     color: var(--lumo-base-color);

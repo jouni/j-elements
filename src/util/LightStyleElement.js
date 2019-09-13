@@ -1,5 +1,3 @@
-let count = 0;
-
 export default class LightStyleElement extends HTMLElement {
   constructor(style) {
     super();
@@ -7,10 +5,7 @@ export default class LightStyleElement extends HTMLElement {
     if (style && typeof style == 'string') {
       // TODO Improve detection
       if (style.indexOf('{') === -1) {
-        // Generate a classname
-        const className = `__lse__${count++}`;
-        this.classList.add(className);
-        style = `.${className} { ${style} }`;
+        style = `${this.nodeName.toLowerCase()} { ${style} }`;
       }
 
       if (style.indexOf('<style>') === -1) {
@@ -23,12 +18,14 @@ export default class LightStyleElement extends HTMLElement {
 
   connectedCallback() {
     if (this._style) {
-      if (!this.getRootNode().__lse_styles) {
-        this.getRootNode().__lse_styles = {};
+      const root = this.getRootNode();
+
+      if (!root.__lse_styles) {
+        root.__lse_styles = {};
       }
 
-      if (!this.getRootNode().__lse_styles[this.nodeName]) {
-        this.getRootNode().__lse_styles[this.nodeName] = true;
+      if (!root.__lse_styles[this.nodeName]) {
+        root.__lse_styles[this.nodeName] = true;
 
         let styleSheet;
         if (typeof this._style == 'string') {
@@ -40,13 +37,15 @@ export default class LightStyleElement extends HTMLElement {
         }
 
         if (styleSheet) {
-          if (this.getRootNode() == document) {
+          if (root == document) {
             document.body.appendChild(styleSheet);
           } else {
-            this.getRootNode().appendChild(styleSheet);
+            root.appendChild(styleSheet);
           }
         }
       }
     }
   }
+
+  // TODO should remove the <style> element when the last instance is disconnected
 }

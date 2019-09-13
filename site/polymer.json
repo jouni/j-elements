@@ -15,8 +15,7 @@
     "_redirects",
     "node_modules/j-elements/README.md",
     "node_modules/j-elements/docs/*",
-    "node_modules/@webcomponents/webcomponentsjs/**",
-    "node_modules/particlesjs/**"
+    "node_modules/@webcomponents/webcomponentsjs/**"
   ],
   "builds": [
     {

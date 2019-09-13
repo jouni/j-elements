@@ -1,18 +1,20 @@
 {
   "name": "j-elements-site",
-  "description": "Documentation and examples for the j-elements project",
+  "description": "Documentation and examples for the JElements project",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0",
-    "@vaadin/router": "^1.0.1",
-    "@vaadin/vaadin-checkbox": "^2.2.0",
-    "@vaadin/vaadin-lumo-styles": "^1.0.0",
-    "@vaadin/vaadin-tabs": "^2.1.0",
-    "@vaadin/vaadin-text-field": "^2.1.1",
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "highlightjs": "^9.10.0",
-    "marked": "^0.5.0",
-    "particlesjs": "^2.2.3",
-    "polymer-cli": "^1.7.7"
+    "@polymer/polymer": "^3.3.0",
+    "@vaadin/router": "^1.4.2",
+    "@vaadin/vaadin-checkbox": "^2.2.10",
+    "@vaadin/vaadin-lumo-styles": "^1.5.0",
+    "@vaadin/vaadin-tabs": "^2.1.2",
+    "@vaadin/vaadin-text-field": "^2.4.11",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "highlightjs": "^9.12.0",
+    "marked": "^0.7.0",
+    "polymer-cli": "^1.9.11",
+    "lodash": "^4.17.15",
+    "deep-extend": "^0.5.1",
+    "braces": "^2.3.1"
   },
   "scripts": {
     "build": "npm install; npm link ../; npx polymer build"

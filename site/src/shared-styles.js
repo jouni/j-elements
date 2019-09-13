@@ -52,14 +52,6 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin-bottom: var(--lumo-space-l);
       }
 
-      .hero .background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0;
-        opacity: 0.3;
-      }
-
       .hero j-icon {
         position: relative;
         z-index: 0;
@@ -141,8 +133,6 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       }
 
       .hljs {
-        background-color: var(--lumo-contrast-5pct);
-        border-radius: var(--lumo-border-radius);
         margin: var(--lumo-space-l) 0;
         padding: var(--lumo-space-s) var(--lumo-space-m);
       }
@@ -156,6 +146,7 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
 
       .demo-snippet__code {
         margin: 1rem 0 0;
+        background: transparent;
       }
 
       .demo-snippet__code .hljs {
@@ -163,27 +154,6 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         margin: 0 -1rem -1rem;
         max-height: 14.5em;
         overflow: auto;
-      }
-
-      button {
-        font: inherit;
-        background-color: var(--lumo-contrast-5pct);
-        color: var(--lumo-primary-text-color);
-        font-weight: 500;
-        border: 0;
-        padding: 0.3em 1em;
-        border-radius: var(--lumo-border-radius);
-        margin: 0;
-        outline: none;
-      }
-
-      button:hover,
-      button:focus {
-        background-color: var(--lumo-primary-color-10pct);
-      }
-
-      button:active {
-        background-color: var(--lumo-primary-color-50pct);
       }
 
       maturity-badge a {
@@ -207,12 +177,12 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         color: var(--lumo-error-text-color);
       }
 
-      maturity-badge[proto] a {
+      maturity-badge[preview] a {
         background-color: rgb(255,241,214);
         color: rgb(184,121,0);
       }
 
-      maturity-badge[rfc] a {
+      maturity-badge[beta] a {
         background-color: var(--lumo-success-color-10pct);
         color: var(--lumo-success-text-color);
       }
@@ -220,6 +190,11 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       maturity-badge[stable] a {
         background-color: var(--lumo-primary-color-10pct);
         color: var(--lumo-primary-text-color);
+      }
+
+      maturity-badge[deprecated] a {
+        background-color: var(--lumo-error-color);
+        color: var(--lumo-error-contrast-color);
       }
 
       code {

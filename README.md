@@ -1,4 +1,4 @@
-# j-elements
+# JElements
 
 > Proof-of-concept helpers and prototype web components
 
@@ -9,7 +9,7 @@
 
 ## Proof-of-concept helper elements and mixins
 
-See the documentation for `StylableMixin` and `TeleportingElement`.
+See the documentation for `LightStyleElement`, `StylableMixin` and `PortalElement`.
 
 
 

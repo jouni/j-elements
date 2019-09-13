@@ -1,7 +1,6 @@
-import {StylableMixin} from './stylable-mixin.js';
-import bemToShadow from './bem-to-shadow.js';
-import TeleportingElement from './teleporting-element.js';
-import style from './styles/tooltip-style.js';
+import bemToShadow from '../util/bemToShadow.js';
+import PortalElement from '../util/PortalElement.js';
+import style from '../styles/tooltip-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -14,12 +13,18 @@ template.innerHTML = `
       /* Shift so the cursor doesn't block it */
       margin-left: 10px;
     }
+
+    :host([disabled]) {
+      visibility: hidden;
+      height: 0;
+      overflow: hidden;
+    }
   </style>
   ${ bemToShadow(style, '.j-tooltip') }
   <slot></slot>
 `;
 
-export class JTooltip extends StylableMixin(TeleportingElement) {
+export class JTooltip extends PortalElement {
   constructor() {
     super();
 
@@ -28,19 +33,16 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
-
     if (!this.__jtooltipTemplateStamped) {
-      if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
-        ShadyCSS.prepareTemplate(template, this.nodeName.toLowerCase());
-        ShadyCSS.styleElement(this);
-      }
-
+      this.attachShadow({mode: 'open'});
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       this.__jtooltipTemplateStamped = true;
+      this.disabled = true;
     }
 
-    if (!this.visible) {
+    super.connectedCallback();
+
+    if (this.disabled) {
       this._parentNode = this.parentNode;
       this._parentNode.addEventListener('mousemove', this._showListener);
       this._parentNode.addEventListener('mouseout', this._hideListener);
@@ -48,16 +50,15 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
   }
 
   disconnectedCallback() {
-    if (!this.visible && this._parentNode) {
+    if (this.disabled && this._parentNode) {
       this._parentNode.removeEventListener('mousemove', this._showListener);
       this._parentNode.removeEventListener('mouseout', this._hideListener);
       delete this._parentNode;
     }
-    if (super.disconnectedCallback) super.disconnectedCallback();
   }
 
   _show(e) {
-    if (this.visible) {
+    if (!this.disabled) {
       return;
     }
     if (this._openTimeout) {
@@ -66,7 +67,7 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
     this._openTimeout = setTimeout(() => {
       this.style.top = e.clientY + 'px';
       this.style.left = e.clientX + 'px';
-      this.visible = true;
+      this.disabled = false;
     }, 800);
   }
 
@@ -74,7 +75,7 @@ export class JTooltip extends StylableMixin(TeleportingElement) {
     if (this._openTimeout) {
       clearTimeout(this._openTimeout);
     }
-    this.visible = false;
+    this.disabled = true;
   }
 
   _disconnectedListener() {

@@ -1,4 +1,4 @@
-# Icon <maturity-badge rfc>(Request for feedback)</maturity-badge>
+# Icon <maturity-badge beta>(Beta)</maturity-badge>
 
 ## The problem
 

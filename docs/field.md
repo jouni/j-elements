@@ -1,76 +1,72 @@
-# Field <maturity-badge proto>(Prototype)</maturity-badge>
+# Field <maturity-badge preview>(Preview)</maturity-badge>
+
+```javascript
+import {JField} from 'j-elements';
+```
 
 `<j-field>` is a wrapper element that allows you to add a label and an error message to any input element.
 
-### Text field
+It handles accessibility for you automatically, without the need to manually use `id` and `for` attributes to bind the label and the field, as well as showing validation error messages (and making them accessible as well).
+
+> The label is currently announces twice on VoiceOver on macOS Safari.
+
+## Label
 ```html,live
 <j-field>
   <label>Label</label>
-  <input type="text" required>
-  <p error-message>Error message</p>
+  <j-input></j-input>
 </j-field>
 ```
 
-### Text field (no label)
+## Required validation
 ```html,live
 <j-field>
-  <input type="text" required>
-  <p error-message>Error message</p>
+  <label>Label</label>
+  <j-input required minlength="3"></j-input>
 </j-field>
 ```
 
-### Text area
+## Pattern validation
 ```html,live
 <j-field>
-  <label slot="label">Label</label>
-  <textarea required></textarea>
-  <p error-message>Error message</p>
+  <label>Label</label>
+  <j-input pattern="[0-9]+"></j-input>
 </j-field>
 ```
 
-### Date field
-```html,live
-    <j-field>
-      <label slot="label">Label</label>
-      <input type="date" required>
-      <p error-message>Error message</p>
-    </j-field>
-```
-
-### Checkbox group
+## Custom error message
 ```html,live
 <j-field>
-  <label slot="label">Label</label>
-  <label><input type="checkbox"> Option</label>
-  <label><input type="checkbox" required> Option</label>
-  <p error-message>Error message</p>
+  <label>Label</label>
+  <j-input required error-message="You should really type something here"></j-input>
 </j-field>
 ```
 
-### Radio button group
+## Native text input
 ```html,live
 <j-field>
-  <label slot="label">Label</label>
-  <label><input type="radio" required> Option</label>
-  <label><input type="radio"> Option</label>
-  <label><input type="radio"> Option</label>
-  <p error-message>Error message</p>
+  <label>Label</label>
+  <input type="text" required pattern="[0-9]+">
 </j-field>
 ```
 
-### Slider
+## Native date input
 ```html,live
 <j-field>
-  <label slot="label">Label</label>
-  <input type="range">
+  <label>Choose a date</label>
+  <input type="date" required>
 </j-field>
 ```
 
-### Vaadin Text Field
+## Native select
 ```html,live
 <j-field>
-  <label slot="label">Label</label>
-  <vaadin-text-field required></vaadin-text-field>
-  <p error-message>Error message</p>
+  <label>Select an option</label>
+  <select required>
+    <option></option>
+    <option>Option one</option>
+    <option>Option two</option>
+    <option>Option three</option>
+  </select>
 </j-field>
 ```

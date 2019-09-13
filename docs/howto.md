@@ -2,7 +2,7 @@
 
 ## Install
 
-j-elements is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
+JElements is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
 
 ```
 npm install j-elements

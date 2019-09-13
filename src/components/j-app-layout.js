@@ -1,5 +1,5 @@
-import {StylableMixin} from './stylable-mixin.js';
-import './j-icon.js';
+import StylableMixin from '../util/StylableMixin.js';
+import JIcon from './JIcon.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -31,10 +31,11 @@ template.innerHTML = `
     }
 
     /* Just for fancy :) */
-    @supports (-webkit-backdrop-filter: blur(1px)) {
+    @supports (backdrop-filter: blur(1px)), (-webkit-backdrop-filter: blur(1px)) {
       .navbar,
       .drawer {
         -webkit-backdrop-filter: blur(30px);
+        backdrop-filter: blur(30px);
         background-color: rgba(240,240,240,0.7);
       }
     }
@@ -264,9 +265,10 @@ template.innerHTML = `
         transition: transform 170ms cubic-bezier(0.38, 0.85, 0.81, 1.11);
       }
 
-      @supports (-webkit-backdrop-filter: blur(1px)) {
+      @supports (backdrop-filter: blur(1px)), (-webkit-backdrop-filter: blur(1px)) {
         .app-layout-drawer {
           -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
           background-color: rgba(240,240,240,0.7);
         }
       }
@@ -283,6 +285,7 @@ template.innerHTML = `
         width: 100%;
         height: auto;
         -webkit-backdrop-filter: none;
+        backdrop-filter: none;
       }
 
       :host([type]) .navbar {

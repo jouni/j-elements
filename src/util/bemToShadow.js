@@ -11,6 +11,11 @@
  * @return {String}              Shadow DOM style CSS
  */
 export default function bemToShadow(bemCss, hostSelector) {
+  if (!hostSelector) {
+    console.warn('No host selector specified. Skipping transformation.');
+    return bemCss;
+  }
+
   // Interpret the dot as a literal dot in the regexp
   const escapedHost = hostSelector.replace(/\./gm, '\\.');
 
@@ -40,6 +45,12 @@ export default function bemToShadow(bemCss, hostSelector) {
   // .block[attribute] -> :host([attribute])
   regexp = new RegExp(escapedHost + '(\\S*?(?=::|\\s|,|\\{))', 'gm');
   shadowCss = shadowCss.replace(regexp, ':host($1)');
+
+  // Direct descendants is assumed to be inside light DOM:
+  // .block > label -> :host ::slotted(label)
+  // Note: `.block >` has already been replace with `.host >`
+  regexp = new RegExp(':host > (\\S*?(?=::|\\s|,|\\{))', 'gm');
+  shadowCss = shadowCss.replace(regexp, ':host ::slotted($1)');
 
   return shadowCss;
 }
