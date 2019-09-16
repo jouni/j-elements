@@ -57,6 +57,9 @@ export class JInput extends NativeInputElementWrapper {
         :host([type=number]) {
           text-align: right;
           text-align: end;
+          -webkit-font-feature-settings: 'tnum';
+          -moz-font-feature-settings: 'tnum';
+          font-feature-settings: 'tnum';
         }
 
         .container ::slotted([slot]) {
