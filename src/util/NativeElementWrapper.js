@@ -74,8 +74,6 @@ export default class NativeElementWrapper extends HTMLElement {
       this._boundKeyupListener = this._bodyKeyupListener.bind(this);
     }
 
-    // super.connectedCallback();
-
     document.body.addEventListener('keydown', this._boundKeydownListener, true);
     document.body.addEventListener('keyup', this._boundKeyupListener, true);
   }
