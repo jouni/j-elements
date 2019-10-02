@@ -1,6 +1,4 @@
-import bemToShadow from '../util/bemToShadow.js';
 import PortalElement from '../util/PortalElement.js';
-import style from '../styles/tooltip-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -8,6 +6,11 @@ template.innerHTML = `
     :host {
       position: fixed;
       z-index: var(--j-tooltip-z-index, 999);
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      border-radius: 2px;
+      padding: 0.3em;
+      line-height: 1;
       /* Prevent tooltip from getting mouse events */
       pointer-events: none;
       /* Shift so the cursor doesn't block it */
@@ -20,7 +23,6 @@ template.innerHTML = `
       overflow: hidden;
     }
   </style>
-  ${ bemToShadow(style, '.j-tooltip') }
   <slot></slot>
 `;
 

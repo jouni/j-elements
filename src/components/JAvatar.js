@@ -1,6 +1,6 @@
 import StylableMixin from '../util/StylableMixin.js';
 import './JIcon.js';
-import './j-tooltip.js';
+import './JTooltip.js';
 
 const template = document.createElement('template');
 template.innerHTML = `

@@ -8,7 +8,7 @@ import {JField} from './src/components/JField.js';
 import {JIcon} from './src/components/JIcon.js';
 import {JInput} from './src/components/JInput.js';
 import {JPlaceholder} from './src/components/JPlaceholder.js';
-import {JTooltip} from './src/components/j-tooltip.js';
+import {JTooltip} from './src/components/JTooltip.js';
 
 // Utilities
 import LightStyleElement from './src/util/LightStyleElement.js';
