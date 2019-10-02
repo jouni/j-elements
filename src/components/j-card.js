@@ -35,15 +35,8 @@ template.innerHTML = `
 `;
 
 export class JCard extends StylableMixin(HTMLElement) {
-  // static get observedAttributes() {
-  //   return ['name', 'abbr', 'image'];
-  // }
-
   constructor() {
     super();
-    // this._upgradeProperty('name');
-    // this._upgradeProperty('abbr');
-    // this._upgradeProperty('image');
   }
 
   connectedCallback() {
@@ -53,56 +46,10 @@ export class JCard extends StylableMixin(HTMLElement) {
 
   __attachShadow() {
     if (!this.shadowRoot) {
-      if (typeof ShadyCSS != 'undefined' && !ShadyCSS.nativeShadow) {
-        ShadyCSS.prepareTemplate(template, this.nodeName.toLowerCase());
-        ShadyCSS.styleElement(this);
-      }
       this.attachShadow({mode: 'open'});
       this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
   }
-
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   this.__attachShadow();
-  //   const hasValue = newValue !== null;
-  //   switch (name) {
-  //     case 'name':
-  //       if (hasValue) {
-  //         if (!this._tooltip) {
-  //           this._tooltip = document.createElement('j-tooltip');
-  //           this.shadowRoot.appendChild(this._tooltip);
-  //         }
-  //         this._tooltip.innerHTML = newValue;
-  //         if (!this.hasAttribute('abbr')) {
-  //           this.shadowRoot.querySelector('[part=abbr]').innerHTML = newValue.match(/\b\S/g).join('');
-  //         }
-  //       } else {
-  //         if (this._tooltip) {
-  //           this.shadowRoot.removeChild(this._tooltip);
-  //         }
-  //         if (!this.hasAttribute('abbr')) {
-  //           this.shadowRoot.querySelector('[part=abbr]').innerHTML = '';
-  //         }
-  //       }
-  //       break;
-  //     case 'abbr':
-  //       if (hasValue) {
-  //         this.shadowRoot.querySelector('[part=abbr]').innerHTML = newValue;
-  //       } else {
-  //         this.shadowRoot.querySelector('[part=abbr]').innerHTML = '';
-  //       }
-  //       break;
-  //     case 'image': {
-  //       if (hasValue) {
-  //         this.shadowRoot.querySelector('[part=image]').style.backgroundImage = `url(${newValue})`;
-  //       } else {
-  //         this.shadowRoot.querySelector('[part=image]').style.backgroundImage = '';
-  //       }
-  //       break;
-  //     }
-  //   }
-  // }
-
 }
 
 window.customElements.define('j-card', JCard);
