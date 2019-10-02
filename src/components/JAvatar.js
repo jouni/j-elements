@@ -1,6 +1,4 @@
 import StylableMixin from '../util/StylableMixin.js';
-import bemToShadow from '../util/bemToShadow.js';
-import style from '../styles/avatar-style.js';
 import './JIcon.js';
 import './j-tooltip.js';
 
@@ -10,6 +8,28 @@ template.innerHTML = `
     :host {
       --viewbox: 0 0 24 24;
       --svg: <path d="M12 12c-1.656854 0-3-1.343146-3-3s1.343146-3 3-3 3 1.343146 3 3-1.343146 3-3 3zm-7 7c0-2.761424 3.134007-5 7-5s7 2.238576 7 5H5z">;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      flex: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      font-weight: 500;
+      font-size: 48px;
+      cursor: default;
+    }
+
+    :host([hidden]) {
+      display: none !important;
+    }
+
+    :host([image]) {
+      background: transparent;
     }
 
     svg {
@@ -27,8 +47,27 @@ template.innerHTML = `
       --viewbox: inherit;
       --svg: inherit;
     }
+
+    [part="abbr"] {
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    [part="image"] {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background-size: cover;
+    }
+
+    :host(:not([image])) [part="image"],
+    :host([image]) [part="abbr"],
+    :host([image]) [part="icon"],
+    :host([name]) [part="icon"],
+    :host(:not([name])) [part="abbr"] {
+      display: none;
+    }
   </style>
-  ${ bemToShadow(style, '.j-avatar') }
   <j-icon part="icon"></j-icon>
   <svg part="abbr" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
     <text dy=".31em" text-anchor="middle"></text>

@@ -1,0 +1,5 @@
+j-avatar {
+  background: var(--surface) linear-gradient(var(--contrast-40), var(--contrast-50));
+  color: var(--surface);
+  font-family: var(--font-family);
+}

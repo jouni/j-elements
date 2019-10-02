@@ -1,6 +1,6 @@
 // Components (custom elements)
 import {JAppLayout} from './src/components/j-app-layout.js';
-import {JAvatar} from './src/components/j-avatar.js';
+import {JAvatar} from './src/components/JAvatar.js';
 import {JButton} from './src/components/JButton.js';
 import {JCard} from './src/components/j-card.js';
 import {JDialog} from './src/components/j-dialog.js';
