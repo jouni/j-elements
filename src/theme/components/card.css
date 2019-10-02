@@ -1,0 +1,12 @@
+j-card {
+  background-color: var(--surface);
+  border: 1px solid var(--contrast-10);
+}
+
+j-card h1[slot="title"],
+j-card h2[slot="title"],
+j-card h3[slot="title"],
+j-card h4[slot="title"] {
+  margin-top: 0.25em;
+  margin-bottom: 0;
+}

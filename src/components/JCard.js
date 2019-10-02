@@ -1,20 +1,28 @@
 import StylableMixin from '../util/StylableMixin.js';
-import bemToShadow from '../util/bemToShadow.js';
-import style from '../styles/card-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
   <style>
-    [part="title"] ::slotted(*) {
-      font: inherit !important;
-      color: inherit !important;
-      letter-spacing: inherit !important;
-      text-transform: inherit !important;
-      margin: 0 !important;
-      padding: 0 !important;
+    :host {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 1em;
+      border-radius: 0.25em;
+      box-sizing: border-box;
+    }
+
+    [part="content"] {
+      flex: auto;
+    }
+
+    [part="title"] {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   </style>
-  ${ bemToShadow(style, '.j-card') }
 
   <div part="header">
     <slot name="header"></slot>
@@ -22,7 +30,6 @@ template.innerHTML = `
 
   <div part="title">
     <slot name="title"></slot>
-    <slot name="title-suffix"></slot>
   </div>
 
   <div part="content">
