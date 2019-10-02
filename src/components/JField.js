@@ -1,6 +1,4 @@
 import LightStyleElement from '../util/LightStyleElement.js';
-import bemToShadow from '../util/bemToShadow.js';
-import theme from '../styles/field.css';
 
 let fieldId = 0;
 
@@ -16,15 +14,20 @@ let fieldId = 0;
 export class JField extends LightStyleElement {
   constructor() {
     const styles = `
-      .j-field {
+      j-field {
         display: flex;
         flex-direction: column;
+        --j-field-required-indicator: "(Required)";
+        --j-field-optional-indicator: "(Optional)";
       }
 
-      .j-field--required .j-field__label::after {
-        content: " *";
+      j-field[required] > [label]::after {
+        content: " " var(--j-field-required-indicator);
       }
-      ${theme}
+
+      j-field:not([required]) > [label]::after {
+        content: " " var(--j-field-optional-indicator);
+      }
     `;
     super(styles);
 
@@ -34,8 +37,6 @@ export class JField extends LightStyleElement {
     this.__boundFocusOutListener = this._onFocusOut.bind(this);
     this.__boundInputListener = this._onInput.bind(this);
     this.__boundMutationListener = this.__mutations.bind(this);
-
-    this.classList.add('j-field');
   }
 
   connectedCallback() {
@@ -69,7 +70,7 @@ export class JField extends LightStyleElement {
     const labelElement = this.querySelector('[label], label');
     if (labelElement) {
       labelElement.setAttribute('id', this._id + 'label');
-      labelElement.classList.add('j-field__label');
+      labelElement.setAttribute('label', '');
     }
 
     const inputElements = this._queryInputElements();
@@ -96,9 +97,9 @@ export class JField extends LightStyleElement {
     // If input is required, add the attribute to the host
     const isRequired = this.querySelector('[required]');
     if (isRequired) {
-      this.classList.add('j-field--required');
+      this.setAttribute('required', '');
     } else {
-      this.classList.remove('j-field--required');
+      this.removeAttribute('required');
     }
   }
 
@@ -116,7 +117,7 @@ export class JField extends LightStyleElement {
 
     if (!this._validationMessage) {
       this._validationMessage = document.createElement('p');
-      this._validationMessage.classList.add('j-field__validation-message');
+      this._validationMessage.setAttribute('validation-message', '');
       this._validationMessage.setAttribute('aria-live', 'polite');
       this._validationMessage.id = this._id + 'description';
     }
@@ -124,14 +125,14 @@ export class JField extends LightStyleElement {
     this._validationMessage.innerHTML = validationMessage;
 
     if (valid) {
-      this.classList.remove('j-field--invalid');
+      this.removeAttribute('invalid');
       if (this._validationMessage.parentNode) {
         this.removeChild(this._validationMessage);
         // TODO should make sure to only remove the one entry by j-field
         inputElements[0].setAttribute('aria-describedby', '');
       }
     } else {
-      this.classList.add('j-field--invalid');
+      this.setAttribute('invalid', '');
       this.appendChild(this._validationMessage);
       // TODO should make sure to preserve existing values
       inputElements[0].setAttribute('aria-describedby', this._id + 'description');
@@ -168,7 +169,7 @@ export class JField extends LightStyleElement {
     if (this.__inputDebounce) {
       clearTimeout(this.__inputDebounce);
     }
-    if (this.classList.contains('j-field--invalid')) {
+    if (this.hasAttribute('invalid')) {
       this._checkValidity();
     } else {
       this.__inputDebounce = setTimeout(this._checkValidity.bind(this), 1000);
