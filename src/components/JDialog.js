@@ -1,7 +1,5 @@
 import StylableMixin from '../util/StylableMixin.js';
-import bemToShadow from '../util/bemToShadow.js';
 import PortalElement from '../util/PortalElement.js';
-import style from '../styles/dialog-style.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -12,6 +10,12 @@ template.innerHTML = `
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      /* White-label styles */
+      background-color: #fff;
+      box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
+      padding: 1.5em;
+      border-radius: 0.25em;
+      width: 16em;
     }
 
     :host([disabled]) {
@@ -20,7 +24,6 @@ template.innerHTML = `
       overflow: hidden;
     }
   </style>
-  ${ bemToShadow(style, '.j-dialog') }
   <slot></slot>
 `;
 
