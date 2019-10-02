@@ -10,7 +10,6 @@ template.innerHTML = `
       stroke: currentColor;
       stroke-width: 0;
       --viewbox: 0 0 24 24;
-      --svg: <path d="M0,0 L24,0 L24,24 L0,24 L0,0" stroke="currentColor" stroke-width="1px" fill="none"></path><path d="M0,24 L24,0" stroke="currentColor" stroke-width="0.6px"></path><path d="M24,24 L0,0" stroke="currentColor" stroke-width="0.6px"></path>;
     }
 
     svg {
