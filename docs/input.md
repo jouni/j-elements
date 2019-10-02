@@ -13,6 +13,9 @@ The native `<input>` element is not styled consistently across different browser
 `<j-input>` is a text input element which adds prefix and suffix element support, multi-line and autosizing (both horizontal and vertical) for the native `<input>` element.
 
 
+---
+
+
 ## Examples
 
 ### Default configuration
@@ -34,6 +37,8 @@ With prefix and suffix elements.
 </j-input>
 ```
 
+> Autosize does not work correctly with `type="number"` in Firefox
+
 ### Multi-line
 Multi-line inputs are user-resizable by default in both directions. You can control this with the `resize` CSS property.
 ```html,live
@@ -50,14 +55,14 @@ The autosizing multi-line input prevents user-resizing by default.
 
 The input can be styled similarly as the native `<input>` element, using border, background, padding, box-shadow, display, etc.
 
-The only exception is the `:focus` and `:focus-visible` pseudo-classes – use the `[focus]` and `[focus-visible]` state attributes instead.
+The only exception is the `:focus`, `:focus-visible`, `:disabled` and `:invalid` pseudo-classes – use the `[focus]`, `[focus-visible]`, `[disabled]` and `[invalid]` state attributes instead.
 
 ```html,live
 <j-input class="custom"></j-input>
 
 <style>
   j-input.custom {
-    border-width: 2px;
+    border: 2px solid #000;
     background-color: #eee;
     font-weight: bold;
     padding: 0.8em 1em;
@@ -70,6 +75,7 @@ The only exception is the `:focus` and `:focus-visible` pseudo-classes – use t
   }
 
   j-input.custom[focus] {
+    outline: none;
     border-color: orange;
     box-shadow: 0 0 0 4px yellow;
   }
