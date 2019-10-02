@@ -185,6 +185,18 @@ export class JInput extends NativeInputElementWrapper {
       this._nativeElement.style[dimension.toLowerCase()] = '';
     }
   }
+
+  checkValidity() {
+    const valid = super.checkValidity();
+
+    if (valid) {
+      this.removeAttribute('invalid');
+    } else {
+      this.setAttribute('invalid', '');
+    }
+
+    return valid;
+  }
 }
 
 window.customElements.define('j-input', JInput);

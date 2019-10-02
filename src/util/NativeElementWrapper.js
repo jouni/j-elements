@@ -13,10 +13,7 @@ export default class NativeElementWrapper extends HTMLElement {
   }
 
   static get observedProperties() {
-    return this.observedAttributes.concat([
-      'focus',
-      'blur'
-    ]);
+    return this.observedAttributes.concat([]);
   }
 
   static toCamelCase(str) {
@@ -86,28 +83,21 @@ export default class NativeElementWrapper extends HTMLElement {
   _observeProperties() {
     this.constructor.observedProperties.forEach(attrOrProp => {
       const prop = NativeElementWrapper.toCamelCase(attrOrProp);
-
-      if (typeof this._nativeElement[prop] == 'function') {
-        this[prop] = function() {
-          return this._nativeElement[prop](arguments);
-        }
-      } else {
-        Object.defineProperty(this, prop, {
-          get() {
-            return this._nativeElement[prop];
-          },
-          set(val) {
-            if (this.constructor.observedAttributes.indexOf(attrOrProp) > -1) {
-              if (val !== null && val !== undefined && val !== false) {
-                this.setAttribute(attrOrProp, val === true ? '' : val);
-              } else {
-                this.removeAttribute(attrOrProp);
-              }
+      Object.defineProperty(this, prop, {
+        get() {
+          return this._nativeElement[prop];
+        },
+        set(val) {
+          if (this.constructor.observedAttributes.indexOf(attrOrProp) > -1) {
+            if (val !== null && val !== undefined && val !== false) {
+              this.setAttribute(attrOrProp, val === true ? '' : val);
+            } else {
+              this.removeAttribute(attrOrProp);
             }
-            this._nativeElement[prop] = val;
           }
-        });
-      }
+          this._nativeElement[prop] = val;
+        }
+      });
     });
   }
 
@@ -165,4 +155,12 @@ export default class NativeElementWrapper extends HTMLElement {
       }));
     }
   }
+}
+
+NativeElementWrapper.prototype.focus = function() {
+  return this._nativeElement.focus();
+}
+
+NativeElementWrapper.prototype.blur = function() {
+  return this._nativeElement.blur();
 }
