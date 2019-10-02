@@ -43,6 +43,8 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/">About</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/howto">Get Started</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/maturity">Maturity Levels</a></vaadin-tab>
+          <h6>Foundation</h6>
+          <vaadin-tab><a tabindex="-1" href="/foundation/color">Color palette</a></vaadin-tab>
           <h6>Components</h6>
           <vaadin-tab><a tabindex="-1" href="/app-layout">App Layout</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/avatar">Avatar</a></vaadin-tab>
