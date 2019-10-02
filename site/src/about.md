@@ -1,4 +1,4 @@
-# About
+# About JElements
 
 <div class="hero">j</div>
 
@@ -20,10 +20,10 @@
 
 The utilities are lower-level mixins and elements which help build components that are easier for other developers to use.
 
-- [`LightStyleElement`](/light-style-element) is a way to include built-in styling for a web component without the need to use shadow DOM
-- [`MutationAnimationMixin`](/mutation-animation) makes it easy to animate elements in and out of the DOM
-- [`PortalElement`](/portal-element) provides a mechanism for escaping any stacking context, making it suitable as a base for reusable overlay components
-- [`StylableMixin`](/stylable-mixin) allows developers using such components to be styled more freely, by allowing them to inject styles inside the shadow DOM
+- [Light Style Element](/light-style-element) is a way to include built-in styling for a web component without the need to use shadow DOM
+- [Mutation Animation Mixin](/mutation-animation) makes it easy to animate elements in and out of the DOM
+- [Portal Element](/portal-element) provides a mechanism for escaping any stacking context, making it suitable as a base for reusable overlay components
+- [Stylable Mixin](/stylable-mixin) allows developers using such components to be styled more freely, by allowing them to inject styles inside the shadow DOM
 
 
 ### Components
@@ -31,9 +31,9 @@ The utilities are lower-level mixins and elements which help build components th
 - [App Layout](/app-layout) – the main layout which is used for this website
 - [Avatar](/avatar) – uses some nice SVG ”magic” to make the text inside the avatar scale automatically, and `<j-icon>` for an easily customizable icon
 - [Card](/card) – looking at how to make a versatile card component
-- [Dialog](/dialog) – testing `TeleportingElement`, if it is a viable option for building dialogs
+- [Dialog](/dialog) – testing `PortalElement`, if it is a viable option for building dialogs
 - [Field](/field) – add consistently styled labels and error messages for any input element
 - [Icon](/icon) – easy to style icon component, giving CSS the power to change the icon shape
 - [Input](/input) – a text input component with consistent styling across different browsers, prefix and suffix content support and auto-sizing in both horizontal and vertical directions
 - [Placeholder](/placeholder) – a simple element for showing a placeholder box (useful for quick prototyping)
-- [Tooltip](/tooltip) – testing `TeleportingElement`, if its a viable option for building tooltips
+- [Tooltip](/tooltip) – testing `PortalElement`, if its a viable option for building tooltips
