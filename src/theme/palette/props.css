@@ -1,0 +1,35 @@
+* {
+  --contrast-100: hsl(var(--contrast-hsl));
+  --contrast-90: hsla(var(--contrast-hsl), 0.9);
+  --contrast-80: hsla(var(--contrast-hsl), 0.8);
+  --contrast-70: hsla(var(--contrast-hsl), 0.7);
+  --contrast-60: hsla(var(--contrast-hsl), 0.6);
+  --contrast-50: hsla(var(--contrast-hsl), 0.5);
+  --contrast-40: hsla(var(--contrast-hsl), 0.4);
+  --contrast-30: hsla(var(--contrast-hsl), 0.3);
+  --contrast-20: hsla(var(--contrast-hsl), 0.2);
+  --contrast-10: hsla(var(--contrast-hsl), 0.1);
+  --contrast-5: hsla(var(--contrast-hsl), 0.05);
+
+  --primary-100: hsl(var(--primary-hsl));
+  --primary-90: hsla(var(--primary-hsl), 0.9);
+  --primary-80: hsla(var(--primary-hsl), 0.8);
+  --primary-70: hsla(var(--primary-hsl), 0.7);
+  --primary-60: hsla(var(--primary-hsl), 0.6);
+  --primary-50: hsla(var(--primary-hsl), 0.5);
+  --primary-40: hsla(var(--primary-hsl), 0.4);
+  --primary-30: hsla(var(--primary-hsl), 0.3);
+  --primary-20: hsla(var(--primary-hsl), 0.2);
+  --primary-10: hsla(var(--primary-hsl), 0.1);
+  --primary-5: hsla(var(--primary-hsl), 0.05);
+  --primary-contrast: hsl(var(--primary-contrast-hsl));
+  --primary-text: hsl(var(--primary-text-hsl));
+
+  --background: hsl(var(--background-hsl));
+  --surface: hsl(var(--surface-hsl));
+  --heading-text-color: var(--contrast-100);
+  --text-color: var(--contrast-90);
+  --secondary-text-color: var(--contrast-70);
+  --tertiary-text-color: var(--contrast-50);
+  --disabled-text-color: var(--contrast-30);
+}

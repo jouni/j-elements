@@ -1,0 +1,21 @@
+* {
+  --font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-heading: var(--font-family);
+  --font-family-monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --font-size-xxs: .75rem;
+  --font-size-xs: .8125rem;
+  --font-size-s: .875rem;
+  --font-size-m: 1rem;
+  --font-size-l: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-xxl: 1.75rem;
+  --font-size-xxxl: 2.5rem;
+
+  --font-weight-display: 700;
+  --font-weight-heading: 600;
+
+  --line-height-xs: 1.25;
+  --line-height-s: 1.375;
+  --line-height-m: 1.625;
+}
