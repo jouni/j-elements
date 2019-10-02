@@ -1,6 +1,4 @@
 import NativeElementWrapper from '../util/NativeElementWrapper';
-import bemToShadow from '../util/bemToShadow';
-import style from '../styles/button.css';
 
 export class JButton extends NativeElementWrapper {
   static get template() {
@@ -9,6 +7,11 @@ export class JButton extends NativeElementWrapper {
       <style>
         :host {
           position: relative;
+          -webkit-appearance: var(--j-button-appearance, button);
+          -moz-appearance: var(--j-button-appearance, button);
+          -ms-appearance: var(--j-button-appearance, button);
+          appearance: var(--j-button-appearance, button);
+          padding: 0 0.3em;
         }
 
         button {
@@ -24,7 +27,6 @@ export class JButton extends NativeElementWrapper {
           display: inline-flex;
           cursor: default;
         }
-        ${bemToShadow(style, '.j-button')}
       </style>
       <button native-element></button>
       <slot></slot>`;

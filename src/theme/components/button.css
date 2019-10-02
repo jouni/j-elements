@@ -1,0 +1,21 @@
+j-button {
+  --j-button-appearance: none;
+  background-color: var(--primary-5);
+  color: var(--primary-text);
+  font-weight: 500;
+  padding: 0.3em 1em;
+  border-radius: 0.25em;
+}
+
+j-button:hover {
+  background-color: var(--primary-10);
+}
+
+j-button:active {
+  background-color: var(--primary-20);
+}
+
+j-button[focus-visible],
+j-button:focus:not([focus-visible]) {
+  box-shadow: 0 0 0 2px var(--primary-50);
+}
