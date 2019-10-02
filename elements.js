@@ -15,7 +15,6 @@ import LightStyleElement from './src/util/LightStyleElement.js';
 import MutationAnimationMixin from './src/util/MutationAnimationMixin.js';
 import PortalElement from './src/util/PortalElement.js';
 import StylableMixin from './src/util/StylableMixin.js';
-import TeleportingElement from './src/util/teleporting-element.js';
 
 export {
   JAppLayout,
@@ -31,6 +30,5 @@ export {
   LightStyleElement,
   MutationAnimationMixin,
   PortalElement,
-  StylableMixin,
-  TeleportingElement
+  StylableMixin
 };

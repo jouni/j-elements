@@ -45,7 +45,6 @@ class JSite extends HTMLElement {
           <vaadin-tab><a tabindex="-1" href="/mutation-animation">Mutation Animation Mixin</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/portal-element">Portal Element</a></vaadin-tab>
           <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
         </vaadin-tabs>
 
         <div class="content"></div>

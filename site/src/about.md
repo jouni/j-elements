@@ -16,16 +16,6 @@
 
 ## What’s included
 
-### Utilities
-
-The utilities are lower-level mixins and elements which help build components that are easier for other developers to use.
-
-- [Light Style Element](/light-style-element) is a way to include built-in styling for a web component without the need to use shadow DOM
-- [Mutation Animation Mixin](/mutation-animation) makes it easy to animate elements in and out of the DOM
-- [Portal Element](/portal-element) provides a mechanism for escaping any stacking context, making it suitable as a base for reusable overlay components
-- [Stylable Mixin](/stylable-mixin) allows developers using such components to be styled more freely, by allowing them to inject styles inside the shadow DOM
-
-
 ### Components
 
 - [App Layout](/app-layout) – the main layout which is used for this website
@@ -37,3 +27,13 @@ The utilities are lower-level mixins and elements which help build components th
 - [Input](/input) – a text input component with consistent styling across different browsers, prefix and suffix content support and auto-sizing in both horizontal and vertical directions
 - [Placeholder](/placeholder) – a simple element for showing a placeholder box (useful for quick prototyping)
 - [Tooltip](/tooltip) – testing `PortalElement`, if its a viable option for building tooltips
+
+### Utilities
+
+The utilities are lower-level mixins and elements which help build components that are easier for other developers to use.
+
+- [Light Style Element](/light-style-element) is a way to include built-in styling for a web component without the need to use shadow DOM
+- [Mutation Animation Mixin](/mutation-animation) makes it easy to animate elements in and out of the DOM
+- [Portal Element](/portal-element) provides a mechanism for escaping any stacking context, making it suitable as a base for reusable overlay components
+  - Previous experiment: [Teleporting Element](/teleporting-element) (deprecated)
+- [Stylable Mixin](/stylable-mixin) allows developers using such components to be styled more freely, by allowing them to inject styles inside the shadow DOM
