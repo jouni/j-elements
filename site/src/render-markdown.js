@@ -4,7 +4,7 @@ import 'highlightjs';
 export function renderMarkdown(pathToMarkdownFile, target) {
   fetch(pathToMarkdownFile).then(response => {
     if (response.status == 404) {
-      target.innerHTML = '<h1>404</h1><p>Sorry, this page was not found.</p><p><a href="/">Home</a></p>'
+      target.innerHTML = '<h1>Page not found</h1><p>Sorry, this page was not found. <small>(Error 404)</small></p><p><a href="/">Home &rsaquo;</a></p>'
     } else {
       response.text().then(text => {
 
@@ -40,9 +40,15 @@ export function renderMarkdown(pathToMarkdownFile, target) {
 
           const demo = document.createElement('div');
           demo.classList.add('demo-snippet');
-          demo.appendChild(template.content.cloneNode(true));
+
+          const render = document.createElement('div');
+          render.classList.add('demo-snippet__render');
+          render.innerHTML = '<div></div>';
+          render.firstChild.appendChild(template.content.cloneNode(true));
+          demo.appendChild(render);
+
           const pre = document.createElement('pre');
-          pre.classList.add('demo-snippet__code')
+          pre.classList.add('demo-snippet__code');
           const code = document.createElement('code');
           code.textContent = snippet;
           pre.appendChild(code);

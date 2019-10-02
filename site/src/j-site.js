@@ -2,12 +2,9 @@ import {Router} from '@vaadin/router';
 import '@vaadin/vaadin-tabs';
 import '@vaadin/vaadin-text-field';
 import 'j-elements';
-import '@vaadin/vaadin-lumo-styles/color.js';
-import '@vaadin/vaadin-lumo-styles/typography.js';
-import './shared-styles.js';
 import './maturity-badge.js';
 
-// Needed for docs Example
+// Needed for docs example
 import {MutationAnimationMixin} from 'j-elements';
 class MyList extends MutationAnimationMixin(HTMLElement) {}
 window.customElements.define('my-list', MyList);
@@ -19,18 +16,6 @@ class JSite extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
-      <custom-style>
-        <style include="shared-styles"></style>
-      </custom-style>
-
-      <style media="j-app-layout">
-        /* Uncomment this to have a colored navbar */
-        .navbar.navbar.navbar.navbar {
-          background-color: var(--lumo-primary-color);
-          color: var(--lumo-primary-contrast-color);
-        }
-      </style>
-
       <j-app-layout type="top">
         <h1 slot="brand">JElements</h1>
 
@@ -121,7 +106,7 @@ class JSite extends HTMLElement {
   _updateTitle(pageTitle) {
     document.title = `JElements: ${pageTitle}`;
     // Update navbar text
-    this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + pageTitle;
+    this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">j</span> ' + pageTitle;
   }
 }
 

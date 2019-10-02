@@ -1,0 +1,201 @@
+body {
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+h1[slot=brand] {
+  margin: 0;
+  font-size: var(--lumo-font-size-l);
+  color: inherit;
+}
+
+.logo,
+.hero {
+  color: var(--primary-contrast);
+  background-image: linear-gradient(45deg, var(--primary-80), var(--primary-100));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25em;
+  padding: 0.4em 0.2em 0.5em;
+  font-weight: 600;
+  font-size: 0.8em;
+  letter-spacing: -0.1em;
+  vertical-align: 0.2em;
+  margin-right: 0.5em;
+}
+
+.logo::before,
+.logo::after,
+.hero::before,
+.hero::after {
+  content: "<";
+  opacity: 0.5;
+  font-weight: 400;
+  font-family: monospace;
+  margin: 0.2em;
+}
+
+.logo::after,
+.hero::after {
+  content: "/>";
+  margin-left: 0.1em;
+}
+
+.hero {
+  display: flex;
+  height: 260px;
+  font-size: 9rem;
+  padding: 0 0 0.1em;
+  margin: 0 0 var(--lumo-space-l);
+  border-radius: 9px;
+}
+
+.ingress {
+  font-size: var(--lumo-font-size-xl);
+}
+
+[slot=drawer] h6 {
+  margin-top: var(--lumo-space-l);
+  margin-bottom: var(--lumo-space-m);
+}
+
+[slot=drawer] vaadin-tab + h6 {
+  margin-top: var(--lumo-space-xl);
+}
+
+vaadin-tabs[slot=drawer] {
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: var(--lumo-space-m);
+}
+
+[slot=drawer] vaadin-tab a {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  flex: auto;
+  text-align: left;
+  margin: -0.25em -1em;
+  padding: 0.25em 1em;
+  outline: none;
+  pointer-events: none;
+}
+
+@media (pointer: fine) {
+  [slot=drawer] vaadin-tab {
+    min-height: var(--lumo-size-s);
+  }
+}
+
+.content {
+  margin: 0 auto;
+  padding: 0 var(--lumo-space-l) calc(var(--lumo-space-xl) * 2);
+  max-width: 800px;
+}
+
+.github-link {
+  display: inline-block;
+  padding: 8px;
+  margin: 8px;
+  color: inherit;
+}
+
+.github-link:hover,
+.github-link:focus {
+  color: var(--primary-100);
+}
+
+.github-link j-icon {
+  display: block;
+  --viewbox: 0 0 16 16;
+  --svg: <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />;
+}
+
+blockquote {
+  border-left: 3px solid var(--primary-100);
+  background-color: var(--primary-10);
+  margin: var(--lumo-space-l) 0;
+  padding: var(--lumo-space-xs) var(--lumo-space-l) 0.1em;
+  font-size: var(--lumo-font-size-s);
+}
+
+.demo-snippet {
+  background-color: var(--surface);
+  border: 1px solid var(--contrast-10);
+  border-radius: var(--lumo-border-radius);
+  overflow: hidden;
+}
+
+/* Odd fix to reset the monospace font size */
+pre {
+  font-size: 16px;
+}
+
+code {
+  font-family: var(--font-family-monospace);
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  border: 1px solid var(--contrast-10);
+  background-color: var(--contrast-5);
+  font-size: var(--font-size-xs);
+}
+
+.demo-snippet__render {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-snippet__code {
+  margin: 0;
+}
+
+.demo-snippet__code code {
+  border: 0;
+  border-radius: 0;
+  max-height: 14.5em;
+  overflow: auto;
+}
+
+maturity-badge a {
+  color: inherit;
+  text-decoration: none !important;
+  font-size: var(--lumo-font-size-s);
+  font-weight: 500;
+  letter-spacing: 0;
+  background-color: var(--contrast-10);
+  color: var(--contrast-70);
+  display: inline-block;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  vertical-align: middle;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+maturity-badge[poc] a {
+  background-color: var(--lumo-error-color-10pct);
+  color: var(--lumo-error-text-color);
+}
+
+maturity-badge[preview] a {
+  background-color: rgb(255,241,214);
+  color: rgb(184,121,0);
+}
+
+maturity-badge[beta] a {
+  background-color: var(--lumo-success-color-10pct);
+  color: var(--lumo-success-text-color);
+}
+
+maturity-badge[stable] a {
+  background-color: var(--primary-10);
+  color: var(--primary-100);
+}
+
+maturity-badge[deprecated] a {
+  background-color: var(--lumo-error-color);
+  color: var(--lumo-error-contrast-color);
+}

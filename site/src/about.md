@@ -1,8 +1,6 @@
 # About
 
-<div class="hero">
-  <j-icon></j-icon>
-</div>
+<div class="hero">j</div>
 
 <p class="ingress"><b>JElements is a web development research project</b>, looking at some of the current problems around authoring and using Web Components and how to provide solutions to those problems while the browsers improve their capabilities.</p>
 
