@@ -1,6 +1,4 @@
 import NativeInputElementWrapper from '../util/NativeInputElementWrapper';
-import bemToShadow from '../util/bemToShadow';
-import style from '../styles/input.css';
 
 export class JInput extends NativeInputElementWrapper {
   static get template() {
@@ -14,6 +12,12 @@ export class JInput extends NativeInputElementWrapper {
           resize: none;
           overflow: hidden;
           line-height: initial;
+
+          /* White-label theme */
+          background-color: #fff;
+          color: #000;
+          border: 1px solid #ccc;
+          padding: 0.3em;
         }
 
         :host([multiline]:not([autosize])) {
@@ -73,7 +77,22 @@ export class JInput extends NativeInputElementWrapper {
         input[type=number] {
           -moz-appearance: var(--j-input-spin-buttons, textfield);
         }
-        ${bemToShadow(style, '.j-input')}
+
+        :host([focus]) {
+          outline: 1px dotted #212121;
+          outline: 5px auto -webkit-focus-ring-color;
+        }
+
+        /* Safari only */
+        @supports (-webkit-backdrop-filter: blur(1px)) {
+          :host([focus]) {
+            outline-offset: -3px;
+          }
+        }
+
+        :host([disabled]) {
+          opacity: 0.3;
+        }
       </style>
     `;
     const container = template.content.querySelector('.container');

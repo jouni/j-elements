@@ -1,0 +1,54 @@
+input:not([type=range]),
+textarea,
+j-input {
+  background-color: var(--contrast-10);
+  border: 0;
+  color: var(--text-color);
+  border-radius: 0.25em;
+  padding: 0.5em;
+  transition: background-color 100ms;
+}
+
+input:not([type=range]):hover:not(:focus)
+textarea:hover:not(:focus),
+j-input:hover:not([focus]) {
+  background-color: var(--contrast-5);
+}
+
+input:not([type=range]):focus,
+textarea:focus,
+j-input[focus] {
+  background-color: var(--contrast-5);
+  outline-color: var(--primary-100);
+}
+
+@media (pointer: coarse) {
+  input:not([type=range]):focus,
+  textarea:focus,
+  j-input[focus] {
+    outline: none;
+  }
+}
+
+j-input > [slot] {
+  color: var(--secondary-text-color);
+  margin: 0 0.3em;
+}
+
+:invalid {
+  box-shadow: none;
+}
+
+:-moz-submit-invalid {
+  box-shadow: none;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+input:not([type=range]):invalid,
+textarea:invalid,
+j-input[invalid] {
+  border-color: red;
+}
