@@ -24,15 +24,9 @@ Note, that `<iron-icon>` has the same limitation (you can’t update the icon SV
 
 ## Examples
 
-### Default icon
+### Define an icon path
 
-The default icon is a `1.5em` placeholder box.
-
-```html,live
-<j-icon></j-icon>
-```
-
-### Custom icon path
+In order to show an icon you need to set the `--svg` CSS property. The `--viewbox` property should also be set if the default 24px square canvas is not suitable for the icon.
 
 ```html,live
 <j-icon class="user"></j-icon>
@@ -44,7 +38,6 @@ The default icon is a `1.5em` placeholder box.
   }
 </style>
 ```
-
 
 ### Styling with CSS
 
