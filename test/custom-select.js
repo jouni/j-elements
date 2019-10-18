@@ -11,16 +11,13 @@ class CustomSelectPopup extends PortalMixin(HTMLElement) {
           background: #fff;
           box-shadow: 0 2px 4px;
           cursor: pointer;
+          position: fixed;
         }
 
-        :host([disabled]) {
+        :host([portal-disabled]) {
           visibility: hidden;
           height: 0;
           overflow: hidden;
-        }
-
-        :host(:not([disabled]):not([target])) {
-          position: fixed;
         }
 
         ::slotted([item]) {
@@ -37,7 +34,7 @@ class CustomSelectPopup extends PortalMixin(HTMLElement) {
     this.addEventListener('click', e => {
       const item = e.target.closest('[item]');
       if (item) {
-        this.disabled = true;
+        this.portalEnabled = false;
         this.dispatchEvent(new CustomEvent('item-selected', { bubbles: true, detail: item }));
         this.parentNode.host.focus();
       }
@@ -78,32 +75,24 @@ class CustomSelect extends HTMLElement {
       <div>
         <slot name="selected"><span class="placeholder">Select something</span></slot>
       </div>
-      <custom-select-popup disabled tabindex="0">
+      <custom-select-popup tabindex="0">
         <slot></slot>
       </custom-select-popup>
     `;
+
+    this._popup = this.shadowRoot.querySelector('custom-select-popup');
 
     this.addEventListener('click', e => {
       Array.from(this.children).filter(node => node.hasAttribute('item')).forEach(item => {
         item.removeAttribute('slot');
       });
-      const popup = this.shadowRoot.querySelector('custom-select-popup');
 
-      if (popup.isTarget) {
-        popup._source.disabled = true;
-        return;
-      }
 
       const coords = this.getBoundingClientRect();
-      popup.style.top = (coords.y + coords.height) + 'px';
-      popup.style.left = coords.x + 'px';
-      popup.disabled = false;
-      if (popup.__scopeContainer) {
-        popup.__scopeContainer.className = this.className;
-      }
-      popup.focus();
-      popup._target.style.width = popup.offsetWidth + 'px';
-      popup._target.style.display = 'block';
+      this._popup.style.top = (coords.y + coords.height) + 'px';
+      this._popup.style.left = coords.x + 'px';
+      this._popup.portalEnabled = !this._popup.portalEnabled;
+      this._popup.focus();
       e.stopPropagation();
     });
 
