@@ -83,7 +83,7 @@ export class JAvatar extends StylableMixin(HTMLElement) {
             this.shadowRoot.appendChild(this._tooltip);
           }
           this._tooltip.innerHTML = newValue;
-          if (!this.hasAttribute('abbr')) {
+          if (!this.hasAttribute('abbr') && newValue.length > 0) {
             this.shadowRoot.querySelector('[part=abbr] text').innerHTML = newValue.match(/\b\S/g).join('');
           }
         } else {
