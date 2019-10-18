@@ -5,7 +5,7 @@ export const StylableMixin = superClass => class Stylable extends superClass {
   }
 
   disconnectedCallback() {
-    this.cleanupStyles();
+    this.cleanupStyleRules();
 
     if (super.disconnectedCallback) super.disconnectedCallback();
   }
