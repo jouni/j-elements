@@ -3,6 +3,10 @@ j-card {
   border: 1px solid var(--contrast-10);
 }
 
+j-card + j-card {
+  margin-top: var(--space-s);
+}
+
 j-card h1[slot="title"],
 j-card h2[slot="title"],
 j-card h3[slot="title"],

@@ -1,6 +1,6 @@
-import NativeElementWrapper from './NativeElementWrapper.js';
+import {NativeElementWrapper} from './NativeElementWrapper.js';
 
-export default class NativeInputElementWrapper extends NativeElementWrapper {
+export class NativeInputElementWrapper extends NativeElementWrapper {
   static get observedAttributes() {
     return super.observedAttributes.concat([
       'autocomplete',

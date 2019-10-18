@@ -1,6 +1,6 @@
-import { PortalElement } from '../src/util/PortalElement';
+import { PortalMixin } from '../src/util/PortalMixin.js';
 
-class CustomSelectPopup extends PortalElement {
+class CustomSelectPopup extends PortalMixin(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode:'open'}).innerHTML = `

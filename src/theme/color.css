@@ -15,17 +15,3 @@ a {
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-text-color);
 }
-
-/* TODO only for testing */
-
-.background-color {
-  background-color: var(--background);
-}
-
-.contrast-color {
-  color: var(--text-color);
-}
-
-.primary-color {
-  color: var(--primary-text);
-}

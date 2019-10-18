@@ -10,7 +10,7 @@ template.innerHTML = `
 /**
  * @deprecated
  *
- * THIS UTILITY IS DEPRECATED. Consider using PortalElement instead.
+ * THIS UTILITY IS DEPRECATED. Consider using PortalMixin instead.
  *
  * Add the capability to 'teleport' the element under the `<body>` element when the `visible`
  * property is set (to escape all parent stacking contexts). When the `visible` property is not set
@@ -27,7 +27,7 @@ template.innerHTML = `
  *   first query the teleportin element and then continue the query from there, for example
  *   `querySelector('.some-class teleporting-element').querySelector('.other-class')`
  */
-export default class TeleportingElement extends HTMLElement {
+export class TeleportingElement extends HTMLElement {
   static get observedAttributes() {
     return ['visible'];
   }

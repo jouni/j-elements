@@ -1,34 +1,40 @@
 // Components (custom elements)
-import {JAppLayout} from './src/components/j-app-layout.js';
-import {JAvatar} from './src/components/JAvatar.js';
-import {JButton} from './src/components/JButton.js';
-import {JCard} from './src/components/JCard.js';
-import {JDialog} from './src/components/JDialog.js';
-import {JField} from './src/components/JField.js';
-import {JIcon} from './src/components/JIcon.js';
-import {JInput} from './src/components/JInput.js';
-import {JPlaceholder} from './src/components/JPlaceholder.js';
-import {JTooltip} from './src/components/JTooltip.js';
+import {AppLayout} from './src/components/AppLayout.js';
+import {Avatar} from './src/components/Avatar.js';
+import {Button} from './src/components/Button.js';
+import {Card} from './src/components/Card.js';
+import {Dialog} from './src/components/Dialog.js';
+import {Drawer} from './src/components/Drawer.js';
+import {Field} from './src/components/Field.js';
+import {Icon} from './src/components/Icon.js';
+import {Input} from './src/components/Input.js';
+import {Placeholder} from './src/components/Placeholder.js';
+import {Tooltip} from './src/components/Tooltip.js';
+import {View} from './src/components/View.js';
 
 // Utilities
-import LightStyleElement from './src/util/LightStyleElement.js';
-import MutationAnimationMixin from './src/util/MutationAnimationMixin.js';
-import PortalElement from './src/util/PortalElement.js';
-import StylableMixin from './src/util/StylableMixin.js';
+import {AnimationPerformance} from './src/util/AnimationPerformance.js';
+import {LightStyleMixin} from './src/util/LightStyleMixin.js';
+import {MutationAnimationMixin} from './src/util/MutationAnimationMixin.js';
+import {PortalMixin} from './src/util/PortalMixin.js';
+import {StylableMixin} from './src/util/StylableMixin.js';
 
 export {
-  JAppLayout,
-  JAvatar,
-  JButton,
-  JCard,
-  JDialog,
-  JField,
-  JIcon,
-  JInput,
-  JPlaceholder,
-  JTooltip,
-  LightStyleElement,
+  AppLayout,
+  Avatar,
+  Button,
+  Card,
+  Dialog,
+  Drawer,
+  Field,
+  Icon,
+  Input,
+  Placeholder,
+  Tooltip,
+  View,
+  AnimationPerformance,
+  LightStyleMixin,
   MutationAnimationMixin,
-  PortalElement,
+  PortalMixin,
   StylableMixin
 };

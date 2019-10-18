@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>JElements color palette test</title>
+    <link rel="stylesheet" href="../src/theme/color.css">
+  </head>
+  <body>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 17px;
+        margin: 0;
+      }
+
+      .light-palette,
+      .dark-palette,
+      .inverted-palette {
+        padding: 0.5em;
+        border: 1px solid var(--contrast-100);
+      }
+
+      .background-color {
+        background-color: var(--background);
+      }
+
+      .contrast-color {
+        color: var(--text-color);
+      }
+
+      .primary-color {
+        color: var(--primary-text);
+      }
+    </style>
+
+    default
+    <div class="primary-color">primary</div>
+
+    <div class="inverted-palette background-color contrast-color">
+      inverted
+      <div class="primary-color">primary</div>
+    </div>
+
+    <div class="light-palette background-color contrast-color">
+      light
+      <div class="primary-color">primary</div>
+      <div class="dark-palette background-color contrast-color">
+        dark
+        <div class="primary-color">primary</div>
+      </div>
+
+          <div class="inverted-palette background-color contrast-color">
+            inverted
+            <div class="primary-color">primary</div>
+          </div>
+    </div>
+
+    <div class="dark-palette background-color contrast-color">
+      dark
+      <div class="primary-color">primary</div>
+      <div class="light-palette background-color contrast-color">
+        light
+        <div class="primary-color">primary</div>
+      </div>
+
+          <div class="inverted-palette background-color contrast-color">
+            inverted
+            <div class="primary-color">primary</div>
+          </div>
+    </div>
+
+  </body>
+</html>

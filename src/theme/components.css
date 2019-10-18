@@ -1,6 +1,13 @@
+@import "components/app-layout.css";
 @import "components/avatar.css";
 @import "components/button.css";
 @import "components/card.css";
+@import "components/drawer.css";
 @import "components/field.css";
 @import "components/input.css";
 @import "components/tooltip.css";
+
+/* TODO: where should this be defined */
+html {
+  cursor: default;
+}

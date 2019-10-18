@@ -1,4 +1,4 @@
-const MutationAnimationMixin = superClass => class JMutationAnimationMixin extends superClass {
+export const MutationAnimationMixin = superClass => class MutationAnimation extends superClass {
   _initAnimationMutationObserver() {
     this._insertClassName = this._insertClassName || 'j-ma-insert';
     this._removeClassName = this._removeClassName || 'j-ma-remove';
@@ -58,5 +58,3 @@ const MutationAnimationMixin = superClass => class JMutationAnimationMixin exten
     this._mutationAnimationObserver.disconnect();
   }
 }
-
-export default MutationAnimationMixin;

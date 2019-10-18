@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>stylable-mixin nested components test</title>
+
+
+    <script type="module">
+      import { StylableMixin } from '../src/util/StylableMixin.js';
+
+      class XBar extends StylableMixin(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          super.connectedCallback();
+          this.shadowRoot.innerHTML += `
+            <div class="x-bar-shadow">x-bar-shadow</div>
+            <x-baz></x-baz>
+            <style>x-baz {font-weight: bold;}</style>
+          `;
+
+        }
+      }
+      customElements.define('x-bar', XBar);
+
+      class XBaz extends StylableMixin(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          super.connectedCallback();
+          this.shadowRoot.innerHTML += `
+            <div class="x-baz-shadow">x-baz-shadow</div>
+          `;
+
+        }
+      }
+      customElements.define('x-baz', XBaz);
+      class XFoo extends StylableMixin(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          super.connectedCallback();
+
+          this.shadowRoot.innerHTML += `
+            <div class="x-foo-shadow">x-foo-shadow</div>
+            <x-bar></x-bar>
+          `;
+
+        }
+      }
+      customElements.define('x-foo', XFoo);
+
+    </script>
+
+    <!-- <link rel="stylesheet" href="./stylesheet.css" media="--x-foo"> -->
+
+    <style media="x-foo and (bar: foo)">
+      :host {
+        outline: 2px dashed orange;
+      }
+    </style>
+
+    <style>
+      @import "./stylesheet.css" x-foo;
+
+      @media x-foo {
+        :host {
+          display: block;
+          border: 1px solid red;
+        }
+
+        @media x-bar {
+          :host {
+            display: block;
+            border: 1px solid green;
+          }
+
+          @media x-baz {
+            :host {
+              display: block;
+              border: 1px solid blue;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <x-foo></x-foo>
+
+  </body>
+</html>

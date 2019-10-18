@@ -1,4 +1,4 @@
-* {
+html {
   --font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-heading: var(--font-family);
   --font-family-monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;

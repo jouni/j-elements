@@ -1,4 +1,4 @@
-export default class NativeElementWrapper extends HTMLElement {
+export class NativeElementWrapper extends HTMLElement {
   static register(elementName) {
     window.customElements.define(elementName, this);
   }
