@@ -8,6 +8,19 @@ import './table-of-contents.js';
 import {renderMarkdown} from './render-markdown.js';
 
 // Needed for docs examples
+import {LightStyleMixin} from 'j-elements/src/util/LightStyleMixin.js';
+class StyledElement extends LightStyleMixin(HTMLElement) {
+  static get styles() {
+    return `
+      :host {
+        color: red;
+        font-weight: bold;
+      }
+    `;
+  }
+}
+window.customElements.define('styled-element', StyledElement);
+
 import {MutationAnimationMixin} from 'j-elements/src/util/MutationAnimationMixin.js';
 class MyList extends MutationAnimationMixin(HTMLElement) {}
 window.customElements.define('my-list', MyList);

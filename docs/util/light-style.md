@@ -14,8 +14,7 @@ Provide a lightweight mechanism to add styles to a custom element which dynamica
 
 ## Example
 
-```html,live
-<script type="module">
+```javascript
 import {LightStyleMixin} from '/node_modules/j-elements/src/util/LightStyleMixin.js';
 
 class StyledElement extends LightStyleMixin(HTMLElement) {
@@ -30,7 +29,8 @@ class StyledElement extends LightStyleMixin(HTMLElement) {
 }
 
 window.customElements.define('styled-element', StyledElement);
-</script>
+```
 
-<styled-element>Red</styled-element>
+```html,live
+<styled-element>Red and bold</styled-element>
 ```
