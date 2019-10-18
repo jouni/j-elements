@@ -13,15 +13,13 @@
   "extraDependencies": [
     "manifest.json",
     "_redirects",
-    "node_modules/j-elements/README.md",
     "node_modules/j-elements/docs/**",
-    "node_modules/@webcomponents/webcomponentsjs/**",
-    "node_modules/j-elements/src/theme/**"
+    "node_modules/j-elements/src/**"
   ],
   "builds": [
     {
-      "name": "bundled",
-      "preset": "es5-bundled"
+      "name": "unbundled",
+      "preset": "es6-unbundled"
     }
   ]
 }
