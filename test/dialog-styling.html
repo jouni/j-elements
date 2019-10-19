@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <script type="module">
+    import '/node_modules/@vaadin/vaadin-dialog/vaadin-dialog.js';
+    import '../src/components/Dialog.js';
+
+    // document.querySelector('j-dialog').show();
+
+    class Shadow extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({mode:'open'}).innerHTML = `
+          <style>
+            h3 {
+              font-weight: normal;
+            }
+          </style>
+
+          <vaadin-dialog opened>
+            <template>
+              <h3>Dialog title, inside shadow</h3>
+              <p>Dialog content</p>
+            </template>
+          </vaadin-dialog>
+
+          <j-dialog>
+            <h3>Dialog title, inside shadow</h3>
+            <p>Dialog content</p>
+          </j-dialog>
+        `;
+
+        this.shadowRoot.querySelector('j-dialog').show();
+      }
+    }
+    window.customElements.define('shadow-scope', Shadow);
+  </script>
+<body>
+
+
+  <style>
+    h3 {
+      font-weight: normal;
+    }
+  </style>
+
+
+  <vaadin-dialog opened>
+    <template>
+      <h3>Dialog title</h3>
+      <p>Dialog content</p>
+    </template>
+  </vaadin-dialog>
+
+
+  <j-dialog>
+    <h3>Dialog title</h3>
+    <p>Dialog content</p>
+  </j-dialog>
+
+  <shadow-scope></shadow-scope>
+
+
+</body>
+</html>
