@@ -1,7 +1,8 @@
 import 'marked/marked.min.js';
 
 export function renderMarkdown(pathToMarkdownFile, target) {
-  target.classList.add('loading');
+  target.innerHTML = '';
+  target.className = 'loading';
 
   fetch(pathToMarkdownFile).then(response => {
     if (response.status == 404) {
@@ -11,7 +12,6 @@ export function renderMarkdown(pathToMarkdownFile, target) {
 
       let filename = pathToMarkdownFile.split('/');
       filename = filename[filename.length - 1].split('.')[0];
-      target.className = filename;
 
       response.text().then(text => {
 
@@ -26,14 +26,17 @@ export function renderMarkdown(pathToMarkdownFile, target) {
           });
 
           Promise.all(promises).then((modules) => {
+            target.className = filename;
             renderStaticParts(target, text);
           })
         } else {
+          target.className = filename;
           renderStaticParts(target, text);
         }
       });
     }
   }).catch(error => {
+    target.className = '';
     target.innerHTML = '<h1>Error</h1><p>There was an error loading the page. Please check your internet connection.</p>';
     console.error(error);
   });
@@ -115,8 +118,6 @@ function renderStaticParts(target, text) {
   let reference = target.querySelector('h1 + *');
   if (!reference) reference = target.querySelector('p:first-of-type');
   target.insertBefore(toc, reference);
-
-  target.classList.remove('loading');
 
   // TODO use scroll restoration API
   document.body.scrollTop = 0;

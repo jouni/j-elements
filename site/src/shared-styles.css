@@ -125,7 +125,7 @@ j-drawer h6:not(:first-child) {
   }
 }
 
-main > div:not(.about) {
+main > div:not(.about):not(.loading) {
   margin-top: 15vmax;
 }
 
