@@ -1,6 +1,8 @@
+import bemToShadow from './bemToShadow.js';
+
 export const PortalMixin = superClass => class Portal extends superClass  {
   constructor() {
-    super(arguments);
+    super();
 
     setTimeout(() => {
       if (!this.__isPortalOrigin && this.portalInitiallyEnabled !== undefined && this.portalEnabled !== this.portalInitiallyEnabled) {
@@ -64,18 +66,12 @@ export const PortalMixin = superClass => class Portal extends superClass  {
     this._ensureHasPortalOrigin();
 
     if (this._isPortalScoped()) {
-      let scopeCssText = Array.from(this.getRootNode().querySelectorAll('style'))
-        .reduce((result, style) => result + style.textContent, '');
-
-      scopeCssText += `
-        :host {
-          all: initial !important;
-        }
-      `;
-
-      const style = document.createElement('style');
-      style.textContent = scopeCssText;
-      this.__portalDestinationContainer.shadowRoot.appendChild(style);
+      // TODO: should also handle adoptedStyleSheets
+      Array.from(this.getRootNode().querySelectorAll('style')).forEach(style => {
+        const clone = style.cloneNode(true);
+        clone.innerHTML = bemToShadow(clone.innerHTML, this.__portalDestinationContainer.localName);
+        this.__portalDestinationContainer.shadowRoot.appendChild(clone);
+      });
 
       // TODO: this only works one shadow level upwards. If some of the assigned nodes is a <slot> element, the assigned nodes of that would not be picked up
       Array.from(this.querySelectorAll('slot')).forEach(slot => {
