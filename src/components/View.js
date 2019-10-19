@@ -152,6 +152,9 @@ export class View extends StylableMixin(DefineElementMixin(HTMLElement)) {
         this.__intersectionObserver.observe(header);
         const title = this.querySelector('[data-view-title]');
         this.shadowRoot.querySelector('slot[name="header"] span').textContent = title ? title.getAttribute("data-view-title") : header.textContent;
+      } else {
+        this.shadowRoot.querySelector('slot[name="header"] span').textContent = '';
+        this.shadowRoot.querySelector('header').classList.toggle('show', false);
       }
     }
   }
