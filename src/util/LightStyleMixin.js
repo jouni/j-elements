@@ -2,8 +2,9 @@ export const LightStyleMixin = superClass => class LightStyle extends superClass
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
 
-    const name = this.nodeName.toLowerCase();
+    const name = this.localName;
     let root = this.getRootNode();
+    this.__rootNode = root;
     const ctr = this.constructor;
 
     if (ctr.styles && !root.querySelector('style.' + name)) {
@@ -13,38 +14,40 @@ export const LightStyleMixin = superClass => class LightStyle extends superClass
         ctr.__styleSheet.classList.add(name);
       }
 
-      if (ctr.__styleSheet) {
-        if (root == document) {
-          root = document.head;
+      if (root == document) {
+        root = document.head;
+      }
+      // The stylesheet is considered the lowest priority default styles for the component
+      let existingStyleSheet = root.querySelector('link[rel="stylesheet"], style');
+      if (existingStyleSheet) {
+        while (existingStyleSheet.parentNode != root) {
+          existingStyleSheet = existingStyleSheet.parentNode;
         }
-        // The stylesheet is considered the lowest priority default styles for the component
-        const existingStyleSheet = root.querySelector('link[rel="stylesheet"], style');
-        if (existingStyleSheet) {
-          root.insertBefore(ctr.__styleSheet, existingStyleSheet);
-        } else {
-          root.appendChild(ctr.__styleSheet);
-        }
+        root.insertBefore(ctr.__styleSheet.cloneNode(true), existingStyleSheet);
+      } else {
+        root.appendChild(ctr.__styleSheet.cloneNode(true));
       }
     }
   }
 
-  // disconnectedCallback() {
-  //   if (this._style) {
-  //     const name = this.nodeName.toLowerCase();
-  //
-  //     var root = this.__rootNode;
-  //     if (root == document) {
-  //       root = document.head;
-  //     }
-  //
-  //     // Are there no other instances of this component in this scope?
-  //     if (this.__rootNode && !this.__rootNode.querySelector(name) && root.querySelector('.' + name)) {
-  //       root.removeChild(root.querySelector('.' + name));
-  //       delete this.__rootNode;
-  //     }
-  //   }
-  //   if (super.disconnectedCallback) super.disconnectedCallback();
-  // }
+  disconnectedCallback() {
+    const name = this.localName;
+    let root = this.__rootNode;
+    const ctr = this.constructor;
+
+    if (root == document) {
+      root = document.head;
+    }
+
+    // Are there no other instances of this component in this scope?
+    if (!this.__rootNode.querySelector(name) && root.querySelector('style.' + name)) {
+      root.removeChild(root.querySelector('style.' + name));
+    }
+
+    delete this.__rootNode;
+
+    if (super.disconnectedCallback) super.disconnectedCallback();
+  }
 
   static __shadowToLight(name) {
     let styles = this.styles;
