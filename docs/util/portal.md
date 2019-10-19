@@ -12,13 +12,11 @@ The problem is most apparent when creating a reusable overlay element.
 
 ## Solution
 
-> `PortalMixin` is an evolution of [`TeleportingElement`](/util/teleporting-element)
-
 Most often, this problem is solved by declaring such elements directly under the `<body>` element, which guarantees they are inside the topmost stacking context on the page. This makes it tricky to manage the elements when building modular applications.
 
 `PortalMixin` allows you to define an element anywhere in the hierarchy and, when enabled, move itself (and its contents) under the `<body>` element.
 
-Unlike the previous iteration, `TeleportingElement`, `PortalMixin` does support one level of nested `<slot>` elements, making it more versatile in compositions.
+`PortalMixin` supports one level of nested `<slot>` elements, making it suitable for compositions.
 
 ## Examples
 
