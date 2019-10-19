@@ -11,7 +11,7 @@
 import {Dialog} from 'j-elements/src/components/Dialog.js';
 ```
 
-A dialog is created using the `<j-dialog>` element. It is based on [Portal Mixin](/util/portal-mixin), and because of that will always show on top of other content, escaping any parent stacking contexts.
+A dialog is created using the `<j-dialog>` element. It is based on [Portal Mixin](/util/portal), and because of that will always show on top of other content, escaping any parent stacking contexts.
 
 Place any content you wish to show inside the dialog as the children, and use the `show()` and `hide()` methods for opening and closing it.
 

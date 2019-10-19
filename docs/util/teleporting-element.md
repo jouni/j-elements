@@ -2,7 +2,7 @@
 
 # Teleporting Element
 
-> This utility is deprecated. Consider using [`PortalMixin`](/util/portal-mixin) instead, which is an improved iteration of the same concept.
+> This utility is deprecated. Consider using [`PortalMixin`](/util/portal) instead, which is an improved iteration of the same concept.
 
 A teleporting element can escape any stacking context, by moving itself directly under the `<body>` element when set “visible”.
 
