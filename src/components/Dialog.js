@@ -12,7 +12,8 @@ export class Dialog extends LightStyleMixin(PortalMixin(DefineElementMixin(HTMLE
         box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.4);
         padding: 1.5em;
         border-radius: 0.25em;
-        width: 16em;
+        max-width: calc(100% - 1em);
+        box-sizing: border-box;
       }
 
       :host([portal-disabled]) {
@@ -32,11 +33,11 @@ export class Dialog extends LightStyleMixin(PortalMixin(DefineElementMixin(HTMLE
         bottom: 0;
         left: 0;
         z-index: var(--j-dialog-z-index, 100);
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0,0,0,0.1);
+        background-color: rgba(0,0,0,0.2);
       }
 
       /* Optical vertical centering */

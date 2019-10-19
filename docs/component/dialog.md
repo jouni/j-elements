@@ -27,9 +27,7 @@ Place any content you wish to show inside the dialog as the children, and use th
 
 ## Examples
 
-### Declarative dialog creation
-
-Demonstrating how you can toggle the visibility of a dialog which has been created declaratively with HTML.
+### Create a dialog using HTML
 
 ```html,live
 <j-button class="show-declarative">Open</j-button>
@@ -58,12 +56,12 @@ Demonstrating how you can toggle the visibility of a dialog which has been creat
 ```
 
 
-### Imperative dialog creation
+### Create a dialog using JavaScript
 
 Demonstrating how you can create and show a dialog using JavaScript.
 
 ```html,live
-<button class="show-imperative">Open</button>
+<j-button class="show-imperative">Open</j-button>
 
 <script>
   {
@@ -74,7 +72,7 @@ Demonstrating how you can create and show a dialog using JavaScript.
       dialog.innerHTML = `
         <h3>Imperative dialog</h3>
         <p>Dialog content.</p>
-        <button class="hide">Close</button>
+        <j-button class="hide">Close</j-button>
       `;
       document.body.appendChild(dialog);
       dialog.show();
@@ -103,12 +101,12 @@ Demonstrating how you can create and show a dialog using JavaScript.
   }
 </style>
 
-<button class="show-styled">Open</button>
+<j-button class="show-styled">Open</j-button>
 
 <j-dialog class="styled">
   <h3>Styled dialog</h3>
   <p>Dialog content.</p>
-  <button class="hide">Close</button>
+  <j-button class="hide">Close</j-button>
 </j-dialog>
 
 <script>
