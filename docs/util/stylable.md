@@ -70,7 +70,7 @@ There are several ways how to write the media queries.
 <link rel="stylesheet" href="my-card-styles.css" media="j-card">
 ```
 > ###### Warning
-> `<style media="j-card">` will not work in Safari/WebKit – it will not appear in `document.styleSheets`.
+> `<style media="j-card">` will not work in Safari/WebKit – it will not appear in `document.styleSheets`. See [WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=203073).
 
 ### CSS @import rule
 
