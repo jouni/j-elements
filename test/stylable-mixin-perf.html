@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <title>stylable-mixin performance test</title>
 
-    <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-
     <script type="module">
       import { StylableMixin } from '../src/util/StylableMixin.js';
 
@@ -21,34 +19,36 @@
       }
       customElements.define('x-foo', XFoo);
 
-      for (let i = 0; i < 50; i++) {
-        const style = document.createElement('style');
-        style.innerHTML = `
-        :host span {
-          border: 1px solid;
-        }
-
-        some {
-          color: red;
-        }
-
-        random {
-          color: blue;
-        }
-
-        @media selectors {
-          :host: {
-            color: yellow;
-          }
-        }
-        `;
-        document.head.appendChild(style);
-      }
+      // for (let i = 0; i < 50; i++) {
+      //   const style = document.createElement('style');
+      //   style.innerHTML = `
+      //   :host span {
+      //     border: 1px solid;
+      //   }
+      //
+      //   some {
+      //     color: red;
+      //   }
+      //
+      //   random {
+      //     color: blue;
+      //   }
+      //
+      //   @media selectors {
+      //     :host: {
+      //       color: yellow;
+      //     }
+      //   }
+      //   `;
+      //   document.head.appendChild(style);
+      // }
 
       for (let i = 0; i < 500; i++) {
         document.body.appendChild(document.createElement('x-foo'));
       }
     </script>
+
+    <link rel="stylesheet" href="stylesheet.css">
   </head>
   <body>
 

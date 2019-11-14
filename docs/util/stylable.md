@@ -131,8 +131,12 @@ class XStylable extends StylableMixin(HTMLElement) {
 Each component has to opt-in explicitly to be stylable in its own implementation, by extending the `StylableMixin` class. You won’t be able to style the shadow DOM of other custom elements using media queries.
 
 ### Performance
-`StylableMixin` increases the time spent attaching an element to the DOM (~0.2–2ms per element, depending on the CPU).
+`StylableMixin` increases the time spent attaching an element to the DOM (~0.05–3ms per element, depending on the amount of CSS rules in the document and on the CPU).
 
 The performance impact is linearly correlated to the number of style sheet in the global scope and in the scope where the element is attached, and to the number of CSS rules in those style sheets. Each stylable element traverses all those style sheets and the rules inside them recursively every time they are attached to the DOM.
 
-Try to keep the number of style sheets in the global scope low (below hundreds). Avoid attaching a large number of elements (which use `StylableMixin`) to the DOM at the same time. For example, avoid using `StylableMixin` for items in a large list/grid.
+Try to keep the number of style sheets in the global scope low. Avoid attaching a large number of elements (which use `StylableMixin`) to the DOM at the same time. For example, avoid using `StylableMixin` for items in a large list/grid.
+
+#### Optimizations possibilities
+
+Certain style sheets could be skipped by wrapping them inside a `@supports not (stylable) { ... }` declaration. Alternatively, only style sheets/rules which are wrapped inside a `@supports (stylable) { ... }` declaration could be processed.

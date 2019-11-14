@@ -6,38 +6,19 @@ export const StylableMixin = superClass => class Stylable extends superClass {
 
   disconnectedCallback() {
     this.cleanupStyleRules();
-
     if (super.disconnectedCallback) super.disconnectedCallback();
   }
 
-  getMatchingStyleRules() {
-    const matchingStyleRules = [];
+  async applyMatchingStyleRules() {
+    this.cleanupStyleRules();
 
-    // Global style sheets
-    for (let i = 0; i < document.styleSheets.length; i++) {
-      gatherMatchingStyleRules(matchingStyleRules, document.styleSheets[i], this);
-    }
-
-    // Scoped style sheets
-    if (this.getRootNode() != document) {
-      const sheets = this.getRootNode().styleSheets;
-      for (let i = 0; i < sheets.length; i++) {
-        gatherMatchingStyleRules(matchingStyleRules, sheets[i], this);
-      }
-      // TODO should probably go through adoptedStyleSheets as well
-    }
-
-    return matchingStyleRules;
-  }
-
-  applyMatchingStyleRules() {
-    const matchingStyleRules = this.getMatchingStyleRules();
+    const matchingStyleRules = await this.gatherMatchingStyleRules();
 
     if (matchingStyleRules.length > 0) {
-      // TODO should probably utilize adoptedStyleSheets when available
+      // TODO could probably utilize adoptedStyleSheets when available, to limit the amount of created stylesheets (cache)
       const style = document.createElement('style');
       style.setAttribute('stylable-mixin', '');
-      style.innerHTML = rulesToString(matchingStyleRules);
+      style.textContent = rulesToString(matchingStyleRules);
       this.shadowRoot.appendChild(style);
     }
   }
@@ -48,56 +29,116 @@ export const StylableMixin = superClass => class Stylable extends superClass {
       this.shadowRoot.removeChild(styleSheets[i]);
     }
   }
+
+  async gatherMatchingStyleRules() {
+    const matchingStyleRules = [];
+
+    // Global stylesheets
+    if (performance.timing.loadEventEnd) {
+      // Page has already loaded, document.styleSheets is populated
+      for (let i = 0; i < document.styleSheets.length; i++) {
+        extractMatchingStyleRules(document.styleSheets[i], this, rules => {
+          matchingStyleRules.push(rules);
+        });
+      }
+    } else {
+      // Need to do jump through hoops to get all global stylesheets since they might still be loading
+      const sheets = await globalStyleSheetsLoaded();
+      processSheetsArray(sheets, this, matchingStyleRules);
+    }
+
+    // Scoped stylesheets
+    const root = this.getRootNode();
+    if (root != document) {
+      if (root.adoptedStyleSheets) {
+        processSheetsArray(root.adoptedStyleSheets, this, matchingStyleRules);
+      }
+      processSheetsArray(root.styleSheets, this, matchingStyleRules);
+    }
+
+    return matchingStyleRules;
+  }
 }
 
 
 // Recursively process a style sheet for matching rules
-function gatherMatchingStyleRules(matchingStyleRules, styleSheet, element) {
-  let match;
-  if ((match = matchesElement(element, styleSheet.media)) !== undefined) {
+function extractMatchingStyleRules(styleSheet, element, collectorFunc) {
+  let media = "";
+
+  if (styleSheet.ownerRule) {
+    if (styleSheet.ownerRule.type == 3) {
+      // @import
+      // Need this awkward workaround since Firefox (sometimes?) blocks the access to the MediaList
+      // object for some reason in imported stylesheets
+      const importRule = styleSheet.ownerRule.cssText.split(' ');
+      if (importRule.length > 2) {
+        media = importRule.slice(2).join(' ').replace(';', '');
+      }
+    }
+  } else if (styleSheet.ownerNode) {
+    media = styleSheet.ownerNode.media;
+  } else if (styleSheet.media) {
+    media = styleSheet.media.mediaText
+  }
+
+  // TODO @import sheets should be inserted as the first ones in the results
+  // Now they can end up in the middle of other rules and be ignored
+
+  let match = matchesElement(element, media);
+  if (match !== undefined) {
+    // Not a standard media query (no media features specified, only media type)
     if (match) {
-      matchingStyleRules.push(styleSheet.cssRules);
+      // Media type matches the element
+      collectorFunc(styleSheet.cssRules);
     }
   } else {
+    // Either no media specified or a standard media query
     for (let i = 0; i < styleSheet.cssRules.length; i++) {
       const rule = styleSheet.cssRules[i];
       if (rule.type == 3) {
         // @import
-        if ((match = matchesElement(element, rule.media)) !== undefined) {
-          if (match) {
-            matchingStyleRules.push(rule.styleSheet.cssRules);
-          }
-        } else {
-          gatherMatchingStyleRules(matchingStyleRules, rule.styleSheet, element);
-        }
+        extractMatchingStyleRules(rule.styleSheet, element, collectorFunc);
       } else if (rule.type == 4) {
         // @media
-        if (matchesElement(element, rule.media)) {
-          matchingStyleRules.push(rule.cssRules);
+        if (matchesElement(element, rule.media.mediaText)) {
+          collectorFunc(rule.cssRules);
         }
       }
     }
   }
 }
 
-// Check if the media is a non-standard "element scoped selector"
-function elementMedia(media) {
-  // Firefox parses the escaping backward slash into a double backward slash: \ -> \\
-  return media && media.mediaText.replace(/\\/, '').match(/^[\w]+-[\w.()\[\]"'=~*^$]+/);
+/**
+ * Check if the media query is a non-standard "element scoped selector", i.e. it does not contain any media feature queries, only media type.
+ * @param  {MediaList} media
+ * @return {Boolean}   True if the media query only contains a media type query
+ */
+function isElementMedia(media) {
+  return media && media.match(/^[\w]+-[\w.()\[\]"'=~*^$]+/);
 }
 
-// Check if the media is a non-standard "element scoped selector" and if it matches the given element
-// Return undefined if the media query is a standard media query
+/**
+ * Check if the media type string matches the given element
+ * @param  {HTMLElement} el  The element which might match the given media type string
+ * @param  {MediaList} media MediaList object to match against
+ * @return {Boolean}         undefined if the media type string is not a valid CSS selector or a standard media features query. True|false whether the element matches the selector or not.
+ */
 function matchesElement(el, media) {
-  if (elementMedia(media)) {
-    // Firefox parses the escaping backward slash into a double backward slash: \ -> \\
-    return matches(el, media.mediaText.replace(/\\/, ''));
+  // Firefox parses the escaping backward slash into a double backward slash: \ -> \\
+  media = media.replace(/\\/gm, '');
+  if (isElementMedia(media)) {
+    return matches(el, media);
   } else {
     return undefined;
   }
 }
 
-// Check if an element matches a given selector
+/**
+ * Check if an element matches a given selector
+ * @param  {HTMLElement} el   The element which might match the selector
+ * @param  {String} selector  The selector to match against
+ * @return {Boolean}          undefined if the selector is not a valid CSS selector. True|false whether the element matches the selector or not.
+ */
 function matches(el, selector) {
   try {
     return el.matches(selector);
@@ -107,7 +148,11 @@ function matches(el, selector) {
   }
 }
 
-// Convert an array of CSSRuleList objects into a string of CSS
+/**
+ * Convert an array of CSSRuleList objects into a string of CSS
+ * @param  {Array} ruleListArray Array of CSSRuleList objects
+ * @return {String}              The CSS from all the rules in the array
+ */
 function rulesToString(ruleListArray) {
   let styleString = '';
   ruleListArray.forEach(ruleList => {
@@ -116,4 +161,58 @@ function rulesToString(ruleListArray) {
     }
   });
   return styleString;
+}
+
+function linkOrStylePromise(linkOrStyle) {
+  // <style> without any @imports will not fire a load event so we need to resolve immmediately
+  if (linkOrStyle.nodeName == 'STYLE') {
+    // Remove comments and check if there are @imports
+    const hasImports = linkOrStyle.textContent.replace(/\/\*[\s\S]*?(?=\*\/)\*\//gm, '').indexOf('@import');
+    if (hasImports) {
+      return linkOrStyle.sheet;
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    const resolveFunc = (e) => {
+      resolve(linkOrStyle.sheet);
+      window.removeEventListener('load', resolveFunc);
+    };
+
+    linkOrStyle.addEventListener('load', resolveFunc);
+    // Stylesheets with @imports that get 404 will cause them to error. The rest of the stylesheet
+    // is still parsed and applied
+    linkOrStyle.addEventListener('error', resolveFunc);
+
+    // TODO sometimes Chrome does not fire the load event for some of the stylesheets (when the page
+    // loads really fast), so we fall back to full page load event
+    if (linkOrStyle.nodeName == 'LINK') {
+      window.addEventListener('load', resolveFunc);
+    }
+  });
+}
+
+let globalStyleSheetsLoadedPromise;
+
+function globalStyleSheetsLoaded() {
+  if (!globalStyleSheetsLoadedPromise) {
+    const promises = [];
+
+    let linkOrStyleElements = document.querySelectorAll('link[rel="stylesheet"], style');
+    for (let i = 0; i < linkOrStyleElements.length; i++) {
+      promises.push(linkOrStylePromise(linkOrStyleElements[i]));
+    }
+
+    globalStyleSheetsLoadedPromise = Promise.all(promises);
+  }
+
+  return globalStyleSheetsLoadedPromise;
+}
+
+function processSheetsArray(sheets, el, matchingStyleRules) {
+  for (let i = 0; i < sheets.length; i++) {
+    extractMatchingStyleRules(sheets[i], el, rules => {
+      matchingStyleRules.push(rules);
+    });
+  }
 }

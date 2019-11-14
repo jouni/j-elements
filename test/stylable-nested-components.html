@@ -49,16 +49,20 @@
 
     </script>
 
-    <!-- <link rel="stylesheet" href="./stylesheet.css" media="--x-foo"> -->
+    <link rel="stylesheet" href="./stylesheet.css">
 
-    <style media="x-foo and (bar: foo)">
-      :host {
-        outline: 2px dashed orange;
-      }
+    <style id="with-import">
+      @import "foobar/styles.css" x-foo;
     </style>
 
-    <style>
-      @import "./stylesheet.css" x-foo;
+    <style id="no-import">
+      @import "style-mixin.css" x-foo, x-bar, x-baz;
+
+      @supports not (stylable) {
+        lorem {
+          color: red;
+        }
+      }
 
       @media x-foo {
         :host {
@@ -85,6 +89,8 @@
   <body>
 
     <x-foo></x-foo>
+
+    <some>some element</some>
 
   </body>
 </html>
