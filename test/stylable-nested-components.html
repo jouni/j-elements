@@ -6,9 +6,9 @@
 
 
     <script type="module">
-      import { StylableMixin } from '../src/util/StylableMixin.js';
+      import { Stylable } from '../src/util/Stylable.js';
 
-      class XBar extends StylableMixin(HTMLElement) {
+      class XBar extends Stylable(HTMLElement) {
         connectedCallback() {
           this.attachShadow({mode: 'open'});
           super.connectedCallback();
@@ -22,7 +22,7 @@
       }
       customElements.define('x-bar', XBar);
 
-      class XBaz extends StylableMixin(HTMLElement) {
+      class XBaz extends Stylable(HTMLElement) {
         connectedCallback() {
           this.attachShadow({mode: 'open'});
           super.connectedCallback();
@@ -33,7 +33,7 @@
         }
       }
       customElements.define('x-baz', XBaz);
-      class XFoo extends StylableMixin(HTMLElement) {
+      class XFoo extends Stylable(HTMLElement) {
         connectedCallback() {
           this.attachShadow({mode: 'open'});
           super.connectedCallback();

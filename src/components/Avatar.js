@@ -1,5 +1,5 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {StylableMixin} from '../util/StylableMixin.js';
+import {Stylable} from '../util/Stylable.js';
 import './Icon.js';
 import './Tooltip.js';
 
@@ -76,7 +76,7 @@ template.innerHTML = `
   <div part="image"></div>
 `;
 
-export class Avatar extends StylableMixin(DefineElementMixin(HTMLElement)) {
+export class Avatar extends Stylable(DefineElementMixin(HTMLElement)) {
   static get observedAttributes() {
     return ['name', 'abbr', 'image'];
   }

@@ -1,5 +1,5 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {StylableMixin} from '../util/StylableMixin.js';
+import {Stylable} from '../util/Stylable.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -83,7 +83,7 @@ template.innerHTML = `
 // const touchOptimizedMedia = '(pointer: coarse) and (max-width: 800px) and (min-height: 500px)';
 // const touchOptimizedMediaQuery = window.matchMedia(touchOptimizedMedia);
 
-export class View extends StylableMixin(DefineElementMixin(HTMLElement)) {
+export class View extends Stylable(DefineElementMixin(HTMLElement)) {
   // constructor() {
   //   super();
   //   this.__boundIsTouchOptimized = this._isTouchOptimized.bind(this);

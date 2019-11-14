@@ -105,12 +105,12 @@ You can nest `@media` rules inside each other, which allows you to style nested 
 
 To make a component’s shadow DOM stylable from the outside, extend it with the mixin and call `super.connectedCallback()` in the component’s `connectedCallback()`.
 
-> **Note:** Your component needs to have a shadow root before StylableMixin is invoked
+> **Note:** Your component needs to have a shadow root before Stylable is invoked
 
 ```javascript
-import { StylableMixin } from 'j-elements/src/util/StylableMixin.js';
+import { Stylable } from 'j-elements/src/util/Stylable.js';
 
-class XStylable extends StylableMixin(HTMLElement) {
+class XStylable extends Stylable(HTMLElement) {
   connectedCallback() {
     if (!this.shadowRoot) {
       // Attach a shadow root
@@ -128,14 +128,14 @@ class XStylable extends StylableMixin(HTMLElement) {
 ## Limitations
 
 ### Components have to opt-in
-Each component has to opt-in explicitly to be stylable in its own implementation, by extending the `StylableMixin` class. You won’t be able to style the shadow DOM of other custom elements using media queries.
+Each component has to opt-in explicitly to be stylable in its own implementation, by extending the `Stylable` class. You won’t be able to style the shadow DOM of other custom elements using media queries.
 
 ### Performance
-`StylableMixin` increases the time spent attaching an element to the DOM (~0.05–3ms per element, depending on the amount of CSS rules in the document and on the CPU).
+`Stylable` increases the time spent attaching an element to the DOM (~0.05–3ms per element, depending on the amount of CSS rules in the document and on the CPU).
 
 The performance impact is linearly correlated to the number of style sheet in the global scope and in the scope where the element is attached, and to the number of CSS rules in those style sheets. Each stylable element traverses all those style sheets and the rules inside them recursively every time they are attached to the DOM.
 
-Try to keep the number of style sheets in the global scope low. Avoid attaching a large number of elements (which use `StylableMixin`) to the DOM at the same time. For example, avoid using `StylableMixin` for items in a large list/grid.
+Try to keep the number of style sheets in the global scope low. Avoid attaching a large number of elements (which use `Stylable`) to the DOM at the same time. For example, avoid using `Stylable` for items in a large list/grid.
 
 #### Optimizations possibilities
 

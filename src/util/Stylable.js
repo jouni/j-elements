@@ -1,4 +1,4 @@
-export const StylableMixin = superClass => class Stylable extends superClass {
+export const Stylable = superClass => class Stylable extends superClass {
   connectedCallback() {
     this.applyMatchingStyleRules();
     if (super.connectedCallback) super.connectedCallback();

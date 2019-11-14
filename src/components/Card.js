@@ -1,5 +1,5 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {StylableMixin} from '../util/StylableMixin.js';
+import {Stylable} from '../util/Stylable.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -42,7 +42,7 @@ template.innerHTML = `
   </div>
 `;
 
-export class Card extends StylableMixin(DefineElementMixin(HTMLElement)) {
+export class Card extends Stylable(DefineElementMixin(HTMLElement)) {
   constructor() {
     super();
   }
