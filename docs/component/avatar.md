@@ -82,42 +82,16 @@ You can override the computed abbreviation by specifying the `abbr` attribute.
 ```
 
 ### Custom style
-<script type="module">
-  import '@vaadin/vaadin-lumo-styles/sizing.js';
-</script>
 ```html,live
 <j-avatar class="custom"></j-avatar>
-<j-avatar class="lumo"></j-avatar>
 
 <style>
-  .custom {
+  j-avatar.custom {
     width: 50px;
     height: 50px;
     background: orange;
     color: black;
     border-radius: 4px;
-  }
-
-  /*
-    Import the following modules after installing the 'vaadin-lumo-styles'
-    package to use the Lumo CSS properties:
-
-    <script type="module">
-      import '@vaadin/vaadin-lumo-styles/sizing.js';
-      import '@vaadin/vaadin-lumo-styles/style.js';
-      import '@vaadin/vaadin-lumo-styles/color.js';
-      import '@vaadin/vaadin-lumo-styles/typography.js';
-    </script>
-  */
-  .lumo {
-    width: var(--lumo-size-m);
-    height: var(--lumo-size-m);
-    box-shadow: 0 1px 2px 1px var(--lumo-shade-10pct), 0 1px 1px 0 var(--lumo-shade-10pct);
-    background: #FFF linear-gradient(var(--lumo-contrast-40pct), var(--lumo-contrast-50pct));
-    font-family: var(--lumo-font-family);
-    font-size: var(--lumo-size-l);
-    color: var(--lumo-base-color);
-    font-weight: 600;
   }
 </style>
 ```
