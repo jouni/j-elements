@@ -28,7 +28,7 @@ export function renderMarkdown(pathToMarkdownFile, target) {
           Promise.all(promises).then((modules) => {
             target.className = filename;
             renderStaticParts(target, text);
-          })
+          });
         } else {
           target.className = filename;
           renderStaticParts(target, text);
@@ -134,4 +134,13 @@ function renderStaticParts(target, text) {
       heading.scrollIntoView();
     }
   }
+
+  // Update page title
+  let title = target.querySelector('[data-view-title]');
+  if (title) {
+    title = title.getAttribute('data-view-title');
+  } else {
+    title = target.querySelector('h1').textContent;
+  }
+  document.title = 'JElements – ' + title;
 }
