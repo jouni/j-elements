@@ -48,7 +48,7 @@ The matching is done using the standard media query feature. Using a custom medi
 
 ## Matching components using media queries
 
-Stylable Mixin uses (or perhaps abuses) the standard style sheet media queries. Instead of the standard values, such as `(max-width: 400px)` and `print`, you write CSS selectors to match the components you want to style. **The selector has to start with a custom element name**, for example `my-element` (element name with a dash).
+Stylable uses (or perhaps abuses) the standard style sheet media queries. Instead of the standard values, such as `(max-width: 400px)` and `print`, you write CSS selectors to match the components you want to style. **The selector has to start with a custom element name**, for example `my-element` (element name with a dash).
 
 Examples:
 
