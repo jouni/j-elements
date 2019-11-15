@@ -193,9 +193,13 @@ function linkOrStylePromise(linkOrStyle) {
 }
 
 let globalStyleSheetsLoadedPromise;
+let globalStyleSheetCount = 0;
 
 function globalStyleSheetsLoaded() {
-  if (!globalStyleSheetsLoadedPromise) {
+  let linkOrStyleElements = document.querySelectorAll('link[rel="stylesheet"], style');
+
+  // Cache, but account for style sheets inserted dynamically during initial page load
+  if (!globalStyleSheetsLoadedPromise || globalStyleSheetCount < linkOrStyleElements.length) {
     const promises = [];
 
     let linkOrStyleElements = document.querySelectorAll('link[rel="stylesheet"], style');
@@ -203,6 +207,7 @@ function globalStyleSheetsLoaded() {
       promises.push(linkOrStylePromise(linkOrStyleElements[i]));
     }
 
+    globalStyleSheetCount = linkOrStyleElements.length;
     globalStyleSheetsLoadedPromise = Promise.all(promises);
   }
 
