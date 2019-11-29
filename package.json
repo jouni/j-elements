@@ -19,5 +19,8 @@
   },
   "files": [
     "src/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "cd site; npm link ../; polymer build; polymer serve -p 8000 -H 0.0.0.0"
+  }
 }

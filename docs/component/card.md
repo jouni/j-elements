@@ -9,6 +9,7 @@
 ```javascript
 import {Card} from 'j-elements/src/components/Card.js';
 ```
+<module-size modules="components/Card.js,util/DefineElementMixin.js,util/Stylable.js"></module-size>
 
 ## Examples
 

@@ -5,6 +5,7 @@ import {Drawer} from 'j-elements/src/components/Drawer.js';
 import {View} from 'j-elements/src/components/View.js';
 import './maturity-badge.js';
 import './table-of-contents.js';
+import './module-size.js';
 import {renderMarkdown} from './render-markdown.js';
 
 // Needed for docs examples
@@ -43,18 +44,19 @@ class JSite extends HTMLElement {
         <j-drawer>
           <h3>JElements</h3>
 
-          <a href="https://github.com/jouni/j-elements" slot="support" title="View on GitHub" class="github-link">
-            <j-icon class="github-icon"></j-icon>
-          </a>
-
+          <h6>Introduction</h6>
           <ul>
-            <h6>Introduction</h6>
             <li><a href="/">About</a></li>
             <li><a href="/howto">Get started</a></li>
             <li><a href="/maturity">Maturity levels</a></li>
-            <h6>Foundation</h6>
+          </ul>
+          <h6>Foundation</h6>
+          <ul>
             <li><a href="/foundation/color">Color palette</a></li>
-            <h6>Components</h6>
+            <li><a href="/foundation/typography">Typography</a></li>
+          </ul>
+          <h6>Components</h6>
+          <ul>
             <li><a href="/component/app-layout">App Layout</a></li>
             <li><a href="/component/avatar">Avatar</a></li>
             <li><a href="/component/card">Card</a></li>
@@ -64,12 +66,19 @@ class JSite extends HTMLElement {
             <li><a href="/component/input">Input</a></li>
             <li><a href="/component/placeholder">Placeholder</a></li>
             <li><a href="/component/tooltip">Tooltip</a></li>
-            <h6>Utilities</h6>
+          </ul>
+          <h6>Utilities</h6>
+          <ul>
             <li><a href="/util/animation-performance">Animation performance</a></li>
             <li><a href="/util/light-style">Light style</a></li>
             <li><a href="/util/mutation-animation">Mutation animation</a></li>
             <li><a href="/util/portal">Portal</a></li>
             <li><a href="/util/stylable">Stylable</a></li>
+          </ul>
+          <h6>Articles</h6>
+          <ul>
+            <li><a href="/articles/when-to-use-shadow-dom">When to use Shadow DOM</a></li>
+            <li><a href="/articles/traversing-stylesheets">Traversing style sheets</a></li>
           </ul>
         </j-drawer>
 
@@ -106,7 +115,7 @@ class JSite extends HTMLElement {
 
     window.addEventListener('vaadin-router-location-changed', e => {
       const location = e.detail.location;
-      if (!outlet._location || outlet._location.pathname !=location.pathname) {
+      if (!outlet._location || outlet._location.pathname != location.pathname) {
         const page = location.pathname == '/' ? '/src/about.md' : `/node_modules/j-elements/docs${location.pathname}.md`;
         renderMarkdown(page, outlet);
       }

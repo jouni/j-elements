@@ -1,6 +1,6 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
 import {LightStyleMixin} from '../util/LightStyleMixin.js';
-import {PortalMixin} from '../util/PortalMixin.js';
+import {Portal} from '../util/Portal.js';
 import {css} from '../util/css.js';
 
 // The number of pixels you need to drag before the bottom drawer moving
@@ -10,13 +10,14 @@ const DRAG_THRESHOLD = 10;
 const touchOptimizedMedia = '(pointer: coarse) and (max-width: 800px) and (min-height: 500px)';
 const touchOptimizedMediaQuery = window.matchMedia(touchOptimizedMedia);
 
-export class Drawer extends LightStyleMixin(PortalMixin(DefineElementMixin(HTMLElement))) {
+export class Drawer extends LightStyleMixin(Portal(DefineElementMixin(HTMLElement))) {
   static get styles() {
     return css`
       :host {
         display: block;
         max-width: 100vw;
         max-height: 100vh;
+        box-sizing: border-box;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;

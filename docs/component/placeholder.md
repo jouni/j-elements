@@ -9,6 +9,7 @@
 ```javascript
 import {Placeholder} from 'j-elements/src/components/Placeholder.js';
 ```
+<module-size modules="components/Placeholder.js,util/DefineElementMixin.js"></module-size>
 
 ## Examples
 

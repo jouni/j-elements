@@ -1,9 +1,9 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {PortalMixin} from '../util/PortalMixin.js';
+import {Portal} from '../util/Portal.js';
 import {LightStyleMixin} from '../util/LightStyleMixin.js';
 import {css} from '../util/css.js';
 
-export class Dialog extends LightStyleMixin(PortalMixin(DefineElementMixin(HTMLElement))) {
+export class Dialog extends LightStyleMixin(Portal(DefineElementMixin(HTMLElement))) {
   static get styles() {
     return css`
       :host {

@@ -6,6 +6,11 @@
 
 # Stylable
 
+```javascript
+import {Stylable} from 'j-elements/src/util/Stylable.js';
+```
+<module-size modules="util/Stylable.js"></module-size>
+
 ## Problem
 
 Sometimes you want to customize the styles inside a component’s shadow DOM from the outside. Theming is a common use case with web components. CSS custom properties only get you so far.
@@ -90,7 +95,7 @@ Use the `@media` rule to scope a portion of a style sheet.
 }
 ```
 
-You can nest `@media` rules inside each other, which allows you to style nested components.
+You can nest `@media` rules inside each other, which allows you to style nested components. There are [limitations](#pre-processors) for this if you are using a CSS pre-processor.
 
 ```css
 @media parent-component {
@@ -125,6 +130,10 @@ class XStylable extends Stylable(HTMLElement) {
 
 ---
 
+## Considerations
+
+Before resorting to using solutions such as `Stylable` that allow users of your web component to style elements in the Shadow DOM, consider [if that is actually needed](/articles/when-to-use-shadow-dom). Maybe you can move those elements into the light DOM instead, if they should be freely stylable by the users.
+
 ## Limitations
 
 ### Components have to opt-in
@@ -136,6 +145,12 @@ Each component has to opt-in explicitly to be stylable in its own implementation
 The performance impact is linearly correlated to the number of style sheet in the global scope and in the scope where the element is attached, and to the number of CSS rules in those style sheets. Each stylable element traverses all those style sheets and the rules inside them recursively every time they are attached to the DOM.
 
 Try to keep the number of style sheets in the global scope low. Avoid attaching a large number of elements (which use `Stylable`) to the DOM at the same time. For example, avoid using `Stylable` for items in a large list/grid.
+
+### Pre-processors
+
+CSS pre-processors such as Sass, Less and Stylus can remove/combine/flatten the component media queries so that they no longer work as expected. If you are using a pre-processor, consider avoiding nested media queries or omitting style sheets with component media queries from pre-processing.
+
+PostCSS does not alter the media queries and should work as expected.
 
 #### Optimizations possibilities
 

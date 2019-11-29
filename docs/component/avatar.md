@@ -1,5 +1,6 @@
 <!--imports
 /node_modules/j-elements/src/components/Avatar.js
+/node_modules/j-elements/src/components/Tooltip.js
 -->
 
 <maturity-badge beta>(Beta)</maturity-badge>
@@ -9,12 +10,13 @@
 ```javascript
 import {Avatar} from 'j-elements/src/components/Avatar.js';
 ```
+<module-size modules="components/Avatar.js,util/DefineElementMixin.js,util/Stylable.js,components/Icon.js"></module-size>
 
 ## Examples
 
 ### Default avatar
 
-Without any configuration, the avatar shows an icon (a “user” icon by default). The icon is a [`<j-icon>`](/icon) element, so the default icon can be changed with CSS (by setting the `--svg` property).
+Without any configuration, the avatar shows a “user” icon. The icon is a [`<j-icon>`](/icon) element, so the default icon can be changed with CSS (by setting the `--svg` property).
 
 ```html,live
 <j-avatar></j-avatar>
@@ -36,7 +38,9 @@ You can override the computed abbreviation by specifying the `abbr` attribute.
 
 ```html,live
 <!-- Computed from name -->
-<j-avatar name="John Doe"></j-avatar>
+<j-avatar name="John Doe">
+  <j-tooltip>John Doe</j-tooltip>
+</j-avatar>
 
 <!-- Explicit -->
 <j-avatar name="John Doe" abbr="J"></j-avatar>

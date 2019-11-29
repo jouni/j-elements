@@ -10,6 +10,7 @@
 ```javascript
 import {Field} from 'j-elements/src/components/Field.js';
 ```
+<module-size modules="components/Field.js,util/DefineElementMixin.js,util/LightStyleMixin.js,util/css.js"></module-size>
 
 `<j-field>` is a wrapper element that allows you to add a label and an error message to any input element.
 

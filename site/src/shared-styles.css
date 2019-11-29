@@ -1,3 +1,7 @@
+@import "/node_modules/j-elements/src/theme/color.css";
+@import "/node_modules/j-elements/src/theme/typography.css";
+@import "/node_modules/j-elements/src/theme/space.css";
+
 @import "github.css";
 
 .loading,
@@ -36,7 +40,7 @@ html[lang] {
   --lumo-primary-color: var(--primary-100);
   --lumo-primary-color-50pct: var(--primary-50);
   --lumo-primary-color-10pct: var(--primary-10);
-  --lumo-primary-text-color: var(--primary-text);
+  --lumo-primary-text-color: var(--primary-text-color);
   --lumo-primary-contrast-color: var(--primary-contrast);
   --lumo-body-text-color: var(--text-color);
   --lumo-secondary-text-color: var(--secondary-text-color);
@@ -83,9 +87,40 @@ body {
   font-size: var(--font-size-xl);
 }
 
-j-drawer h6:not(:first-child) {
-  margin-top: var(--space-l);
+j-drawer {
+  padding: var(--space-l);
+  padding-left: var(--space-l);
+  padding-right: var(--space-xl);
+  padding-bottom: calc(var(--space-xxl) * 2);
+  width: calc(var(--font-size-s) * 18);
+  max-width: 100%;
+}
+
+j-drawer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-s);
+}
+
+j-drawer ul a {
+  color: var(--secondary-text-color);
+  margin: var(--space-xs) 0;
+  display: block;
+}
+
+j-drawer ul a:hover,
+j-drawer ul a:focus {
+  color: var(--heading-text-color);
+  text-decoration: none;
+}
+
+j-drawer h6,
+j-drawer h6:first-child {
+  margin-top: var(--space-xl);
   margin-bottom: var(--space-s);
+  color: var(--heading-text-color);
+  font-size: var(--font-size-xxs);
 }
 
 @media j-view {
@@ -140,7 +175,9 @@ main h1::after {
 }
 
 table-of-contents {
+  display: block;
   font-size: var(--font-size-xs);
+  margin-bottom: 6em;
 }
 
 @media (min-width: 70rem) {
@@ -329,4 +366,35 @@ maturity-badge a {
 h2, h3 {
   -webkit-scroll-margin-top: calc(var(--j-view-header-height) + 1em);
   scroll-margin-top: calc(var(--j-view-header-height) + 1em);
+}
+
+div:not(.about) module-size {
+  font-size: var(--font-size-s);
+  color: var(--tertiary-text-color);
+}
+
+/* TODO should find a way to autogenerate */
+.about a[href="/"],
+.howto a[href$="/howto"],
+.maturity a[href$="/maturity"],
+.color a[href$="/color"],
+.typography a[href$="/typography"],
+.app-layout a[href$="/app-layout"],
+.avatar a[href$="/avatar"],
+.card a[href$="/card"],
+.dialog a[href$="/dialog"],
+.field a[href$="/field"],
+.icon a[href$="/icon"],
+.input a[href$="/input"],
+.placeholder a[href$="/placeholder"],
+.tooltip a[href$="/tooltip"],
+.animation-performance a[href$="/animation-performance"],
+.light-style a[href$="/light-style"],
+.mutation-animation a[href$="/mutation-animation"],
+.portal a[href$="/portal"],
+.stylable a[href$="/stylable"],
+.when-to-use-shadow-dom a[href$="/when-to-use-shadow-dom"],
+.traversing-stylesheets a[href$="/traversing-stylesheets"] {
+  color: var(--primary-text-color);
+  font-weight: 500;
 }

@@ -23,6 +23,7 @@ Set a solid foundation for colors by importing the default theme. It defines bot
 ```html
 <link rel="stylesheet" href="node_modules/j-elements/src/theme/color.css">
 ```
+<module-size modules="theme/color.css,theme/palette/dark-props.css,theme/palette/dark.css,theme/palette/light-props.css,theme/palette/light.css,theme/palette/props.css"></module-size>
 
 ## Force light or dark palette
 

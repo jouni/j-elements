@@ -114,6 +114,9 @@ function extractMatchingStyleRules(styleSheet, element, collectorFunc) {
  * @return {Boolean}   True if the media query only contains a media type query
  */
 function isElementMedia(media) {
+  // TODO account for the 'and' combinator?
+  // e.g. screen and (orientation: portrait) and (max-width: 400px) and x-foo
+  // x-foo and x-bar
   return media && media.match(/^[\w]+-[\w.()\[\]"'=~*^$]+/);
 }
 

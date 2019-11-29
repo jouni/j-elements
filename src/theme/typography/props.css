@@ -18,4 +18,7 @@ html {
   --line-height-xs: 1.25;
   --line-height-s: 1.375;
   --line-height-m: 1.625;
+
+  /* Set to auto to disable grayscale/antialiased font smoothing */
+  --font-smoothing:;
 }

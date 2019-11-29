@@ -2,6 +2,8 @@
 
 html {
   font-family: var(--font-family);
+  -webkit-font-smoothing: var(--font-smoothing, antialiased);
+  -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
 }
 
 body {

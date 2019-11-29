@@ -9,8 +9,9 @@
 ```javascript
 import {Tooltip} from 'j-elements/src/components/Tooltip.js';
 ```
+<module-size modules="components/Tooltip.js,util/DefineElementMixin.js,util/Portal.js,util/bemToShadow.js"></module-size>
 
-A tooltip component based on [Portal Mixin](/util/portal), allowing it to escape any stacking contexts.
+A tooltip component based on [Portal](/util/portal), allowing it to escape any stacking contexts.
 
 > **Note:** j-tooltip does not handle accessibility in any special way, for example make sure screen readers announce the tooltip content when it’s shown.
 

@@ -1,5 +1,5 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {PortalMixin} from '../util/PortalMixin.js';
+import {Portal} from '../util/Portal.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -27,7 +27,7 @@ template.innerHTML = `
   <slot></slot>
 `;
 
-export class Tooltip extends PortalMixin(DefineElementMixin(HTMLElement)) {
+export class Tooltip extends Portal(DefineElementMixin(HTMLElement)) {
   constructor() {
     super();
 

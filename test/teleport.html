@@ -7,8 +7,8 @@
     <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
     <script type="module">
-      // import StylableMixin from '../src/util/StylableMixin';
-      import { PortalMixin } from '../src/util/PortalMixin';
+      // import Stylable from '../src/util/Stylable';
+      import {Portal} from '../src/util/Portal.js';
 
       class XFoo extends HTMLElement {
         connectedCallback() {
@@ -30,7 +30,7 @@
       }
       customElements.define('x-foo', XFoo);
 
-      class Teleport extends PortalMixin(HTMLElement) {}
+      class Teleport extends Portal(HTMLElement) {}
       customElements.define('tele-port', Teleport);
 
 

@@ -2,6 +2,11 @@
 
 # Animation performance
 
+```javascript
+import {AnimationPerformance} from 'j-elements/src/util/AnimationPerformance.js';
+```
+<module-size modules="util/AnimationPerformance.js"></module-size>
+
 ## Problem
 
 There is no web standard to get the GPU performance metrics of the device. Those would be useful for example in adjusting some UI animations (richer animations for more capable devices).
@@ -11,12 +16,6 @@ There is no web standard to get the GPU performance metrics of the device. Those
 Run some computationally heavy JavaScript at the same time as running a CSS animation visually hidden from the user and count the number of animation frames during that animations using `requestAnimationFrame`.
 
 ## Examples
-
-```javascript
-import {AnimationPerformance} from 'j-elements';
-// or
-import {AnimationPerformance} from 'j-elements/src/util/AnimationPerformance.js';
-```
 
 ```html,live
 <h5>Measured during page load</h5>

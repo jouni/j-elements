@@ -2,6 +2,11 @@
 
 # Portal
 
+```javascript
+import {Portal} from 'j-elements/src/util/Portal.js';
+```
+<module-size modules="util/Portal.js,util/bemToShadow.js"></module-size>
+
 ## Problem
 
 Showing an element on top of all other content on the page regardless of its position in the element hierarchy is sometimes tricky.
@@ -14,9 +19,9 @@ The problem is most apparent when creating a reusable overlay element.
 
 Most often, this problem is solved by declaring such elements directly under the `<body>` element, which guarantees they are inside the topmost stacking context on the page. This makes it tricky to manage the elements when building modular applications.
 
-`PortalMixin` allows you to define an element anywhere in the hierarchy and, when enabled, move itself (and its contents) under the `<body>` element.
+`Portal` allows you to define an element anywhere in the hierarchy and, when enabled, move itself (and its contents) under the `<body>` element.
 
-`PortalMixin` supports one level of nested `<slot>` elements, making it suitable for compositions.
+`Portal` supports one level of nested `<slot>` elements, making it suitable for compositions.
 
 ## Examples
 
@@ -34,7 +39,7 @@ CSS selectors that use their original HTML context to target the portal element 
 
 ```html
 <div class="parent">
-  <!-- Assuming we have created a custom portal-element using PortalMixin -->
+  <!-- Assuming we have created a custom portal-element using Portal -->
   <portal-element>
     <p>I will be red</p>
   </portal-element>

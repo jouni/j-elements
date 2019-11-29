@@ -1,6 +1,6 @@
-import { PortalMixin } from '../src/util/PortalMixin.js';
+import {Portal} from '../src/util/PortalMixin.js';
 
-class CustomSelectPopup extends PortalMixin(HTMLElement) {
+class CustomSelectPopup extends Portal(HTMLElement) {
   constructor() {
     super();
     this.attachShadow({mode:'open'}).innerHTML = `
@@ -39,6 +39,14 @@ class CustomSelectPopup extends PortalMixin(HTMLElement) {
         this.parentNode.host.focus();
       }
     });
+  }
+
+  _getScope() {
+    let scope = this.getRootNode();
+    if (scope.host) {
+      scope = scope.host.getRootNode();
+    }
+    return scope;
   }
 }
 window.customElements.define('custom-select-popup', CustomSelectPopup);
@@ -91,6 +99,8 @@ class CustomSelect extends HTMLElement {
       const coords = this.getBoundingClientRect();
       this._popup.style.top = (coords.y + coords.height) + 'px';
       this._popup.style.left = coords.x + 'px';
+      // TODO this would probably make sense to move to PortalMixin, so that it copies all attributes from its shadow host to the scope container
+      this._popup.className = this.className;
       this._popup.portalEnabled = !this._popup.portalEnabled;
       this._popup.focus();
       e.stopPropagation();

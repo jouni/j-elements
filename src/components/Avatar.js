@@ -1,7 +1,6 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
 import {Stylable} from '../util/Stylable.js';
 import './Icon.js';
-import './Tooltip.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -21,7 +20,6 @@ template.innerHTML = `
       background-color: rgba(0, 0, 0, 0.4);
       color: #fff;
       font-weight: 500;
-      font-size: 48px;
       cursor: default;
     }
 
@@ -43,7 +41,7 @@ template.innerHTML = `
     [part="icon"] {
       width: 100%;
       height: 100%;
-      padding: 0.0625em;
+      padding: 12.5%;
       box-sizing: border-box;
       --viewbox: inherit;
       --svg: inherit;
@@ -52,6 +50,7 @@ template.innerHTML = `
     [part="abbr"] {
       text-transform: uppercase;
       line-height: 1;
+      font-size: 3em;
     }
 
     [part="image"] {
@@ -113,19 +112,11 @@ export class Avatar extends Stylable(DefineElementMixin(HTMLElement)) {
     const hasValue = newValue !== null;
     switch (name) {
       case 'name':
-        if (hasValue && !this.hasAttribute('no-tooltip')) {
-          if (!this._tooltip) {
-            this._tooltip = document.createElement('j-tooltip');
-            this.shadowRoot.appendChild(this._tooltip);
-          }
-          this._tooltip.innerHTML = newValue;
+        if (hasValue) {
           if (!this.hasAttribute('abbr') && newValue.length > 0) {
             this.shadowRoot.querySelector('[part=abbr] text').innerHTML = newValue.match(/\b\S/g).join('');
           }
         } else {
-          if (this._tooltip) {
-            this.shadowRoot.removeChild(this._tooltip);
-          }
           if (!this.hasAttribute('abbr')) {
             this.shadowRoot.querySelector('[part=abbr] text').innerHTML = '';
           }

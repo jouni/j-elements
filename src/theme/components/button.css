@@ -1,7 +1,7 @@
 j-button {
   --j-button-appearance: none;
   background-color: var(--primary-5);
-  color: var(--primary-text);
+  color: var(--primary-text-color);
   font-weight: 500;
   padding: 0.3em 1em;
   border-radius: 0.25em;

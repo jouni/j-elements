@@ -9,6 +9,7 @@
 ```javascript
 import {Icon} from 'j-elements/src/components/Icon.js';
 ```
+<module-size modules="components/Icon.js,util/DefineElementMixin.js"></module-size>
 
 ## The problem
 

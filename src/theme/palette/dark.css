@@ -1,6 +1,10 @@
 @import "dark-props.css";
 @import "light-props.css";
 
+:root {
+  color-scheme: light dark;
+}
+
 html,
 .dark-palette {
   --background-hsl: var(--dark-background-hsl);

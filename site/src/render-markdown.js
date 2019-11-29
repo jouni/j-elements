@@ -26,11 +26,11 @@ export function renderMarkdown(pathToMarkdownFile, target) {
           });
 
           Promise.all(promises).then((modules) => {
-            target.className = filename;
+            target.className = document.body.className = filename;
             renderStaticParts(target, text);
           });
         } else {
-          target.className = filename;
+          target.className = document.body.className = filename;
           renderStaticParts(target, text);
         }
       });
@@ -120,8 +120,10 @@ function renderStaticParts(target, text) {
   target.insertBefore(toc, reference);
 
   // TODO use scroll restoration API
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  // if ('scrollRestoration' in history) {
+  //   history.scrollRestoration = 'manual';
+  // }
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
 
   // Scroll-into-view
   if(document.location.hash) {

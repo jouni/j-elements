@@ -2,6 +2,11 @@
 
 # Light style
 
+```javascript
+import {LightStyleMixin} from 'j-elements/src/util/LightStyleMixin.js';
+```
+<module-size modules="util/LightStyleMixin.js"></module-size>
+
 ## Problem
 
 Shadow DOM has a non-negligible [impact on browser performance](https://bitworking.org/news/2018/02/shadow-dom-and-css). It might be better to avoid using Shadow DOM for custom elements which are used dozens of times in an app like buttons and list items.

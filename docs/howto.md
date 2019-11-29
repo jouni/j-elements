@@ -29,7 +29,7 @@ import './node_modules/j-elements/elements.js';
 
 > Using `from 'j-elements'` results in importing all the components and utilities, unless you use a build tool that can do [“tree shaking”](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) and remove the unused imports.
 >
-> To avoid importing everything, use the explicit paths to the components and utilities, e.g. `from 'j-elements/src/components/JAvatar.js'` and `from 'j-elements/src/util/PortalMixin.js'`.
+> To avoid importing everything, use the explicit paths to the components and utilities, e.g. `from 'j-elements/src/components/JAvatar.js'` and `from 'j-elements/src/util/Portal.js'`.
 
 
 ## Use

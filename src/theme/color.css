@@ -9,7 +9,7 @@ html {
 }
 
 a {
-  color: var(--primary-text);
+  color: var(--primary-text-color);
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -23,7 +23,7 @@
   --primary-10: hsla(var(--primary-hsl), 0.1);
   --primary-5: hsla(var(--primary-hsl), 0.05);
   --primary-contrast: hsl(var(--primary-contrast-hsl));
-  --primary-text: hsl(var(--primary-text-hsl));
+  --primary-text-color: hsl(var(--primary-text-hsl));
 
   --background: hsl(var(--background-hsl));
   --surface: hsl(var(--surface-hsl));

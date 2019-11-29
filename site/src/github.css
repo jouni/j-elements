@@ -58,7 +58,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-tag,
 .hljs-name,
 .hljs-attribute {
-  color: var(--primary-text);
+  color: var(--primary-text-color);
   font-weight: normal;
 }
 

@@ -16,7 +16,7 @@ import {View} from './src/components/View.js';
 import {AnimationPerformance} from './src/util/AnimationPerformance.js';
 import {LightStyleMixin} from './src/util/LightStyleMixin.js';
 import {MutationAnimationMixin} from './src/util/MutationAnimationMixin.js';
-import {PortalMixin} from './src/util/PortalMixin.js';
+import {Portal} from './src/util/Portal.js';
 import {Stylable} from './src/util/Stylable.js';
 
 export {
@@ -35,6 +35,6 @@ export {
   AnimationPerformance,
   LightStyleMixin,
   MutationAnimationMixin,
-  PortalMixin,
+  Portal,
   Stylable
 };

@@ -6,6 +6,11 @@
 
 # Mutation animation
 
+```javascript
+import {MutationAnimationMixin} from 'j-elements/src/util/MutationAnimationMixin.js';
+```
+<module-size modules="util/MutationAnimationMixin.js"></module-size>
+
 ## Problem
 
 Animating inserted and especially removed elements is tricky. For inserted elements a CSS animation is enough, but you still want to clear the DOM after the animation has finished, not to pollute it with unnecessary class names or other attributes.

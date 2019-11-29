@@ -6,7 +6,7 @@ JElements is a web development research project, looking at some of the current 
 
 It also includes a collection or ready-to-use web components which test the solutions first-hand.
 
-The package has zero dependencies and is about 32kB in total (~8kB gzipped), so it is lightweight to use in your projects.
+The package has zero dependencies and is about <module-size></module-size> in total including all components, utilities and CSS.
 
 > Since it’s research project, **JElements is not recommended for production use**. It is mainly looking for feedback from other developers, if the concepts are viable for production. See [Maturity Levels](/maturity) for more info.
 
