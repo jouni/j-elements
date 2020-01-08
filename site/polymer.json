@@ -8,7 +8,8 @@
     ]
   },
   "sources": [
-   "src/**/*"
+   "src/**",
+   "node_modules/j-elements/src/**"
   ],
   "extraDependencies": [
     "manifest.json",
@@ -19,7 +20,12 @@
   "builds": [
     {
       "name": "unbundled",
-      "preset": "es5-unbundled"
+      "bundle": false,
+      "js": {"minify": true, "compile": "es2015"},
+      "css": {"minify": true},
+      "html": {"minify": true},
+      "addServiceWorker": true,
+      "addPushManifest": true
     }
   ]
 }
