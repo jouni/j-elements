@@ -11,7 +11,6 @@ template.innerHTML = `
       fill: currentColor;
       stroke: currentColor;
       stroke-width: 0;
-      --viewbox: 0 0 24 24;
     }
 
     svg {
@@ -34,11 +33,13 @@ export class Icon extends DefineElementMixin(HTMLElement) {
   }
 
   updateIcon() {
+    if (this.hasAttribute('icon')) {
+      this.style.setProperty('--svg', `var(--${ this.getAttribute('icon') }-icon)`);
+    }
+
     const style = getComputedStyle(this, null);
     const svgPath = style.getPropertyValue('--svg');
     const viewBox = style.getPropertyValue('--viewbox');
-
-    if (!viewBox) return;
 
     // Firefox can't use innerHTML on an <svg> element, so we use this workaround
     const oldSvg = this.shadowRoot.querySelector('svg');
@@ -46,7 +47,20 @@ export class Icon extends DefineElementMixin(HTMLElement) {
       this.shadowRoot.removeChild(oldSvg);
     }
     const temp = document.createElement('div');
-    temp.innerHTML = `<svg viewBox="${viewBox.trim()}">${svgPath.trim()}</svg>`;
+
+    if (svgPath.indexOf('<svg') === -1) {
+      temp.innerHTML = `<svg>${svgPath.trim()}</svg>`;
+    } else {
+      temp.innerHTML = svgPath.trim();
+    }
+
+    if (viewBox) {
+      temp.firstChild.setAttribute('viewBox', viewBox.trim());
+    }
+
+    // Prevent bugs in Edge when the icon appears in tab-order
+    temp.firstChild.setAttribute('focusable', 'false');
+
     this.shadowRoot.appendChild(temp.firstChild);
 
     if (svgPath.trim() == '') {
