@@ -16,6 +16,8 @@ export const Stylable = superClass => class Stylable extends superClass {
 
     if (matchingStyleRules.length > 0) {
       // TODO could probably utilize adoptedStyleSheets when available, to limit the amount of created stylesheets (cache)
+      // TODO should cache the style elements (based on hashed the text content?) so that we can simply clone those instead of creating new ones 
+      // See https://github.com/Polymer/polymer/issues/4940#issuecomment-614213287 for the reason ("Cloning <style> helps trigger the deduplication optimization that browsers implement")
       const style = document.createElement('style');
       style.setAttribute('stylable-mixin', '');
       style.textContent = rulesToString(matchingStyleRules);
