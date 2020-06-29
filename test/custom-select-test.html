@@ -6,9 +6,55 @@
 
     <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script type="module" src='./custom-select.js'></script>
+
+    <script type="module">
+      class XFoo extends HTMLElement {
+        connectedCallback() {
+          this.attachShadow({mode:'open'}).innerHTML = `
+            <style>
+              div[item] h4 {
+                color: orange;
+              }
+
+              [item] h4 {
+                margin: 0;
+              }
+
+              [item] p {
+                margin: 0;
+                color: #999;
+              }
+
+              .foo [item] {
+                border: 2px dotted;
+              }
+
+              :host(.bar) [item] {
+                border: 2px solid red;
+              }
+            </style>
+            <custom-select class="foo">
+              <div item>
+                <h4>Option 1</h4>
+                <p>Secondary text for this item</p>
+              </div>
+              <div item>
+                <h4>Option 2</h4>
+                <p>Secondary text for this item</p>
+              </div>
+            </custom-select>
+          `;
+        }
+      }
+      window.customElements.define('x-foo', XFoo);
+    </script>
   </head>
   <body>
     <style>
+      :not(:defined) {
+        display: none;
+      }
+
       body {
         font-family: sans-serif;
       }
@@ -77,6 +123,8 @@
         </custom-select>
       </custom-select>
       <p class="fixed">position: fixed;</p>
+
+      <x-foo class="bar"></x-foo>
     </div>
   </body>
 </html>

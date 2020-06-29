@@ -1,0 +1,17 @@
+@import "palette/props.css";
+@import "palette/dark.css";
+@import "palette/light.css";
+@import "palette/dark.css" (prefers-color-scheme: dark);
+
+html {
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--primary-text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-text-color);
+}

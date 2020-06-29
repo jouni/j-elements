@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>stylable-mixin nested components test</title>
+
+
+    <script type="module">
+      import { Stylable } from '../src/util/Stylable.js';
+
+      class XBar extends Stylable(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          super.connectedCallback();
+          this.shadowRoot.innerHTML += `
+            <div class="x-bar-shadow">x-bar-shadow</div>
+            <x-baz></x-baz>
+            <style>x-baz {font-weight: bold;}</style>
+          `;
+
+        }
+      }
+      customElements.define('x-bar', XBar);
+
+      class XBaz extends Stylable(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          super.connectedCallback();
+          this.shadowRoot.innerHTML += `
+            <div class="x-baz-shadow">x-baz-shadow</div>
+          `;
+
+        }
+      }
+      customElements.define('x-baz', XBaz);
+      class XFoo extends Stylable(HTMLElement) {
+        connectedCallback() {
+          this.attachShadow({mode: 'open'});
+          super.connectedCallback();
+
+          this.shadowRoot.innerHTML += `
+            <div class="x-foo-shadow">x-foo-shadow</div>
+            <x-bar></x-bar>
+          `;
+
+        }
+      }
+      customElements.define('x-foo', XFoo);
+
+    </script>
+
+    <link rel="stylesheet" href="./stylesheet.css">
+
+    <style id="with-import">
+      @import "foobar/styles.css" x-foo;
+    </style>
+
+    <style id="no-import">
+      @import "style-mixin.css" x-foo, x-bar, x-baz;
+
+      @supports not (stylable) {
+        lorem {
+          color: red;
+        }
+      }
+
+      @media x-foo {
+        :host {
+          display: block;
+          border: 1px solid red;
+        }
+
+        @media x-bar {
+          :host {
+            display: block;
+            border: 1px solid green;
+          }
+
+          @media x-baz {
+            :host {
+              display: block;
+              border: 1px solid blue;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <x-foo></x-foo>
+
+    <some>some element</some>
+
+  </body>
+</html>

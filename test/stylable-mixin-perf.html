@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <title>stylable-mixin performance test</title>
 
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-
     <script type="module">
-      import { StylableMixin } from '../src/stylable-mixin.js';
+      import { Stylable } from '../src/util/Stylable.js';
 
-      class XFoo extends StylableMixin(HTMLElement) {
+      class XFoo extends Stylable(HTMLElement) {
         connectedCallback() {
           this.attachShadow({mode: 'open'});
           this.shadowRoot.innerHTML = `
@@ -21,22 +19,82 @@
       }
       customElements.define('x-foo', XFoo);
 
-      for (let i = 0; i < 1000; i++) {
+      // for (let i = 0; i < 50; i++) {
+      //   const style = document.createElement('style');
+      //   style.innerHTML = `
+      //   :host span {
+      //     border: 1px solid;
+      //   }
+      //
+      //   some {
+      //     color: red;
+      //   }
+      //
+      //   random {
+      //     color: blue;
+      //   }
+      //
+      //   @media selectors {
+      //     :host: {
+      //       color: yellow;
+      //     }
+      //   }
+      //   `;
+      //   document.head.appendChild(style);
+      // }
+
+      for (let i = 0; i < 500; i++) {
         document.body.appendChild(document.createElement('x-foo'));
       }
     </script>
+
+    <link rel="stylesheet" href="stylesheet.css">
   </head>
   <body>
 
-    <style type="scoped" for="x-foo">
-      :host span {
-        border: 1px solid;
+    <style>
+      @media x-foo {
+        :host span {
+          border: 1px solid;
+        }
+
+        some {
+          color: red;
+        }
+
+        random {
+          color: blue;
+        }
+
+        @media selectors {
+          :host: {
+            color: yellow;
+          }
+        }
       }
     </style>
 
-    <style type="scoped" for="x-foo">
-      :host {
-        border: 1px solid blue;
+    <style>
+      @import "testing-missing-import.css";
+
+      @media x-foo\:nth-child\(2n\) {
+        :host {
+          border: 2px solid blue;
+        }
+      }
+
+      some {
+        color: red;
+      }
+
+      random {
+        color: blue;
+      }
+
+      @media selectors {
+        :host: {
+          color: yellow;
+        }
       }
     </style>
 

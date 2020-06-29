@@ -1,0 +1,8 @@
+html {
+  --dark-background-hsl: 0, 0%, 0%;
+  --dark-surface-hsl: 219, 10%, 10%;
+  --dark-contrast-hsl: 219, 100%, 96%;
+  --dark-primary-hsl: 219, 90%, 48%;
+  --dark-primary-contrast-hsl: 0, 0%, 100%;
+  --dark-primary-text-hsl: 219, 96%, 62%;
+}

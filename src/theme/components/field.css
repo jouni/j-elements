@@ -1,0 +1,24 @@
+j-field:not(:first-child) {
+  margin-top: 1.5em;
+}
+
+j-field:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+j-field > [label] {
+  font-size: var(--font-size-s);
+  font-weight: 500;
+  margin-bottom: 0.3em;
+}
+
+j-field > [label]::after {
+  color: var(--secondary-text-color);
+  font-weight: 400;
+}
+
+j-field > [validation-message] {
+  font-size: var(--font-size-xs);
+  color: var(--secondary-text-color);
+  margin: 0;
+}

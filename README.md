@@ -1,27 +1,12 @@
 # JElements
 
-> Proof-of-concept helpers and prototype web components
+JElements is a web development research project, looking at some of the current problems around authoring and using Web Components and how to provide solutions to those problems while the browsers improve their capabilities.
 
-*Not recommended for production, but very much recommended for testing and providing feedback* 😊
+It also includes a collection or ready-to-use web components which test the solutions first-hand.
+
+> **Not recommended for production**, but very much recommended for testing and providing feedback 😊
 
 [Docs and demos ›](https://jelements.netlify.com)
-
-
-## Proof-of-concept helper elements and mixins
-
-See the documentation for `LightStyleElement`, `StylableMixin` and `PortalElement`.
-
-
-
-## Prototype web components
-
-Web components that try to fill in some gaps in the [Vaadin components collection](https://vaadin.com/components), and experiment with alternative implementation ideas for them by using the low-level elements and mixins.
-
-See the documentation site for all components.
-
-
-
-
 
 ## Development / testing it locally
 
@@ -46,7 +31,7 @@ Install Node.js and npm, then do the following:
     npm install -g polymer-cli
     ```
 
-1. Run the demos and open them in your default browser:
+1. Run the docs site and open it in your default browser:
 
     ```
     cd site
