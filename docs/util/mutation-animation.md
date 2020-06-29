@@ -31,9 +31,6 @@ The explicit width and height are set as the element’s inline styles for the d
 >
 > You need to define the remove animation. Otherwise elements can not be removed completely (the cloned element will stay visible in the DOM).
 
-> ###### NOTE
->
-> In Safari, the removed node briefly disappears before the remove animation is started, causing the layout to flicker/jump.
 
 ## Example
 
