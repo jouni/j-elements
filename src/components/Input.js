@@ -156,6 +156,9 @@ export class Input extends DefineElementMixin(NativeInputElementWrapper) {
         this._updateSize();
         this._propagateEvent(e);
       });
+
+      // Prevent screen readers from announcing the host element
+      this.setAttribute('aria-hidden', 'true');
     }
   }
 

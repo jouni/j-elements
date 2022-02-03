@@ -79,6 +79,8 @@ class JSite extends HTMLElement {
           <ul>
             <li><a href="/articles/when-to-use-shadow-dom">When to use Shadow DOM</a></li>
             <li><a href="/articles/traversing-stylesheets">Traversing style sheets</a></li>
+            <li><a href="/articles/themable-icons">Themable icons</a></li>
+            <li><a href="/articles/theming-and-styling-web-components">Theming and styling web components</a></li>
           </ul>
         </j-drawer>
 

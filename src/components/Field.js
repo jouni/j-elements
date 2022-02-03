@@ -23,13 +23,11 @@ export class Field extends LightStyleMixin(DefineElementMixin(HTMLElement)) {
         --j-field-optional-indicator: "(Optional)";
       }
 
-      /* TODO these styles are a bit funny, because they look like shadow dom styles but still target light dom elements. Could consider using ::slotted */
-
-      :host([required]) > [label]::after {
+      :host([required]) ::slotted([label])::after {
         content: " " var(--j-field-required-indicator);
       }
 
-      :host(:not([required])) > [label]::after {
+      :host(:not([required])) ::slotted([label])::after {
         content: " " var(--j-field-optional-indicator);
       }
     `;

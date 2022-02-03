@@ -16,8 +16,6 @@ import {Field} from 'j-elements/src/components/Field.js';
 
 It handles accessibility for you automatically, without the need to manually use `id` and `for` attributes to bind the label and the field, as well as showing validation error messages (and making them accessible as well).
 
-> The label is currently announces twice on VoiceOver on macOS Safari.
-
 ## Label
 ```html,live
 <j-field>

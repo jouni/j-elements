@@ -123,27 +123,26 @@ j-drawer h6:first-child {
   font-size: var(--font-size-xxs);
 }
 
-@media j-view {
-  :host {
-    --j-view-header-height: 64px;
-  }
+j-view {
+  display: block;
+  --j-view-header-height: 64px;
+  --view-max-width: 70rem;
+  --view-min-width: 10rem;
+  --view-margin: 0 auto;
+  --view-padding: 0 var(--space-xxl);
+}
 
+@media j-view {
   header {
     padding: 0;
   }
 
-  slot[name="header"] span,
-  ::slotted(main) {
+  slot[name="header"] span {
     display: block;
-    max-width: 70rem;
-    min-width: 10rem;
-    margin: 0 auto;
-    padding-left: var(--space-xxl);
-    padding-right: var(--space-xxl);
-  }
-
-  ::slotted(main) {
-    padding-bottom: var(--space-xxl);
+    max-width: var(--view-max-width);
+    min-width: var(--view-min-width);
+    margin: var(--view-margin);
+    padding: var(--view-padding);
   }
 
   slot[name="header"] span {
@@ -158,6 +157,14 @@ j-drawer h6:first-child {
     width: 2em;
     margin-top: 0.5em;
   }
+}
+
+j-view main {
+  max-width: var(--view-max-width);
+  min-width: var(--view-min-width);
+  margin: var(--view-margin);
+  padding: var(--view-padding);
+  padding-bottom: var(--space-xxl);
 }
 
 main > div:not(.about):not(.loading) {
@@ -368,6 +375,11 @@ h2, h3 {
   scroll-margin-top: calc(var(--j-view-header-height) + 1em);
 }
 
+module-size {
+  display: block;
+  min-height: calc(var(--line-height-m) * 1em);
+}
+
 div:not(.about) module-size {
   font-size: var(--font-size-s);
   color: var(--tertiary-text-color);
@@ -394,7 +406,9 @@ div:not(.about) module-size {
 .portal a[href$="/portal"],
 .stylable a[href$="/stylable"],
 .when-to-use-shadow-dom a[href$="/when-to-use-shadow-dom"],
-.traversing-stylesheets a[href$="/traversing-stylesheets"] {
+.traversing-stylesheets a[href$="/traversing-stylesheets"],
+.theming-and-styling-web-components a[href$="/theming-and-styling-web-components"],
+.themable-icons a[href$="/themable-icons"] {
   color: var(--primary-text-color);
   font-weight: 500;
 }
