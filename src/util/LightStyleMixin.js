@@ -52,8 +52,14 @@ export const LightStyleMixin = superClass => class LightStyle extends superClass
   static __shadowToLight(name) {
     let styles = this.styles;
 
+    // ::slotted(...) -> > ...
+    styles = styles.replace(/::slotted\((.*)\)/gm, `> $1`);
+
+    // :host(...) -> .name...
     styles = styles.replace(/:host\((.*)\)/gm, `${name}$1`);
+    // :host -> .name
     styles = styles.replace(/:host/gm, name);
+
 
     return styles;
   }
