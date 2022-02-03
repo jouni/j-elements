@@ -1,0 +1,16 @@
+const albums = [
+  {
+    "id": 0,
+    "artwork": "...",
+    "title": "Awesomest Record!",
+    "artist": "Mighty Artist",
+    "year": 2020
+  },
+  {
+    "id": 1,
+    "artwork": "...",
+    "title": "Awesomest Record!",
+    "artist": "Mighty Artist",
+    "year": 2020
+  }
+];

@@ -1,0 +1,7 @@
+j-dialog {
+  background-color: var(--surface);
+}
+
+j-dialog-scope {
+  background-color: hsla(var(--background-hsl), 0.4);
+}

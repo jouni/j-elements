@@ -1,6 +1,6 @@
-import NativeElementWrapper from './NativeElementWrapper.js';
+import {NativeElementWrapper} from './NativeElementWrapper.js';
 
-export default class NativeInputElementWrapper extends NativeElementWrapper {
+export class NativeInputElementWrapper extends NativeElementWrapper {
   static get observedAttributes() {
     return super.observedAttributes.concat([
       'autocomplete',
@@ -23,7 +23,6 @@ export default class NativeInputElementWrapper extends NativeElementWrapper {
 
   static get observedProperties() {
     return super.observedProperties.concat([
-      'checkValidity',
       'validity',
       'validationMessage',
       'willValidate'
@@ -48,4 +47,8 @@ export default class NativeInputElementWrapper extends NativeElementWrapper {
       });
     }
   }
+}
+
+NativeInputElementWrapper.prototype.checkValidity = function() {
+  return this._nativeElement.checkValidity();
 }

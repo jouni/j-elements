@@ -7,8 +7,8 @@
     <script src="../site/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
     <script type="module">
-      // import StylableMixin from '../src/util/StylableMixin';
-      import { PortalElement } from '../src/util/PortalElement';
+      // import Stylable from '../src/util/Stylable';
+      import {Portal} from '../src/util/Portal.js';
 
       class XFoo extends HTMLElement {
         connectedCallback() {
@@ -30,7 +30,7 @@
       }
       customElements.define('x-foo', XFoo);
 
-      class Teleport extends PortalElement {}
+      class Teleport extends Portal(HTMLElement) {}
       customElements.define('tele-port', Teleport);
 
 
@@ -44,17 +44,10 @@
               }
 
               tele-port {
-                display: block !important;
+                display: block;
                 height: 200px;
                 width: 200px;
                 background: gray;
-              }
-
-              tele-port:not([disabled]) {
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
               }
 
               .foo tele-port {
@@ -62,10 +55,10 @@
               }
             </style>
             <div class="foo">
-            <tele-port disabled>
-              <button>Toggle</button>
-              <slot></slot>
-            </tele-port>
+              <tele-port>
+                <button>Toggle</button>
+                <slot></slot>
+              </tele-port>
             </div>
           `;
           this.shadowRoot.querySelector('button').addEventListener('click', e => {
@@ -75,8 +68,9 @@
 
         toggle() {
           this.classList.toggle('open');
+          // TODO this references the portal-origin (in the original scope)
           const portal = this.shadowRoot.querySelector('tele-port');
-          portal.disabled = !portal.disabled;
+          portal.portalEnabled = !portal.portalEnabled;
         }
       }
       customElements.define('x-drawer', Drawer);

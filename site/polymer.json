@@ -8,19 +8,24 @@
     ]
   },
   "sources": [
-   "src/**/*"
+   "src/**",
+   "node_modules/j-elements/src/**"
   ],
   "extraDependencies": [
     "manifest.json",
     "_redirects",
-    "node_modules/j-elements/README.md",
-    "node_modules/j-elements/docs/*",
-    "node_modules/@webcomponents/webcomponentsjs/**"
+    "node_modules/j-elements/docs/**",
+    "node_modules/j-elements/src/**"
   ],
   "builds": [
     {
-      "name": "bundled",
-      "preset": "es5-bundled"
+      "name": "unbundled",
+      "bundle": false,
+      "js": {"minify": true, "compile": "es2015"},
+      "css": {"minify": true},
+      "html": {"minify": true},
+      "addServiceWorker": true,
+      "addPushManifest": true
     }
   ]
 }

@@ -1,125 +1,130 @@
 import {Router} from '@vaadin/router';
-import '@vaadin/vaadin-tabs';
-import '@vaadin/vaadin-text-field';
-import 'j-elements';
-import '@vaadin/vaadin-lumo-styles/color.js';
-import '@vaadin/vaadin-lumo-styles/typography.js';
-import './shared-styles.js';
+import {Icon} from 'j-elements/src/components/Icon.js';
+import {AppLayout} from 'j-elements/src/components/AppLayout.js';
+import {Drawer} from 'j-elements/src/components/Drawer.js';
+import {View} from 'j-elements/src/components/View.js';
 import './maturity-badge.js';
+import './table-of-contents.js';
+import './module-size.js';
+import {renderMarkdown} from './render-markdown.js';
 
-// Needed for docs Example
-import {MutationAnimationMixin} from 'j-elements';
+// Needed for docs examples
+import {LightStyleMixin} from 'j-elements/src/util/LightStyleMixin.js';
+class StyledElement extends LightStyleMixin(HTMLElement) {
+  static get styles() {
+    return `
+      :host {
+        color: red;
+        font-weight: bold;
+      }
+    `;
+  }
+}
+window.customElements.define('styled-element', StyledElement);
+
+import {MutationAnimationMixin} from 'j-elements/src/util/MutationAnimationMixin.js';
 class MyList extends MutationAnimationMixin(HTMLElement) {}
 window.customElements.define('my-list', MyList);
 
-// Pages
-import './index.js';
+import {AnimationPerformance} from 'j-elements/src/util/AnimationPerformance.js';
+window.AnimationPerformance = AnimationPerformance;
+AnimationPerformance.measure().then(({fps, duration}) => {
+  window._animationPerformanceAtStartup = `FPS: ${fps} — Duration: ${duration}ms`;
+  const startup = document.querySelector('.performance-at-startup');
+  if (startup) {
+    startup.textContent = window._animationPerformanceAtStartup;
+  }
+});
 
 class JSite extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
-      <custom-style>
-        <style include="shared-styles"></style>
-      </custom-style>
+      <j-app-layout>
+        <j-drawer>
+          <h3>JElements</h3>
 
-      <style media="j-app-layout">
-        /* Uncomment this to have a colored navbar */
-        .navbar.navbar.navbar.navbar {
-          background-color: var(--lumo-primary-color);
-          color: var(--lumo-primary-contrast-color);
-        }
-      </style>
-
-      <j-app-layout type="top">
-        <h1 slot="brand">JElements</h1>
-
-        <a href="https://github.com/jouni/j-elements" slot="support" title="View on GitHub" class="github-link">
-          <j-icon class="github-icon"></j-icon>
-        </a>
-
-        <vaadin-tabs orientation="vertical" slot="drawer">
           <h6>Introduction</h6>
-          <vaadin-tab><a tabindex="-1" href="/">About</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/howto">Get Started</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/maturity">Maturity Levels</a></vaadin-tab>
+          <ul>
+            <li><a href="/">About</a></li>
+            <li><a href="/howto">Get started</a></li>
+            <li><a href="/maturity">Maturity levels</a></li>
+          </ul>
+          <h6>Foundation</h6>
+          <ul>
+            <li><a href="/foundation/color">Color palette</a></li>
+            <li><a href="/foundation/typography">Typography</a></li>
+          </ul>
           <h6>Components</h6>
-          <vaadin-tab><a tabindex="-1" href="/app-layout">App Layout</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/avatar">Avatar</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/card">Card</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/dialog">Dialog</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/field">Field</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/icon">Icon</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/input">Input</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/placeholder">Placeholder</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/tooltip">Tooltip</a></vaadin-tab>
+          <ul>
+            <li><a href="/component/app-layout">App Layout</a></li>
+            <li><a href="/component/avatar">Avatar</a></li>
+            <li><a href="/component/card">Card</a></li>
+            <li><a href="/component/dialog">Dialog</a></li>
+            <li><a href="/component/field">Field</a></li>
+            <li><a href="/component/icon">Icon</a></li>
+            <li><a href="/component/input">Input</a></li>
+            <li><a href="/component/placeholder">Placeholder</a></li>
+            <li><a href="/component/tooltip">Tooltip</a></li>
+          </ul>
           <h6>Utilities</h6>
-          <vaadin-tab><a tabindex="-1" href="/light-style-element">Light Style Element</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/mutation-animation">Mutation Animation Mixin</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/portal-element">Portal Element</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/stylable-mixin">Stylable Mixin</a></vaadin-tab>
-          <vaadin-tab><a tabindex="-1" href="/teleporting-element">Teleporting Element</a></vaadin-tab>
-        </vaadin-tabs>
+          <ul>
+            <li><a href="/util/animation-performance">Animation performance</a></li>
+            <li><a href="/util/light-style">Light style</a></li>
+            <li><a href="/util/mutation-animation">Mutation animation</a></li>
+            <li><a href="/util/portal">Portal</a></li>
+            <li><a href="/util/stylable">Stylable</a></li>
+          </ul>
+          <h6>Articles</h6>
+          <ul>
+            <li><a href="/articles/when-to-use-shadow-dom">When to use Shadow DOM</a></li>
+            <li><a href="/articles/traversing-stylesheets">Traversing style sheets</a></li>
+            <li><a href="/articles/themable-icons">Themable icons</a></li>
+            <li><a href="/articles/theming-and-styling-web-components">Theming and styling web components</a></li>
+          </ul>
+        </j-drawer>
 
-        <div class="content"></div>
+        <j-view>
+          <main>
+            <div class="content"></div>
+            <hr>
+            <footer>
+              <p>Everything licensed under Apache 2.0</p>
+              <a href="https://github.com/jouni/j-elements" title="View on GitHub" class="github-link">
+                <j-icon class="github-icon"></j-icon> View on GitHub
+              </a>
+            </footer>
+          </main>
+        </j-view>
       </j-app-layout>
     `;
   }
 
   connectedCallback() {
-    const tabs = this.querySelector('vaadin-tabs[slot=drawer]');
-    // Let router choose which tab to select
-    tabs.selected = -1;
-
-    this._router = new Router(this.querySelector('j-app-layout .content'));
-    this._router.setRoutes({
-      path: '(.*)', component: 'index-page'
-    });
+    const outlet = this.querySelector('.content');
+    this._router = new Router(outlet);
+    this._router.setRoutes([{
+        path: '/(.*)', action: (context, commands) => {
+          // TODO redirect old urls
+          context.next();
+        }
+      },{
+        path: '(.*)', action: (context, commands) => {
+          // Needed for Router to not fail unexpectedly
+          return commands.component('div');
+        }
+    }]);
 
     window.addEventListener('vaadin-router-location-changed', e => {
-      // Update the selected tab
-      Array.from(tabs.querySelectorAll('vaadin-tab')).find((tab, i) => {
-        if (tab.querySelector('a').getAttribute('href') == e.detail.location.pathname) {
-          this._updateTitle(tab.textContent);
-          if (this._blockLocationChangeListener) {
-            this._blockLocationChangeListener = false;
-            // Finish Array.find
-            return true;
-          }
-
-          this._blockTabChangeListener = true;
-          tab.parentNode.selected = i;
-
-          // Finish Array.find
-          return true;
-        }
-      });
-    });
-
-    tabs.addEventListener('selected-changed', e => {
-      if (this._blockTabChangeListener) {
-        this._blockTabChangeListener = false;
-        return;
+      const location = e.detail.location;
+      if (!outlet._location || outlet._location.pathname != location.pathname) {
+        const page = location.pathname == '/' ? '/src/about.md' : `/node_modules/j-elements/docs${location.pathname}.md`;
+        renderMarkdown(page, outlet);
       }
-
-      // Possibly triggered by keyboard navigation, so we need to update the URL just in case
-      const tab = tabs.items[e.detail.value];
-      const path = tab.querySelector('a').getAttribute('href');
-      this._blockLocationChangeListener = true;
-      this._router.render(path, true);
-      this._updateTitle(tab.textContent);
-
-      // Close drawer
-      setTimeout(() => {
-        this.querySelector('j-app-layout').closeDrawer();
-      }, 100);
+      outlet._location = location;
     });
-  }
 
-  _updateTitle(pageTitle) {
-    document.title = `JElements: ${pageTitle}`;
-    // Update navbar text
-    this.querySelector('h1[slot=brand]').innerHTML = '<span class="logo">&lt;j/&gt;</span> ' + pageTitle;
+    this.classList.remove('loading');
   }
 }
 

@@ -1,36 +1,40 @@
 // Components (custom elements)
-import {JAppLayout} from './src/components/j-app-layout.js';
-import {JAvatar} from './src/components/j-avatar.js';
-import {JButton} from './src/components/JButton.js';
-import {JCard} from './src/components/j-card.js';
-import {JDialog} from './src/components/j-dialog.js';
-import {JField} from './src/components/JField.js';
-import {JIcon} from './src/components/JIcon.js';
-import {JInput} from './src/components/JInput.js';
-import {JPlaceholder} from './src/components/j-placeholder.js';
-import {JTooltip} from './src/components/j-tooltip.js';
+import {AppLayout} from './src/components/AppLayout.js';
+import {Avatar} from './src/components/Avatar.js';
+import {Button} from './src/components/Button.js';
+import {Card} from './src/components/Card.js';
+import {Dialog} from './src/components/Dialog.js';
+import {Drawer} from './src/components/Drawer.js';
+import {Field} from './src/components/Field.js';
+import {Icon} from './src/components/Icon.js';
+import {Input} from './src/components/Input.js';
+import {Placeholder} from './src/components/Placeholder.js';
+import {Tooltip} from './src/components/Tooltip.js';
+import {View} from './src/components/View.js';
 
 // Utilities
-import LightStyleElement from './src/util/LightStyleElement.js';
-import MutationAnimationMixin from './src/util/MutationAnimationMixin.js';
-import PortalElement from './src/util/PortalElement.js';
-import StylableMixin from './src/util/StylableMixin.js';
-import TeleportingElement from './src/util/teleporting-element.js';
+import {AnimationPerformance} from './src/util/AnimationPerformance.js';
+import {LightStyleMixin} from './src/util/LightStyleMixin.js';
+import {MutationAnimationMixin} from './src/util/MutationAnimationMixin.js';
+import {Portal} from './src/util/Portal.js';
+import {Stylable} from './src/util/Stylable.js';
 
 export {
-  JAppLayout,
-  JAvatar,
-  JButton,
-  JCard,
-  JDialog,
-  JField,
-  JIcon,
-  JInput,
-  JPlaceholder,
-  JTooltip,
-  LightStyleElement,
+  AppLayout,
+  Avatar,
+  Button,
+  Card,
+  Dialog,
+  Drawer,
+  Field,
+  Icon,
+  Input,
+  Placeholder,
+  Tooltip,
+  View,
+  AnimationPerformance,
+  LightStyleMixin,
   MutationAnimationMixin,
-  PortalElement,
-  StylableMixin,
-  TeleportingElement
+  Portal,
+  Stylable
 };

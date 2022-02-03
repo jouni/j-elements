@@ -1,10 +1,8 @@
-import {LightStyleElement} from 'j-elements';
-
-export class MaturityBadge extends LightStyleElement {
+export class MaturityBadge extends HTMLElement {
   connectedCallback() {
-    const temp = this.innerHTML;
+    const name = this.innerHTML.replace(/[\(\)]/g, '');
     this.innerHTML = `
-      <a href="/maturity">${temp.replace(/[\(\)]/g, '')}</a>
+      <a href="/maturity#${name.replace(/ /g, '-').toLowerCase()}">${name}</a>
     `;
   }
 }

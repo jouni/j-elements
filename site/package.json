@@ -2,21 +2,22 @@
   "name": "j-elements-site",
   "description": "Documentation and examples for the JElements project",
   "dependencies": {
-    "@polymer/polymer": "^3.3.0",
+    "@node-minify/core": "^5.2.0",
+    "@node-minify/uglify-es": "^5.2.0",
     "@vaadin/router": "^1.4.2",
-    "@vaadin/vaadin-checkbox": "^2.2.10",
-    "@vaadin/vaadin-lumo-styles": "^1.5.0",
-    "@vaadin/vaadin-tabs": "^2.1.2",
-    "@vaadin/vaadin-text-field": "^2.4.11",
-    "@webcomponents/webcomponentsjs": "^2.2.10",
     "highlightjs": "^9.12.0",
     "marked": "^4.0.10",
     "polymer-cli": "^1.9.11",
     "lodash": "^4.17.21",
+    "@webcomponents/webcomponentsjs": "^2.4.0",
+    "braces": "^2.3.1",
     "deep-extend": "^0.5.1",
-    "braces": "^2.3.1"
+    "lodash": "^4.17.15",
+    "marked": "^0.7.0",
+    "polymer-cli": "^1.9.11"
   },
   "scripts": {
-    "build": "npm install; npm link ../; npx polymer build"
+    "build": "npm install; npm link ../; node scripts/module-size.js; npx polymer build",
+    "module-size": "node scripts/module-size.js"
   }
 }
