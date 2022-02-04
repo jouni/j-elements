@@ -9,7 +9,7 @@ permalink: /portal/
 ---
 
 ```javascript
-import {Portal} from 'jelly/src/util/Portal.js';
+import {Portal} from 'j-elements/src/util/Portal.js';
 ```
 <module-size modules="util/Portal.js,util/bemToShadow.js"></module-size>
 
@@ -29,9 +29,11 @@ Most often, this problem is solved by declaring such elements directly under the
 
 `Portal` supports one level of nested `<slot>` elements, making it suitable for compositions.
 
+<!--
 ## Examples
 
 See the [Dialog](/dialog) and [Tooltip](/tooltip) components.
+-->
 
 ---
 

@@ -3,10 +3,10 @@ title: Field
 layout: page
 imports: /src/components/Placeholder.js
 maturity: Stable
-permalink: /placeholder/
-eleventyNavigation:
-  key: Placeholder
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: Placeholder
+#  parent: Components
 ---
 
 ```javascript

@@ -1,5 +1,5 @@
-import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {Stylable} from '../util/Stylable.js';
+import {DefineElementMixin} from '/src/util/DefineElementMixin.js';
+import {Stylable} from '/src/util/Stylable.js';
 
 const template = document.createElement('template');
 template.innerHTML = `

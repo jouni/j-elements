@@ -5,10 +5,10 @@ imports:
   /src/components/Avatar.js
   /src/components/Tooltip.js
 maturity: Beta
-permalink: /avatar/
-eleventyNavigation:
-  key: Avatar
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: Avatar
+#  parent: Components
 ---
 
 ```javascript

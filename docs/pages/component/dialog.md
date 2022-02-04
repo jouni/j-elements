@@ -5,10 +5,10 @@ imports:
   /src/components/Dialog.js
   /src/components/Button.js
 maturity: Proof of concept
-permalink: /dialog/
-eleventyNavigation:
-  key: Dialog
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: Dialog
+#  parent: Components
 ---
 
 ```javascript

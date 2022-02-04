@@ -2,7 +2,6 @@
 title: Mutation animation
 layout: page
 maturity: Proof of concept
-imports: /src/components/Button.js
 eleventyNavigation:
   key: Mutation animation
   parent: Utilities
@@ -10,7 +9,7 @@ permalink: /mutation-animation/
 ---
 
 ```javascript
-import {MutationAnimationMixin} from 'jelly/src/util/MutationAnimationMixin.js';
+import {MutationAnimationMixin} from 'j-elements/src/util/MutationAnimationMixin.js';
 ```
 <module-size modules="util/MutationAnimationMixin.js"></module-size>
 
@@ -41,7 +40,7 @@ First we create a new custom element using the mixin.
 
 ```html
 <script type="module">
-  import {MutationAnimationMixin} from 'jelly';
+  import {MutationAnimationMixin} from 'j-elements';
 
   class MyList extends MutationAnimationMixin(HTMLElement) {}
 
@@ -53,9 +52,9 @@ Then we can use the new element and apply animations for inserted and removed el
 
 <render-example></render-example>
 ```html
-<j-button id="add">Add item</j-button>
-<j-button id="remove">Remove item</j-button>
-<j-button id="add-remove">Add & remove items</j-button>
+<button id="add">Add item</button>
+<button id="remove">Remove item</button>
+<button id="add-remove">Add & remove items</button>
 
 <my-list>
   <div>Item 1</div>

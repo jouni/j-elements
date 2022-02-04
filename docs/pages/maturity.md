@@ -1,8 +1,9 @@
 ---
 title: Maturity levels
 layout: page
-eleventyNavigation:
-  key: Maturity levels
+#eleventyNavigation:
+#  key: Maturity levels
+permalink: false
 ---
 
 The components and utilities in this project are labelled with a maturity level. The level indicates the varying goals and stages of development.

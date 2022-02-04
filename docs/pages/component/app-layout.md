@@ -3,10 +3,10 @@ title: App Layout
 layout: page
 imports: /src/components/AppLayout.js
 maturity: Preview
-permalink: /applayout/
-eleventyNavigation:
-  key: App Layout
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: App Layout
+#  parent: Components
 ---
 
 The `<j-app-layout>` is a responsive application layout that covers multiple common application layout patterns.

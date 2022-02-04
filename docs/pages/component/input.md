@@ -10,7 +10,7 @@ eleventyNavigation:
 ---
 
 ```javascript
-import {Input} from 'jelly/src/components/Input.js';
+import {Input} from 'j-elements/src/components/Input.js';
 ```
 <module-size modules="components/Input.js,util/DefineElementMixin.js,util/NativeInputElementWrapper.js,util/NativeElementWrapper.js"></module-size>
 

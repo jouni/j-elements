@@ -3,14 +3,14 @@ title: Field
 layout: page
 imports: /src/components/Tooltip.js
 maturity: Preview
-permalink: /tooltip/
-eleventyNavigation:
-  key: Tooltip
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: Tooltip
+#  parent: Components
 ---
 
 ```javascript
-import {Tooltip} from 'jelly/src/components/Tooltip.js';
+import {Tooltip} from 'j-elements/src/components/Tooltip.js';
 ```
 <module-size modules="components/Tooltip.js,util/DefineElementMixin.js,util/Portal.js,util/bemToShadow.js"></module-size>
 

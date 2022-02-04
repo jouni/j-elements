@@ -1,6 +1,5 @@
-/* @import "/node_modules/j-elements/src/theme/color.css";
-@import "/node_modules/j-elements/src/theme/typography.css";
-@import "/node_modules/j-elements/src/theme/space.css"; */
+@import './card.css';
+@import './drawer.css';
 
 body {
   display: flex;

@@ -12,7 +12,7 @@ eleventyNavigation:
 ---
 
 ```javascript
-import {Field} from 'jelly/src/components/Field.js';
+import {Field} from 'j-elements/src/components/Field.js';
 ```
 <module-size modules="components/Field.js,util/DefineElementMixin.js,util/LightStyleMixin.js,util/css.js"></module-size>
 

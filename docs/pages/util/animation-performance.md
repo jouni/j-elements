@@ -2,11 +2,11 @@
 title: Animation performance
 layout: page
 maturity: Proof of concept
-eleventyNavigation:
-  key: Animation performance
-  parent: Utilities
+#eleventyNavigation:
+#  key: Animation performance
+#  parent: Utilities
 imports: /src/util/AnimationPerformance.js
-permalink: /animation-performance/
+permalink: false
 ---
 
 ```javascript

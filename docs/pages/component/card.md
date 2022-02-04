@@ -4,10 +4,10 @@ layout: page
 imports:
   /src/components/Card.js
 maturity: Preview
-permalink: /card/
-eleventyNavigation:
-  key: Card
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: Card
+#  parent: Components
 ---
 
 ```javascript

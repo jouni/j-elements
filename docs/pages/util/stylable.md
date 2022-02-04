@@ -2,7 +2,7 @@
 title: Stylable
 layout: page
 maturity: Preview
-imports: /src/components/Card.js
+imports: /docs/src/components/Card.js
 eleventyNavigation:
   key: Stylable
   parent: Utilities
@@ -10,7 +10,7 @@ permalink: /stylable/
 ---
 
 ```javascript
-import {Stylable} from 'jelly/src/util/Stylable.js';
+import {Stylable} from 'j-elements/src/util/Stylable.js';
 ```
 <module-size modules="util/Stylable.js"></module-size>
 
@@ -26,6 +26,7 @@ The matching is done using the standard media query feature. Using a custom medi
 
 ## Example
 
+<render-example></render-example>
 ```html
 <style>
   j-card div {
@@ -116,7 +117,7 @@ To make a component’s shadow DOM stylable from the outside, extend it with the
 > **Note:** Your component needs to have a shadow root before Stylable is invoked
 
 ```javascript
-import { Stylable } from 'jelly/src/util/Stylable.js';
+import { Stylable } from 'j-elements/src/util/Stylable.js';
 
 class XStylable extends Stylable(HTMLElement) {
   connectedCallback() {

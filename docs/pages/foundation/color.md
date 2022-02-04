@@ -1,7 +1,6 @@
 ---
 title: Color palette
 layout: page
-imports: /src/components/Button.js
 maturity: Proof of concept
 eleventyNavigation:
   key: Color palette
@@ -38,8 +37,8 @@ You can also invert the palette on any element by using the `inverted-palette` c
 <render-example></render-example>
 ```html
 <h5>Force a palette on the app</h5>
-<j-button id="force-light">Light</j-button>
-<j-button id="force-dark">Dark</j-button>
+<button id="force-light">Light</button>
+<button id="force-dark">Dark</button>
 
 <div class="light-palette">Always light</div>
 <div class="dark-palette">Always dark</div>
@@ -87,9 +86,9 @@ Override any number of the properties to set a custom color palette. The light a
 ```html
 <h5>Choose the primary color for the light palette</h5>
 <p>Make sure to switch to the light palette in the above examples to see the changes.</p>
-<j-button id="light-primary-color-1">Pink</j-button>
-<j-button id="light-primary-color-2">Mint</j-button>
-<j-button id="light-primary-color-0">Default</j-button>
+<button id="light-primary-color-1">Pink</button>
+<button id="light-primary-color-2">Mint</button>
+<button id="light-primary-color-0">Default</button>
 
 <script>
   document.querySelector('#light-primary-color-1').addEventListener('click', function(e) {

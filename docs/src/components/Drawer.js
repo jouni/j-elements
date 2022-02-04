@@ -1,7 +1,7 @@
-import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {LightStyleMixin} from '../util/LightStyleMixin.js';
-import {Portal} from '../util/Portal.js';
-import {css} from '../util/css.js';
+import {DefineElementMixin} from '/src/util/DefineElementMixin.js';
+import {LightStyleMixin} from '/src/util/LightStyleMixin.js';
+import {Portal} from '/src/util/Portal.js';
+import {css} from '/src/util/css.js';
 
 // The number of pixels you need to drag before the bottom drawer moving
 const DRAG_THRESHOLD = 10;

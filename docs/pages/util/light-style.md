@@ -9,7 +9,7 @@ permalink: /light-style/
 ---
 
 ```javascript
-import {LightStyleMixin} from 'jelly/src/util/LightStyleMixin.js';
+import {LightStyleMixin} from 'j-elements/src/util/LightStyleMixin.js';
 ```
 <module-size modules="util/LightStyleMixin.js"></module-size>
 
@@ -26,7 +26,7 @@ Provide a lightweight mechanism to add styles to a custom element which dynamica
 ## Example
 
 ```javascript
-import {LightStyleMixin} from 'jelly';
+import {LightStyleMixin} from 'j-elements';
 
 class StyledElement extends LightStyleMixin(HTMLElement) {
   static get styles() {

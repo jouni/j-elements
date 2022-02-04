@@ -3,14 +3,14 @@ title: Icon
 layout: page
 imports: /src/components/Icon.js
 maturity: Beta
-permalink: /icon/
-eleventyNavigation:
-  key: Icon
-  parent: Components
+permalink: false
+#eleventyNavigation:
+#  key: Icon
+#  parent: Components
 ---
 
 ```javascript
-import {Icon} from 'jelly/src/components/Icon.js';
+import {Icon} from 'j-elements/src/components/Icon.js';
 ```
 <module-size modules="components/Icon.js,util/DefineElementMixin.js"></module-size>
 

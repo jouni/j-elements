@@ -16,12 +16,11 @@ title: JElements
     <link rel="stylesheet" href="{{ '/src/theme/typography.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/space.css' | url }}">
 
-    <script type="module" src="{{ '/docs/src/components/maturity-badge.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/module-size.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/table-of-contents.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/render-example.js' | url }}"></script>
-    <script type="module" src="{{ '/src/components/Drawer.js' | url }}"></script>
-    <script type="module" src="{{ '/src/components/View.js' | url }}"></script>
+    <script type="module" src="{{ '/docs/src/components/Drawer.js' | url }}"></script>
+    <script type="module" src="{{ '/docs/src/components/View.js' | url }}"></script>
 
     <script type="module">
       const imports = `{{ imports }}`.split(/\s/g).map(str => str.trim()).filter(s => s);
@@ -56,9 +55,6 @@ title: JElements
     </j-drawer>
       <j-view>
         <main>
-          {% if maturity %}
-          <maturity-badge>{{ maturity }}</maturity-badge>
-          {% endif %}
           <h1>{{ title }}</h1>
           <table-of-contents></table-of-contents>
           {{ content | safe }}

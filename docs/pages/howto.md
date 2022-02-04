@@ -3,6 +3,7 @@ title: Get started
 layout: page
 eleventyNavigation:
   key: Get started
+  order: 20
 ---
 
 ## Install
@@ -25,7 +26,7 @@ If you are using a build tool / bundler (Webpack, Rollup, Polymer CLI, etc), you
 import 'j-elements';
 
 // You can optionally import just some of the components or utilities, for example:
-import {Icon, Card} from 'j-elements';
+import { Field, Input } from 'j-elements';
 ```
 
 Otherwise you should specify a fully qualified path, for example:
@@ -36,7 +37,7 @@ import './elements.js';
 
 > Using `from 'j-elements'` results in importing all the components and utilities, unless you use a build tool that can do [“tree shaking”](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) and remove the unused imports.
 >
-> To avoid importing everything, use the explicit paths to the components and utilities, e.g. `from 'j-elements/src/components/JAvatar.js'` and `from 'j-elements/src/util/Portal.js'`.
+> To avoid importing everything, use the explicit paths to the components and utilities, e.g. `from 'j-elements/src/components/Field.js'` and `from 'j-elements/src/util/Portal.js'`.
 
 
 ## Use
@@ -45,12 +46,18 @@ After importing the components, use them in JavaScript or HTML.
 
 ### JavaScript
 ```javascript
-const avatar = document.createElement('j-avatar');
-avatar.setAttribute('name', 'John Doe');
-document.body.appendChild(avatar);
+const field = document.createElement('j-field');
+field.innerHTML = `
+  <label>Name</label>
+  <input type="text">
+`;
+document.body.appendChild(field);
 ```
 
 ### HTML
 ```html
-<j-avatar name="John Doe"></j-avatar>
+<j-field>
+  <label>Name</label>
+  <input type="text">
+</j-field>
 ```
