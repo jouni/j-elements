@@ -7,10 +7,12 @@ eleventyNavigation:
 
 ## Install
 
-JElements is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
+Jelly is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
 
-```
-npm install jelly
+> The package is still using the old project name "j-elements"
+
+```shell
+npm install j-elements
 ```
 
 ## Import
@@ -20,10 +22,10 @@ The components are delivered as [ES Modules](https://developer.mozilla.org/en-US
 If you are using a build tool / bundler (Webpack, Rollup, Polymer CLI, etc), you can use the bare module specifier.
 
 ```javascript
-import 'jelly';
+import 'j-elements';
 
 // You can optionally import just some of the components or utilities, for example:
-import {Icon, Card} from 'jelly';
+import {Icon, Card} from 'j-elements';
 ```
 
 Otherwise you should specify a fully qualified path, for example:
@@ -32,9 +34,9 @@ Otherwise you should specify a fully qualified path, for example:
 import './elements.js';
 ```
 
-> Using `from 'jelly'` results in importing all the components and utilities, unless you use a build tool that can do [“tree shaking”](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) and remove the unused imports.
+> Using `from 'j-elements'` results in importing all the components and utilities, unless you use a build tool that can do [“tree shaking”](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) and remove the unused imports.
 >
-> To avoid importing everything, use the explicit paths to the components and utilities, e.g. `from 'jelly/src/components/JAvatar.js'` and `from 'jelly/src/util/Portal.js'`.
+> To avoid importing everything, use the explicit paths to the components and utilities, e.g. `from 'j-elements/src/components/JAvatar.js'` and `from 'j-elements/src/util/Portal.js'`.
 
 
 ## Use
