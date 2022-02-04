@@ -1,7 +1,7 @@
 [build]
-  base = "site/"
+  base = "site"
   command = "npm run build"
-  publish = "site/build/unbundled/"
+  publish = "build/unbundled/"
 
 [[redirects]]
   from = "/*"
