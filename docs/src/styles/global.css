@@ -149,7 +149,7 @@ main > footer {
   }
 
   main > :not(table-of-contents):not(hr) {
-    margin-right: 17rem;
+    margin-right: 17rem !important;
   }
 }
 
