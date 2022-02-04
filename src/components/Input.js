@@ -1,5 +1,5 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {NativeInputElementWrapper} from '../util/NativeInputElementWrapper';
+import {NativeInputElementWrapper} from '../util/NativeInputElementWrapper.js';
 
 export class Input extends DefineElementMixin(NativeInputElementWrapper) {
   static get template() {

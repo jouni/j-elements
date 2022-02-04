@@ -1,5 +1,5 @@
 import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {NativeElementWrapper} from '../util/NativeElementWrapper';
+import {NativeElementWrapper} from '../util/NativeElementWrapper.js';
 
 export class Button extends DefineElementMixin(NativeElementWrapper) {
   static get template() {

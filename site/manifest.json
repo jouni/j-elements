@@ -1,7 +1,0 @@
-{
-  "name": "JElements docs and demos",
-  "short_name": "JElements docs and demos",
-  "description": "Documentation and examples for the JElements project",
-  "start_url": "/",
-  "display": "standalone"
-}

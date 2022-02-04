@@ -1,26 +1,31 @@
 {
-  "name": "j-elements",
-  "version": "0.4.0",
-  "homepage": "https://jelements.netlify.com",
-  "repository": "https://github.com/jouni/j-elements",
+  "name": "jelly",
+  "version": "0.5.0",
+  "homepage": "https://jellyy.netlify.com",
+  "repository": "https://github.com/jouni/jelly",
   "authors": [
     "Jouni Koivuviita <jouni@jouni.me>"
   ],
-  "description": "Proof-of-concept and prototype web components to fill in some gaps in the Vaadin components collection.",
+  "description": "Researching and prototyping web components",
   "main": "elements.js",
   "keywords": [
     "web-components"
   ],
   "license": "Apache-2.0",
-  "dependencies": {},
-  "devDependencies": {
-    "@polymer/polymer": "^3.3.0",
-    "@vaadin/vaadin-text-field": "^2.4.11"
-  },
   "files": [
     "src/*"
   ],
   "scripts": {
-    "dev": "cd site; npm link ../; polymer build; polymer serve -p 8000 -H 0.0.0.0"
+    "start": "npx @11ty/eleventy --serve",
+    "module-size": "node docs/scripts/module-size.js",
+    "build": "npm run module-size && npx @11ty/eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
+    "@node-minify/core": "^5.2.0",
+    "@node-minify/uglify-es": "^5.2.0",
+    "markdown-it-anchor": "^8.4.1"
   }
 }

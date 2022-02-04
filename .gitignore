@@ -1,4 +1,4 @@
 node_modules
-site/build
-site/src/module-size.json
+docs/_site
+docs/src/module-size.json
 package-lock.json

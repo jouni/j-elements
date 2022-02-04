@@ -1,40 +1,28 @@
-# JElements
+# Jelly
 
-JElements is a web development research project, looking at some of the current problems around authoring and using Web Components and how to provide solutions to those problems while the browsers improve their capabilities.
+Jelly is a web development research project, looking at some of the current problems around authoring and using web components and how to provide solutions to those problems while the browsers improve their capabilities.
 
 It also includes a collection or ready-to-use web components which test the solutions first-hand.
 
 > **Not recommended for production**, but very much recommended for testing and providing feedback 😊
 
-[Docs and demos ›](https://jelements.netlify.com)
+[Docs and demos ›](https://jellyy.netlify.com)
 
 ## Development / testing it locally
 
-Install Node.js and npm, then do the following:
+Install Node.js, including npm, then do the following:
 
 1. Clone the repo and change to the project directory:
 
     ```
-    git clone https://github.com/jouni/j-elements
-    cd j-elements
+    git clone https://github.com/jouni/jelly
+    cd jelly
     ```
 
-1. Install project dependencies:
+1. Run the docs site:
 
     ```
+    cd docs
     npm install
-    ```
-
-1. Install [Polymer CLI](https://www.polymer-project.org/3.0/docs/tools/polymer-cli):
-
-    ```
-    npm install -g polymer-cli
-    ```
-
-1. Run the docs site and open it in your default browser:
-
-    ```
-    cd site
-    npm link ../
-    polymer serve -o
+    npm start
     ```

@@ -1,0 +1,75 @@
+---
+title: JElements
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Jelly</title>
+    <link rel="stylesheet" href="{{ '/docs/src/styles/global.css' | url }}">
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)">
+
+    <link rel="stylesheet" href="{{ '/src/theme/color.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/typography.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/space.css' | url }}">
+
+    <script type="module" src="{{ '/docs/src/components/maturity-badge.js' | url }}"></script>
+    <script type="module" src="{{ '/docs/src/components/module-size.js' | url }}"></script>
+    <script type="module" src="{{ '/docs/src/components/table-of-contents.js' | url }}"></script>
+    <script type="module" src="{{ '/docs/src/components/render-example.js' | url }}"></script>
+    <script type="module" src="{{ '/src/components/Drawer.js' | url }}"></script>
+    <script type="module" src="{{ '/src/components/View.js' | url }}"></script>
+
+    <script type="module">
+      const imports = `{{ imports }}`.split(/\s/g).map(str => str.trim()).filter(s => s);
+      imports.forEach(url => import(url));
+
+      // Needed for examples
+
+      import {MutationAnimationMixin} from '{{ '/src/util/MutationAnimationMixin.js' | url }}';
+      class MyList extends MutationAnimationMixin(HTMLElement) {}
+      window.customElements.define('my-list', MyList);
+
+      import {LightStyleMixin} from '{{ '/src/util/LightStyleMixin.js' | url }}';
+      class StyledElement extends LightStyleMixin(HTMLElement) {
+        static get styles() {
+          return `
+            :host {
+              color: red;
+              font-weight: bold;
+            }
+          `;
+        }
+      }
+      window.customElements.define('styled-element', StyledElement);
+    </script>
+  </head>
+  <body>
+    <j-drawer>
+      <h1>Jelly</h1>
+      <nav>
+        {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({activeKey: eleventyNavigation.key, activeListItemClass: "active", listItemHasChildrenClass: "has-children"}) | safe }}
+      </nav>
+    </j-drawer>
+      <j-view>
+        <main>
+          {% if maturity %}
+          <maturity-badge>{{ maturity }}</maturity-badge>
+          {% endif %}
+          <h1>{{ title }}</h1>
+          <table-of-contents></table-of-contents>
+          {{ content | safe }}
+          <hr>
+          <footer>
+            <p>Everything licensed under Apache 2.0</p>
+            <a href="https://github.com/jouni/jelly" title="View on GitHub" class="github-link">
+              <j-icon class="github-icon"></j-icon> View on GitHub
+            </a>
+          </footer>
+        </main>
+      </j-view>
+  </body>
+</html>
