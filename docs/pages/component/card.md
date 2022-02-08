@@ -10,7 +10,7 @@ permalink: false
 ---
 
 ```javascript
-import {Card} from 'jelly/src/components/Card.js';
+import {Card} from 'j-elements/src/components/Card.js';
 ```
 <module-size modules="components/Card.js,util/DefineElementMixin.js,util/Stylable.js"></module-size>
 

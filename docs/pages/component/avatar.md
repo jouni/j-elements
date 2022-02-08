@@ -11,7 +11,7 @@ permalink: false
 ---
 
 ```javascript
-import {Avatar} from 'jelly/src/components/Avatar.js';
+import {Avatar} from 'j-elements/src/components/Avatar.js';
 ```
 <module-size modules="components/Avatar.js,util/DefineElementMixin.js,util/Stylable.js,components/Icon.js"></module-size>
 

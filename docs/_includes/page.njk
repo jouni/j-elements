@@ -7,7 +7,7 @@ title: JElements
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | Jelly</title>
+    <title>{{ title }} | JElements</title>
     <link rel="stylesheet" href="{{ '/docs/src/styles/global.css' | url }}">
     <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)">
@@ -57,7 +57,7 @@ title: JElements
   </head>
   <body>
     <j-drawer>
-      <h1>Jelly</h1>
+      <h1>JElements</h1>
       <nav>
         {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({activeKey: eleventyNavigation.key, activeListItemClass: "active", listItemHasChildrenClass: "has-children"}) | safe }}
       </nav>
@@ -71,7 +71,7 @@ title: JElements
           <hr>
           <footer>
             <p>Everything licensed under Apache 2.0</p>
-            <a href="https://github.com/jouni/jelly" title="View on GitHub" class="github-link">
+            <a href="https://github.com/jouni/j-elements" title="View on GitHub" class="github-link">
               <j-icon class="github-icon"></j-icon> View on GitHub
             </a>
           </footer>

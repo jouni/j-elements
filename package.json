@@ -1,8 +1,8 @@
 {
-  "name": "jelly",
+  "name": "j-elements",
   "version": "next",
-  "homepage": "https://jellyy.netlify.com",
-  "repository": "https://github.com/jouni/jelly",
+  "homepage": "https://jelements.netlify.com",
+  "repository": "https://github.com/jouni/j-elements",
   "authors": [
     "Jouni Koivuviita <jouni@jouni.me>"
   ],

@@ -11,7 +11,7 @@ permalink: false
 ---
 
 ```javascript
-import {Dialog} from 'jelly/src/components/Dialog.js';
+import {Dialog} from 'j-elements/src/components/Dialog.js';
 ```
 <module-size modules="components/Dialog.js,util/DefineElementMixin.js,util/Portal.js,util/LightStyleMixin.js,util/css.js,util/bemToShadow.js"></module-size>
 

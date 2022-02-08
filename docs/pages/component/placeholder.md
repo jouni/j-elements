@@ -9,7 +9,7 @@ permalink: false
 ---
 
 ```javascript
-import {Placeholder} from 'jelly/src/components/Placeholder.js';
+import {Placeholder} from 'j-elements/src/components/Placeholder.js';
 ```
 <module-size modules="components/Placeholder.js,util/DefineElementMixin.js"></module-size>
 

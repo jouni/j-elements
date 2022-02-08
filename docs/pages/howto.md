@@ -8,9 +8,7 @@ eleventyNavigation:
 
 ## Install
 
-Jelly is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
-
-> The package is still using the old project name "j-elements"
+JElements is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
 
 ```shell
 npm install j-elements

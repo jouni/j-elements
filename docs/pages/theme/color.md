@@ -22,7 +22,7 @@ A customizable color system using CSS custom properties based on the most common
 Set a solid foundation for colors by importing the default theme. It defines both light and dark palettes and switches those automatically based on the OS/browser level user preference.
 
 ```html
-<link rel="stylesheet" href="node_modules/jelly/src/theme/color.css">
+<link rel="stylesheet" href="node_modules/j-elements/src/theme/color.css">
 ```
 
 <module-size modules="theme/color.css,theme/palette/dark-props.css,theme/palette/dark.css,theme/palette/light-props.css,theme/palette/light.css,theme/palette/props.css"></module-size>

@@ -9,7 +9,7 @@ permalink: false
 ---
 
 ```javascript
-import {AnimationPerformance} from 'jelly/src/util/AnimationPerformance.js';
+import {AnimationPerformance} from 'j-elements/src/util/AnimationPerformance.js';
 ```
 <module-size modules="util/AnimationPerformance.js"></module-size>
 
