@@ -34,3 +34,7 @@ import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
   }
 </style>
 ```
+
+## Limitations
+
+Dynamic updates to the styling, for example, on `:hover`, of the prefix, suffix, or input elements are not accounted for.
