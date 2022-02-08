@@ -5,7 +5,6 @@ imports:
   /src/components/Field.js
   /src/components/FieldGroup.js
   /src/theme/components/field.css
-maturity: Preview
 permalink: /field/
 eleventyNavigation:
   key: Field & Field Group

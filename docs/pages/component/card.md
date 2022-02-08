@@ -3,7 +3,6 @@ title: Card
 layout: page
 imports:
   /src/components/Card.js
-maturity: Preview
 permalink: false
 #eleventyNavigation:
 #  key: Card

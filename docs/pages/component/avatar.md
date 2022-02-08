@@ -4,7 +4,6 @@ layout: page
 imports:
   /src/components/Avatar.js
   /src/components/Tooltip.js
-maturity: Beta
 permalink: false
 #eleventyNavigation:
 #  key: Avatar

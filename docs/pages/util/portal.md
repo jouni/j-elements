@@ -1,7 +1,6 @@
 ---
 title: Portal
 layout: page
-maturity: Proof of concept
 eleventyNavigation:
   key: Portal
   parent: Utilities

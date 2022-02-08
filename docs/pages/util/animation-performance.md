@@ -1,7 +1,6 @@
 ---
 title: Animation performance
 layout: page
-maturity: Proof of concept
 #eleventyNavigation:
 #  key: Animation performance
 #  parent: Utilities

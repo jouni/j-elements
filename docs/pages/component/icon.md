@@ -2,7 +2,6 @@
 title: Icon
 layout: page
 imports: /src/components/Icon.js
-maturity: Beta
 permalink: false
 #eleventyNavigation:
 #  key: Icon

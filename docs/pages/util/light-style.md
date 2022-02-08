@@ -1,7 +1,6 @@
 ---
 title: Light style
 layout: page
-maturity: Proof of concept
 eleventyNavigation:
   key: Light style
   parent: Utilities

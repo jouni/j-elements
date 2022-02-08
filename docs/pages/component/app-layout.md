@@ -2,7 +2,6 @@
 title: App Layout
 layout: page
 imports: /src/components/AppLayout.js
-maturity: Preview
 permalink: false
 #eleventyNavigation:
 #  key: App Layout

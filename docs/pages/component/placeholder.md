@@ -2,7 +2,6 @@
 title: Field
 layout: page
 imports: /src/components/Placeholder.js
-maturity: Stable
 permalink: false
 #eleventyNavigation:
 #  key: Placeholder

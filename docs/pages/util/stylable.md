@@ -1,7 +1,6 @@
 ---
 title: Stylable
 layout: page
-maturity: Preview
 imports: /docs/src/components/Card.js
 eleventyNavigation:
   key: Stylable

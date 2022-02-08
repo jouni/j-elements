@@ -1,7 +1,6 @@
 ---
 title: Mutation animation
 layout: page
-maturity: Proof of concept
 eleventyNavigation:
   key: Mutation animation
   parent: Utilities

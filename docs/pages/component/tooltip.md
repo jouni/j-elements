@@ -2,7 +2,6 @@
 title: Field
 layout: page
 imports: /src/components/Tooltip.js
-maturity: Preview
 permalink: false
 #eleventyNavigation:
 #  key: Tooltip

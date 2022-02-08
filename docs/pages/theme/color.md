@@ -1,7 +1,6 @@
 ---
 title: Color
 layout: page
-maturity: Proof of concept
 eleventyNavigation:
   key: Color
   parent: Theme
