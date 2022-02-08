@@ -26,6 +26,11 @@ const styles = `
   slot[name]::slotted(:is(button, a, select, input)) {
     pointer-events: auto;
   }
+
+  ::slotted(input) {
+    padding-inline-start: var(--prefix-width) !important;
+    padding-inline-end: var(--suffix-width) !important;
+  }
 `;
 
 export class InputDecorator extends DefineElementMixin(HTMLElement) {
@@ -60,7 +65,8 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
 
     const prefixRect = prefix.getBoundingClientRect();
     const suffixRect = suffix.getBoundingClientRect();
-    input.style.paddingInline = `${prefixRect.width}px ${suffixRect.width}px`;
+    this.style.setProperty('--prefix-width', `${prefixRect.width}px`);
+    this.style.setProperty('--suffix-width', `${suffixRect.width}px`);
   }
 }
 

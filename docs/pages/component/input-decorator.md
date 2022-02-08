@@ -12,6 +12,8 @@ eleventyNavigation:
 import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
 ```
 
+`<j-input-decorator>` allows placing prefix and suffix elements inside an input element. Only text-based input elements are supported.
+
 <render-example></render-example>
 ```html
 <j-input-decorator>
@@ -21,11 +23,6 @@ import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
 </j-input-decorator>
 
 <style>
-  render-example {
-    display: flex;
-    flex-direction: column;
-  }
-
   input {
     padding: 0.5em;
     height: 2rem;
