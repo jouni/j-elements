@@ -7,6 +7,7 @@
     "Jouni Koivuviita <jouni@jouni.me>"
   ],
   "description": "Researching and prototyping web components",
+  "main": "index.js",
   "keywords": [
     "web-components"
   ],
