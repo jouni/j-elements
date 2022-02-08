@@ -1,15 +1,8 @@
 import { DefineElementMixin } from '../util/DefineElementMixin.js';
 
 const styles = `
-/*
- Alternative way of positioning the prefix and suffix elements
- No need to set the padding on the input element, or the height of the slots, but makes the host
- "vulnerable" to global styling.
-*/
-/*
   :host {
-    display: grid;
-    width: max-content;
+    display: inline-grid;
   }
 
   slot[name],
@@ -23,22 +16,11 @@ const styles = `
     z-index: 1;
     align-self: center;
     width: max-content;
+    pointer-events: none;
   }
 
   slot[name=suffix] {
     margin-inline-start: auto;
-  }
-*/
-
-  :host {
-    display: contents;
-  }
-
-  slot[name] {
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    pointer-events: none;
   }
 
   slot[name]::slotted(:is(button, a, select, input)) {
@@ -57,6 +39,7 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
         <slot name="suffix"></slot>
       `;
     }
+
     if (!this.__mutationObserver) {
       this.__mutationObserver = new MutationObserver(this._onMutation.bind(this));
     }
@@ -74,19 +57,10 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
     const prefix = this.shadowRoot.querySelector('slot[name="prefix"]');
     const suffix = this.shadowRoot.querySelector('slot[name="suffix"]');
     const input = this.querySelector('input');
-    // input.style.paddingInlineStart = input.style.paddingInlineEnd = '';
 
     const prefixRect = prefix.getBoundingClientRect();
     const suffixRect = suffix.getBoundingClientRect();
-    const inputRect = input.getBoundingClientRect();
-    // const inputComputedStyle = window.getComputedStyle(input);
-    // const inputPaddingInlineStart = parseInt(inputComputedStyle.getPropertyValue('padding-inline-start'));
-    // const inputPaddingInlineEnd = parseInt(inputComputedStyle.getPropertyValue('padding-inline-end'));
-    input.style.paddingInlineStart = prefixRect.width + 'px';
-    input.style.paddingInlineEnd = suffixRect.width + 'px';
-
-    prefix.style.height = suffix.style.height = inputRect.height + 'px';
-    suffix.style.marginInlineStart = -suffixRect.width + 'px';
+    input.style.paddingInline = `${prefixRect.width}px ${suffixRect.width}px`;
   }
 }
 
