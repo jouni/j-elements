@@ -80,4 +80,4 @@ export class Tooltip extends Portal(DefineElementMixin(HTMLElement)) {
   }
 }
 
-Tooltip.asCustomElement();
+Tooltip.defineElement();

@@ -1,5 +1,5 @@
 export const DefineElementMixin = superClass => class DefineElement extends superClass {
-  static asCustomElement() {
+  static defineElement() {
     const prefixAndName = arguments[0] || {};
     const prefix = prefixAndName.prefix || 'j';
     const name = prefixAndName.name || this.prototype.constructor.name.split(/(?=[A-Z])/).join('-').toLowerCase();

@@ -56,4 +56,4 @@ export class Card extends Stylable(DefineElementMixin(HTMLElement)) {
   }
 }
 
-Card.asCustomElement();
+Card.defineElement();

@@ -74,4 +74,4 @@ export class Drawer extends LightStyleMixin(Portal(DefineElementMixin(HTMLElemen
   }
 }
 
-Drawer.asCustomElement();
+Drawer.defineElement();

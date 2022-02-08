@@ -80,4 +80,4 @@ export class Dialog extends LightStyleMixin(Portal(DefineElementMixin(HTMLElemen
   }
 }
 
-Dialog.asCustomElement();
+Dialog.defineElement();

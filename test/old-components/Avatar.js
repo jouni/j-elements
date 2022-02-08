@@ -142,4 +142,4 @@ export class Avatar extends Stylable(DefineElementMixin(HTMLElement)) {
 
 }
 
-Avatar.asCustomElement();
+Avatar.defineElement();

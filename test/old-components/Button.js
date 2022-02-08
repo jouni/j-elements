@@ -56,4 +56,4 @@ export class Button extends DefineElementMixin(NativeElementWrapper) {
   }
 }
 
-Button.asCustomElement();
+Button.defineElement();

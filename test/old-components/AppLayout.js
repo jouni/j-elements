@@ -24,4 +24,4 @@ export class AppLayout extends LightStyleMixin(DefineElementMixin(HTMLElement)) 
   }
 }
 
-AppLayout.asCustomElement();
+AppLayout.defineElement();

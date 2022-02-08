@@ -1,4 +1,40 @@
-input:not([type=range]),
+:where(input[type=checkbox], input[type=radio]) {
+  all: initial;
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  background: var(--contrast-20);
+  border-radius: 0.25em;
+  vertical-align: -0.25em;
+}
+
+:where(input[type="radio"]) {
+  border-radius: 50%;
+}
+
+:where(input[type=checkbox]:checked, input[type=radio]:checked) {
+  background: var(--primary-60);
+}
+
+:where(input:not([type=checkbox], [type=radio]), textarea, select) {
+  all: initial;
+  display: flex;
+  background-color: var(--contrast-10);
+  border: 0;
+  color: var(--text-color);
+  border-radius: 0.25em;
+  padding: 0.5em;
+  transition: background-color 100ms;
+  box-sizing: border-box;
+}
+
+:where(input:focus, select:focus, textarea:focus) {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary-60);
+}
+
+
+/* input:not([type=range]),
 textarea,
 j-input {
   background-color: var(--contrast-10);
@@ -48,4 +84,4 @@ j-input > [slot] {
 
 j-input[invalid] {
   box-shadow: inset 0 0 0 2px red;
-}
+} */

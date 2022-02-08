@@ -55,4 +55,4 @@ export class Placeholder extends DefineElementMixin(HTMLElement) {
 
 }
 
-Placeholder.asCustomElement();
+Placeholder.defineElement();

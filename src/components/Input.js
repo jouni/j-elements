@@ -224,4 +224,4 @@ export class Input extends DefineElementMixin(NativeInputElementWrapper) {
   }
 }
 
-Input.asCustomElement();
+Input.defineElement();

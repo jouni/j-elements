@@ -1,10 +1,10 @@
 ---
-title: Color palette
+title: Color
 layout: page
 maturity: Proof of concept
 eleventyNavigation:
-  key: Color palette
-  parent: Foundation
+  key: Color
+  parent: Theme
 permalink: /color/
 ---
 

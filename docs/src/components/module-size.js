@@ -10,7 +10,7 @@ class ModuleSize extends HTMLElement {
     let modules = this.getAttribute('modules');
 
     if (modules) {
-      modules = modules.split(',');
+      modules = modules.split(' ');
     }
 
     const sizes = calcSize(this._json, modules);
@@ -24,7 +24,10 @@ class ModuleSize extends HTMLElement {
         <details>
           <summary>${modules.length} requests, ${fullSize}</summary>
           <dl>
-            ${modules.map(module => `<dt>${module}</dt><dd>${(this._json.find(item => item.path == module).size / 1024).toFixed(2)} KB (${(this._json.find(item => item.path == module).compressed / 1024).toFixed(2)} KB compressed)</dd>`).join('')}
+            ${modules.map(module => {
+              const mod = this._json.find(item => item.path == module);
+              return `<dt>${module}</dt><dd>${(mod?.size / 1024).toFixed(2)} KB (${(mod?.compressed / 1024).toFixed(2)} KB compressed)</dd>`
+            }).join('')}
           </dl>
         </details>
       `;

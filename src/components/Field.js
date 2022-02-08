@@ -1,175 +1,48 @@
-import {DefineElementMixin} from '../util/DefineElementMixin.js';
-import {LightStyleMixin} from '../util/LightStyleMixin.js';
-import {css} from '../util/css.js';
+import { DefineElementMixin } from '../util/DefineElementMixin.js';
 
 let fieldId = 0;
 
 /**
- * Adds label and validation features to an element.
+ * Adds label and validation features to an input element.
  *
- * The element applies the `required` attribute to itself if any of the contained elements have that
- * attribute.
+ * Applies the `required` attribute to itself if any of the contained elements have that attribute.
  *
- * The element sets the `invalid` attribute on itself if any of the contained elements fails the
- * checkValidity test.
+ * Sets the `invalid` attribute on itself and shows a validation message if the contained input
+ * element fails the checkValidity test.
  */
-export class Field extends LightStyleMixin(DefineElementMixin(HTMLElement)) {
-  static get styles() {
-    return css`
-      :host {
-        display: flex;
-        flex-direction: column;
-        --j-field-required-indicator: "(Required)";
-        --j-field-optional-indicator: "(Optional)";
-      }
-
-      :host([required]) ::slotted([label])::after {
-        content: " " var(--j-field-required-indicator);
-      }
-
-      :host(:not([required])) ::slotted([label])::after {
-        content: " " var(--j-field-optional-indicator);
-      }
-    `;
-  }
-
+export class Field extends DefineElementMixin(HTMLElement) {
   constructor() {
     super();
-
-    // TODO move to connectedCallback and use the standard ID property/attribute instead
-    this._id = `__${ this.nodeName.toLowerCase() }-${ fieldId++ }__`;
-
-    this.__boundFocusInListener = this._onFocusIn.bind(this);
-    this.__boundFocusOutListener = this._onFocusOut.bind(this);
-    this.__boundInputListener = this._onInput.bind(this);
-    this.__boundMutationListener = this.__mutations.bind(this);
+    this.__id = `${this.localName}-${fieldId++}__`;
   }
 
   connectedCallback() {
-    super.connectedCallback();
-
-    this.addEventListener('focusin', this.__boundFocusInListener);
-    this.addEventListener('focusout', this.__boundFocusOutListener);
-    this.addEventListener('change', this._checkValidity);
-    this.addEventListener('input', this.__boundInputListener);
-    this.addEventListener('click', this._onClick);
+    this.addEventListener('focusout', this._onFocusOut);
+    this.addEventListener('change', this._onChange);
+    this.addEventListener('input', this._onInput);
 
     if (!this.__mutationObserver) {
-      this.__mutationObserver = new MutationObserver(this.__boundMutationListener);
+      this.__mutationObserver = new MutationObserver(this._onMutation.bind(this));
     }
 
-    this.__mutationObserver.observe(this, {childList: true});
+    this.__mutationObserver.observe(this, { childList: true, attributes: true, subtree: true });
 
-    this.__mutations();
+    this._onMutation();
   }
 
   disconnectedCallback() {
-    this.removeEventListener('focusin', this.__boundFocusInListener);
-    this.removeEventListener('focusout', this.__boundFocusOutListener);
-    this.removeEventListener('change', this._checkValidity);
-    this.removeEventListener('input', this.__boundInputListener);
-    this.removeEventListener('click', this._onClick);
+    this.removeEventListener('focusout', this._onFocusOut);
+    this.removeEventListener('change', this._onChange);
+    this.removeEventListener('input', this._onInput);
     this.__mutationObserver.disconnect();
   }
 
-  __mutations() {
-    const labelElement = this.querySelector('[label], label');
-    if (labelElement) {
-      labelElement.setAttribute('id', this._id + 'label');
-      labelElement.setAttribute('label', '');
-    }
-
-    const inputElements = this._queryInputElements();
-    if (inputElements.length > 0 && labelElement) {
-      // TODO should preserve existing values
-      inputElements[0].setAttribute('aria-labelledby', this._id + 'label');
-    }
-
-    // Native radio buttons need to have the same name. Add a generated one if not specified already.
-    this.removeAttribute('role');
-    // TODO This should probably be a separate helper element, that can group together either checkboxes or radio buttons and gets/sets the group’s value
-    Array.from(this.querySelectorAll('input[type=radio]')).forEach(radio => {
-      // Set a radiogroup role if the field contains radio buttons and let the group be labelled by the field labelElement
-      this.setAttribute('role', 'radiogroup');
-      // TODO should preserve existing values
-      this.setAttribute('aria-labelledby', this._id);
-
-      // Remove extra labelled by from the radio buttons, expect them to have their own labels defined by the developer
-      radio.removeAttribute('aria-labelledby');
-      if (!radio.hasAttribute('name')) {
-        radio.setAttribute('name', this._id);
-      }
-    });
-
-    // If input is required, add the attribute to the host
-    const isRequired = this.querySelector('[required]');
-    if (isRequired) {
-      this.setAttribute('required', '');
-    } else {
-      this.removeAttribute('required');
-    }
-  }
-
-  _checkValidity() {
-    let valid = true;
-    let validationMessage = '';
-    const inputElements = this._queryInputElements();
-
-    inputElements.forEach(input => {
-      if (input.checkValidity && !input.checkValidity()) {
-        valid = false;
-        validationMessage += input.getAttribute('error-message') || input.validationMessage;
-      }
-    });
-
-    if (!this._validationMessage) {
-      this._validationMessage = document.createElement('p');
-      this._validationMessage.setAttribute('validation-message', '');
-      this._validationMessage.setAttribute('aria-live', 'polite');
-      this._validationMessage.id = this._id + 'description';
-    }
-
-    this._validationMessage.innerHTML = validationMessage;
-
-    if (valid) {
-      this.removeAttribute('invalid');
-      if (this._validationMessage.parentNode) {
-        this.removeChild(this._validationMessage);
-        // TODO should make sure to only remove the one entry by j-field
-        inputElements[0].setAttribute('aria-describedby', '');
-      }
-    } else {
-      this.setAttribute('invalid', '');
-      this.appendChild(this._validationMessage);
-      // TODO should make sure to preserve existing values
-      inputElements[0].setAttribute('aria-describedby', this._id + 'description');
-    }
-  }
-
-  _onClick(e) {
-    let target = e.target || e.path[0];
-
-    do {
-      // Only consider clicks on the label element
-      if (target.id == this._id + 'label') {
-        const inputElements = this._queryInputElements();
-        if (inputElements[0]) {
-          inputElements[0].focus();
-        }
-        return;
-      }
-
-      target = target.parentNode;
-    } while (target.parentNode);
-  }
-
-  _onFocusIn(e) {
-    this.setAttribute('focus', '');
-  }
-
   _onFocusOut(e) {
-    this._checkValidity();
-    this.removeAttribute('focus');
+    requestAnimationFrame(this._checkValidity.bind(this));
+  }
+
+  _onChange(e) {
+    this._checkValidity(e);
   }
 
   _onInput(e) {
@@ -183,17 +56,124 @@ export class Field extends LightStyleMixin(DefineElementMixin(HTMLElement)) {
     }
   }
 
-  _queryInputElements() {
-    if (!this.__inputElements){
-      this.__inputElements = [];
-      this.__inputElements = this.__inputElements.concat(Array.from(this.querySelectorAll('input, textarea, select')));
-      // 3. Try to find an element with a tabindex (assume a custom input element will have tabindex=0 so it is focusable)
-      this.__inputElements = this.__inputElements.concat(Array.from(this.querySelectorAll('[tabindex="0"]')));
-      // 4. Find any slotted element as a fallback (not label or error-message slot)
-      this.__inputElements = this.__inputElements.concat(Array.from(this.querySelectorAll(`:not(input):not(textarea):not(select):not(label):not(.j-field__validation-message)`)));
+  _onMutation(e) {
+    if (!this.__processingMutations) {
+      clearTimeout(this.__mutationsDebounce);
+      this.__mutationsDebounce = setTimeout(() => {
+        this.__processingMutations = true;
+        this._updateState();
+        requestAnimationFrame(() => this.__processingMutations = false);
+      }, 1);
     }
-    return this.__inputElements;
+  }
+
+  _updateState() {
+    const labelElement = this.querySelector('label');
+
+    if (this._isGroup()) {
+      if (labelElement && labelElement.closest(`${this.localName}`) == this) {
+        labelElement.id = this.__id + 'label';
+        this.setAttribute('aria-labelledby', labelElement.id);
+      }
+    } else {
+      const inputElement = this.querySelector('input, textarea, select');
+      if (inputElement) {
+        let type = inputElement.getAttribute('type');
+        if (inputElement.localName == 'select') {
+          type = 'select';
+        }
+        this.setAttribute('type', type);
+
+        if (!inputElement.id) {
+          inputElement.id = this.__id + 'input';
+        }
+
+        labelElement?.setAttribute('for', inputElement.id);
+
+        // if (!this._isInGroup()) {
+        //   // TODO the public API is hard to decide (should it be class names, should it be attributes, should it be slots?)
+        //   const descriptions = [...this.querySelectorAll('[validation-message], [description]')];
+        //   descriptions.forEach((desc, i) => {
+        //     desc.id = this.__id + 'description-' + i;
+        //   });
+        //   inputElement.setAttribute('aria-describedby', descriptions.reduce((acc, desc) => acc + ' ' + desc.id, ''));
+        // }
+      }
+    }
+
+    if (this._isGroup() || !this._isInGroup()) {
+      const inputElements = [...this.querySelectorAll('input, textarea, select')];
+      const descriptions = [...this.querySelectorAll('[validation-message], [description]')];
+      inputElements.forEach(inputElement=> {
+        // TODO the public API is hard to decide (should it be class names, should it be attributes, should it be slots?)
+        descriptions.forEach((desc, i) => {
+          desc.id = this.__id + 'description-' + i;
+        });
+        inputElement.setAttribute('aria-describedby', descriptions.reduce((acc, desc) => acc + ' ' + desc.id, ''));
+      });
+
+      let requiredIndicatorElement = labelElement?.querySelector('[required-indicator]') || document.createElement('span');
+      if (this.querySelector(':required')) {
+        requiredIndicatorElement.setAttribute('required-indicator', '');
+        requiredIndicatorElement.setAttribute('aria-hidden', 'true');
+        labelElement.appendChild(requiredIndicatorElement);
+      } else if (labelElement && requiredIndicatorElement.parentNode == labelElement) {
+        labelElement.removeChild(requiredIndicatorElement);
+      }
+    }
+
+  }
+
+  _checkValidity(e) {
+    let invalid = false;
+    let validationMessages = [];
+    const inputElements = [...this.querySelectorAll('input, textarea, select')];
+
+    inputElements.forEach(inputElement => {
+      if (inputElement && inputElement.validity) {
+        // Clear custom validity, because that makes validity always report false
+        inputElement.setCustomValidity('');
+
+        invalid = !inputElement.validity.valid;
+
+        if (invalid && this.hasAttribute('validation-message')) {
+          inputElement.setCustomValidity(this.getAttribute('validation-message'));
+        }
+
+        // Don't add the same validation message twice
+        if (!validationMessages.includes(inputElement.validationMessage)) {
+          validationMessages.push(inputElement.validationMessage);
+        }
+      }
+    });
+
+    if (this._isGroup() || !this._isInGroup()) {
+      const validationMessageElement = this.querySelector(':scope > [validation-message]') || document.createElement('p');
+      if (this.querySelector(':invalid')) {
+        validationMessageElement.setAttribute('validation-message', '');
+        validationMessageElement.setAttribute('aria-live', 'assertive');
+        validationMessageElement.textContent = validationMessages.join('. ');
+        this.appendChild(validationMessageElement);
+      } else if (validationMessageElement.parentNode == this) {
+        this.removeChild(validationMessageElement);
+      }
+    }
+  }
+
+  _isGroup() {
+    return this.getAttribute('role')?.includes('group');
+  }
+
+  _isInGroup() {
+    return this.parentNode.closest('[role*="group"]') != null;
+  }
+
+  setAttribute(name, val) {
+    // Avoid unnecessary mutation events
+    if (this.getAttribute(name) != val) {
+      super.setAttribute(name, val);
+    }
   }
 }
 
-Field.asCustomElement();
+Field.defineElement();

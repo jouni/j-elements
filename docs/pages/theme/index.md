@@ -1,7 +1,7 @@
 ---
-title: Foundation
+title: Theme
 layout: page
 eleventyNavigation:
-  key: Foundation
+  key: Theme
   order: 30
 ---

@@ -1,24 +1,22 @@
-j-field:not(:first-child) {
-  margin-top: 1.5em;
+:where(j-field, j-field-group),
+:where(j-field:not([type=radio]):not([type=checkbox]) label) {
+  display: block;
 }
 
-j-field:not(:last-child) {
-  margin-bottom: 0.5em;
+:where(j-field, j-field-group) :where([description], [validation-message]) {
+  font-size: 0.875em;
 }
 
-j-field > [label] {
-  font-size: var(--font-size-s);
-  font-weight: 500;
-  margin-bottom: 0.3em;
+:where(j-field, j-field-group) :where([validation-message]) {
+  color: var(--color-error);
 }
 
-j-field > [label]::after {
-  color: var(--secondary-text-color);
-  font-weight: 400;
+[required-indicator]::before {
+  content: var(--content-required, "*");
+  color: var(--color-low);
+  padding: 0 0.25em;
 }
 
-j-field > [validation-message] {
-  font-size: var(--font-size-xs);
-  color: var(--secondary-text-color);
-  margin: 0;
+j-field-group j-field {
+  --content-required: "";
 }

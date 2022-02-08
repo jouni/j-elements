@@ -160,4 +160,4 @@ export class View extends Stylable(DefineElementMixin(HTMLElement)) {
   }
 }
 
-View.asCustomElement();
+View.defineElement();

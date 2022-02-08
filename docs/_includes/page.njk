@@ -24,7 +24,16 @@ title: JElements
 
     <script type="module">
       const imports = `{{ imports }}`.split(/\s/g).map(str => str.trim()).filter(s => s);
-      imports.forEach(url => import(url));
+      imports.forEach(url => {
+        if (url.endsWith('.js')) {
+          import(url);
+        } else if (url.endsWith('.css')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = url;
+          document.head.appendChild(link);
+        }
+      });
 
       // Needed for examples
 
@@ -57,6 +66,7 @@ title: JElements
         <main>
           <h1>{{ title }}</h1>
           <table-of-contents></table-of-contents>
+          <module-size modules="{{ imports }}"></module-size>
           {{ content | safe }}
           <hr>
           <footer>

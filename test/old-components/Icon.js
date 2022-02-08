@@ -69,4 +69,4 @@ export class Icon extends DefineElementMixin(HTMLElement) {
   }
 }
 
-Icon.asCustomElement();
+Icon.defineElement();

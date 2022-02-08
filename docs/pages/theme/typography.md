@@ -4,6 +4,6 @@ layout: page
 maturity: Proof of concept
 eleventyNavigation:
   key: Typography
-  parent: Foundation
+  parent: Theme
 permalink: /typography/
 ---
