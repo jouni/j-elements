@@ -74,10 +74,3 @@ a:hover,
 a:focus {
   text-decoration: underline;
 }
-
-hr {
-  border: 0;
-  height: 1px;
-  background-color: var(--contrast-10);
-  margin: 3rem 0;
-}

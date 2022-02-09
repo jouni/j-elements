@@ -30,7 +30,7 @@ import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
   }
 
   [slot] {
-    margin: 0.5em;
+    margin: 0.5rem;
   }
 </style>
 ```

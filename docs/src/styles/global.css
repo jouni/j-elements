@@ -1,113 +1,49 @@
-@import './card.css';
-@import './drawer.css';
-
 body {
-  display: flex;
-  max-width: 100%;
   margin: 0;
-}
-
-main {
-  flex: auto;
-  min-width: 0;
-  max-width: 55rem;
-  margin: 5rem auto;
+  background: #fff;
 }
 
 table-of-contents + p {
-  font-size: var(--font-size-xl);
+  font-size: 1.25rem;
 }
 
-j-drawer {
-  padding: var(--space-l) var(--space-m);
-  padding-bottom: calc(var(--space-xxl) * 2);
-  width: calc(var(--font-size-s) * 18);
-  max-width: 100%;
-  font-size: var(--font-size-s);
-  background-color: var(--surface);
+.main-nav h1 {
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
 }
 
-j-drawer h1 {
-  font-size: var(--font-size-xl);
-  margin-left: var(--space-s);
-}
-
-j-drawer ul {
+.main-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-j-drawer ul a {
-  color: var(--secondary-text-color);
-  padding: var(--space-xs) var(--space-s);
+.main-nav ul a {
+  color: #666;
+  padding: 0.25rem 0.5rem;
   display: block;
   border-radius: 0.5em;
 }
 
-j-drawer nav .active a {
-  background-color: var(--background);
+.main-nav nav .active a {
+  background-color: #f1f1f1;
 }
 
-j-drawer ul a:hover,
-j-drawer ul a:focus {
-  color: var(--heading-text-color);
+.main-nav ul a:hover,
+.main-nav ul a:focus {
+  color: #111;
   text-decoration: none;
 }
 
-j-drawer .has-children {
-  margin-top: var(--space-xl);
-  color: var(--heading-text-color);
+.main-nav .has-children {
+  margin-top: 1.5rem;
+  color: #111;
 }
 
-j-drawer .has-children > a {
+.main-nav .has-children > a {
   font-weight: 500;
-  color: var(--heading-text-color);
+  color: #111;
   font-weight: 500;
-}
-
-j-view {
-  display: block;
-  --j-view-header-height: 64px;
-  --view-max-width: 70rem;
-  --view-min-width: 10rem;
-  --view-margin: 0 auto;
-  --view-padding: 0 var(--space-xxl);
-}
-
-@media j-view {
-  header {
-    padding: 0;
-  }
-
-  slot[name="header"] span {
-    display: block;
-    max-width: var(--view-max-width);
-    min-width: var(--view-min-width);
-    margin: var(--view-margin);
-    padding: var(--view-padding);
-  }
-
-  slot[name="header"] span {
-    margin-top: 0.5em;
-  }
-
-  slot[name="header"] span::after {
-    content: "";
-    display: block;
-    height: 2px;
-    background-color: currentColor;
-    width: 2em;
-    margin-top: 0.5em;
-  }
-}
-
-j-view main {
-  max-width: var(--view-max-width);
-  min-width: var(--view-min-width);
-  margin: var(--view-margin);
-  padding: var(--view-padding);
-  padding-bottom: var(--space-xxl);
 }
 
 main h1::after {
@@ -122,7 +58,7 @@ main h1::after {
 
 table-of-contents {
   display: block;
-  font-size: var(--font-size-xs);
+  font-size: 0.8125rem;
   margin-bottom: 6em;
 }
 
@@ -131,8 +67,11 @@ main > footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-size-xs);
-  color: var(--tertiary-text-color);
+  font-size: 0.8125rem;
+  color: #888;
+  border-top: 1px solid #ddd;
+  margin-top: 5rem;
+  padding-top: 2rem;
 }
 
 @media (min-width: 70rem) {
@@ -140,28 +79,28 @@ main > footer {
     float: right;
     position: -webkit-sticky;
     position: sticky;
-    top: calc(var(--j-view-header-height, 0) + 2em);
+    top: 2em;
     box-sizing: border-box;
     overflow: auto;
     align-self: flex-start;
     width: 13rem;
   }
 
-  main > :not(table-of-contents):not(hr) {
+  main > :not(table-of-contents) {
     margin-right: 17rem !important;
   }
 }
 
 table-of-contents h6 {
-  font-size: var(--font-size-xxs);
-  color: var(--secondary-text-color);
+  font-size: 0.75rem;
+  color: #666;
 }
 
 table-of-contents > ol {
   list-style: none;
   margin: 1em 0 2em;
   padding-left: 1.5em;
-  border-left: 2px solid var(--contrast-100);
+  border-left: 2px solid #ddd;
 }
 
 table-of-contents > ol ol {
@@ -175,11 +114,11 @@ table-of-contents li {
 }
 
 table-of-contents a {
-  color: var(--tertiary-text-color);
+  color: #888;
 }
 
 table-of-contents a:hover {
-  color: var(--body-text-color);
+  color: #222;
 }
 
 .github-link {
@@ -191,30 +130,15 @@ table-of-contents a:hover {
 
 .github-link:hover,
 .github-link:focus {
-  color: var(--primary-100);
-}
-
-.github-link j-icon {
-  vertical-align: top;
-  --viewbox: 0 0 16 16;
-  --svg: <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />;
-}
-
-main > footer {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--font-size-xs);
-  color: var(--tertiary-text-color);
+  color: rgb(0,65,232);
 }
 
 blockquote {
-  border-left: 3px solid var(--primary-100);
-  background-color: var(--primary-10);
-  margin: var(--space-l) 0;
-  padding: var(--space-xs) var(--space-l) 0.1em;
-  font-size: var(--font-size-s);
+  border-left: 3px solid rgb(0,65,232);
+  background-color: rgb(241,245,255);
+  margin: 1.5rem 0;
+  padding: 0.25rem 1.5rem 0.1em;
+  font-size: 0.875rem;
 }
 
 blockquote h6:first-child {
@@ -222,23 +146,23 @@ blockquote h6:first-child {
 }
 
 pre[class*="language"] {
-  font-size: var(--font-size-s);
+  font-size: 0.875rem;
 }
 
 code:not([class*="language"]) {
-  font-family: var(--font-family-monospace);
+  font-family: monospace;
   padding: 0.1em 0.3em;
   border-radius: 0.25em;
-  border: 1px solid var(--contrast-5);
-  background-color: var(--contrast-5);
-  font-size: var(--font-size-xs);
+  border: 1px solid #eee;
+  background-color: #eee;
+  font-size: 0.8125rem;
 }
 
 render-example {
   display: block;
   border-radius: 0.25em;
-  border: 1px solid var(--contrast-10);
-  background-color: var(--surface);
+  border: 1px solid #ddd;
+  background-color: #fff;
   overflow: hidden;
 }
 
@@ -289,11 +213,11 @@ main p:first-child maturity-badge {
 maturity-badge a {
   color: inherit;
   text-decoration: none !important;
-  font-size: var(--font-size-xs);
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0;
-  background-color: var(--contrast-100);
-  color: var(--background);
+  background-color: #ddd;
+  color: #fff;
   display: inline-block;
   padding: 0.1em 0.4em;
   border-radius: 0.25em;
@@ -311,21 +235,86 @@ maturity-badge a {
 
 @keyframes flash {
   30% {
-    background-color: var(--primary-30);
+    background-color: rgb(168,193,255);
   }
 }
 
 h2, h3 {
-  -webkit-scroll-margin-top: calc(var(--j-view-header-height) + 1em);
-  scroll-margin-top: calc(var(--j-view-header-height) + 1em);
+  -webkit-scroll-margin-top: 1em;
+  scroll-margin-top: 1em;
 }
 
 module-size details {
-  min-height: calc(var(--line-height-m) * 1em);
+  min-height: 1.5em);
   display: block;
 }
 
 div:not(.about) module-size {
-  font-size: var(--font-size-s);
-  color: var(--tertiary-text-color);
+  font-size: 0.875rem;
+  color: #888;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #ddd;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.main-nav details {
+  display: none;
+  margin-left: 0.5rem;
+}
+
+.main-nav {
+  float: left;
+  height: 100vh;
+  overflow: auto;
+  padding: 1.5rem 1rem;
+  width: 15rem;
+  max-width: 100%;
+  font-size: 0.875rem;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+}
+
+main {
+  max-width: 65rem;
+  padding: 5rem 2rem;
+  margin: 0 auto;
+  margin-left: 15rem;
+  box-sizing: border-box;
+}
+
+.main-nav nav {
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 50rem) {
+  .main-nav h1 {
+    display: inline-block;
+  }
+
+  .main-nav details {
+    display: block;
+    float: right;
+  }
+
+  .main-nav {
+    float: none;
+    width: auto;
+    position: static;
+    height: auto;
+  }
+
+  .main-nav details:not([open]) + nav {
+    display: none;
+  }
+
+  main {
+    margin-left: auto;
+  }
 }

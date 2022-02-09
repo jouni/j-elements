@@ -9,18 +9,16 @@ title: JElements
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} | JElements</title>
     <link rel="stylesheet" href="{{ '/docs/src/styles/global.css' | url }}">
-    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}">
+    {# <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)"> #}
 
-    <link rel="stylesheet" href="{{ '/src/theme/color.css' | url }}">
+    {# <link rel="stylesheet" href="{{ '/src/theme/color.css' | url }}"> #}
     <link rel="stylesheet" href="{{ '/src/theme/typography.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/space.css' | url }}">
 
     <script type="module" src="{{ '/docs/src/components/module-size.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/table-of-contents.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/render-example.js' | url }}"></script>
-    <script type="module" src="{{ '/docs/src/components/Drawer.js' | url }}"></script>
-    <script type="module" src="{{ '/docs/src/components/View.js' | url }}"></script>
 
     <script type="module">
       const imports = `{{ imports }}`.split(/\s/g).map(str => str.trim()).filter(s => s);
@@ -56,28 +54,26 @@ title: JElements
     </script>
   </head>
   <body>
-    <j-drawer>
+    <header class="main-nav">
       <h1>JElements</h1>
+      <details><summary>Menu</summary></details>
       <nav>
         {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({activeKey: eleventyNavigation.key, activeListItemClass: "active", listItemHasChildrenClass: "has-children"}) | safe }}
       </nav>
-    </j-drawer>
-      <j-view>
-        <main>
-          <h1>{{ title }}</h1>
-          <table-of-contents></table-of-contents>
-          {% if imports %}
-          <module-size modules="{{ imports }}"></module-size>
-          {% endif %}
-          {{ content | safe }}
-          <hr>
-          <footer>
-            <p>Everything licensed under Apache 2.0</p>
-            <a href="https://github.com/jouni/j-elements" title="View on GitHub" class="github-link">
-              <j-icon class="github-icon"></j-icon> View on GitHub
-            </a>
-          </footer>
-        </main>
-      </j-view>
+    </header>
+      <main>
+        <h1>{{ title }}</h1>
+        <table-of-contents></table-of-contents>
+        {% if imports %}
+        <module-size modules="{{ imports }}"></module-size>
+        {% endif %}
+        {{ content | safe }}
+        <footer>
+          <p>Everything licensed under Apache 2.0</p>
+          <a href="https://github.com/jouni/j-elements" title="View on GitHub" class="github-link">
+            View on GitHub
+          </a>
+        </footer>
+      </main>
   </body>
 </html>

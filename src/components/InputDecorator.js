@@ -12,8 +12,9 @@ const styles = `
   }
 
   slot[name] {
-    display: block;
     z-index: 1;
+    display: flex;
+    align-items: center;
     align-self: center;
     width: max-content;
     pointer-events: none;
@@ -21,6 +22,7 @@ const styles = `
 
   slot[name=suffix] {
     margin-inline-start: auto;
+    flex-direction: row-reverse;
   }
 
   slot[name]::slotted(:is(button, a, select, input)) {
