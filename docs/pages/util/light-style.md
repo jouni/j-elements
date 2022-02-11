@@ -5,12 +5,12 @@ eleventyNavigation:
   key: Light style
   parent: Utilities
 permalink: /light-style/
+imports: /src/util/LightStyleMixin.js
 ---
 
-```javascript
+```js
 import {LightStyleMixin} from 'j-elements/src/util/LightStyleMixin.js';
 ```
-<module-size modules="util/LightStyleMixin.js"></module-size>
 
 ## Problem
 
@@ -23,25 +23,24 @@ But how do you package the built-in styling for those custom elements? The `Ligh
 Provide a lightweight mechanism to add styles to a custom element which dynamically injects them into the same scope as the element is used in.
 
 ## Example
-
-```javascript
-import {LightStyleMixin} from 'j-elements';
-
-class StyledElement extends LightStyleMixin(HTMLElement) {
-  static get styles() {
-    return `
-      :host {
-        color: red;
-        font-weight: bold;
-      }
-    `;
-  }
-}
-
-window.customElements.define('styled-element', StyledElement);
-```
-
 <render-example></render-example>
 ```html
+<script type="module">
+  import { LightStyleMixin } from '/src/util/LightStyleMixin.js';
+
+  class StyledElement extends LightStyleMixin(HTMLElement) {
+    static get styles() {
+      return `
+        :host {
+          color: red;
+          font-weight: bold;
+        }
+      `;
+    }
+  }
+
+window.customElements.define('styled-element', StyledElement);
+</script>
+
 <styled-element>Red and bold</styled-element>
 ```

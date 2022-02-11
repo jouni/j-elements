@@ -9,12 +9,14 @@ title: JElements
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} | JElements</title>
     <link rel="stylesheet" href="{{ '/docs/src/styles/global.css' | url }}">
-    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}">
-    {# <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)"> #}
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)">
 
-    {# <link rel="stylesheet" href="{{ '/src/theme/color.css' | url }}"> #}
     <link rel="stylesheet" href="{{ '/src/theme/typography.css' | url }}">
-    <link rel="stylesheet" href="{{ '/src/theme/space.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/colors.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/palette.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/size.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/components.css' | url }}">
 
     <script type="module" src="{{ '/docs/src/components/module-size.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/table-of-contents.js' | url }}"></script>
@@ -39,18 +41,6 @@ title: JElements
       class MyList extends MutationAnimationMixin(HTMLElement) {}
       window.customElements.define('my-list', MyList);
 
-      import {LightStyleMixin} from '{{ '/src/util/LightStyleMixin.js' | url }}';
-      class StyledElement extends LightStyleMixin(HTMLElement) {
-        static get styles() {
-          return `
-            :host {
-              color: red;
-              font-weight: bold;
-            }
-          `;
-        }
-      }
-      window.customElements.define('styled-element', StyledElement);
     </script>
   </head>
   <body>

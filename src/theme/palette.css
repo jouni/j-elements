@@ -1,0 +1,89 @@
+html,
+:host,
+[theme~=light],
+:host([theme~=light]) {
+  color-scheme: light;
+
+  /* TODO choose one: low+high or weak+strong */
+
+  --background-lowest: var(--slate-100);
+  --background-low: var(--slate-50);
+  --background: #fff;
+  --background-high: #fff;
+  --background-highest: #fff;
+
+  --color-weakest: var(--slate-600);
+  --color-weak: var(--slate-700);
+  --color: var(--slate-800);
+  --color-strong: var(--slate-900);
+  --color-strongest: #000;
+
+  --border-color-weak: var(--slate-200);
+  --border-color: var(--slate-300);
+  --border-color-strong: var(--slate-400);
+
+  --accent-weakest: var(--sky-50);
+  --accent-weak: var(--sky-300);
+  --accent: var(--sky-500);
+  --accent-strong: var(--sky-700);
+  --accent-strongest: var(--sky-900);
+  --accent-contrast: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  :host {
+    color-scheme: dark;
+
+    --background-lowest: #000;
+    --background-low: var(--slate-900);
+    --background: var(--slate-800);
+    --background-high: var(--slate-700);
+    --background-highest: var(--slate-600);
+
+    --color-weakest: var(--slate-400);
+    --color-weak: var(--slate-300);
+    --color: var(--slate-100);
+    --color-strong: var(--slate-50);
+    --color-strongest: #fff;
+
+    --border-color-weak: var(--slate-700);
+    --border-color: var(--slate-600);
+    --border-color-strong: var(--slate-500);
+
+    --accent-weakest: var(--sky-900);
+    --accent-weak: var(--sky-700);
+    --accent: var(--sky-500);
+    --accent-strong: var(--sky-300);
+    --accent-strongest: var(--sky-100);
+    --accent-contrast: #fff;
+  }
+}
+
+[theme~=dark],
+:host([theme~=dark]) {
+  color-scheme: dark;
+
+  --background-lowest: #000;
+  --background-low: var(--slate-900);
+  --background: var(--slate-800);
+  --background-high: var(--slate-700);
+  --background-highest: var(--slate-600);
+
+  --color-weakest: var(--slate-400);
+  --color-weak: var(--slate-300);
+  --color: var(--slate-100);
+  --color-strong: var(--slate-50);
+  --color-strongest: #fff;
+
+  --border-color-weak: var(--slate-700);
+  --border-color: var(--slate-600);
+  --border-color-strong: var(--slate-500);
+
+  --accent-weakest: var(--sky-900);
+  --accent-weak: var(--sky-700);
+  --accent: var(--sky-500);
+  --accent-strong: var(--sky-300);
+  --accent-strongest: var(--sky-100);
+  --accent-contrast: #fff;
+}

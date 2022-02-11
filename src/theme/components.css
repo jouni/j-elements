@@ -1,18 +1,282 @@
-@import "components/app-layout.css";
-@import "components/avatar.css";
-@import "components/button.css";
-@import "components/card.css";
-@import "components/dialog.css";
-@import "components/drawer.css";
-@import "components/field.css";
-@import "components/input.css";
-@import "components/tooltip.css";
-
-/* TODO: where should this be defined */
-html {
+:where(html),
+:host {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: var(--font-smoothing, antialiased);
+  -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
   cursor: default;
 }
 
-:not(:defined) {
-  display: none;
+:where(body) {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+}
+
+/* Focus outline */
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-outline-offset, 2px) var(--background),
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent));
+}
+
+/* Safari */
+@supports not selector(:focus-visible) {
+  :focus {
+    outline: none;
+    box-shadow:
+      0 0 0 var(--focus-outline-offset, 2px) var(--background),
+      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent));
+  }
+}
+
+/* Link/Anchor */
+
+:where(a) {
+  color: var(--link-color, var(--accent));
+}
+
+:where(a:visited) {
+  color: var(--link-visited-color, var(--accent-strong));
+}
+
+/* Text Input, Text Area, Select */
+
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select) {
+  -webkit-appearance: none;
+  background: var(--textinput-background, var(--background-high));
+  border: var(--textinput-border, 1px solid var(--border-color));
+  border-radius: var(--textinput-border-radius, 0.375rem);
+  font: var(--textinput-font, var(--font-textinput, inherit));
+  color: var(--textinput-color, var(--color));
+  padding: var(--textinput-padding, var(--size-8, 0.5rem));
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:where(textarea) {
+  resize: vertical;
+}
+
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):focus {
+  --focus-outline-offset: -1px;
+  border: var(--textinput-focus-border, 1px solid var(--accent));
+}
+
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea)::placeholder {
+  color: var(--textinput-placeholder-color, var(--color-weakest));
+}
+
+:where(select) {
+  padding-inline-end: var(--select-padding-inline-end, var(--size-32, 2rem));
+  /* TODO SVG is copied from Tailwind UI / Hero icons */
+  /* TODO maybe use two different images for light and dark theme */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(255,255,255,.5)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(0,0,0,.75)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+  background-position: calc(100% - .5em) 50%;
+  background-blend-mode: hard-light;
+}
+
+/* Button */
+
+:where(button) {
+  -webkit-appearance: none;
+  background: var(--button-background, var(--background));
+  border: var(--button-border, 1px solid var(--border-color));
+  border-radius: var(--button-border-radius, 0.375rem);
+  color: var(--button-color, var(--color));
+  font: var(--button-font, var(--font-button, inherit));
+  padding: var(--button-padding, var(--size-8, 0.5rem) var(--size-12, 0.75rem));
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(button:not([disabled]):hover) {
+  background: var(--button-hover-background, var(--button-background, var(--background)));
+  border: var(--button-hover-border, var(--button-border, 1px solid var(--border)));
+}
+
+:where(button:not([disabled]):active) {
+}
+
+/* TODO this needs to be overridable with theme=light */
+@media (prefers-color-scheme: dark) {
+  :where(button) {
+    --button-hover-filter: brightness(90%);
+    --button-active-filter: brightness(80%);
+  }
+}
+
+[theme~=dark] :where(button) {
+  --button-hover-filter: brightness(90%);
+  --button-active-filter: brightness(80%);
+}
+
+:where(button[theme~=primary]) {
+  --button-background: var(--button-background-primary, var(--accent));
+  --button-color: var(--button-color-primary, var(--accent-contrast));
+  --button-border: var(--button-border-primary, 1px solid transparent);
+}
+
+:where(button[theme~=tertiary]) {
+  --button-background: var(--button-background-tertiary, transparent);
+  --button-color: var(--button-color-tertiary, var(--accent));
+  --button-border: var(--button-border-tertiary, 1px solid transparent);
+  --button-hover-filter: contrast(0.9) brightness(0.9);
+  --button-active-filter: contrast(0.9) brightness(0.8);
+}
+
+:where(button[theme~=small]) {
+  --button-font: var(--font-button-small);
+}
+
+:where(button[disabled]) {
+  --button-color: var(--button-color-disabled, var(--color-weakest))
+}
+
+:where(button[disabled]:not([theme~=tertiary])) {
+  --button-background: var(--button-background-disabled, var(--background-lowest));
+  --button-border: var(--button-border-disabled, 1px solid transparent);
+}
+
+/* Checkbox */
+
+:where(input[type=checkbox]) {
+  -webkit-appearance: none;
+  background: var(--checkbox-background, var(--background));
+  border: var(--checkbox-border, 2px solid var(--border-color));
+  color: var(--checkbox-color, var(--color));
+  width: var(--checkbox-size, 1rem);
+  height: var(--checkbox-size, 1rem);
+  font: inherit;
+  border-radius: var(--checkbox-border-radius, 0.25rem);
+  margin: 0;
+  vertical-align: middle;
+  flex: none;
+}
+
+:where(input[type=checkbox]:hover) {
+  background: var(--checkbox-hover-background, var(--background-low));
+  border: var(--checkbox-hover-border, var(--checkbox-border, 2px solid var(--border-color)));
+}
+
+:where(input[type=checkbox]:checked) {
+  background: var(--checkbox-checked-background, var(--accent));
+  border: var(--checkbox-checked-border, 0);
+  color: var(--checkbox-checked-color, var(--accent-contrast));
+}
+
+:where(input[type=checkbox]:checked)::before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  background-color: currentColor;
+  /* TODO this is copied from Tailwind UI */
+  --mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+}
+
+/* Radio Button */
+
+:where(input[type=radio]) {
+  -webkit-appearance: none;
+  background: var(--radiobutton-background, var(--background));
+  border: var(--radiobutton-border, 2px solid var(--border-color));
+  color: var(--radiobutton-color, var(--color));
+  width: var(--radiobutton-size, 1rem);
+  height: var(--radiobutton-size, 1rem);
+  font: inherit;
+  border-radius: 50%;
+  margin: 0;
+  vertical-align: middle;
+  flex: none;
+}
+
+:where(input[type=radio]:hover) {
+  background: var(--radiobutton-hover-background, var(--background-low));
+  border: var(--radiobutton-hover-border, var(--radiobutton-border, 2px solid var(--border-color)));
+  color: var(--radiobutton-hover-color, var(--color));
+}
+
+:where(input[type=radio]:checked) {
+  background: var(--radiobutton-checked-background, var(--accent));
+  border: var(--radiobutton-checked-border, 2px solid transparent);
+  color: var(--radiobutton-checked-color, var(--accent-contrast));
+}
+
+:where(input[type=radio]:checked)::before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  background-color: currentColor;
+  /* TODO this is copied from Tailwind UI */
+  --mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='4'/%3e%3c/svg%3e");
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+}
+
+/* Field & Field Group */
+
+j-field {
+  display: inline-block;
+}
+
+j-field-group,
+j-field-group j-field {
+  display: block;
+}
+
+:where(j-field, j-field-group) :where(label) {
+  display: block;
+}
+
+:where(j-field, j-field-group) :where(label) {
+  font: var(--font-label);
+  color: var(--color-weak);
+  margin-bottom: var(--size-6, 0.375rem);
+}
+
+:where(j-field:focus-within, j-field-group:focus-within) :where(label) {
+  color: var(--accent);
+}
+
+:where(j-field[type=radio], j-field[type=checkbox]) :where(label) {
+  display: initial;
+  font: inherit;
+  color: inherit;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+:where(j-field[type=radio], j-field[type=checkbox]) :where(input + label) {
+  margin-inline-start: var(--size-2, 0.125rem);
+}
+
+:where(j-field, j-field-group) :where([description], [validation-message]) {
+  font-size: var(--font-size-s, 0.875em);
+  color: var(--color-weak);
+  margin: var(--size-6, 0.375rem) 0;
+}
+
+[required-indicator]::before {
+  content: var(--content-required, "*");
+  color: var(--color-low);
+  padding: 0 0.25em;
+}
+
+j-field-group j-field {
+  --content-required: "";
 }

@@ -1,8 +1,0 @@
-html {
-  --light-background-hsl: 219, 15%, 97%;
-  --light-surface-hsl: 0, 0%, 100%;
-  --light-contrast-hsl: 219, 15%, 15%;
-  --light-primary-hsl: 219, 100%, 45%;
-  --light-primary-contrast-hsl: 0, 0%, 100%;
-  --light-primary-text-hsl: var(--light-primary-hsl);
-}

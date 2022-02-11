@@ -1,13 +1,13 @@
 ---
-title: Field & Field Group
+title: Form fields
 layout: page
 imports:
   /src/components/Field.js
   /src/components/FieldGroup.js
-  /src/theme/components/field.css
+  /src/theme/components.css
 permalink: /field/
 eleventyNavigation:
-  key: Field & Field Group
+  key: Form fields
   parent: Components
 ---
 
@@ -16,7 +16,7 @@ import { Field } from 'j-elements/src/components/Field.js';
 import { FieldGroup } from 'j-elements/src/components/FieldGroup.js';
 ```
 
-`<j-field>` allows you to add an accessible label and a validation message to an input element.
+`<j-field>` allows you to add an accessible label, a description, and a validation message to an input element.
 
 `<j-field-group>` allows you to group multiple checkbox or radio button fields together.
 
@@ -36,7 +36,7 @@ They handle accessibility for you automatically, including validation messages, 
 ```html
 <j-field>
   <label>Label</label>
-  <p description>Description.</p>
+  <p description>Description for the input</p>
   <input type="text" required minlength="3">
 </j-field>
 ```
@@ -68,13 +68,22 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field>
 ```
 
+## Text area
+<render-example></render-example>
+```html
+<j-field>
+  <label>Choose a date</label>
+  <textarea></textarea>
+</j-field>
+```
+
 ## Select
 <render-example></render-example>
 ```html
 <j-field>
   <label>Select an option</label>
   <select required>
-    <option></option>
+    <option value="" disabled>Choose one</option>
     <option>Option one</option>
     <option>Option two</option>
     <option>Option three</option>
@@ -91,7 +100,10 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field>
 ```
 
-## Checkbox group
+
+## Field group
+
+### Checkbox group
 <render-example></render-example>
 ```html
 <j-field-group>
@@ -112,7 +124,7 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field-group>
 ```
 
-## Radio group
+### Radio group
 <render-example></render-example>
 ```html
 <j-field-group>
@@ -130,4 +142,30 @@ They handle accessibility for you automatically, including validation messages, 
     <label>Option three</label>
   </j-field>
 </j-field-group>
+```
+
+
+## Aligning with other components
+
+### Text input and button
+<render-example></render-example>
+```html
+<j-field>
+  <label>Label</label>
+  <input type="text" required>
+  <button theme="primary">Button</button>
+</j-field>
+```
+
+### Text input and checkbox
+<render-example></render-example>
+```html
+<j-field>
+  <label>Label</label>
+  <input type="text">
+  <j-field>
+    <input type="checkbox">
+    <label>Checkbox</label>
+  </j-field>
+</j-field>
 ```

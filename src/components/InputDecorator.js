@@ -6,16 +6,14 @@ const styles = `
   }
 
   slot[name],
-  ::slotted(input) {
-    grid-column: 1;
-    grid-row: 1;
+  ::slotted(:is(input, textarea)) {
+    grid-area: 1/1;
   }
 
   slot[name] {
     z-index: 1;
     display: flex;
     align-items: center;
-    align-self: center;
     width: max-content;
     pointer-events: none;
   }
@@ -29,8 +27,15 @@ const styles = `
     pointer-events: auto;
   }
 
-  ::slotted(input) {
+  ::slotted(:is(input, textarea)) {
+    min-width: calc(var(--prefix-width, 0px) + var(--suffix-width, 0px) + 2em);
+  }
+
+  :host([style*=prefix-width]) ::slotted(:is(input, textarea)) {
     padding-inline-start: var(--prefix-width) !important;
+  }
+
+  :host([style*=suffix-width]) ::slotted(:is(input, textarea)) {
     padding-inline-end: var(--suffix-width) !important;
   }
 `;
@@ -63,12 +68,21 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
   _onMutation() {
     const prefix = this.shadowRoot.querySelector('slot[name="prefix"]');
     const suffix = this.shadowRoot.querySelector('slot[name="suffix"]');
-    const input = this.querySelector('input');
+    const input = this.querySelector('input, textarea');
 
     const prefixRect = prefix.getBoundingClientRect();
+    if (prefix.assignedElements().length > 0 && prefixRect.width > 0) {
+      this.style.setProperty('--prefix-width', `${prefixRect.width}px`);
+    } else {
+      this.style.removeProperty('--prefix-width');
+    }
+
     const suffixRect = suffix.getBoundingClientRect();
-    this.style.setProperty('--prefix-width', `${prefixRect.width}px`);
-    this.style.setProperty('--suffix-width', `${suffixRect.width}px`);
+    if (suffix.assignedElements().length > 0 && suffixRect.width > 0) {
+      this.style.setProperty('--suffix-width', `${suffixRect.width}px`);
+    } else {
+      this.style.removeProperty('--suffix-width');
+    }
   }
 }
 
