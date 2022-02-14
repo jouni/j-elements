@@ -44,18 +44,26 @@ input {
 <j-input-decorator>
   <span slot="prefix" class="icon-search"></span>
   <input type="text" value="Input value">
-  <button slot="suffix" theme="tertiary small">Button</button>
+  <button slot="suffix" theme="tertiary"><span class="icon-chevron-down"></span></button>
 </j-input-decorator>
 
 <j-input-decorator>
-  <span slot="prefix" class="icon-search"></span>
   <textarea>Text area value</textarea>
+  <span slot="prefix" class="icon-search"></span>
   <button slot="suffix" theme="tertiary small">Button</button>
 </j-input-decorator>
 
 <style>
   span[slot] {
     margin: 0 0.5rem;
+  }
+
+  textarea ~ [slot] {
+    align-self: start;
+  }
+
+  textarea ~ span[slot] {
+    margin-top: 0.75em;
   }
 </style>
 ```
@@ -73,8 +81,8 @@ The `autosize` attribute makes the contained input change its size based on the 
 </j-input-decorator>
 
 <j-input-decorator autosize>
-  <span slot="prefix" class="icon-search"></span>
   <textarea>Text area value</textarea>
+  <span slot="prefix" class="icon-search"></span>
 </j-input-decorator>
 ```
 

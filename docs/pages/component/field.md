@@ -4,6 +4,7 @@ layout: page
 imports:
   /src/components/Field.js
   /src/components/FieldGroup.js
+  /src/components/InputDecorator.js
   /src/theme/components.css
 permalink: /field/
 eleventyNavigation:
@@ -16,41 +17,50 @@ import { Field } from 'j-elements/src/components/Field.js';
 import { FieldGroup } from 'j-elements/src/components/FieldGroup.js';
 ```
 
-`<j-field>` allows you to add an accessible label, a description, and a validation message to an input element.
+## Problem
 
-`<j-field-group>` allows you to group multiple checkbox or radio button fields together.
+- I want to create accessible forms
+- I don't want to apply ARIA attributes manually
+- I usually don't want to worry about the naming of the fields
 
-They handle accessibility for you automatically, including validation messages, without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
+## Field labels, descriptions, and validation messages
 
-## Label
-<render-example></render-example>
-```html
-<j-field>
-  <label>Label</label>
-  <input type="text">
-</j-field>
-```
+Wrap any native input element and a label with `<j-field>`, and accessibility is handled for you automatically without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
 
-## Required validation
+## Label and description
 <render-example></render-example>
 ```html
 <j-field>
   <label>Label</label>
   <p description>Description for the input</p>
-  <input type="text" required minlength="3">
+  <input type="text">
 </j-field>
 ```
 
-## Pattern validation
+## Validation messages
+
+Validation messages are provided by the browsers by default, but you can provide a custom message as well. Again, no need to use `id` or `aria-describedby` attributes.
+
+### Required validation
 <render-example></render-example>
 ```html
 <j-field>
   <label>Label</label>
+  <input type="text" required minlength="3">
+</j-field>
+```
+
+### Pattern validation
+<render-example></render-example>
+```html
+<j-field>
+  <label>Label</label>
+  <div description>Only numbers are accepted</div>
   <input type="text" pattern="[0-9]+">
 </j-field>
 ```
 
-## Custom validation message
+### Custom validation message
 <render-example></render-example>
 ```html
 <j-field validation-message="You should really type something here.">
@@ -59,7 +69,11 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field>
 ```
 
-## Date input
+## Input types
+
+All native input types are supported without extra effort.
+
+### Date input
 <render-example></render-example>
 ```html
 <j-field>
@@ -68,7 +82,7 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field>
 ```
 
-## Text area
+### Text area
 <render-example></render-example>
 ```html
 <j-field>
@@ -77,7 +91,7 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field>
 ```
 
-## Select
+### Select
 <render-example></render-example>
 ```html
 <j-field>
@@ -91,7 +105,7 @@ They handle accessibility for you automatically, including validation messages, 
 </j-field>
 ```
 
-## Checkbox
+### Checkbox
 <render-example></render-example>
 ```html
 <j-field>
@@ -102,6 +116,8 @@ They handle accessibility for you automatically, including validation messages, 
 
 
 ## Field group
+
+`<j-field-group>` allows you to group multiple checkbox or radio button fields together. For radio buttons, you don't need to decide on a name for the group, if you don't want to.
 
 ### Checkbox group
 <render-example></render-example>
@@ -147,13 +163,17 @@ They handle accessibility for you automatically, including validation messages, 
 
 ## Aligning with other components
 
-### Text input and button
+### Text input and prefix content and button
 <render-example></render-example>
 ```html
 <j-field>
   <label>Label</label>
-  <input type="text" required>
-  <button theme="primary">Button</button>
+  <div description>Enter something in this field</div>
+  <j-input-decorator>
+    <span slot="prefix" class="icon-search" style="margin: 0 0.5em"></span>
+    <input type="text" required>
+  </j-input-decorator>
+  <button>Button <span class="icon-chevron-down"></span></button>
 </j-field>
 ```
 

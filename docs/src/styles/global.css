@@ -61,6 +61,7 @@ table-of-contents + p {
 .main-nav h1 {
   font-size: 1.25rem;
   margin-left: 0.5rem;
+  margin-bottom: 0;
 }
 
 .main-nav ul {
@@ -277,17 +278,14 @@ module-size {
 }
 
 module-size dl {
-  display: grid;
-  grid-template-columns: max-content auto;
-  margin: 0 1rem;
+  margin: 1rem 1rem;
 }
 
 module-size dt {
-  grid-column: 1;
+  color: var(--color-strong);
 }
 
 module-size dd {
-  grid-column: 2;
 }
 
 hr {
@@ -326,6 +324,7 @@ main {
 }
 
 .main-nav nav {
+  padding-top: 1rem;
   padding-bottom: 5rem;
 }
 

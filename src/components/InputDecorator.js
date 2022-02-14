@@ -3,6 +3,7 @@ import { DefineElementMixin } from '../util/DefineElementMixin.js';
 const styles = `
   :host {
     display: inline-grid;
+    vertical-align: middle;
   }
 
   slot[name],
@@ -34,6 +35,10 @@ const styles = `
 
   :host([style*=suffix-width]) ::slotted(:is(input, textarea)) {
     padding-inline-end: var(--suffix-width) !important;
+  }
+
+  ::slotted(textarea) {
+    resize: none !important;
   }
 `;
 
@@ -86,12 +91,16 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
     }
   }
 
+  // TODO should use a ResizeObserver as well to call it
   _updateSize() {
     const input = this.querySelector('input, textarea');
     const dimension = input.localName == 'textarea' ? 'Height' : 'Width';
 
     if (this.hasAttribute('autosize')) {
       const borderWidth = parseInt(window.getComputedStyle(input)['border-width']);
+
+      // Safari reports scrollWidth the same regardless of the padding, so we need to handle that
+      // manually to get it consistent in all browsers
       let paddingInlineStart = 0, paddingInlineEnd = 0;
       if (dimension == 'Width') {
         paddingInlineStart = parseInt(window.getComputedStyle(input)['padding-inline-start']);

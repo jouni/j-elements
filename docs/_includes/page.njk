@@ -35,12 +35,13 @@ title: JElements
         }
       });
 
-      // Needed for examples
-
+      // Needed for the example
       import {MutationAnimationMixin} from '{{ '/src/util/MutationAnimationMixin.js' | url }}';
       class MyList extends MutationAnimationMixin(HTMLElement) {}
       window.customElements.define('my-list', MyList);
 
+      // Enable :active styles
+      document.addEventListener('touchstart', () => {});
     </script>
   </head>
   <body>

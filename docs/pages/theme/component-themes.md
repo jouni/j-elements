@@ -18,7 +18,8 @@ imports:
 ```
 
 <style>
-render-example {
+render-example,
+render-example > div {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -28,16 +29,41 @@ render-example {
 ## Button
 <render-example></render-example>
 ```html
-<button theme="primary">Primary</button>
-<button>Secondary</button>
-<button theme="tertiary">Tertiary</button>
+<div>
+  <button theme="primary">Primary</button>
+  <button>Secondary</button>
+  <button theme="tertiary">Tertiary</button>
+</div>
+<div>
+  <button theme="primary">Primary <span class="icon-chevron-down"></span></button>
+  <button>Secondary <span class="icon-chevron-down"></span></button>
+  <button theme="tertiary">Tertiary <span class="icon-chevron-down"></span></button>
+</div>
+<div>
+  <button theme="primary small">Primary</button>
+  <button theme="small">Secondary</button>
+  <button theme="tertiary small">Tertiary</button>
+</div>
+<div>
+  <button theme="primary small">Primary <span class="icon-chevron-down"></span></button>
+  <button theme="small">Secondary <span class="icon-chevron-down"></span></button>
+  <button theme="tertiary small">Tertiary <span class="icon-chevron-down"></span></button>
+</div>
 ```
 
 <render-example></render-example>
 ```html
-<button theme="primary" disabled>Disabled</button>
-<button disabled>Disabled</button>
-<button theme="tertiary" disabled>Disabled</button>
+
+<div>
+  <button disabled theme="primary">Primary</button>
+  <button disabled>Secondary</button>
+  <button disabled theme="tertiary">Tertiary</button>
+</div>
+<div>
+  <button disabled theme="primary">Primary <span class="icon-chevron-down"></span></button>
+  <button disabled>Secondary <span class="icon-chevron-down"></span></button>
+  <button disabled theme="tertiary">Tertiary <span class="icon-chevron-down"></span></button>
+</div>
 ```
 
 ## Text Input
