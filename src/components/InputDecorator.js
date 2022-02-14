@@ -8,6 +8,7 @@ const styles = `
   slot[name],
   ::slotted(:is(input, textarea)) {
     grid-area: 1/1;
+    box-sizing: border-box;
   }
 
   slot[name] {
@@ -25,10 +26,6 @@ const styles = `
 
   slot[name]::slotted(:is(button, a, select, input)) {
     pointer-events: auto;
-  }
-
-  ::slotted(:is(input, textarea)) {
-    min-width: calc(var(--prefix-width, 0px) + var(--suffix-width, 0px) + 2em);
   }
 
   :host([style*=prefix-width]) ::slotted(:is(input, textarea)) {
@@ -52,6 +49,8 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
       `;
     }
 
+    this.addEventListener('input', this._updateSize);
+
     if (!this.__mutationObserver) {
       this.__mutationObserver = new MutationObserver(this._onMutation.bind(this));
     }
@@ -59,9 +58,11 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
     this.__mutationObserver.observe(this, { childList: true });
 
     this._onMutation();
+    this._updateSize();
   }
 
   disconnectedCallback() {
+    this.removeEventListener('input', this._updateSize);
     this.__mutationObserver.disconnect();
   }
 
@@ -82,6 +83,33 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
       this.style.setProperty('--suffix-width', `${suffixRect.width}px`);
     } else {
       this.style.removeProperty('--suffix-width');
+    }
+  }
+
+  _updateSize() {
+    const input = this.querySelector('input, textarea');
+    const dimension = input.localName == 'textarea' ? 'Height' : 'Width';
+
+    if (this.hasAttribute('autosize')) {
+      const borderWidth = parseInt(window.getComputedStyle(input)['border-width']);
+      let paddingInlineStart = 0, paddingInlineEnd = 0;
+      if (dimension == 'Width') {
+        paddingInlineStart = parseInt(window.getComputedStyle(input)['padding-inline-start']);
+        paddingInlineEnd = parseInt(window.getComputedStyle(input)['padding-inline-end']);
+        input.style.setProperty('--prefix-width', '0');
+        input.style.setProperty('--suffix-width', '0');
+        input.style.padding = '0';
+      }
+
+      input.style[dimension.toLowerCase()] = '0';
+      this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd) + 'px';
+      input.style.padding = '';
+      input.style.removeProperty('--prefix-width');
+      input.style.removeProperty('--suffix-width');
+      input.style[dimension.toLowerCase()] = '100%';
+    } else {
+      this.style[dimension.toLowerCase()] = '';
+      input.style[dimension.toLowerCase()] = '';
     }
   }
 }

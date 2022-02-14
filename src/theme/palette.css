@@ -12,10 +12,12 @@ html,
   --background-high: #fff;
   --background-highest: #fff;
 
-  --color-weakest: var(--slate-600);
-  --color-weak: var(--slate-700);
-  --color: var(--slate-800);
-  --color-strong: var(--slate-900);
+  --color-weakest: var(--slate-400);
+  --color-weaker: var(--slate-500);
+  --color-weak: var(--slate-600);
+  --color: var(--slate-700);
+  --color-strong: var(--slate-800);
+  --color-stronger: var(--slate-900);
   --color-strongest: #000;
 
   --border-color-weak: var(--slate-200);
@@ -23,11 +25,13 @@ html,
   --border-color-strong: var(--slate-400);
 
   --accent-weakest: var(--sky-50);
+  --accent-weaker: var(--sky-200);
   --accent-weak: var(--sky-300);
   --accent: var(--sky-500);
-  --accent-strong: var(--sky-700);
+  --accent-strong: var(--sky-600);
+  --accent-stronger: var(--sky-700);
   --accent-strongest: var(--sky-900);
-  --accent-contrast: #fff;
+  --accent-contrast: var(--background);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,10 +45,12 @@ html,
     --background-high: var(--slate-700);
     --background-highest: var(--slate-600);
 
-    --color-weakest: var(--slate-400);
+    --color-weakest: var(--slate-500);
+    --color-weaker: var(--slate-400);
     --color-weak: var(--slate-300);
-    --color: var(--slate-100);
-    --color-strong: var(--slate-50);
+    --color: var(--slate-200);
+    --color-strong: var(--slate-100);
+    --color-stronger: var(--slate-50);
     --color-strongest: #fff;
 
     --border-color-weak: var(--slate-700);
@@ -52,11 +58,13 @@ html,
     --border-color-strong: var(--slate-500);
 
     --accent-weakest: var(--sky-900);
-    --accent-weak: var(--sky-700);
+    --accent-weaker: var(--sky-700);
+    --accent-weak: var(--sky-600);
     --accent: var(--sky-500);
     --accent-strong: var(--sky-300);
+    --accent-stronger: var(--sky-200);
     --accent-strongest: var(--sky-100);
-    --accent-contrast: #fff;
+    --accent-contrast: var(--background);
   }
 }
 
@@ -70,10 +78,12 @@ html,
   --background-high: var(--slate-700);
   --background-highest: var(--slate-600);
 
-  --color-weakest: var(--slate-400);
+  --color-weakest: var(--slate-500);
+  --color-weaker: var(--slate-400);
   --color-weak: var(--slate-300);
-  --color: var(--slate-100);
-  --color-strong: var(--slate-50);
+  --color: var(--slate-200);
+  --color-strong: var(--slate-100);
+  --color-stronger: var(--slate-50);
   --color-strongest: #fff;
 
   --border-color-weak: var(--slate-700);
@@ -81,9 +91,11 @@ html,
   --border-color-strong: var(--slate-500);
 
   --accent-weakest: var(--sky-900);
-  --accent-weak: var(--sky-700);
+  --accent-weaker: var(--sky-700);
+  --accent-weak: var(--sky-600);
   --accent: var(--sky-500);
   --accent-strong: var(--sky-300);
+  --accent-stronger: var(--sky-200);
   --accent-strongest: var(--sky-100);
-  --accent-contrast: #fff;
+  --accent-contrast: var(--background);
 }

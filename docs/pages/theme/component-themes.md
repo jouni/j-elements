@@ -46,12 +46,20 @@ render-example {
 <input type="text" placeholder="Text">
 <input type="date" placeholder="Date">
 <input type="email" placeholder="Email">
-<input type="Number" placeholder="Number" autocomplete="off">
-<input type="password" placeholder="Password" autocomplete="off">
+<input type="number" placeholder="Number">
+<input type="password" placeholder="Password">
 <input type="tel" placeholder="Telephone">
 <input type="search" placeholder="Search">
 <input type="url" placeholder="URL">
 <textarea placeholder="Text area"></textarea>
+```
+
+## Other Inputs
+<render-example></render-example>
+```html
+<input type="range">
+<input type="color" placeholder="Color">
+<input type="file" placeholder="File">
 ```
 
 ## Select

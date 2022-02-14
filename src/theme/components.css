@@ -62,26 +62,41 @@
   resize: vertical;
 }
 
+:where(j-input-decorator[autosize]) :where(textarea) {
+  resize: none;
+}
+
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):focus {
   --focus-outline-offset: -1px;
   border: var(--textinput-focus-border, 1px solid var(--accent));
 }
 
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea)::placeholder {
-  color: var(--textinput-placeholder-color, var(--color-weakest));
+  color: var(--textinput-placeholder-color, var(--color-weaker));
 }
 
 :where(select) {
   padding-inline-end: var(--select-padding-inline-end, var(--size-32, 2rem));
-  /* TODO SVG is copied from Tailwind UI / Hero icons */
-  /* TODO maybe use two different images for light and dark theme */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(255,255,255,.5)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(0,0,0,.75)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
+  background-image: var(--select-background-image);
   background-repeat: no-repeat;
-  background-size: 1.5em;
-  background-position: calc(100% - .5em) 50%;
-  background-blend-mode: hard-light;
+  background-size: 1.25em;
+  background-position: calc(100% - .5em) 55%;
+  background-blend-mode: var(--select-background-blend-mode, multiply);
+  /* TODO SVG is copied from Tailwind UI / Hero icons */
+  --select-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(0,0,0,.5)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(select) {
+    --select-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(255,255,255,.5)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
+    --select-background-blend-mode: color-dodge;
+  }
+}
+
+[theme~=dark] :where(select),
+:where(select[theme~=dark]) {
+  --select-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='rgba(255,255,255,.5)'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
+  --select-background-blend-mode: color-dodge;
 }
 
 /* Button */
@@ -99,36 +114,34 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-:where(button:not([disabled]):hover) {
-  background: var(--button-hover-background, var(--button-background, var(--background)));
-  border: var(--button-hover-border, var(--button-border, 1px solid var(--border)));
-}
-
-:where(button:not([disabled]):active) {
-}
-
-/* TODO this needs to be overridable with theme=light */
-@media (prefers-color-scheme: dark) {
-  :where(button) {
-    --button-hover-filter: brightness(90%);
-    --button-active-filter: brightness(80%);
+@media (hover: any-hover) {
+  :where(button:not([disabled]):hover) {
+    background: var(--button-hover-background, var(--button-background, var(--background)));
+    border: var(--button-hover-border, var(--button-border, 1px solid var(--border-color-strong)));
+    color: var(--button-hover-color, var(--button-color, var(--color-strong)));
   }
 }
 
-[theme~=dark] :where(button) {
-  --button-hover-filter: brightness(90%);
-  --button-active-filter: brightness(80%);
+:where(button:not([disabled]):active) {
+  background: var(--button-active-background, var(--button-background, var(--background-low)));
+  border: var(--button-active-border, var(--button-border, 1px solid var(--border-color-strong)));
+  color: var(--button-active-color, var(--button-color, var(--color-strong)));
 }
 
 :where(button[theme~=primary]) {
   --button-background: var(--button-background-primary, var(--accent));
-  --button-color: var(--button-color-primary, var(--accent-contrast));
+  --button-hover-background: var(--button-hover-background-primary, var(--accent-strong));
+  --button-active-background: var(--button-active-background-primary, var(--accent-stronger));
+  --button-color: var(--button-color-primary, var(--background));
   --button-border: var(--button-border-primary, 1px solid transparent);
+
 }
 
 :where(button[theme~=tertiary]) {
   --button-background: var(--button-background-tertiary, transparent);
   --button-color: var(--button-color-tertiary, var(--accent));
+  --button-hover-color: var(--button-hover-color-tertiary, var(--accent-strong));
+  --button-active-color: var(--button-active-color-tertiary, var(--accent-stronger));
   --button-border: var(--button-border-tertiary, 1px solid transparent);
   --button-hover-filter: contrast(0.9) brightness(0.9);
   --button-active-filter: contrast(0.9) brightness(0.8);
@@ -139,11 +152,11 @@
 }
 
 :where(button[disabled]) {
-  --button-color: var(--button-color-disabled, var(--color-weakest))
+  --button-color: var(--button-color-disabled, var(--color-weakest));
 }
 
 :where(button[disabled]:not([theme~=tertiary])) {
-  --button-background: var(--button-background-disabled, var(--background-lowest));
+  --button-background: var(--button-background-disabled, var(--background-low));
   --button-border: var(--button-border-disabled, 1px solid transparent);
 }
 
@@ -152,7 +165,7 @@
 :where(input[type=checkbox]) {
   -webkit-appearance: none;
   background: var(--checkbox-background, var(--background));
-  border: var(--checkbox-border, 2px solid var(--border-color));
+  border: var(--checkbox-border, 1px solid var(--border-color));
   color: var(--checkbox-color, var(--color));
   width: var(--checkbox-size, 1rem);
   height: var(--checkbox-size, 1rem);
@@ -165,7 +178,7 @@
 
 :where(input[type=checkbox]:hover) {
   background: var(--checkbox-hover-background, var(--background-low));
-  border: var(--checkbox-hover-border, var(--checkbox-border, 2px solid var(--border-color)));
+  border: var(--checkbox-hover-border, var(--checkbox-border, 1px solid var(--border-color)));
 }
 
 :where(input[type=checkbox]:checked) {
@@ -192,7 +205,7 @@
 :where(input[type=radio]) {
   -webkit-appearance: none;
   background: var(--radiobutton-background, var(--background));
-  border: var(--radiobutton-border, 2px solid var(--border-color));
+  border: var(--radiobutton-border, 1px solid var(--border-color));
   color: var(--radiobutton-color, var(--color));
   width: var(--radiobutton-size, 1rem);
   height: var(--radiobutton-size, 1rem);
@@ -205,7 +218,7 @@
 
 :where(input[type=radio]:hover) {
   background: var(--radiobutton-hover-background, var(--background-low));
-  border: var(--radiobutton-hover-border, var(--radiobutton-border, 2px solid var(--border-color)));
+  border: var(--radiobutton-hover-border, var(--radiobutton-border, 1px solid var(--border-color)));
   color: var(--radiobutton-hover-color, var(--color));
 }
 
@@ -279,4 +292,17 @@ j-field-group j-field {
 
 j-field-group j-field {
   --content-required: "";
+}
+
+/* Icon image */
+
+:where([class^=icon]) {
+  width: var(--icon-size, 1rem);
+  height: var(--icon-size, 1rem);
+  background-color: currentColor;
+}
+
+:where(.icon-search) {
+  -webkit-mask-image: url("../../docs/src/styles/search.svg");
+  mask-image: url("../../docs/src/styles/search.svg");
 }

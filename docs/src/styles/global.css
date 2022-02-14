@@ -79,6 +79,7 @@ table-of-contents + p {
 
 .main-nav nav .active > a {
   background-color: var(--background-lowest);
+  color: var(--color-strong);
 }
 
 .main-nav ul a:hover,
@@ -166,7 +167,7 @@ table-of-contents li {
 }
 
 table-of-contents a:any-link {
-  color: var(--color-weakest);
+  color: var(--color-weaker);
   text-decoration: none;
 }
 
@@ -272,7 +273,7 @@ h2, h3 {
 
 module-size {
   font-size: 0.875rem;
-  color: var(--color-weakest);
+  color: var(--color-weaker);
 }
 
 module-size dl {

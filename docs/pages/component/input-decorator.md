@@ -14,71 +14,86 @@ eleventyNavigation:
 import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
 ```
 
-`<j-input-decorator>` allows placing prefix and suffix elements visually inside an input element. Only text-based input elements are supported.
+## Problem
 
-Notice, that the `<input>` element styling is completely retained, instead of being applied on the `<j-input-decorator>` element. The decorator element needs to be a CSS grid container (`display: grid` or `display: inline-grid`).
+- I want to show additional content, for example, an icon, inside a text input
+- I don't want to recreate a text input component from scratch
+- I want to reuse a 3rd party CSS library/framework, for example, Bootstrap, which usually target native input elements.
+
+## Prefix and suffix content
+
+Place prefix and suffix elements visually inside an input element. Only text-based input elements are supported.
+
+Notice, that the `<input>` and `<textarea>` element styling is completely retained (coming from the theme), instead of being applied on the `<j-input-decorator>` element. The decorator element needs to be a CSS grid container (`grid` or `inline-grid`).
+
+<style>
+render-example {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: start;
+}
+
+input {
+  min-width: 0;
+}
+</style>
 
 <render-example></render-example>
 ```html
 <j-input-decorator>
-  <span slot="prefix">🔎</span>
+  <span slot="prefix" class="icon-search"></span>
   <input type="text" value="Input value">
   <button slot="suffix" theme="tertiary small">Button</button>
 </j-input-decorator>
 
-<br>
-
 <j-input-decorator>
-  <span slot="prefix">🔎</span>
+  <span slot="prefix" class="icon-search"></span>
   <textarea>Text area value</textarea>
   <button slot="suffix" theme="tertiary small">Button</button>
 </j-input-decorator>
 
 <style>
-  j-input-decorator {
-    display: grid;
-  }
-
   span[slot] {
     margin: 0 0.5rem;
   }
 </style>
 ```
 
-## Limitations
 
-Dynamic updates to the styling of the prefix, suffix, or input elements are not accounted for.
+## Auto size
 
-In the next example, the prefix element is hidden if the input is empty. When you enter text in the input, the prefix element is made visible, but it won't take space from the input text.
+The `autosize` attribute makes the contained input change its size based on the contained text value. Manual text area resizing is disabled when auto size is used.
 
 <render-example></render-example>
 ```html
-
-<j-input-decorator class="not-working">
-  <input type="text" required placeholder="Required field">
-  <span slot="prefix" class="valid">✅</span>
+<j-input-decorator autosize>
+  <span slot="prefix" class="icon-search"></span>
+  <input type="text" value="Input value" class="bare">
 </j-input-decorator>
 
-<style>
-  .not-working input:invalid + [slot].valid {
-    display: none;
-  }
-</style>
+<j-input-decorator autosize>
+  <span slot="prefix" class="icon-search"></span>
+  <textarea>Text area value</textarea>
+</j-input-decorator>
 ```
 
-Instead of completely hiding the prefix element, you can change its opacity or visibility instead, so it will take the space already when the input decorator is first rendered.
+
+
+## Limitations
+
+The size of the prefix and suffix elements are measured when the element is connected/attached, and after updates to the HTML/DOM structure. Dynamic updates to the styling of the prefix, suffix, or input elements are not accounted for automatically.
 
 <render-example></render-example>
 ```html
-
-<j-input-decorator class="working">
+<j-input-decorator class="limitation-test">
+  <span slot="prefix" class="icon-search"></span>
   <input type="text" required placeholder="Required field">
-  <span slot="prefix" class="valid">✅</span>
 </j-input-decorator>
 
 <style>
-  .working input:invalid + [slot].valid {
-    visibility: hidden;
+  .limitation-test:hover [slot] {
+    margin: 0 1em;
   }
 </style>
 ```
