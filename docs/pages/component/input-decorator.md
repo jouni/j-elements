@@ -63,7 +63,7 @@ input {
   }
 
   textarea ~ span[slot] {
-    margin-top: 0.75em;
+    margin-top: 0.6125em;
   }
 </style>
 ```
