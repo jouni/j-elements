@@ -4,33 +4,36 @@ html,
 :host([theme~=light]) {
   color-scheme: light;
 
-  /* TODO choose one: low+high or weak+strong */
-
-  --background-lowest: var(--slate-100);
-  --background-low: var(--slate-50);
+  --background-below: var(--gray-50);
   --background: #fff;
-  --background-high: #fff;
-  --background-highest: #fff;
+  --background-above: #fff;
 
-  --color-weakest: var(--slate-400);
-  --color-weaker: var(--slate-500);
-  --color-weak: var(--slate-600);
-  --color: var(--slate-700);
-  --color-strong: var(--slate-800);
-  --color-stronger: var(--slate-900);
-  --color-strongest: #000;
+  --background-ui: var(--gray-100);
+  --background-ui-hover: var(--gray-200);
+  --background-ui-active: var(--gray-300);
 
-  --border-color-weak: var(--slate-200);
-  --border-color: var(--slate-300);
-  --border-color-strong: var(--slate-400);
+  --color-disabled: var(--gray-400);
+  --color-low-contrast: var(--gray-500);
+  --color: var(--gray-700);
+  --color-high-contrast: var(--gray-900);
 
-  --accent-weakest: var(--sky-50);
-  --accent-weaker: var(--sky-200);
-  --accent-weak: var(--sky-300);
-  --accent: var(--sky-500);
-  --accent-strong: var(--sky-600);
-  --accent-stronger: var(--sky-700);
-  --accent-strongest: var(--sky-900);
+  --border-color-subtle: var(--gray-200);
+  --border-color: var(--gray-300);
+  --border-ui: 1px solid var(--gray-300);
+  --border-ui-hover: 1px solid var(--gray-400);
+  --border-ui-active: 1px solid var(--gray-400);
+  --border-ui-focus: 1px solid var(--accent-400);
+  --border-radius-l: 0.5rem;
+  --border-radius-m: 0.375rem;
+  --border-radius-s: 0.25rem;
+
+  --accent-100: var(--sky-50);
+  --accent-200: var(--sky-200);
+  --accent-300: var(--sky-300);
+  --accent-400: var(--sky-500);
+  --accent-500: var(--sky-600);
+  --accent-600: var(--sky-700);
+  --accent-700: var(--sky-900);
   --accent-contrast: var(--background);
 }
 
@@ -39,32 +42,34 @@ html,
   :host {
     color-scheme: dark;
 
-    --background-lowest: #000;
-    --background-low: var(--slate-900);
-    --background: var(--slate-800);
-    --background-high: var(--slate-700);
-    --background-highest: var(--slate-600);
+    --background-below: var(--gray-900);
+    --background: var(--gray-800);
+    --background-above: var(--gray-700);
 
-    --color-weakest: var(--slate-500);
-    --color-weaker: var(--slate-400);
-    --color-weak: var(--slate-300);
-    --color: var(--slate-200);
-    --color-strong: var(--slate-100);
-    --color-stronger: var(--slate-50);
-    --color-strongest: #fff;
+    --background-ui: var(--gray-700);
+    --background-ui-hover: var(--gray-600);
+    --background-ui-active: var(--gray-500);
 
-    --border-color-weak: var(--slate-700);
-    --border-color: var(--slate-600);
-    --border-color-strong: var(--slate-500);
+    --color-disabled: var(--gray-500);
+    --color-low-contrast: var(--gray-300);
+    --color: var(--gray-100);
+    --color-high-contrast: var(--gray-50);
 
-    --accent-weakest: var(--sky-900);
-    --accent-weaker: var(--sky-700);
-    --accent-weak: var(--sky-600);
-    --accent: var(--sky-500);
-    --accent-strong: var(--sky-300);
-    --accent-stronger: var(--sky-200);
-    --accent-strongest: var(--sky-100);
-    --accent-contrast: var(--background);
+    --border-color-subtle: var(--gray-700);
+    --border-color: var(--gray-600);
+    --border-ui: 1px solid var(--gray-600);
+    --border-ui-hover: 1px solid var(--gray-500);
+    --border-ui-active: 1px solid var(--gray-500);
+    --border-ui-focus: 1px solid var(--accent-400);
+
+    --accent-100: var(--sky-900);
+    --accent-200: var(--sky-700);
+    --accent-300: var(--sky-600);
+    --accent-400: var(--sky-500);
+    --accent-500: var(--sky-300);
+    --accent-600: var(--sky-200);
+    --accent-700: var(--sky-100);
+    --accent-contrast: var(--background-400);
   }
 }
 
@@ -72,30 +77,32 @@ html,
 :host([theme~=dark]) {
   color-scheme: dark;
 
-  --background-lowest: #000;
-  --background-low: var(--slate-900);
-  --background: var(--slate-800);
-  --background-high: var(--slate-700);
-  --background-highest: var(--slate-600);
+  --background-below: var(--gray-900);
+  --background: var(--gray-800);
+  --background-above: var(--gray-700);
 
-  --color-weakest: var(--slate-500);
-  --color-weaker: var(--slate-400);
-  --color-weak: var(--slate-300);
-  --color: var(--slate-200);
-  --color-strong: var(--slate-100);
-  --color-stronger: var(--slate-50);
-  --color-strongest: #fff;
+  --background-ui: var(--gray-700);
+  --background-ui-hover: var(--gray-600);
+  --background-ui-active: var(--gray-500);
 
-  --border-color-weak: var(--slate-700);
-  --border-color: var(--slate-600);
-  --border-color-strong: var(--slate-500);
+  --color-disabled: var(--gray-400);
+  --color-low-contrast: var(--gray-200);
+  --color: var(--gray-100);
+  --color-high-contrast: var(--gray-50);
 
-  --accent-weakest: var(--sky-900);
-  --accent-weaker: var(--sky-700);
-  --accent-weak: var(--sky-600);
-  --accent: var(--sky-500);
-  --accent-strong: var(--sky-300);
-  --accent-stronger: var(--sky-200);
-  --accent-strongest: var(--sky-100);
-  --accent-contrast: var(--background);
+  --border-color-subtle: var(--gray-600);
+  --border-color: var(--gray-500);
+  --border-ui: 1px solid var(--gray-600);
+  --border-ui-hover: 1px solid var(--gray-500);
+  --border-ui-active: 1px solid var(--gray-500);
+  --border-ui-focus: 1px solid var(--accent-400);
+
+  --accent-100: var(--sky-900);
+  --accent-200: var(--sky-700);
+  --accent-300: var(--sky-600);
+  --accent-400: var(--sky-500);
+  --accent-500: var(--sky-300);
+  --accent-600: var(--sky-200);
+  --accent-700: var(--sky-100);
+  --accent-contrast: var(--background-400);
 }

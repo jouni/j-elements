@@ -11,6 +11,11 @@
   line-height: var(--line-height-m);
 }
 
+:where([theme~="light"], [theme~="dark"]) {
+  background: var(--background);
+  color: var(--color);
+}
+
 /* Focus outline */
 
 :focus:not(:focus-visible) {
@@ -21,7 +26,7 @@
   outline: none;
   box-shadow:
     0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent));
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-400));
 }
 
 /* Safari */
@@ -30,18 +35,18 @@
     outline: none;
     box-shadow:
       0 0 0 var(--focus-outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent));
+      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-400));
   }
 }
 
 /* Link/Anchor */
 
 :where(a) {
-  color: var(--link-color, var(--accent));
+  color: var(--link-color, var(--accent-400));
 }
 
 :where(a:visited) {
-  color: var(--link-visited-color, var(--accent-strong));
+  color: var(--link-visited-color, var(--accent-500));
 }
 
 /* Text Input, Text Area, Select */
@@ -49,29 +54,40 @@
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select) {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background: var(--textinput-background, var(--background-high));
-  border: var(--textinput-border, 1px solid var(--border-color));
-  border-radius: var(--textinput-border-radius, 0.375rem);
+  background: var(--textinput-background, var(--background));
+  border: var(--textinput-border, var(--border-ui));
+  border-radius: var(--textinput-border-radius, var(--border-radius-m));
   font: var(--textinput-font, var(--font-textinput, inherit));
   color: var(--textinput-color, var(--color));
   padding: var(--textinput-padding, var(--size-8, 0.5rem));
   box-sizing: border-box;
   margin: 0;
   vertical-align: middle;
+  transition: border 0.15s;
 }
 
 :where(textarea) {
   resize: vertical;
 }
 
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):hover {
+  border: var(--textinput-hover-border, var(--border-ui-hover));
+}
+
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):focus {
   --focus-outline-offset: -1px;
-  border: var(--textinput-focus-border, 1px solid var(--accent));
+  border: var(--textinput-focus-border, var(--border-ui-focus));
+  transition: none;
 }
 
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea)::placeholder {
-  color: var(--textinput-placeholder-color, var(--color-weaker));
+  color: var(--textinput-placeholder-color, var(--color-low-contrast));
 }
+
+/* TODO invalid fields which have not been edited should not be marked */
+/* :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):invalid {
+  border: var(--textinput-invalid-border, 1px solid var(--red-500));
+} */
 
 /* Select */
 
@@ -115,9 +131,9 @@
 :where(button) {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background: var(--button-background, var(--background));
-  border: var(--button-border, 1px solid var(--border-color));
-  border-radius: var(--button-border-radius, 0.375rem);
+  background: var(--button-background, var(--background-ui));
+  border: var(--button-border, 1px solid transparent);
+  border-radius: var(--button-border-radius, var(--border-radius-m));
   color: var(--button-color, var(--color));
   font: var(--button-font, var(--font-button, inherit));
   padding: var(--button-padding, var(--size-8, 0.5rem) var(--size-12, 0.75rem));
@@ -125,26 +141,28 @@
   margin: 0;
   vertical-align: middle;
   touch-action: manipulation;
+  transition: background-color 0.15s;
 }
 
 @media (any-hover: hover) {
   :where(button:not([disabled]):hover) {
-    background: var(--button-hover-background, var(--button-background, var(--background)));
-    border: var(--button-hover-border, var(--button-border, 1px solid var(--border-color-strong)));
-    color: var(--button-hover-color, var(--button-color, var(--color-strong)));
+    background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
+    border: var(--button-hover-border, var(--button-border, 1px solid transparent));
+    color: var(--button-hover-color, var(--button-color, var(--color-500)));
   }
 }
 
 :where(button:not([disabled]):active) {
-  background: var(--button-active-background, var(--button-background, var(--background-low)));
-  border: var(--button-active-border, var(--button-border, 1px solid var(--border-color-strong)));
-  color: var(--button-active-color, var(--button-color, var(--color-strong)));
+  background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
+  border: var(--button-active-border, var(--button-border, 1px solid transparent));
+  color: var(--button-active-color, var(--button-color, var(--color-500)));
+  transition: none;
 }
 
 :where(button[theme~=primary]) {
-  --button-background: var(--button-background-primary, var(--accent));
-  --button-hover-background: var(--button-hover-background-primary, var(--accent-strong));
-  --button-active-background: var(--button-active-background-primary, var(--accent-stronger));
+  --button-background: var(--button-background-primary, var(--accent-400));
+  --button-hover-background: var(--button-hover-background-primary, var(--accent-500));
+  --button-active-background: var(--button-active-background-primary, var(--accent-600));
   --button-color: var(--button-color-primary, var(--background));
   --button-border: var(--button-border-primary, 1px solid transparent);
 
@@ -152,9 +170,9 @@
 
 :where(button[theme~=tertiary]) {
   --button-background: var(--button-background-tertiary, transparent);
-  --button-color: var(--button-color-tertiary, var(--accent));
-  --button-hover-color: var(--button-hover-color-tertiary, var(--accent-strong));
-  --button-active-color: var(--button-active-color-tertiary, var(--accent-stronger));
+  --button-color: var(--button-color-tertiary, var(--accent-400));
+  --button-hover-color: var(--button-hover-color-tertiary, var(--accent-500));
+  --button-active-color: var(--button-active-color-tertiary, var(--accent-600));
   --button-border: var(--button-border-tertiary, 1px solid transparent);
   --button-hover-filter: contrast(0.9) brightness(0.9);
   --button-active-filter: contrast(0.9) brightness(0.8);
@@ -165,11 +183,11 @@
 }
 
 :where(button[disabled]) {
-  --button-color: var(--button-color-disabled, var(--color-weakest));
+  --button-color: var(--button-color-disabled, var(--color-disabled));
 }
 
 :where(button[disabled]:not([theme~=tertiary])) {
-  --button-background: var(--button-background-disabled, var(--background-low));
+  --button-background: var(--button-background-disabled, var(--background-ui));
   --button-border: var(--button-border-disabled, 1px solid transparent);
 }
 
@@ -177,25 +195,34 @@
 
 :where(input[type=checkbox]) {
   -webkit-appearance: none;
-  background: var(--checkbox-background, var(--background));
-  border: var(--checkbox-border, 1px solid var(--border-color));
+  background: var(--checkbox-background, var(--background-ui));
+  border: var(--checkbox-border, var(--border-ui));
   color: var(--checkbox-color, var(--color));
   width: var(--checkbox-size, 1rem);
   height: var(--checkbox-size, 1rem);
   font: inherit;
-  border-radius: var(--checkbox-border-radius, 0.25rem);
+  border-radius: var(--checkbox-border-radius, var(--border-radius-s));
   margin: 0;
   vertical-align: middle;
   flex: none;
+  transition: background-color 0.15s;
 }
 
 :where(input[type=checkbox]:hover) {
-  background: var(--checkbox-hover-background, var(--background-low));
-  border: var(--checkbox-hover-border, var(--checkbox-border, 1px solid var(--border-color)));
+  background: var(--checkbox-hover-background, var(--background-ui-hover));
+  border: var(--checkbox-hover-border, var(--checkbox-border, var(--border-ui-hover)));
+  color: var(--checkbox-hover-color, var(--color));
+}
+
+:where(input[type=checkbox]:active) {
+  background: var(--checkbox-hover-background, var(--background-ui-active));
+  border: var(--checkbox-hover-border, var(--checkbox-border, var(--border-ui-active)));
+  color: var(--checkbox-active-color, var(--color));
+  transition: none;
 }
 
 :where(input[type=checkbox]:checked) {
-  background: var(--checkbox-checked-background, var(--accent));
+  background: var(--checkbox-checked-background, var(--accent-400));
   border: var(--checkbox-checked-border, 0);
   color: var(--checkbox-checked-color, var(--accent-contrast));
 }
@@ -217,8 +244,8 @@
 
 :where(input[type=radio]) {
   -webkit-appearance: none;
-  background: var(--radiobutton-background, var(--background));
-  border: var(--radiobutton-border, 1px solid var(--border-color));
+  background: var(--radiobutton-background, var(--background-ui));
+  border: var(--radiobutton-border, var(--border-ui));
   color: var(--radiobutton-color, var(--color));
   width: var(--radiobutton-size, 1rem);
   height: var(--radiobutton-size, 1rem);
@@ -227,17 +254,25 @@
   margin: 0;
   vertical-align: middle;
   flex: none;
+  transition: background-color 0.15s;
 }
 
 :where(input[type=radio]:hover) {
-  background: var(--radiobutton-hover-background, var(--background-low));
-  border: var(--radiobutton-hover-border, var(--radiobutton-border, 1px solid var(--border-color)));
+  background: var(--radiobutton-hover-background, var(--background-ui-hover));
+  border: var(--radiobutton-hover-border, var(--radiobutton-border, var(--border-ui-hover)));
   color: var(--radiobutton-hover-color, var(--color));
 }
 
+:where(input[type=radio]:active) {
+  background: var(--radiobutton-active-background, var(--background-ui-active));
+  border: var(--radiobutton-active-border, var(--radiobutton-border, var(--border-ui-active)));
+  color: var(--radiobutton-active-color, var(--color));
+  transition: none;
+}
+
 :where(input[type=radio]:checked) {
-  background: var(--radiobutton-checked-background, var(--accent));
-  border: var(--radiobutton-checked-border, 2px solid transparent);
+  background: var(--radiobutton-checked-background, var(--accent-400));
+  border: var(--radiobutton-checked-border, 0);
   color: var(--radiobutton-checked-color, var(--accent-contrast));
 }
 
@@ -249,7 +284,7 @@
   vertical-align: top;
   background-color: currentColor;
   /* Tailwind UI / Heroicons */
-  --mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='4'/%3e%3c/svg%3e");
+  --mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
 }
@@ -272,12 +307,12 @@ j-field-group j-field {
 
 :where(j-field, j-field-group) :where(label) {
   font: var(--font-label);
-  color: var(--color-weak);
+  color: var(--color-low-contrast);
   margin-bottom: var(--size-6, 0.375rem);
 }
 
 :where(j-field:focus-within, j-field-group:focus-within) :where(label) {
-  color: var(--accent);
+  color: var(--accent-400);
 }
 
 :where(j-field[type=radio], j-field[type=checkbox]) :where(label) {
@@ -294,13 +329,13 @@ j-field-group j-field {
 
 :where(j-field, j-field-group) :where([description], [validation-message]) {
   font-size: var(--font-size-s, 0.875em);
-  color: var(--color-weak);
+  color: var(--color-low-contrast);
   margin: var(--size-6, 0.375rem) 0;
 }
 
 [required-indicator]::before {
   content: var(--content-required, "*");
-  color: var(--color-low);
+  color: var(--color-low-contrast);
   padding: 0 0.25em;
 }
 

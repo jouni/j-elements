@@ -4,7 +4,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   margin-top: 2em;
   letter-spacing: -0.025em;
-  color: var(--text-heading-color, var(--color-strong));
+  color: var(--color-high-contrast);
 }
 
 :where(h1, h2, h3, h4, h5, h6):first-child {
@@ -51,7 +51,7 @@ h6 {
 body {
   margin: 0;
   background: var(--background);
-  color: var(--color);
+  color: var(--color-400);
 }
 
 table-of-contents + p {
@@ -71,7 +71,7 @@ table-of-contents + p {
 }
 
 .main-nav ul a:any-link {
-  color: var(--color-weak);
+  color: var(--color-low-contrast);
   padding: 0.25rem 0.5rem;
   display: block;
   border-radius: 0.5em;
@@ -79,24 +79,24 @@ table-of-contents + p {
 }
 
 .main-nav nav .active > a {
-  background-color: var(--background-lowest);
-  color: var(--color-strong);
+  background-color: var(--background-ui-hover);
+  color: var(--color-500);
 }
 
 .main-nav ul a:hover,
 .main-nav ul a:focus {
-  color: var(--color-strong);
+  color: var(--color-500);
   text-decoration: none;
 }
 
 .main-nav .has-children {
   margin-top: 1.5rem;
-  color: var(--color-strong);
+  color: var(--color-high-contrast);
 }
 
 .main-nav .has-children > a:any-link {
   font-weight: 500;
-  color: var(--color-strong);
+  color: var(--color-high-contrast);
   font-weight: 500;
 }
 
@@ -122,7 +122,7 @@ main > footer {
   align-items: center;
   justify-content: space-between;
   font-size: 0.8125rem;
-  color: var(--color-weak);
+  color: var(--color-low-contrast);
   border-top: 1px solid var(--border-color);
   margin-top: 5rem;
   padding-top: 2rem;
@@ -147,7 +147,7 @@ main > footer {
 
 table-of-contents h6 {
   font-size: 0.75rem;
-  color: var(--color-weak);
+  color: var(--color-low-contrast);
 }
 
 table-of-contents > ol {
@@ -168,7 +168,7 @@ table-of-contents li {
 }
 
 table-of-contents a:any-link {
-  color: var(--color-weaker);
+  color: var(--color-low-contrast);
   text-decoration: none;
 }
 
@@ -185,12 +185,12 @@ table-of-contents a:hover {
 
 .github-link:hover,
 .github-link:focus {
-  color: var(--accent);
+  color: var(--accent-400);
 }
 
 blockquote {
-  border-left: 3px solid var(--accent);
-  background-color: var(--accent-weakest);
+  border-left: 3px solid var(--accent-400);
+  background-color: var(--accent-100);
   margin: 1.5rem 0;
   padding: 0.25rem 1.5rem 0.1em;
   font-size: 0.875rem;
@@ -204,7 +204,7 @@ pre[class*="language"],
 code {
   font-family: var(--font-family-monospace);
   font-size: 0.875rem;
-  background: var(--background-low) !important;
+  background: var(--background-below) !important;
 }
 
 code:not([class*="language"]) {
@@ -215,7 +215,7 @@ code:not([class*="language"]) {
 render-example {
   display: block;
   border-radius: 0.25em;
-  border: 1px solid var(--border-color-weak);
+  border: 1px solid var(--border-color-subtle);
   background-color: var(--background);
   overflow: auto;
   resize: horizontal;
@@ -263,7 +263,7 @@ render-example.resize-y {
 
 @keyframes flash {
   30% {
-    background-color: var(--accent-weakest)
+    background-color: var(--accent-100)
   }
 }
 
@@ -274,7 +274,7 @@ h2, h3 {
 
 module-size {
   font-size: 0.875rem;
-  color: var(--color-weaker);
+  color: var(--color-low-contrast);
 }
 
 module-size dl {
@@ -282,7 +282,7 @@ module-size dl {
 }
 
 module-size dt {
-  color: var(--color-strong);
+  color: var(--color-500);
 }
 
 module-size dd {
@@ -291,7 +291,7 @@ module-size dd {
 hr {
   border: 0;
   height: 1px;
-  background-color: var(--border-color);
+  background-color: var(--border-color-subtle);
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
@@ -309,7 +309,7 @@ hr {
   width: 15rem;
   max-width: 100%;
   font-size: 0.875rem;
-  background-color: var(--background-low);
+  background-color: var(--background-below);
   position: sticky;
   top: 0;
   box-sizing: border-box;
