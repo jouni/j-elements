@@ -108,6 +108,6 @@ render-example > div {
 ## Radio Button
 <render-example></render-example>
 ```html
-<input type="radio">
-<input type="radio" checked>
+<input type="radio" name="example">
+<input type="radio" name="example" checked>
 ```
