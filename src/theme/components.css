@@ -71,16 +71,16 @@
 }
 
 @media (any-hover: hover) {
-  :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):not([disabled]):hover {
+  :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not([disabled]):hover) {
     border: var(--textinput-hover-border, var(--border-ui-hover));
   }
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):not([disabled]):active {
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not([disabled]):active) {
   border: var(--textinput-active-border, var(--border-ui-active));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):focus {
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:focus) {
   --focus-outline-offset: -1px;
   border: var(--textinput-focus-border, var(--border-ui-focus));
   transition: none;
