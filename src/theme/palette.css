@@ -4,37 +4,38 @@ html,
 :host([theme~=light]) {
   color-scheme: light;
 
-  --background-below: var(--gray-50);
+  --background-below: var(--zinc-50);
   --background: #fff;
   --background-above: #fff;
 
-  --background-ui: var(--gray-100);
-  --background-ui-hover: var(--gray-200);
-  --background-ui-active: var(--gray-300);
+  --background-ui: var(--zinc-100);
+  --background-ui-hover: var(--zinc-200);
+  --background-ui-active: var(--zinc-300);
 
-  --color-disabled: var(--gray-400);
-  --color-low-contrast: var(--gray-500);
-  --color: var(--gray-700);
-  --color-high-contrast: var(--gray-900);
+  --color-disabled: var(--zinc-400);
+  --color-low-contrast: var(--zinc-500);
+  --color: var(--zinc-700);
+  --color-high-contrast: var(--zinc-900);
 
-  --border-color-subtle: var(--gray-200);
-  --border-color: var(--gray-300);
-  --border-ui: 1px solid var(--gray-300);
-  --border-ui-hover: 1px solid var(--gray-400);
-  --border-ui-active: 1px solid var(--gray-400);
+  --border-color-subtle: var(--zinc-200);
+  --border-color: var(--zinc-300);
+  --border-ui: 1px solid var(--zinc-300);
+  --border-ui-hover: 1px solid var(--zinc-400);
+  --border-ui-active: 1px solid var(--zinc-400);
   --border-ui-focus: 1px solid var(--accent-400);
   --border-radius-l: 0.5rem;
   --border-radius-m: 0.375rem;
   --border-radius-s: 0.25rem;
 
-  --accent-100: var(--sky-50);
-  --accent-200: var(--sky-200);
-  --accent-300: var(--sky-300);
-  --accent-400: var(--sky-500);
-  --accent-500: var(--sky-600);
-  --accent-600: var(--sky-700);
-  --accent-700: var(--sky-900);
+  --accent-100: var(--indigo-50);
+  --accent-200: var(--indigo-200);
+  --accent-300: var(--indigo-300);
+  --accent-400: var(--indigo-500);
+  --accent-500: var(--indigo-600);
+  --accent-600: var(--indigo-700);
+  --accent-700: var(--indigo-900);
   --accent-contrast: var(--background);
+  accent-color: var(--accent-400);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,34 +43,35 @@ html,
   :host {
     color-scheme: dark;
 
-    --background-below: var(--gray-900);
-    --background: var(--gray-800);
-    --background-above: var(--gray-700);
+    --background-below: var(--zinc-900);
+    --background: var(--zinc-800);
+    --background-above: var(--zinc-700);
 
-    --background-ui: var(--gray-700);
-    --background-ui-hover: var(--gray-600);
-    --background-ui-active: var(--gray-500);
+    --background-ui: var(--zinc-700);
+    --background-ui-hover: var(--zinc-600);
+    --background-ui-active: var(--zinc-500);
 
-    --color-disabled: var(--gray-500);
-    --color-low-contrast: var(--gray-300);
-    --color: var(--gray-100);
-    --color-high-contrast: var(--gray-50);
+    --color-disabled: var(--zinc-500);
+    --color-low-contrast: var(--zinc-300);
+    --color: var(--zinc-100);
+    --color-high-contrast: var(--zinc-50);
 
-    --border-color-subtle: var(--gray-700);
-    --border-color: var(--gray-600);
-    --border-ui: 1px solid var(--gray-600);
-    --border-ui-hover: 1px solid var(--gray-500);
-    --border-ui-active: 1px solid var(--gray-500);
+    --border-color-subtle: var(--zinc-700);
+    --border-color: var(--zinc-600);
+    --border-ui: 1px solid var(--zinc-600);
+    --border-ui-hover: 1px solid var(--zinc-500);
+    --border-ui-active: 1px solid var(--zinc-500);
     --border-ui-focus: 1px solid var(--accent-400);
 
-    --accent-100: var(--sky-900);
-    --accent-200: var(--sky-700);
-    --accent-300: var(--sky-600);
-    --accent-400: var(--sky-500);
-    --accent-500: var(--sky-300);
-    --accent-600: var(--sky-200);
-    --accent-700: var(--sky-100);
-    --accent-contrast: var(--background-400);
+    --accent-100: var(--indigo-900);
+    --accent-200: var(--indigo-600);
+    --accent-300: var(--indigo-500);
+    --accent-400: var(--indigo-400);
+    --accent-500: var(--indigo-300);
+    --accent-600: var(--indigo-200);
+    --accent-700: var(--indigo-100);
+    --accent-contrast: var(--background);
+    accent-color: var(--accent-400);
   }
 }
 
@@ -77,32 +79,33 @@ html,
 :host([theme~=dark]) {
   color-scheme: dark;
 
-  --background-below: var(--gray-900);
-  --background: var(--gray-800);
-  --background-above: var(--gray-700);
+  --background-below: var(--zinc-900);
+  --background: var(--zinc-800);
+  --background-above: var(--zinc-700);
 
-  --background-ui: var(--gray-700);
-  --background-ui-hover: var(--gray-600);
-  --background-ui-active: var(--gray-500);
+  --background-ui: var(--zinc-700);
+  --background-ui-hover: var(--zinc-600);
+  --background-ui-active: var(--zinc-500);
 
-  --color-disabled: var(--gray-500);
-  --color-low-contrast: var(--gray-300);
-  --color: var(--gray-100);
-  --color-high-contrast: var(--gray-50);
+  --color-disabled: var(--zinc-500);
+  --color-low-contrast: var(--zinc-300);
+  --color: var(--zinc-100);
+  --color-high-contrast: var(--zinc-50);
 
-  --border-color-subtle: var(--gray-600);
-  --border-color: var(--gray-500);
-  --border-ui: 1px solid var(--gray-600);
-  --border-ui-hover: 1px solid var(--gray-500);
-  --border-ui-active: 1px solid var(--gray-500);
+  --border-color-subtle: var(--zinc-700);
+  --border-color: var(--zinc-600);
+  --border-ui: 1px solid var(--zinc-600);
+  --border-ui-hover: 1px solid var(--zinc-500);
+  --border-ui-active: 1px solid var(--zinc-500);
   --border-ui-focus: 1px solid var(--accent-400);
 
-  --accent-100: var(--sky-900);
-  --accent-200: var(--sky-700);
-  --accent-300: var(--sky-600);
-  --accent-400: var(--sky-500);
-  --accent-500: var(--sky-300);
-  --accent-600: var(--sky-200);
-  --accent-700: var(--sky-100);
-  --accent-contrast: var(--background-400);
+  --accent-100: var(--indigo-900);
+  --accent-200: var(--indigo-600);
+  --accent-300: var(--indigo-500);
+  --accent-400: var(--indigo-400);
+  --accent-500: var(--indigo-300);
+  --accent-600: var(--indigo-200);
+  --accent-700: var(--indigo-100);
+  --accent-contrast: var(--background);
+  accent-color: var(--accent-400);
 }
