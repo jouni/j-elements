@@ -23,11 +23,10 @@ import { FieldGroup } from 'j-elements/src/components/FieldGroup.js';
 - I don't want to apply ARIA attributes manually
 - I usually don't want to worry about the naming of the fields
 
-## Field labels, descriptions, and validation messages
-
-Wrap any native input element and a label with `<j-field>`, and accessibility is handled for you automatically without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
 
 ## Label and description
+Wrap any native input element and a label with `<j-field>`, and accessibility is handled for you automatically without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
+
 <render-example></render-example>
 ```html
 <j-field>

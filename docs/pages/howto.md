@@ -14,6 +14,8 @@ JElements is installable with [npm](https://npmjs.org) or any alternative npm cl
 npm install j-elements
 ```
 
+The package has zero dependencies and is about <module-size></module-size> in total including all components, utilities, and CSS.
+
 ## Import
 
 The components are delivered as [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
@@ -40,22 +42,30 @@ import { Field } from 'j-elements/src/components/Field.js';
 
 ## Use
 
-After importing the components, use them in JavaScript or HTML.
-
-### JavaScript
-```javascript
-const field = document.createElement('j-field');
-field.innerHTML = `
-  <label>Name</label>
-  <input type="text">
-`;
-document.body.appendChild(field);
-```
+After importing the components, use them via HTML or JavaScript.
 
 ### HTML
+<render-example></render-example>
 ```html
 <j-field>
   <label>Name</label>
-  <input type="text">
+  <input type="text" required>
 </j-field>
+```
+
+### JavaScript
+<render-example></render-example>
+```html
+<script type="module">
+  import '/src/components/Field.js';
+
+  const field = document.createElement('j-field');
+  field.innerHTML = `
+    <label>Name</label>
+    <input type="text" required>
+  `;
+
+  document.querySelector('#example').appendChild(field);
+</script>
+<div id="example"></div>
 ```

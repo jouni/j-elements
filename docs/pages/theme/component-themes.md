@@ -17,6 +17,13 @@ imports:
 <link href="j-elements/src/theme/components.css" rel="stylesheet">
 ```
 
+## Problem
+Not really a problem in the overall web component/development space, but a problem with Vaadin component themes:
+
+- Custom implementations for standard HTML elements like button, checkbox, and radio button, which makes it hard to reuse existing CSS provided by 3rd parties. You need to target a different element name, and native pseudo-classes do not work and you have to use custom state attribute selectors instead.
+- The selectors used by Vaadin component themes can be complex and therefore hard to override
+- Vaadin component themes are in some areas complicated for not much benefit, aiming for visual flair at the cost of simplicity
+
 <style>
 render-example,
 render-example > div {
