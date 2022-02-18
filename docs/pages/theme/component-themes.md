@@ -4,6 +4,7 @@ layout: page
 eleventyNavigation:
   key: Component themes
   parent: Theme
+  order: 20
 permalink: /component-themes/
 imports:
   /src/theme/typography.css

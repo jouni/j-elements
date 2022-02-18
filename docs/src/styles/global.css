@@ -351,3 +351,41 @@ main {
     display: none;
   }
 }
+
+.preview {
+  font-family: var(--font-family-monospace);
+  color: var(--color-low-contrast);
+  font-size: var(--font-size-xs);
+}
+
+.preview.color span {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: var(--value);
+  vertical-align: text-top;
+  margin: 0 0.5em;
+  position: relative;
+}
+
+.preview.color span::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px black, 0 0 0 1px white;
+  opacity: 0.5;
+}
+
+render-props p {
+  color: var(--color-low-contrast);
+}
+
+render-props code {
+  color: var(--color-high-contrast);
+  font-weight: var(--font-weight-strongest);
+  background: transparent !important;
+  font-size: inherit;
+}
