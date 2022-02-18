@@ -70,10 +70,10 @@ Background for UI controls when activated (for example, clicked with a mouse or 
 <render-props>
 
 `--color`
-Default text color. Should have at least 7:1 contrast ratio on top of all backgrounds.
+Default text color. Should have at least 7:1 contrast ratio on top of all non-UI backgrounds.
 
 `--color-low-contrast`
-Low contrast text color. Use, for example, for secondary text elements. Should have at least 4.5:1 contrast ratio on top of all the backgrounds.
+Low contrast text color. Use, for example, for secondary text elements. Should have at least 4.5:1 contrast ratio on top of all non-UI backgrounds.
 
 `--color-high-contrast`
 High contrast text color. Use, for example, for heading text elements.
@@ -91,8 +91,11 @@ Disabled text color.
 `--border-color`
 Default border color.
 
-`--border-color-subtle`
-Less prominent border color.
+`--border-color-low-contrast`
+Low contrast border color.
+
+`--border-color-high-contrast`
+High contrast border color.
 
 `--border-ui`
 Default border for UI controls, such as text inputs.

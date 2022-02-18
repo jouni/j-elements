@@ -17,12 +17,13 @@ html,
   --color: var(--zinc-700);
   --color-high-contrast: var(--zinc-900);
 
-  --border-color-subtle: var(--zinc-200);
-  --border-color: var(--zinc-300);
-  --border-ui: 1px solid var(--zinc-300);
-  --border-ui-hover: 1px solid var(--zinc-400);
-  --border-ui-active: 1px solid var(--zinc-400);
-  --border-ui-focus: 1px solid var(--accent-400);
+  --border-color-low-contrast: var(--zinc-200);
+  --border-color: var(--zinc-400);
+  --border-color-high-contrast: var(--zinc-500);
+  --border-ui: 1px solid var(--border-color);
+  --border-ui-hover: 1px solid var(--border-color-high-contrast);
+  --border-ui-active: 1px solid var(--border-color-high-contrast);
+  --border-ui-focus: 1px solid var(--focus-outline-color);
   --border-radius-l: 0.5rem;
   --border-radius-m: 0.375rem;
   --border-radius-s: 0.25rem;
@@ -36,6 +37,8 @@ html,
   --accent-700: var(--indigo-900);
   --accent-contrast: var(--background);
   accent-color: var(--accent-400);
+
+  --focus-outline-color: var(--accent-400);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,12 +59,13 @@ html,
     --color: var(--zinc-100);
     --color-high-contrast: var(--zinc-50);
 
-    --border-color-subtle: var(--zinc-700);
+    --border-color-low-contrast: var(--zinc-700);
     --border-color: var(--zinc-600);
-    --border-ui: 1px solid var(--zinc-600);
-    --border-ui-hover: 1px solid var(--zinc-500);
-    --border-ui-active: 1px solid var(--zinc-500);
-    --border-ui-focus: 1px solid var(--accent-400);
+    --border-color-high-contrast: var(--zinc-500);
+    --border-ui: 1px solid var(--border-color);
+    --border-ui-hover: 1px solid var(--border-color-high-contrast);
+    --border-ui-active: 1px solid var(--border-color-high-contrast);
+    --border-ui-focus: 1px solid var(--focus-outline-color);
 
     --accent-100: var(--indigo-900);
     --accent-200: var(--indigo-600);
@@ -92,12 +96,13 @@ html,
   --color: var(--zinc-100);
   --color-high-contrast: var(--zinc-50);
 
-  --border-color-subtle: var(--zinc-700);
+  --border-color-low-contrast: var(--zinc-700);
   --border-color: var(--zinc-600);
-  --border-ui: 1px solid var(--zinc-600);
-  --border-ui-hover: 1px solid var(--zinc-500);
-  --border-ui-active: 1px solid var(--zinc-500);
-  --border-ui-focus: 1px solid var(--accent-400);
+  --border-color-high-contrast: var(--zinc-500);
+  --border-ui: 1px solid var(--border-color);
+  --border-ui-hover: 1px solid var(--border-color-high-contrast);
+  --border-ui-active: 1px solid var(--border-color-high-contrast);
+  --border-ui-focus: 1px solid var(--focus-outline-color);
 
   --accent-100: var(--indigo-900);
   --accent-200: var(--indigo-600);

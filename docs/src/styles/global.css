@@ -214,7 +214,7 @@ code:not([class*="language"]) {
 render-example {
   display: block;
   border-radius: 0.25em;
-  border: 1px solid var(--border-color-subtle);
+  border: 1px solid var(--border-color-low-contrast);
   background-color: var(--background);
   overflow: auto;
   resize: horizontal;
@@ -293,7 +293,7 @@ module-size dd {
 hr {
   border: 0;
   height: 1px;
-  background-color: var(--border-color-subtle);
+  background-color: var(--border-color-low-contrast);
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
