@@ -85,8 +85,8 @@ html,
   --background-ui-hover: var(--gray-600);
   --background-ui-active: var(--gray-500);
 
-  --color-disabled: var(--gray-400);
-  --color-low-contrast: var(--gray-200);
+  --color-disabled: var(--gray-500);
+  --color-low-contrast: var(--gray-300);
   --color: var(--gray-100);
   --color-high-contrast: var(--gray-50);
 
