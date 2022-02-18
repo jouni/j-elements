@@ -1,13 +1,18 @@
 ---
-title: Typography
+title: Font tokens
 layout: page
 eleventyNavigation:
-  key: Typography
+  key: Font tokens
   parent: Theme
 permalink: /typography/
 ---
 
+```html
+<link href="j-elements/src/theme/typography.css" rel="stylesheet">
+```
+
 ## Font size
+Font sizes scale slightly based on the browser viewport size.
 <style>
 .font-size {
   display: block;
