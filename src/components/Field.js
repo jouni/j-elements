@@ -89,15 +89,6 @@ export class Field extends DefineElementMixin(HTMLElement) {
         }
 
         labelElement?.setAttribute('for', inputElement.id);
-
-        // if (!this._isInGroup()) {
-        //   // TODO the public API is hard to decide (should it be class names, should it be attributes, should it be slots?)
-        //   const descriptions = [...this.querySelectorAll('[validation-message], [description]')];
-        //   descriptions.forEach((desc, i) => {
-        //     desc.id = this.__id + 'description-' + i;
-        //   });
-        //   inputElement.setAttribute('aria-describedby', descriptions.reduce((acc, desc) => acc + ' ' + desc.id, ''));
-        // }
       }
     }
 
