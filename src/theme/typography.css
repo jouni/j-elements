@@ -5,14 +5,14 @@ html,
   --font-family-monospace: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --font-family: var(--font-family-sans-serif);
 
-  --font-size-xxs: .75rem;
-  --font-size-xs: .8125rem;
-  --font-size-s: .875rem;
-  --font-size-m: 1rem;
-  --font-size-l: 1.125rem;
-  --font-size-xl: 1.375rem;
-  --font-size-xxl: 1.75rem;
-  --font-size-xxxl: 2.5rem;
+  --font-size-2xs: clamp(0.6875rem, 0.95vw, 0.8125rem);
+  --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --font-size-s: clamp(0.875rem, 1.05vw, 1rem);
+  --font-size-m: clamp(1rem, 1.125vw, 1.125rem);
+  --font-size-l: clamp(1.125rem, 1.4vw, 1.375rem);
+  --font-size-xl: clamp(1.375rem, 1.8vw, 1.75rem);
+  --font-size-2xl: clamp(1.625rem, 2.4vw, 2.375rem);
+  --font-size-3xl: clamp(2rem, 3vw, 3rem);
 
   --font-weight-weakest: 300;
   --font-weight-weak: 300;
@@ -28,11 +28,17 @@ html,
   --line-height-s-px: 20px;
   --line-height-m-px: 24px;
 
-  /* Set to auto to disable grayscale/antialiased font smoothing */
-  --font-smoothing:;
+  /* Set to auto to disable grayscale/antialiased font smoothing (and use default sub-pixel antialiasing) */
+  /* --font-smoothing:; */
+  -webkit-font-smoothing: var(--font-smoothing, antialiased);
+  -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
 
   --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
   --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
   --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
   --font-label: var(--font-weight-strong) var(--font-size-s)/var(--line-height-s) var(--font-family);
+
+  /* We assume apps are built with responsive layouting in mind */
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
