@@ -379,8 +379,13 @@ main {
   opacity: 0.5;
 }
 
+render-props {
+  display: flow-root;
+}
+
 render-props p {
   color: var(--color-low-contrast);
+  padding: 0 1.5rem;
 }
 
 render-props code {
@@ -388,4 +393,5 @@ render-props code {
   font-weight: var(--font-weight-strongest);
   background: transparent !important;
   font-size: inherit;
+  margin-inline-start: -1.5rem;
 }

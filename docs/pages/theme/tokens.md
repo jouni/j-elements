@@ -106,6 +106,15 @@ Border for UI controls when activated.
 `--border-ui-focus`
 Border for UI controls when focused.
 
+`--border-radius-l`
+Large border radius. For example, dialogs, cards, and other containers.
+
+`--border-radius-m`
+Medium border radius. For example, button and text input.
+
+`--border-radius-s`
+Small border radius. For example, checkbox.
+
 </render-props>
 
 
@@ -131,3 +140,23 @@ Font sizes scale slightly based on the browser viewport size.
 <p style="font-size: var(--font-size-xs);">Lorem ipsum</p>
 <p style="font-size: var(--font-size-2xs);">Lorem ipsum</p>
 ```
+
+<render-props>
+
+`--font-size-3xl`
+
+`--font-size-2xl`
+
+`--font-size-xl`
+
+`--font-size-l`
+
+`--font-size-m`
+
+`--font-size-s`
+
+`--font-size-xs`
+
+`--font-size-2xs`
+
+</render-props>
