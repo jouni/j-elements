@@ -90,11 +90,22 @@ render-example > div {
 ## Select
 <render-example></render-example>
 ```html
-<select>
-  <option>Option one</option>
-  <option>Option two</option>
-  <option>Option three</option>
-</select>
+<div>
+  <select>
+    <option>Option one</option>
+    <option>Option two</option>
+    <option>Option three</option>
+  </select>
+</div>
+
+<h5>Small</h5>
+<div>
+  <select theme="small">
+    <option>Option one</option>
+    <option>Option two</option>
+    <option>Option three</option>
+  </select>
+</div>
 ```
 
 ## Checkbox
