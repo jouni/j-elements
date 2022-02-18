@@ -20,8 +20,8 @@ html,
   --font-weight-strong: 500;
   --font-weight-strongest: 600;
 
-  --line-height-xs: 1.25;
-  --line-height-s: 1.375;
+  --line-height-xs: 1;
+  --line-height-s: 1.25;
   --line-height-m: 1.5;
 
   --line-height-xs-px: 16px;
@@ -33,12 +33,15 @@ html,
   -webkit-font-smoothing: var(--font-smoothing, antialiased);
   -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
 
-  --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
-  --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
-  --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
-  --font-label: var(--font-weight-strong) var(--font-size-s)/var(--line-height-s) var(--font-family);
-
   /* We assume apps are built with responsive layouting in mind */
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+
+  /* Font presets */
+
+  --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
+  --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
+  --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
+  --font-textinput-small: var(--font-weight) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
+  --font-label: var(--font-weight-strong) var(--font-size-s)/var(--line-height-s) var(--font-family);
 }
