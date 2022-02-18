@@ -18,15 +18,16 @@ imports:
 ```
 
 ## Problem
-Not really a problem in the overall web component/development space, but a problem with Vaadin component themes:
+Component themes is not really a problem in the overall web component/development space, but a problem with Vaadin component themes. While there might've been a need for some of the complexity before (due to older browsers), with modern browsers there things we could improve:
 
-- Custom implementations for standard HTML elements like button, checkbox, and radio button, which makes it hard to reuse existing CSS provided by 3rd parties. You need to target a different element name, and native pseudo-classes do not work and you have to use custom state attribute selectors instead.
+- Custom implementations for standard HTML elements like button, checkbox, and radio button, which make it hard to reuse existing CSS (for example, Bootstrap). You need to target a different element name and custom state attributes (because native pseudo-classes do not work).
 - The selectors used by Vaadin component themes can be complex and therefore hard to override
-- Vaadin component themes are in some areas complicated for not much benefit, aiming for visual flair at the cost of simplicity
+- Styling is in some areas complicated for not much benefit, aiming for visual flair at the cost of simplicity
 
 <style>
 render-example,
 render-example > div {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -46,6 +47,7 @@ render-example > div {
   <button>Secondary <span class="icon-chevron-down"></span></button>
   <button theme="tertiary">Tertiary <span class="icon-chevron-down"></span></button>
 </div>
+<h5>Small</h5>
 <div>
   <button theme="primary small">Primary</button>
   <button theme="small">Secondary</button>
@@ -56,43 +58,33 @@ render-example > div {
   <button theme="small">Secondary <span class="icon-chevron-down"></span></button>
   <button theme="tertiary small">Tertiary <span class="icon-chevron-down"></span></button>
 </div>
-```
-
-<render-example></render-example>
-```html
-
+<h5>Disabled</h5>
 <div>
   <button disabled theme="primary">Primary</button>
   <button disabled>Secondary</button>
   <button disabled theme="tertiary">Tertiary</button>
-</div>
-<div>
-  <button disabled theme="primary">Primary <span class="icon-chevron-down"></span></button>
-  <button disabled>Secondary <span class="icon-chevron-down"></span></button>
-  <button disabled theme="tertiary">Tertiary <span class="icon-chevron-down"></span></button>
 </div>
 ```
 
 ## Text Input
 <render-example></render-example>
 ```html
-<input type="text" placeholder="Text">
-<input type="date" placeholder="Date">
-<input type="email" placeholder="Email">
-<input type="number" placeholder="Number">
-<input type="password" placeholder="Password">
-<input type="tel" placeholder="Telephone">
-<input type="search" placeholder="Search">
-<input type="url" placeholder="URL">
-<textarea placeholder="Text area"></textarea>
-```
-
-## Other Inputs
-<render-example></render-example>
-```html
-<input type="range">
-<input type="color" placeholder="Color">
-<input type="file" placeholder="File">
+<div>
+  <input type="text" placeholder="Text">
+  <input type="date" placeholder="Date">
+  <input type="email" placeholder="Email">
+  <input type="number" placeholder="Number">
+  <input type="password" placeholder="Password">
+  <input type="tel" placeholder="Telephone">
+  <input type="search" placeholder="Search">
+  <input type="url" placeholder="URL">
+</div>
+<div>
+  <textarea placeholder="Text area"></textarea>
+</div>
+<div>
+  <input type="text" theme="small" placeholder="Small">
+</div>
 ```
 
 ## Select
@@ -117,4 +109,13 @@ render-example > div {
 ```html
 <input type="radio" name="example">
 <input type="radio" name="example" checked>
+```
+
+
+## Other inputs (unstyled)
+<render-example></render-example>
+```html
+<input type="range">
+<input type="color" placeholder="Color">
+<input type="file" placeholder="File">
 ```

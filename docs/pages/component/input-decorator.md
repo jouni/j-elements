@@ -50,20 +50,16 @@ input {
 <j-input-decorator>
   <textarea>Text area value</textarea>
   <span slot="prefix" class="icon-search"></span>
-  <button slot="suffix" theme="tertiary small">Button</button>
+  <button slot="suffix" theme="tertiary"><span class="icon-chevron-down"></span></button>
 </j-input-decorator>
 
 <style>
   span[slot] {
-    margin: 0 0.5rem;
+    margin: 0.5rem;
   }
 
   textarea ~ [slot] {
     align-self: start;
-  }
-
-  textarea ~ span[slot] {
-    margin-top: 0.6125em;
   }
 </style>
 ```
