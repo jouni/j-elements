@@ -365,19 +365,21 @@ html {
 
 :where([class^=icon]) {
   display: inline-block;
-  vertical-align: text-bottom;
+  vertical-align: baseline;
   width: var(--icon-size, 1.125em);
   height: var(--icon-size, 1.125em);
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
   background-color: currentColor;
   flex: none;
+  margin-top: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
+  margin-bottom: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
 }
 
 :where(.icon-search) {
-  -webkit-mask-image: var(--icon-search);
-  mask-image: var(--icon-search);
+  --mask-image: var(--icon-search);
 }
 
 :where(.icon-chevron-down) {
-  -webkit-mask-image: var(--icon-chevron-down);
-  mask-image: var(--icon-chevron-down);
+  --mask-image: var(--icon-chevron-down);
 }
