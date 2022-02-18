@@ -95,6 +95,10 @@
   border: var(--textinput-invalid-border, 1px solid var(--red-500));
 } */
 
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([theme~=small]) {
+  --textinput-font: var(--font-textinput-small);
+}
+
 /* Select */
 
 :where(select) {
