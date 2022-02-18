@@ -159,14 +159,14 @@
   :where(button:not([disabled]):hover) {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
-    color: var(--button-hover-color, var(--button-color, var(--color-500)));
+    color: var(--button-hover-color, var(--button-color, var(--color)));
   }
 }
 
 :where(button:not([disabled]):active) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
-  color: var(--button-active-color, var(--button-color, var(--color-500)));
+  color: var(--button-active-color, var(--button-color, var(--color)));
   transition: none;
 }
 
