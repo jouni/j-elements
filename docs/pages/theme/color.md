@@ -1,124 +1,41 @@
 ---
-title: Color
+title: Color tokens
 layout: page
 eleventyNavigation:
-  key: Color
+  key: Color tokens
   parent: Theme
 permalink: /color/
+imports:
+  /src/theme/colors.css
+  /src/theme/palette.css
 ---
-
-## Problem
-
-Defining and applying a color palette consistently for a web app is non-trivial. You need to take accessibility into account (proper contrast between colors) and other user preferences such as dark mode.
-
-## Solution
-
-A customizable color system using CSS custom properties based on the most common practices across various design systems, with a built-in theme that light and dark palettes.
-
----
-
-## Getting started
-
-Set a solid foundation for colors by importing the default theme. It defines both light and dark palettes and switches those automatically based on the OS/browser level user preference.
 
 ```html
-<link rel="stylesheet" href="node_modules/j-elements/src/theme/color.css">
+<link href="j-elements/src/theme/colors.css" rel="stylesheet">
+<link href="j-elements/src/theme/palette.css" rel="stylesheet">
 ```
 
-<module-size modules="theme/color.css,theme/palette/dark-props.css,theme/palette/dark.css,theme/palette/light-props.css,theme/palette/light.css,theme/palette/props.css"></module-size>
+- `colors.css` defines a collection of static color scales – a range of colors from light to dark – for various hues, for example, "slate", "red", "emerald", "purple", and "rose". At the moment those scales are copied from [Tailwind CSS](https://tailwindcss.com/docs/customizing-colors).
 
-## Force light or dark palette
+- `palette.css` defines a low-level semantic custom properties, which adapt to light and dark modes, mapping to the static color scales.
 
-You can override the OS/browser level user preference with the `light-palette` or `dark-palette` classes, which you can apply for any element, including `<html>`.
-
-You can also invert the palette on any element by using the `inverted-palette` class. Note, that inverting only works for one level of nesting inside light/dark-palette – you can’t invert the color palette inside an already inverted color palette.
-
-<render-example></render-example>
-```html
-<h5>Force a palette on the app</h5>
-<button id="force-light">Light</button>
-<button id="force-dark">Dark</button>
-
-<div class="light-palette">Always light</div>
-<div class="dark-palette">Always dark</div>
-<div class="inverted-palette">Dark when parent is light and vice versa</div>
+- The `theme="dark"` and `theme="light"` attributes can be used to toggle between modes, at any level of DOM hierarchy.
 
 <style>
-  .light-palette,
-  .dark-palette,
-  .inverted-palette {
-    /* Use some of the palette colors to see the effect */
-    background-color: var(--background);
-    color: var(--text-color);
-  }
-</style>
-
-<script>
-  document.querySelector('#force-light').addEventListener('click', function() {
-    document.documentElement.classList.add('light-palette');
-    document.documentElement.classList.remove('dark-palette');
-  });
-
-  document.querySelector('#force-dark').addEventListener('click', function() {
-    document.documentElement.classList.remove('light-palette');
-    document.documentElement.classList.add('dark-palette');
-  });
-</script>
-```
-<style>
-div.light-palette,
-div.dark-palette,
-div.inverted-palette {
-  margin: 0.25em 0;
-  padding: 0.25em;
+.example-1 + pre {
+  display: none;
 }
-div.light-palette {
-  margin-top: 2em;
+render-example {
+  border: 0;
 }
 </style>
-
-## Customize the default palettes
-
-Override any number of the properties to set a custom color palette. The light and dark palettes have separate properties you should set. The property values are the hue, saturation and lightness (HSL) values, separated by comma.
-
-<render-example></render-example>
+<render-example class="full toggle-theme"></render-example>
 ```html
-<h5>Choose the primary color for the light palette</h5>
-<p>Make sure to switch to the light palette in the above examples to see the changes.</p>
-<button id="light-primary-color-1">Pink</button>
-<button id="light-primary-color-2">Mint</button>
-<button id="light-primary-color-0">Default</button>
-
+<button id="toggle-theme">Toggle light/dark theme</button>
 <script>
-  document.querySelector('#light-primary-color-1').addEventListener('click', function(e) {
-    document.documentElement.style.setProperty('--light-primary-hsl', '289, 90%, 53%');
-  });
-
-  document.querySelector('#light-primary-color-2').addEventListener('click', function(e) {
-    document.documentElement.style.setProperty('--light-primary-hsl', '160, 100%, 32%');
-  });
-
-  document.querySelector('#light-primary-color-0').addEventListener('click', function(e) {
-    document.documentElement.style.setProperty('--light-primary-hsl', '');
-  });
+document.querySelector('#toggle-theme').onclick = () => {
+  const current = document.documentElement.getAttribute('theme');
+  document.documentElement.setAttribute('theme', current == 'dark' ? 'light' : 'dark');
+}
 </script>
 ```
-
-
----
-
-
-## Reference
-
-### Background
-Primarily used for the app background.
-
-- `--light-background-hsl`
-- `--dark-background-hsl`
-
-
-### Surface
-Used for surfaces (i.e. containers such as panels and dialogs).
-
-- `--light-surface-hsl`
-- `--dark-surface-hsl`
