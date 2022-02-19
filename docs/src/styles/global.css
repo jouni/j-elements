@@ -79,24 +79,22 @@ table-of-contents + p {
 
 .main-nav nav .active > a {
   background-color: var(--background-ui-hover);
-  color: var(--color-500);
+  color: var(--color-high-contrast);
 }
 
 .main-nav ul a:hover,
 .main-nav ul a:focus {
-  color: var(--color-500);
+  color: var(--color-high-contrast);
   text-decoration: none;
 }
 
 .main-nav .has-children {
   margin-top: 1.5rem;
-  color: var(--color-high-contrast);
 }
 
 .main-nav .has-children > a:any-link {
   font-weight: 500;
   color: var(--color-high-contrast);
-  font-weight: 500;
 }
 
 main > h1::after {
@@ -175,15 +173,12 @@ table-of-contents a:hover {
   color: var(--color);
 }
 
-.github-link {
-  display: inline-block;
-  padding: 8px;
-  margin: 8px;
+main > footer a:any-link {
   color: inherit;
+  text-align: end;
 }
 
-.github-link:hover,
-.github-link:focus {
+main > footer a:hover {
   color: var(--accent);
 }
 
@@ -283,7 +278,7 @@ module-size dl {
 }
 
 module-size dt {
-  color: var(--color-500);
+  color: var(--color);
 }
 
 module-size dd {
