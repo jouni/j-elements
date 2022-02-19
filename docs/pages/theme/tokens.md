@@ -37,9 +37,7 @@ The `theme="dark"` and `theme="light"` attributes can be used to toggle between 
 <p theme="dark">Always dark</p>
 ```
 
-### Palette tokens
-
-#### Background
+### Background
 
 <render-props>
 
@@ -65,7 +63,7 @@ Background for UI controls when activated (for example, clicked with a mouse or 
 </render-props>
 
 
-#### Text
+### Text
 
 <render-props>
 
@@ -84,7 +82,7 @@ Disabled text color.
 </render-props>
 
 
-#### Border
+### Border
 
 <render-props>
 
@@ -121,7 +119,57 @@ Small border radius. For example, checkbox.
 </render-props>
 
 
+### Accent
+
+<render-props>
+
+`--accent`
+
+`--accent-low-contrast`
+
+`--accent-high-contrast`
+
+`--accent-ui`
+
+`--accent-ui-hover`
+
+`--accent-ui-active`
+
+</render-props>
+
+
+## Focus outline
+
+<render-props>
+
+`--focus-outline-offset`
+
+`--focus-outline-width`
+
+`--focus-outline-color`
+
+</render-props>
+
+
+
 ## Typography
+
+### Font family
+
+<render-props>
+
+`--font-family`
+
+`--font-family-sans-serif`
+
+`--font-family-serif`
+
+`--font-family-monospace`
+
+</render-props>
+
+
+### Font size
 Font sizes scale slightly based on the browser viewport size.
 <style>
 .font-size {
@@ -161,5 +209,104 @@ Font sizes scale slightly based on the browser viewport size.
 `--font-size-xs`
 
 `--font-size-2xs`
+
+</render-props>
+
+
+### Line height
+
+<render-props>
+
+`--line-height-xs`
+
+`--line-height-s`
+
+`--line-height-m`
+
+`--line-height-xs-px`
+
+`--line-height-s-px`
+
+`--line-height-m-px`
+
+</render-props>
+
+
+### Font weight
+
+<render-props>
+
+`--font-weight-weakest`
+
+`--font-weight-weak`
+
+`--font-weight`
+
+`--font-weight-strong`
+
+`--font-weight-strongest`
+
+</render-props>
+
+
+### Font smoothing
+
+<render-props>
+
+`--font-smoothing`
+Set to `auto` to disable grayscale/antialiased font smoothing and use default sub-pixel antialiasing.
+
+</render-props>
+
+
+### Presets
+
+<render-props>
+
+`--font-label`
+Form field labels.
+
+`--font-button`
+
+`--font-button-small`
+
+`--font-textinput`
+
+`--font-textinput-small`
+
+</render-props>
+
+
+## Size / space
+
+<render-props>
+
+`--size-1`
+
+`--size-2`
+
+`--size-4`
+
+`--size-6`
+
+`--size-8`
+
+`--size-12`
+
+`--size-16`
+
+`--size-24`
+
+`--size-28`
+
+`--size-32`
+
+`--size-40`
+
+`--size-48`
+
+`--size-56`
+
+`--size-64`
 
 </render-props>

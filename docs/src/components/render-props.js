@@ -1,8 +1,9 @@
 let exampleId = 1;
 
+/* TODO rerun this after color-scheme changes */
 window.customElements.define('render-props', class extends HTMLElement {
   async connectedCallback() {
-    const props = [...this.querySelectorAll('code')];
+    const props = [...this.querySelectorAll(':scope > p > code:first-child')];
     const style = window.getComputedStyle(document.documentElement)
     props.forEach(prop => {
       const val = style.getPropertyValue(prop.textContent).trim();

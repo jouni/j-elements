@@ -26,7 +26,7 @@
   outline: none;
   box-shadow:
     0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-400));
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
 }
 
 /* Safari */
@@ -35,18 +35,18 @@
     outline: none;
     box-shadow:
       0 0 0 var(--focus-outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-400));
+      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
   }
 }
 
 /* Link/Anchor */
 
 :where(a) {
-  color: var(--link-color, var(--accent-400));
+  color: var(--link-color, var(--accent));
 }
 
 :where(a:visited) {
-  color: var(--link-visited-color, var(--accent-500));
+  color: var(--link-visited-color, var(--accent-high-contrast));
 }
 
 /* Text Input, Text Area, Select */
@@ -171,9 +171,9 @@
 }
 
 :where(button[theme~=primary]) {
-  --button-background: var(--button-background-primary, var(--accent-400));
-  --button-hover-background: var(--button-hover-background-primary, var(--accent-500));
-  --button-active-background: var(--button-active-background-primary, var(--accent-600));
+  --button-background: var(--button-background-primary, var(--accent-ui));
+  --button-hover-background: var(--button-hover-background-primary, var(--accent-ui-hover));
+  --button-active-background: var(--button-active-background-primary, var(--accent-ui-active));
   --button-color: var(--button-color-primary, var(--background));
   --button-border: var(--button-border-primary, 1px solid transparent);
 
@@ -181,9 +181,9 @@
 
 :where(button[theme~=tertiary]) {
   --button-background: var(--button-background-tertiary, transparent);
-  --button-color: var(--button-color-tertiary, var(--accent-400));
-  --button-hover-color: var(--button-hover-color-tertiary, var(--accent-500));
-  --button-active-color: var(--button-active-color-tertiary, var(--accent-600));
+  --button-color: var(--button-color-tertiary, var(--accent-ui));
+  --button-hover-color: var(--button-hover-color-tertiary, var(--accent-ui-hover));
+  --button-active-color: var(--button-active-color-tertiary, var(--accent-ui-active));
   --button-border: var(--button-border-tertiary, 1px solid transparent);
   --button-hover-filter: contrast(0.9) brightness(0.9);
   --button-active-filter: contrast(0.9) brightness(0.8);
@@ -237,9 +237,9 @@
 }
 
 :where(input[type=checkbox]:checked) {
-  background: var(--checkbox-checked-background, var(--accent-400));
+  background: var(--checkbox-checked-background, var(--accent-ui));
   border: var(--checkbox-checked-border, 0);
-  color: var(--checkbox-checked-color, var(--accent-contrast));
+  color: var(--checkbox-checked-color, var(--background));
 }
 
 :where(input[type=checkbox]:checked)::before {
@@ -289,9 +289,9 @@
 }
 
 :where(input[type=radio]:checked) {
-  background: var(--radiobutton-checked-background, var(--accent-400));
+  background: var(--radiobutton-checked-background, var(--accent-ui));
   border: var(--radiobutton-checked-border, 0);
-  color: var(--radiobutton-checked-color, var(--accent-contrast));
+  color: var(--radiobutton-checked-color, var(--background));
 }
 
 :where(input[type=radio]:checked)::before {
@@ -329,7 +329,7 @@ j-field-group j-field {
 }
 
 :where(j-field:focus-within, j-field-group:focus-within) :where(label) {
-  color: var(--accent-400);
+  color: var(--accent);
 }
 
 :where(j-field[type=radio], j-field[type=checkbox]) :where(label) {
@@ -347,6 +347,7 @@ j-field-group j-field {
 :where(j-field, j-field-group) :where([description], [validation-message]) {
   font-size: var(--font-size-s, 0.875em);
   margin: var(--size-6, 0.375rem) 0;
+  color: var(--color-low-contrast);
 }
 
 [required-indicator]::before {

@@ -54,11 +54,11 @@ body {
 }
 
 table-of-contents + p {
-  font-size: 1.25rem;
+  font-size: var(--font-size-l);
 }
 
 .main-nav h1 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-l);
   margin-left: 0.5rem;
   margin-bottom: 0;
 }
@@ -111,7 +111,7 @@ main > h1::after {
 
 table-of-contents {
   display: block;
-  font-size: 0.8125rem;
+  font-size: var(--font-size-xs);
   margin-bottom: 6em;
 }
 
@@ -120,9 +120,9 @@ main > footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8125rem;
+  font-size: var(--font-size-xs);
   color: var(--color-low-contrast);
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color-low-contrast);
   margin-top: 5rem;
   padding-top: 2rem;
 }
@@ -145,7 +145,7 @@ main > footer {
 }
 
 table-of-contents h6 {
-  font-size: 0.75rem;
+  font-size: var(--font-size-2xs);
   color: var(--color-low-contrast);
 }
 
@@ -153,7 +153,7 @@ table-of-contents > ol {
   list-style: none;
   margin: 1em 0 2em;
   padding-left: 1.5em;
-  border-left: 2px solid var(--border-color);
+  border-left: 2px solid var(--border-color-low-contrast);
 }
 
 table-of-contents > ol ol {
@@ -184,15 +184,14 @@ table-of-contents a:hover {
 
 .github-link:hover,
 .github-link:focus {
-  color: var(--accent-400);
+  color: var(--accent);
 }
 
 blockquote {
-  border-left: 3px solid var(--accent-400);
-  background-color: var(--accent-100);
+  border-left: 3px solid var(--accent);
+  background-color: var(--accent-low-contrast);
   margin: 1.5rem 0;
   padding: 0.25rem 1.5rem 0.1em;
-  font-size: 0.875rem;
 }
 
 blockquote h6:first-child {
@@ -202,7 +201,7 @@ blockquote h6:first-child {
 pre[class*="language"],
 code {
   font-family: var(--font-family-monospace);
-  font-size: 0.875rem;
+  font-size: var(--font-size-xs);
   background: var(--background-below) !important;
 }
 
@@ -270,12 +269,12 @@ h2, h3 {
 
 @keyframes flash {
   30% {
-    background-color: var(--accent-100)
+    background-color: var(--accent-low-contrast)
   }
 }
 
 module-size {
-  font-size: 0.875rem;
+  font-size: var(--font-size-s);
   color: var(--color-low-contrast);
 }
 
@@ -310,7 +309,7 @@ hr {
   padding: 1.5rem 1rem;
   width: 15rem;
   max-width: 100%;
-  font-size: 0.875rem;
+  font-size: var(--font-size-s);
   background-color: var(--background-below);
   position: sticky;
   top: 0;
@@ -388,7 +387,7 @@ render-props p {
   padding: 0 1.5rem;
 }
 
-render-props code {
+render-props > p > code:first-child {
   color: var(--color-high-contrast);
   font-weight: var(--font-weight-strongest);
   background: transparent !important;
