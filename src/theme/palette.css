@@ -29,11 +29,11 @@ html,
   --border-radius-s: 0.25rem;
 
   --accent-low-contrast: var(--indigo-50);
-  --accent: var(--indigo-500);
+  --accent: var(--indigo-600);
   --accent-high-contrast: var(--indigo-900);
-  --accent-ui: var(--indigo-500);
-  --accent-ui-hover: var(--indigo-600);
-  --accent-ui-active: var(--indigo-700);
+  --accent-ui: var(--indigo-600);
+  --accent-ui-hover: var(--indigo-700);
+  --accent-ui-active: var(--indigo-800);
   accent-color: var(--accent);
 
   --focus-outline-color: var(--accent-ui);
