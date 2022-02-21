@@ -20,9 +20,9 @@ html,
   --color-low-contrast: var(--zinc-500);
   --color-disabled: var(--zinc-400);
 
-  --color-accent: var(--indigo-600);
-  --color-accent-high-contrast: var(--indigo-900);
-  --color-accent-low-contrast: var(--indigo-400);
+  --color-accent: var(--indigo-700);
+  --color-accent-high-contrast: var(--indigo-800);
+  --color-accent-low-contrast: var(--indigo-600);
 
   --border-color: var(--zinc-400);
   --border-color-high-contrast: var(--zinc-500);
@@ -50,9 +50,9 @@ html,
     --color-low-contrast: var(--zinc-300);
     --color-disabled: var(--zinc-500);
 
-    --color-accent: var(--indigo-400);
-    --color-accent-high-contrast: var(--indigo-50);
-    --color-accent-low-contrast: var(--indigo-600);
+    --color-accent: var(--indigo-300);
+    --color-accent-high-contrast: var(--indigo-200);
+    --color-accent-low-contrast: var(--indigo-400);
 
     --border-color: var(--zinc-600);
     --border-color-high-contrast: var(--zinc-500);
@@ -80,9 +80,9 @@ html,
   --color-low-contrast: var(--zinc-300);
   --color-disabled: var(--zinc-500);
 
-  --color-accent: var(--indigo-400);
-  --color-accent-high-contrast: var(--indigo-50);
-  --color-accent-low-contrast: var(--indigo-600);
+  --color-accent: var(--indigo-300);
+  --color-accent-high-contrast: var(--indigo-200);
+  --color-accent-low-contrast: var(--indigo-400);
 
   --border-color: var(--zinc-600);
   --border-color-high-contrast: var(--zinc-500);
