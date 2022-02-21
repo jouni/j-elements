@@ -390,3 +390,100 @@ html {
 :where(.icon-chevron-down) {
   --mask-image: var(--icon-chevron-down);
 }
+
+/* Slider */
+
+:where(input[type="range"]) {
+  -webkit-appearance: none;
+  background: transparent;
+  width: 15rem;
+}
+
+:where(input[type="range"])::-webkit-slider-runnable-track {
+  background: var(--slider-track-background, var(--background-ui-hover));
+  border-radius: var(--slider-track-border-radius, var(--border-radius-s));
+  height: var(--slider-track-size, var(--space-4, 0.25rem));
+  transition: background-color 0.15s;
+}
+
+:where(input[type="range"])::-moz-range-track {
+  background: var(--slider-track-background, var(--background-ui-hover));
+  border-radius: var(--slider-track-border-radius, var(--border-radius-s));
+  height: var(--slider-track-size, var(--space-4, 0.25rem));
+  transition: background-color 0.15s;
+}
+
+:where(input[type="range"]):where(:hover)::-webkit-slider-runnable-track {
+  background: var(--slider-track-hover-background, var(--background-ui-active));
+}
+
+:where(input[type="range"]):where(:hover)::-moz-range-track {
+  background: var(--slider-track-hover-background, var(--background-ui-active));
+}
+
+:where(input[type="range"])::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--space-4, 0.25rem))) / -2);
+  background: var(--slider-thumb-background, var(--accent-ui));
+  height: var(--slider-thumb-size, var(--size-16, 1rem));
+  width: var(--slider-thumb-size, var(--size-16, 1rem));
+  border-radius: var(--slider-thumb-border-radius, 50%);
+  border: 0;
+  transition: background-color 0.15s;
+}
+
+:where(input[type="range"])::-moz-range-thumb {
+  margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--space-4, 0.25rem))) / -2);
+  background: var(--slider-thumb-background, var(--accent-ui));
+  height: var(--slider-thumb-size, var(--size-16, 1rem));
+  width: var(--slider-thumb-size, var(--size-16, 1rem));
+  border-radius: var(--slider-thumb-border-radius, 50%);
+  border: 0;
+  transition: background-color 0.15s;
+}
+
+:where(input[type="range"])::-webkit-slider-thumb:hover {
+  background: var(--slider-thumb-hover-background, var(--accent-ui-hover));
+}
+
+:where(input[type="range"])::-moz-range-thumb:hover {
+  background: var(--slider-thumb-hover-background, var(--accent-ui-hover));
+}
+
+:where(input[type="range"])::-webkit-slider-thumb:active {
+  background: var(--slider-thumb-active-background, var(--accent-ui-active));
+  transition: none;
+}
+
+:where(input[type="range"])::-moz-range-thumb:active {
+  background: var(--slider-thumb-active-background, var(--accent-ui-active));
+  transition: none;
+}
+
+:where(input[type="range"]):where(:focus, :focus-visible) {
+  box-shadow: none !important;
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-outline-offset, 2px) var(--background),
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+}
+
+input[type="range"]:focus-visible::-moz-range-thumb {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--focus-outline-offset, 2px) var(--background),
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+}
+
+/* Safari */
+@supports not selector(:focus-visible) {
+  input[type="range"]:focus::-webkit-slider-thumb {
+    outline: none;
+    box-shadow:
+      0 0 0 var(--focus-outline-offset, 2px) var(--background),
+      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+  }
+}

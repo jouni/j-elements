@@ -124,10 +124,8 @@ render-example > div {
 ```
 
 
-## Other inputs (unstyled)
+## Slider
 <render-example></render-example>
 ```html
 <input type="range">
-<input type="color" placeholder="Color">
-<input type="file" placeholder="File">
 ```
