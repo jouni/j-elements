@@ -97,25 +97,36 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
     const dimension = input.localName == 'textarea' ? 'Height' : 'Width';
 
     if (this.hasAttribute('autosize')) {
-      const borderWidth = parseInt(window.getComputedStyle(input)['border-width']);
+      if (input.localName == 'select') {
+        this.style.width = '';
+        input.style.width = '';
+        const options = [...input.querySelectorAll('option')].map((option, i) => {return { option, i }});
+        console.log(options)
+        options.forEach(({option, i}) => !option.selected && input.removeChild(option));
+        this.style.width = input.offsetWidth + 'px';
+        input.style.width = '100%';
+        options.forEach(({option, i}) => input.insertBefore(option, input.children[i]));
+      } else {
+        const borderWidth = parseInt(window.getComputedStyle(input)['border-width']);
 
-      // Safari reports scrollWidth the same regardless of the padding, so we need to handle that
-      // manually to get it consistent in all browsers
-      let paddingInlineStart = 0, paddingInlineEnd = 0;
-      if (dimension == 'Width') {
-        paddingInlineStart = parseInt(window.getComputedStyle(input)['padding-inline-start']);
-        paddingInlineEnd = parseInt(window.getComputedStyle(input)['padding-inline-end']);
-        input.style.setProperty('--prefix-width', '0');
-        input.style.setProperty('--suffix-width', '0');
-        input.style.padding = '0';
+        // Safari reports scrollWidth the same regardless of the padding, so we need to handle that
+        // manually to get it consistent in all browsers
+        let paddingInlineStart = 0, paddingInlineEnd = 0;
+        if (dimension == 'Width') {
+          paddingInlineStart = parseInt(window.getComputedStyle(input)['padding-inline-start']);
+          paddingInlineEnd = parseInt(window.getComputedStyle(input)['padding-inline-end']);
+          input.style.setProperty('--prefix-width', '0');
+          input.style.setProperty('--suffix-width', '0');
+          input.style.padding = '0';
+        }
+
+        input.style[dimension.toLowerCase()] = '0';
+        this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd) + 'px';
+        input.style.padding = '';
+        input.style.removeProperty('--prefix-width');
+        input.style.removeProperty('--suffix-width');
+        input.style[dimension.toLowerCase()] = '100%';
       }
-
-      input.style[dimension.toLowerCase()] = '0';
-      this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd) + 'px';
-      input.style.padding = '';
-      input.style.removeProperty('--prefix-width');
-      input.style.removeProperty('--suffix-width');
-      input.style[dimension.toLowerCase()] = '100%';
     } else {
       this.style[dimension.toLowerCase()] = '';
       input.style[dimension.toLowerCase()] = '';
