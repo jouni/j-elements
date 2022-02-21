@@ -17,6 +17,7 @@ eleventyNavigation:
 - I want to show additional content, for example, an icon, inside a text input
 - I don't want to recreate a text input component from scratch
 - I want to reuse a 3rd party CSS library/framework, for example, Bootstrap, which usually target native input elements.
+- I want an input element to size itself based on the current value
 
 ## Prefix and suffix content
 
