@@ -420,7 +420,7 @@ html {
 :where(input[type="range"]) {
   -webkit-appearance: none;
   background: transparent;
-  width: 15rem;
+  width: calc(var(--size-16, 1rem) * 8);
 }
 
 :where(input[type="range"])::-webkit-slider-runnable-track {
