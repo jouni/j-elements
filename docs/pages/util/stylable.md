@@ -1,17 +1,12 @@
 ---
 title: Stylable
 layout: page
-imports: /docs/src/components/Card.js
 eleventyNavigation:
   key: Stylable
   parent: Utilities
 permalink: /stylable/
+imports: /src/util/Stylable.js
 ---
-
-```javascript
-import {Stylable} from 'j-elements/src/util/Stylable.js';
-```
-<module-size modules="util/Stylable.js"></module-size>
 
 ## Problem
 
@@ -27,31 +22,40 @@ The matching is done using the standard media query feature. Using a custom medi
 
 <render-example></render-example>
 ```html
-<style>
-  j-card div {
-    font-style: italic;
-  }
+<stylable-element>Bold text</stylable-element>
+<stylable-element class="special">Red and bold text</stylable-element>
 
-  @media j-card {
-    ::slotted(div) {
+<style>
+  @media stylable-element {
+    .inside-shadow-dom {
       font-weight: bold;
     }
   }
 
-  @media j-card\.special-card {
-    [part="title"] {
+  @media stylable-element\.special {
+    .inside-shadow-dom {
       color: red;
     }
   }
 </style>
 
-<j-card>
-  <div slot="title">I am bold and italic</div>
-</j-card>
+<script type="module">
+import { Stylable } from '/src/util/Stylable.js';
 
-<j-card class="special-card">
-  <div slot="title">I am bold, italic and red</div>
-</j-card>
+customElements.define('stylable-element', class extends Stylable(HTMLElement) {
+  connectedCallback() {
+    if (!this.shadowRoot) {
+      this.attachShadow({mode: 'open'});
+      this.shadowRoot.innerHTML = `
+        <div class="inside-shadow-dom">
+          <slot></slot>
+        </div>
+      `;
+    }
+    if (super.connectedCallback) super.connectedCallback();
+  }
+});
+</script>
 ```
 
 ## Matching components using media queries
@@ -60,8 +64,8 @@ Stylable uses (or perhaps abuses) the standard style sheet media queries. Instea
 
 Examples:
 
-- `j-card` – matches all `<j-card>` elements
-- `j-card\.special-card` – matches only `<j-card class="special-card">` elements
+- `stylable-element` – matches all `<stylable-element>` elements
+- `stylable-element\.special-card` – matches only `<stylable-element class="special-card">` elements
 
 > ###### Escaping the media selector
 > The media attribute selector needs to be properly escaped. Otherwise the browser will parse it as `not all`.
@@ -75,17 +79,17 @@ There are several ways how to write the media queries.
 ### HTML attribute
 
 ```html
-<link rel="stylesheet" href="my-card-styles.css" media="j-card">
+<link rel="stylesheet" href="my-card-styles.css" media="stylable-element">
 ```
 > ###### Warning
-> `<style media="j-card">` will not work in Safari/WebKit – it will not appear in `document.styleSheets`. See [WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=203073).
+> `<style media="stylable-element">` will not work in Safari/WebKit – it will not appear in `document.styleSheets`. See [WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=203073).
 
 ### CSS @import rule
 
 Use the `@import` rule to scope an imported style sheet in full.
 
 ```css
-@import "my-card-styles.css" j-card;
+@import "my-card-styles.css" stylable-element;
 ```
 
 ### CSS @media rule
@@ -93,7 +97,7 @@ Use the `@import` rule to scope an imported style sheet in full.
 Use the `@media` rule to scope a portion of a style sheet.
 
 ```css
-@media j-card {
+@media stylable-element {
   /* Styles for the shadow DOM of the matching elements */
 }
 ```
