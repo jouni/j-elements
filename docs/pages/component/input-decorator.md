@@ -129,10 +129,12 @@ The size of the prefix and suffix elements are measured when the element is conn
 ```html
 <j-input-decorator class="limitation-test">
   <span slot="prefix" class="icon-search"></span>
-  <input type="text" required placeholder="Required field">
+  <input type="text" value="Input value">
 </j-input-decorator>
 
 <style>
+  /* Update the sizing of the prefix element on :hover */
+  /* The input value is not shifting accordingly */
   .limitation-test:hover [slot] {
     margin: 0 1em;
   }
