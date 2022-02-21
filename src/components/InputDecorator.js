@@ -7,7 +7,7 @@ const styles = `
   }
 
   slot[name],
-  ::slotted(:is(input, textarea)) {
+  ::slotted(:is(input, textarea, select)) {
     grid-area: 1/1;
     box-sizing: border-box;
   }
@@ -29,7 +29,7 @@ const styles = `
     pointer-events: auto;
   }
 
-  :host([style*=prefix-width]) ::slotted(:is(input, textarea)) {
+  :host([style*=prefix-width]) ::slotted(:is(input, textarea, select)) {
     padding-inline-start: var(--prefix-width) !important;
   }
 
@@ -74,7 +74,7 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
   _onMutation() {
     const prefix = this.shadowRoot.querySelector('slot[name="prefix"]');
     const suffix = this.shadowRoot.querySelector('slot[name="suffix"]');
-    const input = this.querySelector('input, textarea');
+    const input = this.querySelector('input, textarea, select');
 
     const prefixRect = prefix.getBoundingClientRect();
     if (prefix.assignedElements().length > 0 && prefixRect.width > 0) {
@@ -93,7 +93,7 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
 
   // TODO should use a ResizeObserver as well to call it
   _updateSize() {
-    const input = this.querySelector('input, textarea');
+    const input = this.querySelector('input, textarea, select');
     const dimension = input.localName == 'textarea' ? 'Height' : 'Width';
 
     if (this.hasAttribute('autosize')) {

@@ -24,7 +24,7 @@ import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
 
 Place prefix and suffix elements visually inside an input element. Only text-based input elements are supported.
 
-Notice, that the `<input>` and `<textarea>` element styling is completely retained (coming from the theme), instead of being applied on the `<j-input-decorator>` element. The decorator element needs to be a CSS grid container (`grid` or `inline-grid`).
+Notice, that the input element styling is completely retained (coming from the theme), instead of being applied on the `<j-input-decorator>` element. The decorator element needs to be a CSS grid container (`grid` or `inline-grid`).
 
 <style>
 render-example {
@@ -57,6 +57,24 @@ input {
   <textarea>Text area value</textarea>
   <span slot="prefix" class="icon-search"></span>
   <button slot="suffix" theme="tertiary"><span class="icon-chevron-down"></span></button>
+</j-input-decorator>
+
+<j-input-decorator>
+  <span slot="prefix" class="icon-search"></span>
+  <select>
+    <option>Option one</option>
+    <option>Option two</option>
+    <option>Option three</option>
+  </select>
+</j-input-decorator>
+
+<j-input-decorator>
+  <span slot="prefix" class="icon-search"></span>
+  <select theme="small">
+    <option>Option one</option>
+    <option>Option two</option>
+    <option>Option three</option>
+  </select>
 </j-input-decorator>
 
 <style>
