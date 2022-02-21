@@ -27,6 +27,7 @@ The selectors in the Lumo theme are hard to override. Most often, you end up ins
 Lumo custom properties are inconsistently named, making it harder than necessary to remember them or remember where they should be used.
 
 ### Defining and using icons
+Icons are a fundamental part of theming. The current way of defining and using icons involves JavaScript, which is not a natural for designers, and prevents using the icons with standard HTML elements (a custom element is needed to use an icon).
 
 
 ## The future
@@ -57,3 +58,7 @@ The selectors should use `:where()` extensively to reduce selector specificity a
 CSS custom property names should follow a consistent naming convention.
 
 The following pages for [theme tokens](/tokens) and [component themes](/component-themes) contain prototype implementations for those.
+
+### Icons
+
+Defining and using icons is covered in its own section: [Icons](/icons)

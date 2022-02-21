@@ -4,6 +4,7 @@ layout: page
 eleventyNavigation:
   key: Icons
   parent: Components
+permalink: /icons/
 ---
 
 If we agree that icon fonts are the least desirable option for icons, we have two options left. Defining icons in JavaScript or defining icons in CSS.
