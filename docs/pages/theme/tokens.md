@@ -11,6 +11,8 @@ imports:
   /src/theme/tokens.css
 ---
 
+Token (CSS custom property) names start with the CSS property name they are primarily meant to be used for.
+
 ## Color scales
 
 `colors.css` defines a collection of static color scales – a range of colors from light to dark – for various hues, for example, "slate", "red", "emerald", "purple", and "rose". At the moment those scales are copied from [Tailwind CSS](https://tailwindcss.com/docs/customizing-colors).
@@ -131,17 +133,17 @@ Small border radius. For example, checkbox.
 </render-props>
 
 
-## Focus outline
+## Outline
 
 <render-props>
 
-`--focus-outline-offset`
+`--outline-offset`
 Defaults to 2px
 
-`--focus-outline-width`
+`--outline-width`
 Defaults to 2px
 
-`--focus-outline-color`
+`--outline-color`
 Defaults to `var(--border-color-accent)`
 
 </render-props>

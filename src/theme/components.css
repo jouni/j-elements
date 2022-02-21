@@ -49,8 +49,8 @@
 :focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
+    0 0 0 var(--outline-offset, 2px) var(--background),
+    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
 }
 
 /* Safari */
@@ -58,8 +58,8 @@
   :focus {
     outline: none;
     box-shadow:
-      0 0 0 var(--focus-outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
+      0 0 0 var(--outline-offset, 2px) var(--background),
+      0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
   }
 }
 
@@ -105,7 +105,7 @@
 }
 
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:focus) {
-  --focus-outline-offset: -1px;
+  --outline-offset: -1px;
   border: var(--textinput-focus-border, var(--border-ui-focus));
   transition: none;
 }
@@ -491,15 +491,15 @@ html {
 input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: none;
   box-shadow:
-    0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
+    0 0 0 var(--outline-offset, 2px) var(--background),
+    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
 }
 
 input[type="range"]:focus-visible::-moz-range-thumb {
   outline: none;
   box-shadow:
-    0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
+    0 0 0 var(--outline-offset, 2px) var(--background),
+    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
 }
 
 /* Safari */
@@ -507,7 +507,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   input[type="range"]:focus::-webkit-slider-thumb {
     outline: none;
     box-shadow:
-      0 0 0 var(--focus-outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
+      0 0 0 var(--outline-offset, 2px) var(--background),
+      0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
   }
 }
