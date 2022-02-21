@@ -94,7 +94,7 @@ All native input types are supported without extra effort.
   <label>Options</label>
   <div description>Description for options</div>
   <select required>
-    <option value="" disabled>Choose one</option>
+    <option value="" disabled selected>Choose one</option>
     <option>Option one</option>
     <option>Option two</option>
     <option>Option three</option>
