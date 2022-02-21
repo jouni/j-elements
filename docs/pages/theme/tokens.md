@@ -8,18 +8,8 @@ eleventyNavigation:
 permalink: /tokens/
 imports:
   /src/theme/colors.css
-  /src/theme/palette.css
-  /src/theme/typography.css
-  /src/theme/size.css
+  /src/theme/tokens.css
 ---
-
-```html
-<link href="j-elements/src/theme/colors.css" rel="stylesheet">
-<link href="j-elements/src/theme/palette.css" rel="stylesheet">
-<link href="j-elements/src/theme/typography.css" rel="stylesheet">
-<link href="j-elements/src/theme/size.css" rel="stylesheet">
-```
-
 
 ## Color scales
 
@@ -27,7 +17,7 @@ imports:
 
 ## Palette
 
-`palette.css` defines a low-level semantic custom properties, which adapt to light and dark modes, mapping to the static color scales.
+The palette tokens adapt to light and dark modes, mapping to the static color scales.
 
 The `theme="dark"` and `theme="light"` attributes can be used to toggle between modes, at any level of DOM hierarchy.
 
@@ -38,7 +28,6 @@ The `theme="dark"` and `theme="light"` attributes can be used to toggle between 
 ```
 
 ### Background
-
 <render-props>
 
 `--background`
@@ -56,44 +45,61 @@ Background for UI controls, such as buttons.
 `--background-ui-hover`
 Background for UI controls when hovered.
 
-
 `--background-ui-active`
 Background for UI controls when activated (for example, clicked with a mouse or pressed with a finger).
+
+`--background-accent`
+
+`--background-accent-hover`
+
+`--background-accent-active`
 
 </render-props>
 
 
 ### Text
-
 <render-props>
 
 `--color`
-Default text color. Should have at least 7:1 contrast ratio on top of all non-UI backgrounds.
-
-`--color-low-contrast`
-Low contrast text color. Use, for example, for secondary text elements. Should have at least 4.5:1 contrast ratio on top of all non-UI backgrounds.
+Default text color. Should have at least 7:1 contrast ratio on top of all backgrounds.
 
 `--color-high-contrast`
 High contrast text color. Use, for example, for heading text elements.
 
+`--color-low-contrast`
+Low contrast text color. Use, for example, for secondary text elements. Should have at least 4.5:1 contrast ratio on top of all non-UI backgrounds.
+
 `--color-disabled`
 Disabled text color.
+
+`--color-accent`
+
+`--color-accent-high-contrast`
+
+`--color-accent-low-contrast`
 
 </render-props>
 
 
 ### Border
-
 <render-props>
 
 `--border-color`
 Default border color.
 
+`--border-color-high-contrast`
+High contrast border color.
+
 `--border-color-low-contrast`
 Low contrast border color.
 
-`--border-color-high-contrast`
-High contrast border color.
+`--border-color-accent`
+
+</render-props>
+
+
+## Border presets
+<render-props>
 
 `--border-ui`
 Default border for UI controls, such as text inputs.
@@ -107,6 +113,12 @@ Border for UI controls when activated.
 `--border-ui-focus`
 Border for UI controls when focused.
 
+</render-props>
+
+
+## Border radius
+<render-props>
+
 `--border-radius-l`
 Large border radius. For example, dialogs, cards, and other containers.
 
@@ -119,34 +131,18 @@ Small border radius. For example, checkbox.
 </render-props>
 
 
-### Accent
-
-<render-props>
-
-`--accent`
-
-`--accent-low-contrast`
-
-`--accent-high-contrast`
-
-`--accent-ui`
-
-`--accent-ui-hover`
-
-`--accent-ui-active`
-
-</render-props>
-
-
 ## Focus outline
 
 <render-props>
 
 `--focus-outline-offset`
+Defaults to 2px
 
 `--focus-outline-width`
+Defaults to 2px
 
 `--focus-outline-color`
+Defaults to `var(--border-color-accent)`
 
 </render-props>
 
@@ -217,17 +213,17 @@ Font sizes scale slightly based on the browser viewport size.
 
 <render-props>
 
-`--line-height-xs`
+`--line-height-m`
 
 `--line-height-s`
 
-`--line-height-m`
+`--line-height-xs`
 
-`--line-height-xs-px`
+`--line-height-m-px`
 
 `--line-height-s-px`
 
-`--line-height-m-px`
+`--line-height-xs-px`
 
 </render-props>
 
@@ -236,15 +232,15 @@ Font sizes scale slightly based on the browser viewport size.
 
 <render-props>
 
-`--font-weight-weakest`
-
-`--font-weight-weak`
-
-`--font-weight`
+`--font-weight-strongest`
 
 `--font-weight-strong`
 
-`--font-weight-strongest`
+`--font-weight`
+
+`--font-weight-weak`
+
+`--font-weight-weakest`
 
 </render-props>
 

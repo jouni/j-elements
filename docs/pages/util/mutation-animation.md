@@ -5,12 +5,9 @@ eleventyNavigation:
   key: Mutation animation
   parent: Utilities
 permalink: /mutation-animation/
+imports: /src/util/MutationAnimationMixin.js
 ---
 
-```javascript
-import {MutationAnimationMixin} from 'j-elements/src/util/MutationAnimationMixin.js';
-```
-<module-size modules="util/MutationAnimationMixin.js"></module-size>
 
 ## Problem
 

@@ -3,16 +3,14 @@ title: Input decorator
 layout: page
 imports:
   /src/components/InputDecorator.js
+  /src/theme/colors.css
+  /src/theme/tokens.css
   /src/theme/components.css
 permalink: /input/
 eleventyNavigation:
   key: Input decorator
   parent: Components
 ---
-
-```javascript
-import { InputDecorator } from 'j-elements/src/components/InputDecorator.js';
-```
 
 ## Problem
 
@@ -59,6 +57,8 @@ input {
   <button slot="suffix" theme="tertiary"><span class="icon-chevron-down"></span></button>
 </j-input-decorator>
 
+<h5>Select, prefix only</h5>
+
 <j-input-decorator>
   <span slot="prefix" class="icon-search"></span>
   <select>
@@ -101,12 +101,21 @@ The `autosize` attribute makes the contained input change its size based on the 
 ```html
 <j-input-decorator autosize>
   <span slot="prefix" class="icon-search"></span>
-  <input type="text" value="Input value" class="bare">
+  <input type="text" value="Input value">
 </j-input-decorator>
 
 <j-input-decorator autosize>
   <textarea>Text area value</textarea>
   <span slot="prefix" class="icon-search"></span>
+</j-input-decorator>
+
+<j-input-decorator autosize>
+  <span slot="prefix" class="icon-search"></span>
+  <select>
+    <option>Option</option>
+    <option>Longer option</option>
+    <option>Option with a long label</option>
+  </select>
 </j-input-decorator>
 ```
 

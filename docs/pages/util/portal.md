@@ -5,12 +5,10 @@ eleventyNavigation:
   key: Portal
   parent: Utilities
 permalink: /portal/
+imports:
+  /src/util/Portal.js
+  /src/util/bemToShadow.js
 ---
-
-```javascript
-import {Portal} from 'j-elements/src/util/Portal.js';
-```
-<module-size modules="util/Portal.js,util/bemToShadow.js"></module-size>
 
 ## Problem
 

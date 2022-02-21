@@ -1,9 +1,18 @@
 :where(html),
 :host {
   font-family: var(--font-family);
+
+  /* Set to auto to disable grayscale/antialiased font smoothing (and use default sub-pixel antialiasing) */
   -webkit-font-smoothing: var(--font-smoothing, antialiased);
   -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
+
   cursor: default;
+
+  /* We assume apps are built with responsive layouting in mind */
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+
+  accent-color: var(--accent-ui);
 }
 
 :where(body) {
@@ -16,6 +25,21 @@
   color: var(--color);
 }
 
+:where([theme~="light"]) {
+  color-scheme: light;
+}
+
+:where([theme~="dark"]) {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  :host {
+    color-scheme: dark;
+  }
+}
+
 /* Focus outline */
 
 :focus:not(:focus-visible) {
@@ -26,7 +50,7 @@
   outline: none;
   box-shadow:
     0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
 }
 
 /* Safari */
@@ -35,18 +59,18 @@
     outline: none;
     box-shadow:
       0 0 0 var(--focus-outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
   }
 }
 
 /* Link/Anchor */
 
 :where(a) {
-  color: var(--link-color, var(--accent));
+  color: var(--link-color, var(--color-accent));
 }
 
 :where(a:visited) {
-  color: var(--link-visited-color, var(--accent-high-contrast));
+  color: var(--link-visited-color, var(--color-accent-high-contrast));
 }
 
 /* Text Input, Text Area, Select */
@@ -171,9 +195,9 @@
 }
 
 :where(button[theme~=primary]) {
-  --button-background: var(--button-background-primary, var(--accent-ui));
-  --button-hover-background: var(--button-hover-background-primary, var(--accent-ui-hover));
-  --button-active-background: var(--button-active-background-primary, var(--accent-ui-active));
+  --button-background: var(--button-background-primary, var(--background-accent));
+  --button-hover-background: var(--button-hover-background-primary, var(--background-accent-hover));
+  --button-active-background: var(--button-active-background-primary, var(--background-accent-active));
   --button-color: var(--button-color-primary, var(--background));
   --button-border: var(--button-border-primary, 1px solid transparent);
 
@@ -181,9 +205,9 @@
 
 :where(button[theme~=tertiary]) {
   --button-background: var(--button-background-tertiary, transparent);
-  --button-color: var(--button-color-tertiary, var(--accent-ui));
-  --button-hover-color: var(--button-hover-color-tertiary, var(--accent-ui-hover));
-  --button-active-color: var(--button-active-color-tertiary, var(--accent-ui-active));
+  --button-color: var(--button-color-tertiary, var(--background-accent));
+  --button-hover-color: var(--button-hover-color-tertiary, var(--background-accent-hover));
+  --button-active-color: var(--button-active-color-tertiary, var(--background-accent-active));
   --button-border: var(--button-border-tertiary, 1px solid transparent);
   --button-hover-filter: contrast(0.9) brightness(0.9);
   --button-active-filter: contrast(0.9) brightness(0.8);
@@ -237,7 +261,7 @@
 }
 
 :where(input[type=checkbox]:checked) {
-  background: var(--checkbox-checked-background, var(--accent-ui));
+  background: var(--checkbox-checked-background, var(--background-accent));
   border: var(--checkbox-checked-border, 0);
   color: var(--checkbox-checked-color, var(--background));
 }
@@ -289,7 +313,7 @@
 }
 
 :where(input[type=radio]:checked) {
-  background: var(--radiobutton-checked-background, var(--accent-ui));
+  background: var(--radiobutton-checked-background, var(--background-accent));
   border: var(--radiobutton-checked-border, 0);
   color: var(--radiobutton-checked-color, var(--background));
 }
@@ -329,7 +353,7 @@ j-field-group j-field {
 }
 
 :where(j-field:focus-within, j-field-group:focus-within) :where(label) {
-  color: var(--accent);
+  color: var(--color-accent);
 }
 
 :where(j-field[type=radio], j-field[type=checkbox]) :where(label) {
@@ -424,7 +448,7 @@ html {
 :where(input[type="range"])::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--space-4, 0.25rem))) / -2);
-  background: var(--slider-thumb-background, var(--accent-ui));
+  background: var(--slider-thumb-background, var(--background-accent));
   height: var(--slider-thumb-size, var(--size-16, 1rem));
   width: var(--slider-thumb-size, var(--size-16, 1rem));
   border-radius: var(--slider-thumb-border-radius, 50%);
@@ -434,7 +458,7 @@ html {
 
 :where(input[type="range"])::-moz-range-thumb {
   margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--space-4, 0.25rem))) / -2);
-  background: var(--slider-thumb-background, var(--accent-ui));
+  background: var(--slider-thumb-background, var(--background-accent));
   height: var(--slider-thumb-size, var(--size-16, 1rem));
   width: var(--slider-thumb-size, var(--size-16, 1rem));
   border-radius: var(--slider-thumb-border-radius, 50%);
@@ -443,20 +467,20 @@ html {
 }
 
 :where(input[type="range"])::-webkit-slider-thumb:hover {
-  background: var(--slider-thumb-hover-background, var(--accent-ui-hover));
+  background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
 :where(input[type="range"])::-moz-range-thumb:hover {
-  background: var(--slider-thumb-hover-background, var(--accent-ui-hover));
+  background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
 :where(input[type="range"])::-webkit-slider-thumb:active {
-  background: var(--slider-thumb-active-background, var(--accent-ui-active));
+  background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
 :where(input[type="range"])::-moz-range-thumb:active {
-  background: var(--slider-thumb-active-background, var(--accent-ui-active));
+  background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
@@ -468,14 +492,14 @@ input[type="range"]:focus-visible::-webkit-slider-thumb {
   outline: none;
   box-shadow:
     0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
 }
 
 input[type="range"]:focus-visible::-moz-range-thumb {
   outline: none;
   box-shadow:
     0 0 0 var(--focus-outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+    0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
 }
 
 /* Safari */
@@ -484,6 +508,6 @@ input[type="range"]:focus-visible::-moz-range-thumb {
     outline: none;
     box-shadow:
       0 0 0 var(--focus-outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--accent-ui));
+      0 0 0 calc(var(--focus-outline-width, 2px) + var(--focus-outline-offset, 2px)) var(--focus-outline-color, var(--border-color-accent));
   }
 }

@@ -1,0 +1,163 @@
+/* Palette */
+html,
+:host,
+[theme~=light],
+:host([theme~=light]) {
+  --background: #fff;
+  --background-above: #fff;
+  --background-below: var(--zinc-50);
+
+  --background-ui: var(--zinc-100);
+  --background-ui-hover: var(--zinc-200);
+  --background-ui-active: var(--zinc-300);
+
+  --background-accent: var(--indigo-600);
+  --background-accent-hover: var(--indigo-700);
+  --background-accent-active: var(--indigo-800);
+
+  --color: var(--zinc-700);
+  --color-high-contrast: var(--zinc-900);
+  --color-low-contrast: var(--zinc-500);
+  --color-disabled: var(--zinc-400);
+
+  --color-accent: var(--indigo-600);
+  --color-accent-high-contrast: var(--indigo-900);
+  --color-accent-low-contrast: var(--indigo-400);
+
+  --border-color: var(--zinc-400);
+  --border-color-high-contrast: var(--zinc-500);
+  --border-color-low-contrast: var(--zinc-200);
+  --border-color-accent: var(--indigo-600);
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  :host {
+    --background: var(--zinc-800);
+    --background-above: var(--zinc-700);
+    --background-below: var(--zinc-900);
+
+    --background-ui: var(--zinc-700);
+    --background-ui-hover: var(--zinc-600);
+    --background-ui-active: var(--zinc-500);
+
+    --background-accent: var(--indigo-400);
+    --background-accent-hover: var(--indigo-300);
+    --background-accent-active: var(--indigo-200);
+
+    --color: var(--zinc-100);
+    --color-high-contrast: var(--zinc-50);
+    --color-low-contrast: var(--zinc-300);
+    --color-disabled: var(--zinc-500);
+
+    --color-accent: var(--indigo-400);
+    --color-accent-high-contrast: var(--indigo-50);
+    --color-accent-low-contrast: var(--indigo-600);
+
+    --border-color: var(--zinc-600);
+    --border-color-high-contrast: var(--zinc-500);
+    --border-color-low-contrast: var(--zinc-700);
+    --border-color-accent: var(--indigo-400);
+  }
+}
+
+[theme~=dark],
+:host([theme~=dark]) {
+  --background: var(--zinc-800);
+  --background-above: var(--zinc-700);
+  --background-below: var(--zinc-900);
+
+  --background-ui: var(--zinc-700);
+  --background-ui-hover: var(--zinc-600);
+  --background-ui-active: var(--zinc-500);
+
+  --background-accent: var(--indigo-400);
+  --background-accent-hover: var(--indigo-300);
+  --background-accent-active: var(--indigo-200);
+
+  --color: var(--zinc-100);
+  --color-high-contrast: var(--zinc-50);
+  --color-low-contrast: var(--zinc-300);
+  --color-disabled: var(--zinc-500);
+
+  --color-accent: var(--indigo-400);
+  --color-accent-high-contrast: var(--indigo-50);
+  --color-accent-low-contrast: var(--indigo-600);
+
+  --border-color: var(--zinc-600);
+  --border-color-high-contrast: var(--zinc-500);
+  --border-color-low-contrast: var(--zinc-700);
+  --border-color-accent: var(--indigo-400);
+}
+
+/* Border styles */
+html,
+:host {
+  --border-ui: 1px solid var(--border-color);
+  --border-ui-hover: 1px solid var(--border-color-high-contrast);
+  --border-ui-active: 1px solid var(--border-color-high-contrast);
+  --border-ui-focus: 1px solid var(--border-color-accent);
+
+  --border-radius-l: 0.5rem;
+  --border-radius-m: 0.375rem;
+  --border-radius-s: 0.25rem;
+}
+
+/* Typography */
+html,
+:host {
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-serif:;
+  --font-family-monospace: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --font-family: var(--font-family-sans-serif);
+
+  --font-size-3xl: clamp(2rem, 3vw, 3rem);
+  --font-size-2xl: clamp(1.625rem, 2.4vw, 2.375rem);
+  --font-size-2xs: clamp(0.6875rem, 0.95vw, 0.8125rem);
+  --font-size-xl: clamp(1.375rem, 1.8vw, 1.75rem);
+  --font-size-l: clamp(1.125rem, 1.4vw, 1.375rem);
+  --font-size-m: clamp(1rem, 1.125vw, 1.125rem);
+  --font-size-s: clamp(0.875rem, 1.05vw, 1rem);
+  --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+
+  --font-weight-strongest: 600;
+  --font-weight-strong: 500;
+  --font-weight: 400;
+  --font-weight-weak: 300;
+  --font-weight-weakest: 300;
+
+  --line-height-m: 1.5;
+  --line-height-s: 1.25;
+  --line-height-xs: 1;
+
+  --line-height-m-px: 24px;
+  --line-height-s-px: 20px;
+  --line-height-xs-px: 16px;
+
+  /* Font presets */
+
+  --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
+  --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
+  --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
+  --font-textinput-small: var(--font-weight) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
+  --font-label: var(--font-weight-strong) var(--font-size-s)/var(--line-height-s) var(--font-family);
+}
+
+/* Size / space */
+html,
+:host {
+  --size-1: 1px;
+  --size-2: 0.125rem;
+  --size-4: 0.25rem;
+  --size-6: 0.375rem;
+  --size-8: 0.5rem;
+  --size-12: 0.75rem;
+  --size-16: 1rem;
+  --size-24: 1.5rem;
+  --size-28: 1.75rem;
+  --size-32: 2rem;
+  --size-40: 2.5rem;
+  --size-48: 3rem;
+  --size-56: 3.5rem;
+  --size-64: 4rem;
+}

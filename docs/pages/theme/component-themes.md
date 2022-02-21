@@ -7,16 +7,12 @@ eleventyNavigation:
   order: 20
 permalink: /component-themes/
 imports:
-  /src/theme/typography.css
   /src/theme/colors.css
-  /src/theme/palette.css
-  /src/theme/size.css
+  /src/theme/tokens.css
+  /src/theme/colors.css
+  /src/theme/tokens.css
   /src/theme/components.css
 ---
-
-```html
-<link href="j-elements/src/theme/components.css" rel="stylesheet">
-```
 
 ## Problem
 Component themes is not really a problem in the overall web component/development space, but a problem with Vaadin component themes. While there might've been a need for some of the complexity before (due to older browsers), with modern browsers there things we could improve:
@@ -85,6 +81,9 @@ render-example > div {
 </div>
 <div>
   <input type="text" theme="small" placeholder="Small">
+</div>
+<div>
+  <textarea theme="small" placeholder="Small text area"></textarea>
 </div>
 ```
 

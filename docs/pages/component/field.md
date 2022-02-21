@@ -5,17 +5,14 @@ imports:
   /src/components/Field.js
   /src/components/FieldGroup.js
   /src/components/InputDecorator.js
+  /src/theme/colors.css
+  /src/theme/tokens.css
   /src/theme/components.css
 permalink: /field/
 eleventyNavigation:
   key: Form fields
   parent: Components
 ---
-
-```javascript
-import { Field } from 'j-elements/src/components/Field.js';
-import { FieldGroup } from 'j-elements/src/components/FieldGroup.js';
-```
 
 ## Problem
 
@@ -76,7 +73,7 @@ All native input types are supported without extra effort.
 <render-example></render-example>
 ```html
 <j-field>
-  <label>Choose a date</label>
+  <label>Label</label>
   <input type="date" required>
 </j-field>
 ```
@@ -85,7 +82,7 @@ All native input types are supported without extra effort.
 <render-example></render-example>
 ```html
 <j-field>
-  <label>Choose a date</label>
+  <label>Label</label>
   <textarea></textarea>
 </j-field>
 ```
@@ -94,7 +91,8 @@ All native input types are supported without extra effort.
 <render-example></render-example>
 ```html
 <j-field>
-  <label>Select an option</label>
+  <label>Options</label>
+  <div description>Description for options</div>
   <select required>
     <option value="" disabled>Choose one</option>
     <option>Option one</option>

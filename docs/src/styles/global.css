@@ -284,6 +284,11 @@ module-size dt {
 module-size dd {
 }
 
+main > module-size {
+  display: block;
+  margin-top: -3rem;
+}
+
 hr {
   border: 0;
   height: 1px;
