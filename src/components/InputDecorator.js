@@ -101,7 +101,6 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
         this.style.width = '';
         input.style.width = '';
         const options = [...input.querySelectorAll('option')].map((option, i) => {return { option, i }});
-        console.log(options)
         options.forEach(({option, i}) => !option.selected && input.removeChild(option));
         this.style.width = input.offsetWidth + 'px';
         input.style.width = '100%';
