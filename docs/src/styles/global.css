@@ -183,10 +183,11 @@ main > footer a:hover {
 }
 
 blockquote {
-  border-left: 3px solid var(--accent);
-  background-color: var(--accent-low-contrast);
+  border: 1px solid var(--border-color-accent);
+  border-inline-start-width: 3px;
   margin: 1.5rem 0;
   padding: 0.25rem 1.5rem 0.1em;
+  border-radius: var(--border-radius-l);
 }
 
 blockquote h6:first-child {
