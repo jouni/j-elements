@@ -227,18 +227,18 @@
   --button-border: var(--button-border-disabled, 1px solid transparent);
 }
 
-/* Checkbox */
+/* Checkbox & Radio Button*/
 
-:where(input[type=checkbox]) {
+:where(input[type=checkbox], input[type=radio]) {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background: var(--checkbox-background, var(--background-ui));
-  border: var(--checkbox-border, var(--border-ui));
-  color: var(--checkbox-color, var(--color));
-  width: var(--checkbox-size, 1rem);
-  height: var(--checkbox-size, 1rem);
+  background: var(--optionbox-background, var(--background-ui));
+  border: var(--optionbox-border, var(--border-ui));
+  color: var(--optionbox-color, var(--color));
+  width: var(--optionbox-size, 1rem);
+  height: var(--optionbox-size, 1rem);
   font: inherit;
-  border-radius: var(--checkbox-border-radius, var(--border-radius-s));
+  border-radius: var(--optionbox-border-radius, var(--border-radius-s));
   margin: 0;
   vertical-align: middle;
   flex: none;
@@ -246,27 +246,27 @@
 }
 
 @media (any-hover: hover) {
-  :where(input[type=checkbox]:not([disabled]):hover) {
-    background: var(--checkbox-hover-background, var(--background-ui-hover));
-    border: var(--checkbox-hover-border, var(--checkbox-border, var(--border-ui-hover)));
-    color: var(--checkbox-hover-color, var(--color));
+  :where(input[type=checkbox], input[type=radio]):where(:not([disabled]):hover) {
+    background: var(--optionbox-hover-background, var(--background-ui-hover));
+    border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
+    color: var(--optionbox-hover-color, var(--color));
   }
 }
 
-:where(input[type=checkbox]:not([disabled]):active) {
-  background: var(--checkbox-hover-background, var(--background-ui-active));
-  border: var(--checkbox-hover-border, var(--checkbox-border, var(--border-ui-active)));
-  color: var(--checkbox-active-color, var(--color));
+:where(input[type=checkbox], input[type=radio]):where(:not([disabled]):active) {
+  background: var(--optionbox-hover-background, var(--background-ui-active));
+  border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-active)));
+  color: var(--optionbox-active-color, var(--color));
   transition: none;
 }
 
-:where(input[type=checkbox]:checked) {
-  background: var(--checkbox-checked-background, var(--background-accent));
-  border: var(--checkbox-checked-border, 0);
-  color: var(--checkbox-checked-color, var(--background));
+:where(input[type=checkbox], input[type=radio]):where(:checked) {
+  background: var(--optionbox-checked-background, var(--background-accent));
+  border: var(--optionbox-checked-border, 0);
+  color: var(--optionbox-checked-color, var(--background));
 }
 
-:where(input[type=checkbox]:checked)::before {
+:where(input[type=checkbox], input[type=radio]):where(:checked)::before {
   content: "";
   display: inline-block;
   width: 100%;
@@ -282,53 +282,12 @@
 /* Radio Button */
 
 :where(input[type=radio]) {
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  background: var(--radiobutton-background, var(--background-ui));
-  border: var(--radiobutton-border, var(--border-ui));
-  color: var(--radiobutton-color, var(--color));
-  width: var(--radiobutton-size, 1rem);
-  height: var(--radiobutton-size, 1rem);
-  font: inherit;
   border-radius: 50%;
-  margin: 0;
-  vertical-align: middle;
-  flex: none;
-  transition: background-color 0.15s;
-}
-
-@media (any-hover: hover) {
-  :where(input[type=radio]:not([disabled]):hover) {
-    background: var(--radiobutton-hover-background, var(--background-ui-hover));
-    border: var(--radiobutton-hover-border, var(--radiobutton-border, var(--border-ui-hover)));
-    color: var(--radiobutton-hover-color, var(--color));
-  }
-}
-
-:where(input[type=radio]:not([disabled]):active) {
-  background: var(--radiobutton-active-background, var(--background-ui-active));
-  border: var(--radiobutton-active-border, var(--radiobutton-border, var(--border-ui-active)));
-  color: var(--radiobutton-active-color, var(--color));
-  transition: none;
-}
-
-:where(input[type=radio]:checked) {
-  background: var(--radiobutton-checked-background, var(--background-accent));
-  border: var(--radiobutton-checked-border, 0);
-  color: var(--radiobutton-checked-color, var(--background));
 }
 
 :where(input[type=radio]:checked)::before {
-  content: "";
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  vertical-align: top;
-  background-color: currentColor;
   /* Tailwind UI / Heroicons */
   --mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
-  -webkit-mask-image: var(--mask-image);
-  mask-image: var(--mask-image);
 }
 
 /* Field & Field Group */
