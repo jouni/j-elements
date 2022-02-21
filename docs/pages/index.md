@@ -8,8 +8,10 @@ eleventyNavigation:
 
 JElements is a web development research project by Jouni Koivuviita, looking at some of the current problems around authoring and using web components and how to provide solutions to those problems while browsers improve their capabilities.
 
+The focus of this project is mostly on how to improve the Vaadin design system and web components in the future, and more specifically on the theming and styling aspects of them.
+
 > **JElements is not recommended for production use**
-> The project is mainly looking for feedback from other developers, if the concepts are viable for production.
+> The project is mainly looking for feedback from other developers, if the proposed solutions are good enough for general use.
 > [Please provide feedback via GitHub](https://github.com/jouni/j-elements)
 
 ## [Get started ›](/howto)

@@ -11,7 +11,19 @@ imports:
   /src/theme/tokens.css
 ---
 
-Token (CSS custom property) names start with the CSS property name they are primarily meant to be used for.
+## Token names
+
+Token (CSS custom property) names start with the CSS property name they are primarily meant to be used for:
+`--[property]`
+
+For example, the token for the default text color:
+`--color`
+
+Token variants and states are suffixed after the property name:
+`--[property]-[variant]-[state]`
+
+For example, the token for UI control background, when hovered:
+`--background-ui-hover`
 
 ## Color scales
 

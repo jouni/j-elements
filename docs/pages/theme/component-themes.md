@@ -12,16 +12,7 @@ imports:
   /src/theme/components.css
 ---
 
-## Problem
-Component themes are not really a problem in the overall web component/development space, but a problem with Vaadin component themes. While there might've been a need for some of the complexity before (due to older browsers), with modern browsers some decisions make theming/styling more complicated than necessary:
-
-- Custom implementations for standard HTML elements like button, checkbox, and radio button, which make it hard to reuse existing CSS (for example, Bootstrap). You need to target a different element name and custom state attributes (because native pseudo-classes do not work).
-- The selectors used by Vaadin component themes can be complex and therefore hard to override.
-- Styling is complicated for not much benefit, aiming for visual flair at the cost of simplicity.
-
-The `components.css` style sheet explores an alternative theme implementation for some Vaadin components, trying to fix the issues above.
-
-### Component token names
+## Component token names
 Component token names are prefixed with the component name + variant + state, and suffixed with the CSS property name they are targeting:
 `--[component]-[variant]-[state]-[property]`
 
@@ -29,17 +20,30 @@ For example, the text color for the primary button, when hovered:
 `--button-primary-hover-color`
 
 <style>
-render-example,
+render-example.flex,
 render-example > div {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+render-example h5 {
+  margin-bottom: 1rem;
+}
+
+render-example.flex h5 {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(input[type=radio], input[type=checkbox]) {
+  margin-inline-start: 1rem;
+}
 </style>
 
 ## Button
-<render-example></render-example>
+<render-example class="flex"></render-example>
 ```html
 <div>
   <button theme="primary">Primary</button>
@@ -134,7 +138,7 @@ Does not apply to the tertiary variant.
 </render-props>
 
 ## Text Input
-<render-example></render-example>
+<render-example class="flex"></render-example>
 ```html
 <div>
   <input type="text" placeholder="Text">
@@ -149,11 +153,23 @@ Does not apply to the tertiary variant.
 <div>
   <textarea placeholder="Text area"></textarea>
 </div>
+
+<h5>Small</h5>
 <div>
   <input type="text" theme="small" placeholder="Small">
 </div>
 <div>
   <textarea theme="small" placeholder="Small text area"></textarea>
+</div>
+
+<h5>Disabled</h5>
+<div>
+  <input type="text" value="Text" disabled>
+</div>
+
+<h5>Read-only</h5>
+<div>
+  <input type="text" value="Text" readonly>
 </div>
 ```
 
@@ -192,22 +208,25 @@ These tokens apply to Select as well.
 ## Select
 <render-example></render-example>
 ```html
-<div>
-  <select>
-    <option>Option one</option>
-    <option>Option two</option>
-    <option>Option three</option>
-  </select>
-</div>
+<select>
+  <option>Option one</option>
+  <option>Option two</option>
+  <option>Option three</option>
+</select>
 
 <h5>Small</h5>
-<div>
-  <select theme="small">
-    <option>Option one</option>
-    <option>Option two</option>
-    <option>Option three</option>
-  </select>
-</div>
+<select theme="small">
+  <option>Option one</option>
+  <option>Option two</option>
+  <option>Option three</option>
+</select>
+
+<h5>Disabled</h5>
+<select disabled>
+  <option>Option one</option>
+  <option>Option two</option>
+  <option>Option three</option>
+</select>
 ```
 
 ### Select tokens
@@ -231,6 +250,10 @@ Background blend mode is used to support the both light and dark mode with a sin
 ```html
 <input type="checkbox">
 <input type="checkbox" checked>
+
+<h5>Disabled</h5>
+<input type="checkbox" disabled>
+<input type="checkbox" disabled checked>
 ```
 
 ## Radio Button
@@ -238,6 +261,14 @@ Background blend mode is used to support the both light and dark mode with a sin
 ```html
 <input type="radio" name="example">
 <input type="radio" name="example" checked>
+
+<h5>Disabled</h5>
+<input type="radio" disabled name="disabled-example">
+<input type="radio" disabled name="disabled-example" checked>
+
+<h5>Read-only</h5>
+<input type="radio" readonly name="readonly-example">
+<input type="radio" readonly name="readonly-example" checked>
 ```
 
 
@@ -245,4 +276,5 @@ Background blend mode is used to support the both light and dark mode with a sin
 <render-example></render-example>
 ```html
 <input type="range">
+<input type="range" disabled>
 ```

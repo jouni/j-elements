@@ -370,12 +370,16 @@ html {
   vertical-align: baseline;
   width: var(--icon-size, 1.125em);
   height: var(--icon-size, 1.125em);
+  overflow: hidden;
+  --mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3C/svg%3E");
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
   background-color: currentColor;
   flex: none;
   margin-top: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
   margin-bottom: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 :where(.icon-search) {
@@ -384,6 +388,14 @@ html {
 
 :where(.icon-chevron-down) {
   --mask-image: var(--icon-chevron-down);
+}
+
+:where(.icon-calendar) {
+  --mask-image: var(--icon-calendar);
+}
+
+:where(.icon-checkmark) {
+  --mask-image: var(--icon-checkmark);
 }
 
 /* Slider */

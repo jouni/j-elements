@@ -14,13 +14,6 @@ eleventyNavigation:
   parent: Components
 ---
 
-## Problem
-
-- I want to create accessible forms
-- I don't want to apply ARIA attributes manually
-- I usually don't want to worry about the naming of the fields
-
-
 ## Label and description
 Wrap any native input element and a label with `<j-field>`, and accessibility is handled for you automatically without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
 
