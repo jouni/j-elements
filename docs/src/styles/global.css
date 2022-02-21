@@ -179,7 +179,7 @@ main > footer a:any-link {
 }
 
 main > footer a:hover {
-  color: var(--accent);
+  color: var(--color-accent);
 }
 
 blockquote {
@@ -265,7 +265,7 @@ h2, h3 {
 
 @keyframes flash {
   30% {
-    background-color: var(--accent-low-contrast)
+    background-color: var(--color-accent-low-contrast)
   }
 }
 
