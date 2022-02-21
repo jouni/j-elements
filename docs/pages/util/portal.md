@@ -73,6 +73,6 @@ document.querySelector('.parent portal-element p'); // Returns null
 You need to get a reference to the element before enabling the portal, and access any child elements through that reference. For example:
 ```javascript
 const portal = querySelector('.parent portal-element');
-portalEnabled = true;
+portal.portalEnabled = true;
 portal.querySelector('p'); // Returns <p> element
 ```
