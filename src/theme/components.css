@@ -494,3 +494,11 @@ input[type="range"]:focus-visible::-moz-range-thumb {
       0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
   }
 }
+
+j-overflow-menu::part(menu) {
+  background: var(--background-above);
+  box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
+  padding: var(--size-4, 0.25rem);
+  border-radius: var(--border-radius-l);
+  gap: var(--space-4, 0.25rem);
+}
