@@ -166,7 +166,7 @@
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   background: var(--button-background, var(--background-ui));
-  border: var(--button-border, none);
+  border: var(--button-border, 1px solid transparent); /* Should match with textinput-border, so that the heights are equal */
   border-radius: var(--button-border-radius, var(--border-radius-m));
   color: var(--button-color, var(--color));
   font: var(--button-font, var(--font-button, inherit));
@@ -181,14 +181,14 @@
 @media (any-hover: hover) {
   :where(button:not([disabled]):hover) {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
-    border: var(--button-hover-border, var(--button-border, none));
+    border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
   }
 }
 
 :where(button:not([disabled]):active) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
-  border: var(--button-active-border, var(--button-border, none));
+  border: var(--button-active-border, var(--button-border, 1px solid transparent));
   color: var(--button-active-color, var(--button-color, var(--color)));
   transition: none;
 }
@@ -198,7 +198,7 @@
   --button-hover-background: var(--button-primary-hover-background, var(--background-accent-hover));
   --button-active-background: var(--button-primary-active-background, var(--background-accent-active));
   --button-color: var(--button-primary-color, var(--background));
-  --button-border: var(--button-primary-border, none);
+  --button-border: var(--button-primary-border, 1px solid transparent);
 
 }
 
@@ -207,7 +207,7 @@
   --button-color: var(--button-tertiary-color, var(--color-accent));
   --button-hover-color: var(--button-tertiary-hover-color, var(--color-accent-high-contrast));
   --button-active-color: var(--button-tertiary-active-color, var(--color));
-  --button-border: var(--button-tertiary-border, none);
+  --button-border: var(--button-tertiary-border, 1px solid transparent);
 }
 
 :where(button[theme~=small]) {
@@ -221,7 +221,7 @@
 
 :where(button[disabled]:not([theme~=tertiary])) {
   --button-background: var(--button-disabled-background, var(--background-ui));
-  --button-border: var(--button-disabled-border, var(--button-border, none));
+  --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
 
 /* Checkbox & Radio Button*/
