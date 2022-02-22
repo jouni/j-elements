@@ -184,6 +184,10 @@ These tokens apply to Select as well.
 
 `--textinput-active-background` `var(--textinput-background, var(--background))`
 
+`--textinput-disabled-background` `var(--textinput-disabled-background, var(--background))`
+
+`--textinput-readonly-background` `var(--textinput-readonly-background, var(--background))`
+
 `--textinput-border` `var(--border-ui)`
 
 `--textinput-hover-border` `var(--textinput-border, var(--border-ui-hover))`
@@ -192,11 +196,17 @@ These tokens apply to Select as well.
 
 `--textinput-focus-border` `var(--textinput-border, var(--border-ui-focus))`
 
+`--textinput-disabled-border`, `1px solid var(--border-color-low-contrast)`
+
+`--textinput-readonly-border`, `1px solid var(--border-color-low-contrast)`
+
 `--textinput-border-radius` `var(--border-radius-m)`
 
 `--textinput-font` `var(--font-textinput, inherit)`
 
 `--textinput-color` `var(--color)`
+
+`--textinput-disabled-color` `var(--color-disabled)`
 
 `--textinput-padding` `var(--size-8, 0.5rem)`
 
@@ -255,7 +265,7 @@ Background blend mode is used to support the both light and dark mode with a sin
 <h5>Disabled</h5>
 <input type="checkbox" disabled>
 <input type="checkbox" disabled checked>
-<input type="checkbox" class="indeterminate">
+<input type="checkbox" disabled class="indeterminate">
 
 <script>
 [...document.querySelectorAll('input.indeterminate')].forEach(checkbox =>
@@ -273,10 +283,6 @@ Background blend mode is used to support the both light and dark mode with a sin
 <h5>Disabled</h5>
 <input type="radio" disabled name="disabled-example">
 <input type="radio" disabled name="disabled-example" checked>
-
-<h5>Read-only</h5>
-<input type="radio" readonly name="readonly-example">
-<input type="radio" readonly name="readonly-example" checked>
 ```
 
 

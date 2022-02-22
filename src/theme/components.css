@@ -109,6 +109,21 @@
   transition: none;
 }
 
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([disabled]) {
+  color: var(--textinput-disabled-color, var(--color-disabled));
+  border: var(--textinput-disabled-border, 1px solid var(--border-color-low-contrast));
+  background: var(--textinput-disabled-background, var(--background));
+}
+
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([readonly]) {
+  cursor: default;
+}
+
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([readonly]:not(:focus)) {
+  border: var(--textinput-readonly-border, 1px solid var(--border-color-low-contrast));
+  background: var(--textinput-readonly-background, var(--background));
+}
+
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea)::placeholder {
   color: var(--textinput-placeholder-color, var(--color-low-contrast));
 }
@@ -157,7 +172,6 @@
   background: currentColor;
   width: 1em;
   height: 1em;
-
 }
 
 /* Button */
@@ -275,6 +289,12 @@
   background: var(--optionbox-checked-active-background, var(--background-accent-active));
   border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
   color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
+}
+
+:where(input[type=checkbox], input[type=radio]):where([disabled]) {
+  background: var(--optionbox-disabled-background, var(--background-ui));
+  border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
+  color: var(--optionbox-disabled-color, var(--color-low-contrast));
 }
 
 :where(input[type=checkbox], input[type=radio]):where(:checked,:indeterminate)::before {
