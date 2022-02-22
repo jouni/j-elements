@@ -250,10 +250,18 @@ Background blend mode is used to support the both light and dark mode with a sin
 ```html
 <input type="checkbox">
 <input type="checkbox" checked>
+<input type="checkbox" class="indeterminate">
 
 <h5>Disabled</h5>
 <input type="checkbox" disabled>
 <input type="checkbox" disabled checked>
+<input type="checkbox" class="indeterminate">
+
+<script>
+[...document.querySelectorAll('input.indeterminate')].forEach(checkbox =>
+  checkbox.indeterminate = true
+);
+</script>
 ```
 
 ## Radio Button
@@ -270,6 +278,8 @@ Background blend mode is used to support the both light and dark mode with a sin
 <input type="radio" readonly name="readonly-example">
 <input type="radio" readonly name="readonly-example" checked>
 ```
+
+
 
 
 ## Slider
