@@ -92,13 +92,13 @@
 }
 
 @media (any-hover: hover) {
-  :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not([disabled]):hover) {
+  :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not(:disabled):hover) {
     background: var(--textinput-hover-background, var(--textinput-background, var(--background)));
     border: var(--textinput-hover-border, var(--textinput-border, var(--border-ui-hover)));
   }
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not([disabled]):active) {
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not(:disabled):active) {
   background: var(--textinput-active-background, var(--textinput-background, var(--background)));
   border: var(--textinput-active-border, var(--textinput-border, var(--border-ui-active)));
 }
@@ -109,7 +109,7 @@
   transition: none;
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([disabled]) {
+:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:disabled) {
   color: var(--textinput-disabled-color, var(--color-disabled));
   border: var(--textinput-disabled-border, 1px solid var(--border-color-low-contrast));
   background: var(--textinput-disabled-background, var(--background));
@@ -197,14 +197,14 @@
 }
 
 @media (any-hover: hover) {
-  :where(button:not([disabled]):hover) {
+  :where(button:not(:disabled):hover) {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
   }
 }
 
-:where(button:not([disabled]):active) {
+:where(button:not(:disabled):active) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
   color: var(--button-active-color, var(--button-color, var(--color)));
@@ -233,11 +233,11 @@
   --button-padding: var(--button-small-padding, var(--size-6, 0.375rem) var(--size-8, 0.5rem));
 }
 
-:where(button[disabled]) {
+:where(button:disabled) {
   --button-color: var(--button-disabled-color, var(--color-disabled));
 }
 
-:where(button[disabled]:not([theme~=tertiary])) {
+:where(button:disabled:not([theme~=tertiary])) {
   --button-background: var(--button-disabled-background, var(--background-ui));
   --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
@@ -261,14 +261,14 @@
 }
 
 @media (any-hover: hover) {
-  :where(input[type=checkbox], input[type=radio]):where(:not([disabled]):hover) {
+  :where(input[type=checkbox], input[type=radio]):where(:not(:disabled):hover) {
     background: var(--optionbox-hover-background, var(--background-ui-hover));
     border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
     color: var(--optionbox-hover-color, var(--optionbox-color, var(--color)));
   }
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:not([disabled]):active) {
+:where(input[type=checkbox], input[type=radio]):where(:not(:disabled):active) {
   background: var(--optionbox-active-background, var(--background-ui-active));
   border: var(--optionbox-active-border, var(--optionbox-border, var(--border-ui-active)));
   color: var(--optionbox-active-color, var(--optionbox-color, var(--color)));
@@ -282,20 +282,20 @@
 }
 
 @media (any-hover: hover) {
-  :where(input[type=checkbox], input[type=radio]):where(:checked:not([disabled]):hover) {
+  :where(input[type=checkbox], input[type=radio]):where(:checked:not(:disabled):hover) {
     background: var(--optionbox-checked-hover-background, var(--background-accent-hover));
     border: var(--optionbox-checked-hover-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
     color: var(--optionbox-checked-hover-color, var(--optionbox-checked-color, var(--background)));
   }
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:checked:not([disabled]):active) {
+:where(input[type=checkbox], input[type=radio]):where(:checked:not(:disabled):active) {
   background: var(--optionbox-checked-active-background, var(--background-accent-active));
   border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
   color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
 }
 
-:where(input[type=checkbox], input[type=radio]):where([disabled]) {
+:where(input[type=checkbox], input[type=radio]):where(:disabled) {
   background: var(--optionbox-disabled-background, var(--background-ui));
   border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
   color: var(--optionbox-disabled-color, var(--color-low-contrast));
@@ -393,7 +393,8 @@ html {
   --icon-checkmark-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd' /%3E%3C/svg%3E");
 }
 
-:where([class^=icon]) {
+:where([class^=icon]),
+:where(summary)::before {
   display: inline-block;
   vertical-align: baseline;
   width: var(--icon-size, 1.125em);
@@ -435,25 +436,25 @@ html {
 }
 
 :where(input[type="range"])::-webkit-slider-runnable-track {
-  background: var(--slider-track-background, var(--background-ui-hover));
+  background: var(--slider-track-background, var(--background-ui));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--space-4, 0.25rem));
   transition: background-color 0.15s;
 }
 
 :where(input[type="range"])::-moz-range-track {
-  background: var(--slider-track-background, var(--background-ui-hover));
+  background: var(--slider-track-background, var(--background-ui));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--space-4, 0.25rem));
   transition: background-color 0.15s;
 }
 
-:where(input[type="range"]):where(:hover)::-webkit-slider-runnable-track {
-  background: var(--slider-track-hover-background, var(--background-ui-active));
+:where(input[type="range"]:not(:disabled)):where(:hover, :focus)::-webkit-slider-runnable-track {
+  background: var(--slider-track-hover-background, var(--background-ui-hover));
 }
 
-:where(input[type="range"]):where(:hover)::-moz-range-track {
-  background: var(--slider-track-hover-background, var(--background-ui-active));
+:where(input[type="range"]:not(:disabled)):where(:hover, :focus)::-moz-range-track {
+  background: var(--slider-track-hover-background, var(--background-ui-hover));
 }
 
 :where(input[type="range"])::-webkit-slider-thumb {
@@ -477,20 +478,20 @@ html {
   transition: background-color 0.15s;
 }
 
-:where(input[type="range"])::-webkit-slider-thumb:hover {
+:where(input[type="range"]:not(:disabled))::-webkit-slider-thumb:hover {
   background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
-:where(input[type="range"])::-moz-range-thumb:hover {
+:where(input[type="range"]:not(:disabled))::-moz-range-thumb:hover {
   background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
-:where(input[type="range"])::-webkit-slider-thumb:active {
+:where(input[type="range"]:not(:disabled))::-webkit-slider-thumb:active {
   background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
-:where(input[type="range"])::-moz-range-thumb:active {
+:where(input[type="range"]:not(:disabled))::-moz-range-thumb:active {
   background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
@@ -522,6 +523,12 @@ input[type="range"]:focus-visible::-moz-range-thumb {
       0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
   }
 }
+
+:where(input[type="range"]:disabled) {
+  --slider-thumb-background: var(--background-ui-active);
+}
+
+/* Overflow menu */
 
 j-overflow-menu::part(menu) {
   background: var(--background-above);
