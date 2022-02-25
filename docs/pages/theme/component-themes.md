@@ -285,12 +285,40 @@ Background blend mode is used to support the both light and dark mode with a sin
 <input type="radio" disabled name="disabled-example" checked>
 ```
 
-
-
-
 ## Slider
 <render-example></render-example>
 ```html
 <input type="range">
 <input type="range" disabled>
 ```
+
+## Details
+<render-example></render-example>
+```html
+<details>
+  <summary>Summary</summary>
+  <div>Detail contents</div>
+</details>
+
+<details theme="reverse">
+  <summary>Summary</summary>
+  <div>Detail contents</div>
+</details>
+
+<h5>Filled</h5>
+
+<details theme="filled">
+  <summary>Summary</summary>
+  <div>Detail contents</div>
+</details>
+
+<details theme="filled reverse">
+  <summary>Summary</summary>
+  <div>Detail contents</div>
+</details>
+```
+<style>
+details + details{
+  margin-top: 1rem;
+}
+</style>

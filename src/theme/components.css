@@ -537,3 +537,68 @@ j-overflow-menu::part(menu) {
   border-radius: var(--border-radius-l);
   gap: var(--space-4, 0.25rem);
 }
+
+/* Details */
+
+:where(details, summary) {
+  /* Can't inherit because of Chrome's implementation, slot element in between */
+  border-radius: var(--border-radius-l);
+}
+
+:where(summary) {
+  font-weight: var(--font-weight-strong);
+  color: var(--color-low-contrast);
+  padding: var(--size-8, 0.5rem) 0;
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: var(--size-4, 0.25rem);
+}
+
+@media (any-hover: hover) {
+  :where(summary:hover) {
+    color: var(--color);
+  }
+}
+
+:where(summary)::-webkit-details-marker {
+  display: none;
+}
+
+:where(summary)::marker {
+  content: "";
+}
+
+:where(summary)::before {
+  content: "";
+  --mask-image: var(--icon-chevron-down);
+  transition: 0.15s;
+  transition-property: transform, color;
+}
+
+:where(details:not([open])) :where(summary)::before {
+  transform: rotate(-90deg);
+}
+
+:where(details[theme~=filled]) {
+  background: var(--background-below);
+  padding: var(--size-16, 1rem);
+}
+
+:where(details[theme~=filled]) :where(summary) {
+  margin: calc(var(--size-16, 1rem) * -1);
+  padding-inline: var(--size-8, 0.5rem);
+}
+
+:where(details[theme~=filled][open]) :where(summary) {
+  margin-bottom: 0;
+}
+
+:where(details[theme~=reverse][theme~=filled]) :where(summary) {
+  padding-inline-start: var(--size-16, 1rem);
+}
+
+:where(details[theme~=reverse]) :where(summary)::before {
+  order: 1;
+  margin-inline-start: auto;
+}
