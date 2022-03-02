@@ -15,14 +15,21 @@ const styles = `
 
   .overflow-container {
     display: flex;
+    align-self: stretch;
     justify-content: var(--align);
     /* align-items: end; */ /* Show above the button */
   }
 
   button {
+    align-self: stretch;
+    -webkit-appearance: none;
     width: var(--overflow-button-size);
-    height: var(--overflow-button-size);
+    min-height: var(--overflow-button-size);
     margin: 0;
+    font: inherit;
+    color: inherit;
+    border: 0;
+    background: transparent;
   }
 
   :host(:not([overflow])) button {
@@ -63,10 +70,11 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     }
 
     this.__resizeObserver.observe(this);
+
+    this.__rtl = getComputedStyle(this).getPropertyValue('direction') == 'rtl';
   }
 
   disconnectedCallback() {
-
     this.__resizeObserver.disconnect();
   }
 
@@ -80,7 +88,14 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
 
     for (let i = this.children.length - 1; i >= 0; i--) {
       const child = this.children[i];
-      if (overflowButton.offsetLeft + overflowButton.offsetWidth > this.offsetLeft + this.clientWidth || child.offsetLeft + child.offsetWidth > this.offsetLeft + this.clientWidth || this.children[0].offsetLeft < this.offsetLeft) {
+      // Checks:
+      // is the overflow button outside the container (if it is visible)?
+      // "start aligned": is the last visible item outside the container?
+      // "end aligned" is the first item outside the container - this is for "end" alignment
+      const overflows = this.__rtl ?
+        (overflowButton.offsetWidth > 0 && overflowButton.offsetLeft < this.offsetLeft) || child.offsetLeft < this.offsetLeft || this.children[0].offsetLeft + this.children[0].offsetWidth > this.offsetLeft + this.offsetWidth
+       : (overflowButton.offsetWidth > 0 && overflowButton.offsetLeft + overflowButton.offsetWidth > this.offsetLeft + this.clientWidth) || child.offsetLeft + child.offsetWidth > this.offsetLeft + this.clientWidth || this.children[0].offsetLeft < this.offsetLeft;
+      if (overflows) {
         child.setAttribute('slot', 'overflow');
         this.setAttribute('overflow', '');
       } else {

@@ -144,8 +144,8 @@
   padding-inline-end: var(--select-padding-inline-end, var(--size-32, 2rem));
   background-image: var(--select-background-image);
   background-repeat: no-repeat;
-  background-size: 1.25em;
-  background-position: calc(100% - .5em) 55%;
+  background-size: var(--icon-size, 1.125em);
+  background-position: calc(100% - var(--select-background-position-x, var(--size-8, 0.5rem))) 50%;
   background-blend-mode: var(--select-background-blend-mode, multiply);
   --select-background-image: var(--icon-chevron-down-gray);
 }
@@ -159,6 +159,12 @@
 [theme~=dark] :where(select),
 :where(select[theme~=dark]) {
   --select-background-blend-mode: screen;
+}
+
+[dir=rtl] :where(select),
+[dir=rtl]:where(select),
+:host([dir=rtl]) :where(select) {
+  background-position-x: var(--select-background-position-x, var(--size-8, 0.5rem));
 }
 
 /* Date input */
@@ -275,7 +281,7 @@
   transition: none;
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:checked, :indeterminate) {
+:where(input[type=checkbox]:where(:checked, :indeterminate), input[type=radio]:checked) {
   background: var(--optionbox-checked-background, var(--background-accent));
   border: var(--optionbox-checked-border, var(--optionbox-border, 0));
   color: var(--optionbox-checked-color, var(--background));
@@ -301,7 +307,7 @@
   color: var(--optionbox-disabled-color, var(--color-low-contrast));
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:checked,:indeterminate)::before {
+:where(input[type=checkbox]:where(:checked, :indeterminate), input[type=radio]:checked)::before {
   content: "";
   display: inline-block;
   width: 100%;
@@ -547,7 +553,7 @@ j-overflow-menu::part(menu) {
 
 :where(summary) {
   font-weight: var(--font-weight-strong);
-  color: var(--color-low-contrast);
+  color: var(--color);
   padding: var(--size-8, 0.5rem) 0;
   transition: color 0.15s;
   display: flex;
@@ -557,7 +563,7 @@ j-overflow-menu::part(menu) {
 
 @media (any-hover: hover) {
   :where(summary:hover) {
-    color: var(--color);
+    color: var(--color-high-contrast);
   }
 }
 
@@ -569,7 +575,12 @@ j-overflow-menu::part(menu) {
   content: "";
 }
 
+:where(summary) > * {
+  flex: 1;
+}
+
 :where(summary)::before {
+  /* Some styles defined together with "icon" */
   content: "";
   --mask-image: var(--icon-chevron-down);
   transition: 0.15s;
@@ -580,8 +591,14 @@ j-overflow-menu::part(menu) {
   transform: rotate(-90deg);
 }
 
+[dir=rtl] :where(details:not([open])) :where(summary)::before,
+[dir=rtl]:where(details:not([open])) :where(summary)::before,
+:host([dir=rtl]) :where(details:not([open])) :where(summary)::before {
+  transform: rotate(90deg);
+}
+
 :where(details[theme~=filled]) {
-  background: var(--background-below);
+  background: var(--background-ui);
   padding: var(--size-16, 1rem);
 }
 

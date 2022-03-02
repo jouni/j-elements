@@ -59,7 +59,7 @@ table-of-contents + p {
 
 .main-nav h1 {
   font-size: var(--font-size-l);
-  margin-left: 0.5rem;
+  margin-inline-start: 0.5rem;
   margin-bottom: 0;
 }
 
@@ -78,7 +78,7 @@ table-of-contents + p {
 }
 
 .main-nav nav .active > a {
-  background-color: var(--background-ui-hover);
+  background-color: var(--background-ui);
   color: var(--color-high-contrast);
 }
 
@@ -137,8 +137,13 @@ main > footer {
     width: 13rem;
   }
 
+  [dir=rtl] table-of-contents {
+    float: left;
+  }
+
   main > :not(table-of-contents) {
-    margin-right: 17rem !important;
+    margin-inline-end: 17rem !important;
+    direction: inherit !important;
   }
 }
 
@@ -150,13 +155,13 @@ table-of-contents h6 {
 table-of-contents > ol {
   list-style: none;
   margin: 1em 0 2em;
-  padding-left: 1.5em;
-  border-left: 2px solid var(--border-color-low-contrast);
+  padding-inline-start: 1.5em;
+  border-inline-start: 2px solid var(--border-color-low-contrast);
 }
 
 table-of-contents > ol ol {
   list-style: none;
-  padding-left: 1em;
+  padding-inline-start: 1em;
 }
 
 table-of-contents li {
@@ -248,8 +253,8 @@ render-example.resize-y {
 
 [id]:is(h2, h3) {
   border-radius: 4px;
-  margin-left: -4px;
-  padding-left: 4px;
+  margin-inline-start: -4px;
+  padding-inline-start: 4px;
 }
 
 h2, h3 {
@@ -299,7 +304,7 @@ hr {
 
 .main-nav details {
   display: none;
-  margin-left: 0.5rem;
+  margin-inline-start: 0.5rem;
 }
 
 .main-nav {
@@ -314,6 +319,10 @@ hr {
   position: sticky;
   top: 0;
   box-sizing: border-box;
+}
+
+[dir=rtl] .main-nav {
+  float: right;
 }
 
 main {
@@ -337,6 +346,10 @@ main {
   .main-nav details {
     display: block;
     float: right;
+  }
+
+  [dir=rtl] .main-nav details {
+    float: left;
   }
 
   .main-nav {
