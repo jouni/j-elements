@@ -1,9 +1,9 @@
 ---
-title: Theming is hard
+title: Theming
 layout: page
 eleventyNavigation:
   key: Theme
-  title: Theme
+  title: Theming
   order: 30
 ---
 

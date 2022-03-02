@@ -16,6 +16,7 @@ Thinking of ways to implement a general purpose overflow menu component, which d
 
 <render-example></render-example>
 ```html
+<!--
 <j-overflow-menu>
   <button>Button 1</button>
   <button>Button 2</button>
@@ -33,6 +34,25 @@ Thinking of ways to implement a general purpose overflow menu component, which d
   <div class="divider"></div>
   <button>Button 4</button>
 </j-overflow-menu>
+-->
+<div class="layout">
+  <j-overflow-menu>
+    <button>Button 1</button>
+    <button>Button 2</button>
+    <input type="text" value="Text input">
+    <button>Button 3</button>
+    <div class="divider"></div>
+    <button>Button 4</button>
+  </j-overflow-menu>
+  <j-overflow-menu class="align-end">
+    <button>Button 1</button>
+    <input type="text" value="Text input">
+    <button>Button 2</button>
+    <div class="divider"></div>
+    <button>Button 3</button>
+    <button>Button 4</button>
+  </j-overflow-menu>
+</div>
 
 <style>
 j-overflow-menu {
@@ -41,7 +61,15 @@ j-overflow-menu {
 
 j-overflow-menu.align-end {
   --align: flex-end;
-  margin-top: 1rem;
+}
+
+.layout {
+  display: flex;
+  align-items: center;
+}
+
+.layout j-overflow-menu {
+  flex: 1;
 }
 
 .divider {

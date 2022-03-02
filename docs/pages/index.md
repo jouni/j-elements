@@ -14,7 +14,13 @@ The focus of this project is mostly on how to improve the Vaadin design system a
 > The project is mainly looking for feedback from other developers, if the proposed solutions are good enough for general use.
 > [Please provide feedback via GitHub](https://github.com/jouni/j-elements)
 
-## [Get started ›](/howto)
+## Focus areas
+
+- [Theming is hard ›](/theme)
+## [Enhancing native HTML components ›](/components)
+
+## [Install ›](/howto)
+
 
 ---
 

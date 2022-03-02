@@ -1,20 +1,19 @@
 ---
-title: Get started
+title: Install
 layout: page
 eleventyNavigation:
-  key: Get started
+  key: Install
   order: 20
 ---
-
-## Install
 
 JElements is installable with [npm](https://npmjs.org) or any alternative npm client, like [Yarn](https://yarnpkg.com/en/):
 
 ```shell
 npm install j-elements
 ```
+The package has zero dependencies.
+<module-size></module-size>
 
-The package has zero dependencies and is about <module-size></module-size> in total including all components, utilities, and CSS.
 
 ## Import
 

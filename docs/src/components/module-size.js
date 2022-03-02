@@ -11,6 +11,8 @@ class ModuleSize extends HTMLElement {
 
     if (modules) {
       modules = modules.split(' ');
+    } else {
+      modules = this._json.map(m => m.path);
     }
 
     const sizes = calcSize(this._json, modules);
