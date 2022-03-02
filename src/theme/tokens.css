@@ -33,21 +33,21 @@ html,
 @media (prefers-color-scheme: dark) {
   html,
   :host {
-    --background: var(--zinc-800);
-    --background-above: var(--zinc-700);
-    --background-below: var(--zinc-900);
+    --background: var(--zinc-900);
+    --background-above: var(--zinc-800);
+    --background-below: #000;
 
-    --background-ui: var(--zinc-700);
-    --background-ui-hover: var(--zinc-600);
-    --background-ui-active: var(--zinc-500);
+    --background-ui: var(--zinc-800);
+    --background-ui-hover: var(--zinc-700);
+    --background-ui-active: var(--zinc-600);
 
     --background-accent: var(--indigo-400);
     --background-accent-hover: var(--indigo-300);
     --background-accent-active: var(--indigo-200);
 
-    --color: var(--zinc-100);
+    --color: var(--zinc-200);
     --color-high-contrast: var(--zinc-50);
-    --color-low-contrast: var(--zinc-300);
+    --color-low-contrast: var(--zinc-400);
     --color-disabled: var(--zinc-500);
 
     --color-accent: var(--indigo-300);
@@ -63,21 +63,21 @@ html,
 
 [theme~=dark],
 :host([theme~=dark]) {
-  --background: var(--zinc-800);
-  --background-above: var(--zinc-700);
-  --background-below: var(--zinc-900);
+  --background: var(--zinc-900);
+  --background-above: var(--zinc-800);
+  --background-below: #000;
 
-  --background-ui: var(--zinc-700);
-  --background-ui-hover: var(--zinc-600);
-  --background-ui-active: var(--zinc-500);
+  --background-ui: var(--zinc-800);
+  --background-ui-hover: var(--zinc-700);
+  --background-ui-active: var(--zinc-600);
 
   --background-accent: var(--indigo-400);
   --background-accent-hover: var(--indigo-300);
   --background-accent-active: var(--indigo-200);
 
-  --color: var(--zinc-100);
+  --color: var(--zinc-200);
   --color-high-contrast: var(--zinc-50);
-  --color-low-contrast: var(--zinc-300);
+  --color-low-contrast: var(--zinc-400);
   --color-disabled: var(--zinc-500);
 
   --color-accent: var(--indigo-300);
