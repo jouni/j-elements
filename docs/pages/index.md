@@ -10,17 +10,14 @@ JElements is a web development research project by Jouni Koivuviita, looking at 
 
 The focus of this project is mostly on how to improve the Vaadin design system and web components in the future, and more specifically on the theming and styling aspects of them.
 
-> **JElements is not recommended for production use**
-> The project is mainly looking for feedback from other developers, if the proposed solutions are good enough for general use.
+> ##### JElements is not recommended for production use
+> The project is mainly looking for feedback from other developers, if the problems/issues are valid and if the proposed solutions are good enough to be considered as a way forward.
 > [Please provide feedback via GitHub](https://github.com/jouni/j-elements)
 
 ## Focus areas
 
-- [Theming is hard ›](/theme)
-## [Enhancing native HTML components ›](/components)
-
-## [Install ›](/howto)
-
+- [Theming ›](/theme)
+- [Enhanced HTML components ›](/components)
 
 ---
 
