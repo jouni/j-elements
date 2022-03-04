@@ -26,26 +26,7 @@ The main element needs be allowed to shrink and grow based on the available spac
 <render-example></render-example>
 ```html
 
-<j-overflow-menu>
-  <button>Button 1</button>
-  <button>Button 2</button>
-  <span>Plain text</span>
-  <input value="Text input">
-  <button>Button 3</button>
-</j-overflow-menu>
-
-<h5>End-aligned</h5>
-
-<j-overflow-menu class="align-end">
-  <button>Button 1</button>
-  <button>Button 2</button>
-  <span>Plain text</span>
-  <input value="Text input">
-  <button>Button 3</button>
-</j-overflow-menu>
-
-<h5>Two menus on the same line</h5>
-
+<h5>Start and end aligned</h5>
 <div class="layout">
   <j-overflow-menu>
     <button>Button 1</button>
@@ -56,13 +37,14 @@ The main element needs be allowed to shrink and grow based on the available spac
   </j-overflow-menu>
 
   <j-overflow-menu class="align-end">
-    <button>Button 1</button>
-    <button>Button 2</button>
-    <span>Plain text</span>
-    <input value="Text input">
     <button>Button 3</button>
+    <input value="Text input">
+    <span>Plain text</span>
+    <button>Button 2</button>
+    <button>Button 1</button>
   </j-overflow-menu>
 </div>
+<p>Items are in reverse order in the source and not reversed by "end alignment".</p>
 
 <h5>30 items</h5>
 <j-overflow-menu class="many-items"></j-overflow-menu>
@@ -73,7 +55,11 @@ The main element needs be allowed to shrink and grow based on the available spac
   }
 
   j-overflow-menu span {
-    margin: 0 1em;
+    margin: 0.5em;
+  }
+
+  j-overflow-menu input {
+    width: 6em;
   }
 
   j-overflow-menu.align-end {
@@ -92,12 +78,12 @@ The main element needs be allowed to shrink and grow based on the available spac
 
   /* Style the buttons differently when they are in the overflow menu */
 
-  j-overflow-menu button[slot=menu] {
+  button[slot=menu] {
     font: inherit;
     text-align: start;
   }
 
-  j-overflow-menu button[slot=menu]:not(:hover):not(:active) {
+  button[slot=menu]:not(:hover):not(:active) {
     background: transparent;
   }
 </style>
