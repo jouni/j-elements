@@ -25,7 +25,6 @@ The main element needs be allowed to shrink and grow based on the available spac
 
 <render-example></render-example>
 ```html
-
 <h5>Start and end aligned</h5>
 <div class="layout">
   <j-overflow-menu>
@@ -50,21 +49,12 @@ The main element needs be allowed to shrink and grow based on the available spac
 <j-overflow-menu class="many-items"></j-overflow-menu>
 
 <style>
-  j-overflow-menu span {
-    margin: 0.5em;
-  }
-
-  j-overflow-menu input {
-    width: 6em;
-  }
-
   j-overflow-menu.align-end {
-   justify-content: flex-end;
+    justify-content: flex-end;
   }
 
   .layout {
     display: flex;
-    align-items: center;
     gap: 1rem;
   }
 
@@ -73,7 +63,6 @@ The main element needs be allowed to shrink and grow based on the available spac
   }
 
   /* Style the buttons differently when they are in the overflow menu */
-
   button[slot=menu] {
     font: inherit;
     text-align: start;
@@ -81,6 +70,15 @@ The main element needs be allowed to shrink and grow based on the available spac
 
   button[slot=menu]:not(:hover):not(:active) {
     background: transparent;
+  }
+
+  /* Demo styles */
+  j-overflow-menu span {
+    margin: 0.5em;
+  }
+
+  j-overflow-menu input {
+    width: 6em;
   }
 </style>
 
