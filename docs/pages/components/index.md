@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 40
 ---
 
-Based on [the previous section](/theme), we want to use the `<button>`, `<input>`, `<select>`, and other standard HTML elements and not have specific field component implementations. That leaves a lot of use cases uncovered, compared to existing Vaadin component implementations, specifically:
+Based on the [theming section](/theme), we want to use the `<button>`, `<input>`, `<select>`, and other standard HTML elements and not have specific field component implementations. That leaves a lot of use cases uncovered, compared to existing Vaadin component implementations, specifically:
 
 - conveniently creating accessible forms, including:
   - labels
