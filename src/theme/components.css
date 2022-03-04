@@ -72,7 +72,7 @@
 
 /* Text Input, Text Area, Select */
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select) {
+:where(input, textarea, select) {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   background: var(--textinput-background, var(--background));
@@ -92,39 +92,39 @@
 }
 
 @media (any-hover: hover) {
-  :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not(:disabled):hover) {
+  :where(input, textarea, select):where(:not(:disabled):hover) {
     background: var(--textinput-hover-background, var(--textinput-background, var(--background)));
     border: var(--textinput-hover-border, var(--textinput-border, var(--border-ui-hover)));
   }
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not(:disabled):active) {
+:where(input, textarea, select):where(:not(:disabled):active) {
   background: var(--textinput-active-background, var(--textinput-background, var(--background)));
   border: var(--textinput-active-border, var(--textinput-border, var(--border-ui-active)));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:focus) {
+:where(input, textarea, select):where(:focus) {
   --outline-offset: -1px;
   border: var(--textinput-focus-border, var(--textinput-border, var(--border-ui-focus)));
   transition: none;
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:disabled) {
+:where(input, textarea, select):where(:disabled) {
   color: var(--textinput-disabled-color, var(--color-disabled));
   border: var(--textinput-disabled-border, 1px solid var(--border-color-low-contrast));
   background: var(--textinput-disabled-background, var(--background));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([readonly]) {
+:where(input, textarea, select):where([readonly]) {
   cursor: default;
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([readonly]:not(:focus)) {
+:where(input, textarea, select):where([readonly]:not(:focus)) {
   border: var(--textinput-readonly-border, 1px solid var(--border-color-low-contrast));
   background: var(--textinput-readonly-background, var(--background));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea)::placeholder {
+:where(input, textarea)::placeholder {
   color: var(--textinput-placeholder-color, var(--color-low-contrast));
 }
 
@@ -133,7 +133,7 @@
   border: var(--textinput-invalid-border, 1px solid var(--red-500));
 } */
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([theme~=small]) {
+:where(input, textarea, select):where([theme~=small]) {
   --textinput-font: var(--font-textinput-small);
   padding: var(--textinput-padding-small, var(--size-6, 0.375rem));
 }
@@ -251,6 +251,7 @@
 /* Checkbox & Radio Button*/
 
 :where(input[type=checkbox], input[type=radio]) {
+  all: revert;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   background: var(--optionbox-background, var(--background-ui));
@@ -436,6 +437,7 @@ html {
 /* Slider */
 
 :where(input[type="range"]) {
+  all: revert;
   -webkit-appearance: none;
   background: transparent;
   width: calc(var(--size-16, 1rem) * 8);
@@ -639,4 +641,9 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 :where(details[theme~=reverse]) :where(summary)::before {
   order: 1;
   margin-inline-start: auto;
+}
+
+/* Revert other input styles */
+:where(input):where([type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]) {
+  all: revert;
 }
