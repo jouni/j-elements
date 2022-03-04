@@ -12,12 +12,12 @@ eleventyNavigation:
   parent: Components
 ---
 
-Thinking of ways to implement a general purpose overflow menu component, which doesn't care about the type of components that are placed inside it. Any component which doesn't visually fit, will be placed in the overflow menu.
+Thinking of ways to implement a general purpose overflow menu component which support any content elements. Element which don't visually fit, are be shown in the overflow menu.
 
 The main element needs be allowed to shrink and grow based on the available space in the surrounding layout, as a `ResizeObserver` is used on that element to react when to collapse and expand items.
 
 > ##### Depends on the native dialog element
-> The native `<dialog>` element is used internally for the overflow menu. When shown as "modal", it escapes any parent stacking contexts, and prevents keyboard focus from going to other parts of the page. The Escape key also automatically closes the dialog element.
+> The native `<dialog>` element is used internally for the overflow menu. When shown as "modal", it escapes any parent stacking contexts, and prevents mouse and keyboard interaction with the other parts of the page. The Escape key also closes the dialog element.
 >
 > No polyfill is loaded automatically. Polyfills unfortunately can't overcome the "clipping stacking context" issue.
 >
@@ -50,10 +50,6 @@ The main element needs be allowed to shrink and grow based on the available spac
 <j-overflow-menu class="many-items"></j-overflow-menu>
 
 <style>
-  j-overflow-menu {
-    gap: 0.25rem;
-  }
-
   j-overflow-menu span {
     margin: 0.5em;
   }
@@ -108,3 +104,5 @@ if (typeof HTMLDialogElement !== 'undefined') {
   color: var(--red-600);
 }
 </style>
+
+Notice, that the overflowing items are placed in the menu using a named `<slot>`, by adding the `slot` attribute on the overflowing items dynamically. The benefit of this approach is that the items are not disconnected/reconnected from/to the DOM when they move to and from the menu.

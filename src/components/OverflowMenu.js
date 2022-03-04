@@ -15,14 +15,14 @@ const styles = `
     flex: none;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
-    width: var(--menu-button-size, 2rem);
-    min-height: var(--menu-button-size, 2rem);
     margin: 0;
     font: inherit;
+    line-height: 1;
     color: inherit;
     border: 0;
-    padding: 0;
+    padding: 0.25em 0.5em;
     background: transparent;
+    width: 2em;
   }
 
   :host(:not([overflow])) button {

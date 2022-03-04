@@ -136,6 +136,7 @@ html,
 
   /* Font presets */
 
+  --font: var(--font-weight) var(--font-size-m)/var(--line-height-m) var(--font-family);
   --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
   --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
   --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
