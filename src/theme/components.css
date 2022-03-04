@@ -265,6 +265,7 @@
   vertical-align: middle;
   flex: none;
   transition: background-color 0.15s;
+  --outline-offset: 2px;
 }
 
 @media (any-hover: hover) {
@@ -441,6 +442,7 @@ html {
   -webkit-appearance: none;
   background: transparent;
   width: calc(var(--size-16, 1rem) * 8);
+  --outline-offset: 2px;
 }
 
 :where(input[type="range"])::-webkit-slider-runnable-track {
