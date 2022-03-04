@@ -84,7 +84,7 @@ The main element needs be allowed to shrink and grow based on the available spac
 
   /* Demo styles */
   j-overflow-menu div {
-    margin: 0.5em;
+    margin: 0.3em;
   }
 
   j-overflow-menu input {
