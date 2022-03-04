@@ -120,14 +120,21 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
 
     for (let i = this.children.length - 1; i >= 0; i--) {
       const child = this.children[i];
-      // Checks:
-      // - is the overflow button outside the container (if it is visible)?
-      // - "start aligned": is the last visible item outside the container?
-      // - "end aligned": is the first item outside the container?
-      const overflows = this.__rtl ?
-        (btn.offsetWidth > 0 && btn.offsetLeft < this.offsetLeft) || child.offsetLeft < this.offsetLeft || this.children[0].offsetLeft + this.children[0].offsetWidth > this.offsetLeft + this.offsetWidth
-       : (btn.offsetWidth > 0 && btn.offsetLeft + btn.offsetWidth > this.offsetLeft + this.clientWidth) || child.offsetLeft + child.offsetWidth > this.offsetLeft + this.clientWidth || this.children[0].offsetLeft < this.offsetLeft;
-      if (overflows) {
+
+      // is the overflow button outside the container (if it is visible)?
+      const buttonOverflowing = this.__rtl ?
+                                    btn.offsetWidth > 0 && btn.offsetLeft < this.offsetLeft :
+                                    btn.offsetWidth > 0 && btn.offsetLeft + btn.offsetWidth > this.offsetLeft + this.clientWidth + 1; // Chrome sometimes reports the button 1px outside the container
+      // "start aligned": is the last visible item outside the container?
+      const lastItemOverflowing = this.__rtl ?
+                                    child.offsetLeft < this.offsetLeft :
+                                    child.offsetLeft + child.offsetWidth > this.offsetLeft + this.clientWidth;
+      // "end aligned": is the first item outside the container?
+      const firstItemOverflowing = this.__rtl ?
+                                    this.children[0].offsetLeft + this.children[0].offsetWidth > this.offsetLeft + this.offsetWidth :
+                                    this.children[0].offsetLeft < this.offsetLeft;
+
+      if (buttonOverflowing || lastItemOverflowing || firstItemOverflowing) {
         child.setAttribute('slot', 'menu');
         this.setAttribute('overflow', '');
       } else {
