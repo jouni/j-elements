@@ -309,12 +309,14 @@ Background blend mode is used to support the both light and dark mode with a sin
 
 <details theme="filled">
   <summary>Summary</summary>
-  <div>Detail contents</div>
+  <input value="Input">
+  <button>Button</button>
 </details>
 
 <details theme="filled reverse">
   <summary>Summary</summary>
-  <div>Detail contents</div>
+  <input value="Input">
+  <button>Button</button>
 </details>
 ```
 <style>
