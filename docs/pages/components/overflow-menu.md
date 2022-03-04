@@ -14,76 +14,111 @@ eleventyNavigation:
 
 Thinking of ways to implement a general purpose overflow menu component, which doesn't care about the type of components that are placed inside it. Any component which doesn't visually fit, will be placed in the overflow menu.
 
+The main element needs be allowed to shrink and grow based on the available space in the surrounding layout, as a `ResizeObserver` is used on that element to react when to collapse and expand items.
+
+> ##### Depends on the native dialog element
+> The native `<dialog>` element is used internally for the overflow menu. When shown as "modal", it escapes any parent stacking contexts, and prevents keyboard focus from going to other parts of the page. The Escape key also automatically closes the dialog element.
+>
+> No polyfill is loaded automatically. Polyfills unfortunately can't overcome the "clipping stacking context" issue.
+>
+> <p class="dialog-not-supported">Your browser does not support the native <code>&lt;dialog&gt;</code> element.</p>
+
 <render-example></render-example>
 ```html
-<!--
+
 <j-overflow-menu>
   <button>Button 1</button>
   <button>Button 2</button>
-  <input type="text" value="Text input">
+  <span>Plain text</span>
+  <input value="Text input">
   <button>Button 3</button>
-  <div class="divider"></div>
-  <button>Button 4</button>
 </j-overflow-menu>
+
+<h5>End-aligned</h5>
 
 <j-overflow-menu class="align-end">
   <button>Button 1</button>
   <button>Button 2</button>
-  <input type="text" value="Text input">
+  <span>Plain text</span>
+  <input value="Text input">
   <button>Button 3</button>
-  <div class="divider"></div>
-  <button>Button 4</button>
 </j-overflow-menu>
--->
+
+<h5>Two menus on the same line</h5>
+
 <div class="layout">
   <j-overflow-menu>
     <button>Button 1</button>
     <button>Button 2</button>
-    <input type="text" value="Text input">
+    <span>Plain text</span>
+    <input value="Text input">
     <button>Button 3</button>
-    <div class="divider"></div>
-    <button>Button 4</button>
   </j-overflow-menu>
+
   <j-overflow-menu class="align-end">
     <button>Button 1</button>
-    <input type="text" value="Text input">
     <button>Button 2</button>
-    <div class="divider"></div>
+    <span>Plain text</span>
+    <input value="Text input">
     <button>Button 3</button>
-    <button>Button 4</button>
   </j-overflow-menu>
 </div>
 
+<h5>30 items</h5>
+<j-overflow-menu class="many-items"></j-overflow-menu>
+
 <style>
-j-overflow-menu {
-  gap: 0.25rem;
-}
+  j-overflow-menu {
+    gap: 0.25rem;
+  }
 
-j-overflow-menu.align-end {
-  --align: flex-end;
-}
+  j-overflow-menu span {
+    margin: 0 1em;
+  }
 
-.layout {
-  display: flex;
-  align-items: center;
-}
+  j-overflow-menu.align-end {
+   justify-content: flex-end;
+  }
 
-.layout j-overflow-menu {
-  flex: 1;
-}
+  .layout {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-.divider {
-  width: 1px;
-  align-self: stretch;
-  background-color: var(--border-color-low-contrast);
-  margin: 0.25rem;
-}
+  .layout j-overflow-menu {
+    flex: 1;
+  }
 
-.divider[slot="overflow"] {
-  width: auto;
-  height: 1px;
-}
+  /* Style the buttons differently when they are in the overflow menu */
+
+  j-overflow-menu button[slot=menu] {
+    font: inherit;
+    text-align: start;
+  }
+
+  j-overflow-menu button[slot=menu]:not(:hover):not(:active) {
+    background: transparent;
+  }
 </style>
+
+<script>
+  for (let i = 1; i <= 30; i++) {
+    const button = document.createElement('button');
+    button.textContent = 'Button ' + i;
+    document.querySelector('.many-items').appendChild(button);
+  }
+</script>
 ```
 
-The implementation is far from ideal. Accessibility has barely been considered, or any other intricacies with modal overlay menus. Also, since the overflow menu is not placed directly under the `<body>` element, any clipping stacking context issues are just waiting to happen. The menu position is also not taking into account if it's outside the browser viewport.
+<script>
+if (typeof HTMLDialogElement !== 'undefined') {
+  document.querySelector('.dialog-not-supported').style.display = 'none';
+}
+</script>
+
+<style>
+.dialog-not-supported {
+  color: var(--red-600);
+}
+</style>

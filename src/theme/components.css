@@ -536,12 +536,32 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 
 /* Overflow menu */
 
-j-overflow-menu::part(menu) {
+:where(j-overflow-menu):focus {
+  box-shadow: none;
+}
+
+:where(j-overflow-menu)::part(menu) {
   background: var(--background-above);
   box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
-  padding: var(--size-4, 0.25rem);
+  padding: var(--size-8, 0.5rem);
   border-radius: var(--border-radius-l);
   gap: var(--space-4, 0.25rem);
+  border: 0;
+  margin: var(--space-4, 0.25rem);
+}
+
+:where(j-overflow-menu)::part(menu-button) {
+  background: var(--background-ui);
+  border-radius: var(--border-radius-m);
+}
+
+:where(j-overflow-menu)::part(menu-button):hover {
+  background: var(--background-ui-hover);
+}
+
+:where(j-overflow-menu)::part(menu-button):active,
+:where(j-overflow-menu)::part(menu-button-active) {
+  background: var(--background-ui-active);
 }
 
 /* Details */

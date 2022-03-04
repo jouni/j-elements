@@ -195,8 +195,9 @@ blockquote {
   border-radius: var(--border-radius-l);
 }
 
-blockquote h6:first-child {
+blockquote :is(h5, h6):first-child {
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 pre[class*="language"],
