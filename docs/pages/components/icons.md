@@ -36,7 +36,7 @@ html {
 
 A utility class or any other selector, for example, a custom element name, is defined which uses the SVG data URLs as a mask image. A mask image allows us to change the color of the icon using CSS. Each individual icon is defined using an additional selector.
 ```css
-[class^="icon"] {
+i[class^="icon"] {
   background-color: currentColor;
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
@@ -44,15 +44,15 @@ A utility class or any other selector, for example, a custom element name, is de
   /* layout properties omitted */
 }
 
-.icon-calendar {
+i.icon-calendar {
   --mask-image: var(--icon-calendar);
 }
 
-.icon-search {
+i.icon-search {
   --mask-image: var(--icon-search);
 }
 
-.icon-checkmark {
+i.icon-checkmark {
   --mask-image: var(--icon-checkmark);
 }
 ```
@@ -62,9 +62,9 @@ The consumers of the icons import the style sheet and apply the desired utility 
 
 <render-example></render-example>
 ```html
-<span class="icon-calendar">calendar</span>
-<span class="icon-search">search</span>
-<span class="icon-checkmark">checkmark</span>
+<i class="icon-calendar">calendar</i>
+<i class="icon-search">search</i>
+<i class="icon-checkmark">checkmark</i>
 ```
 
 The drawback of using mask images is that style customization is more limited than with inline SVGs. For example, stroke width can't be modified per instance.

@@ -30,15 +30,17 @@ The main element needs be allowed to shrink and grow based on the available spac
   <j-overflow-menu>
     <button>Button 1</button>
     <button>Button 2</button>
-    <span>Plain text</span>
+    <div>Plain text</div>
     <input value="Text input">
+    <button class="icon"><i class="icon-calendar">calendar</i><span>Icon button</span></button>
     <button>Button 3</button>
   </j-overflow-menu>
 
   <j-overflow-menu class="align-end">
     <button>Button 3</button>
+    <button class="icon"><i class="icon-calendar">calendar</i><span>Icon button</span></button>
     <input value="Text input">
-    <span>Plain text</span>
+    <div>Plain text</div>
     <button>Button 2</button>
     <button>Button 1</button>
   </j-overflow-menu>
@@ -62,6 +64,10 @@ The main element needs be allowed to shrink and grow based on the available spac
     flex: 1;
   }
 
+  button.icon span {
+    display: none;
+  }
+
   /* Style the buttons differently when they are in the overflow menu */
   button[slot=menu] {
     font: inherit;
@@ -72,8 +78,12 @@ The main element needs be allowed to shrink and grow based on the available spac
     background: transparent;
   }
 
+  button[slot=menu].icon span {
+    display: inline;
+  }
+
   /* Demo styles */
-  j-overflow-menu span {
+  j-overflow-menu div {
     margin: 0.5em;
   }
 

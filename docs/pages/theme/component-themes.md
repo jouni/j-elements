@@ -51,9 +51,9 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
   <button theme="tertiary">Tertiary</button>
 </div>
 <div>
-  <button theme="primary">Primary <span class="icon-chevron-down"></span></button>
-  <button>Secondary <span class="icon-chevron-down"></span></button>
-  <button theme="tertiary">Tertiary <span class="icon-chevron-down"></span></button>
+  <button theme="primary">Primary <i class="icon-chevron-down"></i></button>
+  <button>Secondary <i class="icon-chevron-down"></i></button>
+  <button theme="tertiary">Tertiary <i class="icon-chevron-down"></i></button>
 </div>
 <h5>Small</h5>
 <div>
@@ -62,9 +62,9 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
   <button theme="tertiary small">Tertiary</button>
 </div>
 <div>
-  <button theme="primary small">Primary <span class="icon-chevron-down"></span></button>
-  <button theme="small">Secondary <span class="icon-chevron-down"></span></button>
-  <button theme="tertiary small">Tertiary <span class="icon-chevron-down"></span></button>
+  <button theme="primary small">Primary <i class="icon-chevron-down"></i></button>
+  <button theme="small">Secondary <i class="icon-chevron-down"></i></button>
+  <button theme="tertiary small">Tertiary <i class="icon-chevron-down"></i></button>
 </div>
 <h5>Disabled</h5>
 <div>
@@ -320,7 +320,7 @@ Background blend mode is used to support the both light and dark mode with a sin
 </details>
 ```
 <style>
-details + details{
+details + details {
   margin-top: 1rem;
 }
 </style>

@@ -160,10 +160,10 @@ All native input types are supported without extra effort.
   <label>Label</label>
   <div description>Enter something in this field</div>
   <j-input-decorator>
-    <span slot="prefix" class="icon-search" style="margin: 0 0.5em"></span>
+    <i slot="prefix" class="icon-search" style="margin: 0 0.5em"></i>
     <input type="text" required>
   </j-input-decorator>
-  <button>Button <span class="icon-chevron-down"></span></button>
+  <button>Button <i class="icon-chevron-down"></i></button>
 </j-field>
 ```
 
