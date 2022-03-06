@@ -253,6 +253,11 @@
   --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
 
+:where(button) :where(icon) + *,
+:where(button) * + :where(icon)  {
+  margin-inline-start: var(--size-8, 0.5rem);
+}
+
 /* Checkbox & Radio Button*/
 
 :where(input[type=checkbox], input[type=radio]) {
@@ -406,7 +411,7 @@ html {
   --icon-checkmark-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd' /%3E%3C/svg%3E");
 }
 
-:where(i[class^=icon]),
+:where(icon),
 :where(summary)::before {
   display: inline-block;
   vertical-align: baseline;
@@ -424,19 +429,19 @@ html {
   user-select: none;
 }
 
-:where(i.icon-search) {
+:where(icon[search]) {
   --mask-image: var(--icon-search);
 }
 
-:where(i.icon-chevron-down) {
+:where(icon[chevron-down]) {
   --mask-image: var(--icon-chevron-down);
 }
 
-:where(i.icon-calendar) {
+:where(icon[calendar]) {
   --mask-image: var(--icon-calendar);
 }
 
-:where(i.icon-checkmark) {
+:where(icon[checkmark]) {
   --mask-image: var(--icon-checkmark);
 }
 

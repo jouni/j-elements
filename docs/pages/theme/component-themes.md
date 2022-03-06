@@ -51,9 +51,9 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
   <button theme="tertiary">Tertiary</button>
 </div>
 <div>
-  <button theme="primary">Primary <i class="icon-chevron-down"></i></button>
-  <button>Secondary <i class="icon-chevron-down"></i></button>
-  <button theme="tertiary">Tertiary <i class="icon-chevron-down"></i></button>
+  <button theme="primary">Primary <icon chevron-down></icon></button>
+  <button>Secondary <icon chevron-down></icon></button>
+  <button theme="tertiary">Tertiary <icon chevron-down></icon></button>
 </div>
 <h5>Small</h5>
 <div>
@@ -62,9 +62,9 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
   <button theme="tertiary small">Tertiary</button>
 </div>
 <div>
-  <button theme="primary small">Primary <i class="icon-chevron-down"></i></button>
-  <button theme="small">Secondary <i class="icon-chevron-down"></i></button>
-  <button theme="tertiary small">Tertiary <i class="icon-chevron-down"></i></button>
+  <button theme="primary small">Primary <icon chevron-down></icon></button>
+  <button theme="small">Secondary <icon chevron-down></icon></button>
+  <button theme="tertiary small">Tertiary <icon chevron-down></icon></button>
 </div>
 <h5>Disabled</h5>
 <div>

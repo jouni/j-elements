@@ -34,27 +34,27 @@ input {
 <render-example></render-example>
 ```html
 <j-input-decorator>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <input type="text" value="Input value">
-  <button slot="suffix" theme="tertiary"><i class="icon-chevron-down"></i></button>
+  <button slot="suffix" theme="tertiary"><icon chevron-down></icon></button>
 </j-input-decorator>
 
 <j-input-decorator>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <input type="text" value="Input value" theme="small">
-  <button slot="suffix" theme="tertiary small"><i class="icon-chevron-down"></i></button>
+  <button slot="suffix" theme="tertiary small"><icon chevron-down></icon></button>
 </j-input-decorator>
 
 <j-input-decorator>
   <textarea>Text area value</textarea>
-  <i slot="prefix" class="icon-search"></i>
-  <button slot="suffix" theme="tertiary"><i class="icon-chevron-down"></i></button>
+  <icon slot="prefix" search></icon>
+  <button slot="suffix" theme="tertiary"><icon chevron-down></icon></button>
 </j-input-decorator>
 
 <h5>Select, prefix only</h5>
 
 <j-input-decorator>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <select>
     <option>Option one</option>
     <option>Option two</option>
@@ -63,7 +63,7 @@ input {
 </j-input-decorator>
 
 <j-input-decorator>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <select theme="small">
     <option>Option one</option>
     <option>Option two</option>
@@ -72,7 +72,7 @@ input {
 </j-input-decorator>
 
 <style>
-  i[slot] {
+  icon[slot] {
     margin: 0 0.5rem;
   }
 
@@ -80,7 +80,7 @@ input {
     align-self: start;
   }
 
-  textarea ~ i[slot] {
+  textarea ~ icon[slot] {
     margin-top: 0.6rem;
   }
 </style>
@@ -94,17 +94,17 @@ The `autosize` attribute makes the contained input change its size based on the 
 <render-example></render-example>
 ```html
 <j-input-decorator autosize>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <input type="text" value="Input value">
 </j-input-decorator>
 
 <j-input-decorator autosize>
   <textarea>Text area value</textarea>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
 </j-input-decorator>
 
 <j-input-decorator autosize>
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <select>
     <option>Option</option>
     <option>Longer option</option>
@@ -122,7 +122,7 @@ The size of the prefix and suffix elements are measured when the element is conn
 <render-example></render-example>
 ```html
 <j-input-decorator class="limitation-test">
-  <i slot="prefix" class="icon-search"></i>
+  <icon slot="prefix" search></icon>
   <input type="text" value="Input value">
 </j-input-decorator>
 
