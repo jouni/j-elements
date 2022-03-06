@@ -150,20 +150,20 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
   _positionMenu() {
     this._menu.style.removeProperty('width');
     this._menu.style.removeProperty('height');
-    this._menu.style.removeProperty('top');
-    this._menu.style.removeProperty('left');
-    this._menu.style.removeProperty('right');
+    this._menu.style.removeProperty('transform');
 
     const btn = this._menuButton.getBoundingClientRect();
     const menu = this._menu.getBoundingClientRect();
     const menuMargin = parseInt(getComputedStyle(this._menu).getPropertyValue('margin'));
     let menuRequiredHeight = menu.height + menuMargin * 2;
-    let menuRequiredWidth = menu.width + menuMargin * 2;
+    let menuRequiredWidth = menu.width + menuMargin;
 
     const spaceAboveButton = btn.top;
     const spaceBelowButton = visualViewport.height - btn.top - btn.height;
     const spaceBeforeButton = this.__rtl ? visualViewport.width - btn.left - btn.width : btn.left;
     const spaceAfterButton = this.__rtl ? btn.left + btn.width : visualViewport.width - btn.left;
+
+    let x = 0, y = 0;
 
     if (spaceAboveButton > spaceBelowButton && (menuRequiredHeight > visualViewport.height / 2 || menuRequiredHeight > spaceBelowButton)) {
       // Place menu above button
@@ -171,13 +171,13 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
         this._menu.style.height = (spaceAboveButton - menuMargin * 2) + 'px';
         menuRequiredHeight = spaceAboveButton;
       }
-      this._menu.style.top = (btn.top - menuRequiredHeight) + 'px';
+      y = (btn.top - menuRequiredHeight) + 'px';
     } else {
       // Place menu below button
       if (menuRequiredHeight > spaceBelowButton) {
         this._menu.style.height = (spaceBelowButton - menuMargin * 2) + 'px';
       }
-      this._menu.style.top = (btn.top + btn.height) + 'px';
+      y = (btn.top + btn.height) + 'px';
     }
 
     if (spaceBeforeButton > spaceAfterButton && (menuRequiredWidth > visualViewport.width / 2 || menuRequiredWidth > spaceAfterButton)) {
@@ -186,18 +186,20 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
         this._menu.style.width = (spaceBeforeButton - menuMargin * 2) + 'px';
       }
       if (this.__rtl) {
-        this._menu.style.right = (visualViewport.width - btn.left - menuRequiredWidth + menuMargin) + 'px';
+        x = (btn.left + menuRequiredWidth - visualViewport.width) + 'px';
       } else {
-        this._menu.style.left = (btn.left + btn.width - menuRequiredWidth + menuMargin) + 'px';
+        x = (btn.left + btn.width - menuRequiredWidth) + 'px';
       }
     } else {
       // Place after button
       if (this.__rtl) {
-        this._menu.style.right = (spaceBeforeButton - menuMargin) + 'px';
+        x = (menuMargin - spaceBeforeButton) + 'px';
       } else {
-        this._menu.style.left = (btn.left - menuMargin) + 'px';
+        x = (btn.left - menuMargin) + 'px';
       }
     }
+
+    this._menu.style.transform = `translate(${x}, ${y})`;
   }
 }
 
