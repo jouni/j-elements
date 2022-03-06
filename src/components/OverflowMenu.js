@@ -158,14 +158,18 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     let menuRequiredHeight = menu.height + menuMargin * 2;
     let menuRequiredWidth = menu.width + menuMargin;
 
+    const pageWidth = document.documentElement.clientWidth; // or visualViewport.width?
+    const pageHeight = document.documentElement.clientHeight; // or visualViewport.height?
+    // TODO take zoom into account somehow
+
     const spaceAboveButton = btn.top;
-    const spaceBelowButton = visualViewport.height - btn.top - btn.height;
-    const spaceBeforeButton = this.__rtl ? visualViewport.width - btn.left - btn.width : btn.left;
-    const spaceAfterButton = this.__rtl ? btn.left + btn.width : visualViewport.width - btn.left;
+    const spaceBelowButton = pageHeight - btn.top - btn.height;
+    const spaceBeforeButton = this.__rtl ? pageWidth - btn.left - btn.width : btn.left;
+    const spaceAfterButton = this.__rtl ? btn.left + btn.width : pageWidth - btn.left;
 
     let x = 0, y = 0;
 
-    if (spaceAboveButton > spaceBelowButton && (menuRequiredHeight > visualViewport.height / 2 || menuRequiredHeight > spaceBelowButton)) {
+    if (spaceAboveButton > spaceBelowButton && (menuRequiredHeight > pageHeight / 2 || menuRequiredHeight > spaceBelowButton)) {
       // Place menu above button
       if (menuRequiredHeight > spaceAboveButton) {
         this._menu.style.height = (spaceAboveButton - menuMargin * 2) + 'px';
@@ -180,13 +184,13 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       y = (btn.top + btn.height) + 'px';
     }
 
-    if (spaceBeforeButton > spaceAfterButton && (menuRequiredWidth > visualViewport.width / 2 || menuRequiredWidth > spaceAfterButton)) {
+    if (spaceBeforeButton > spaceAfterButton && (menuRequiredWidth > pageWidth / 2 || menuRequiredWidth > spaceAfterButton)) {
       // Place before button
       if (menuRequiredWidth > spaceBeforeButton) {
         this._menu.style.width = (spaceBeforeButton - menuMargin * 2) + 'px';
       }
       if (this.__rtl) {
-        x = (btn.left + menuRequiredWidth - visualViewport.width) + 'px';
+        x = (btn.left + menuRequiredWidth - pageWidth) + 'px';
       } else {
         x = (btn.left + btn.width - menuRequiredWidth) + 'px';
       }
