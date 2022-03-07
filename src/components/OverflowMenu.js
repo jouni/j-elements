@@ -54,8 +54,8 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       this.shadowRoot.innerHTML = `
         <style>${styles}</style>
         <slot></slot>
-        <button aria-label="open menu" part="menu-button">···</button>
-        <dialog part="menu">
+        <button aria-label="open menu" part="menu-button" aria-haspopup="menu">···</button>
+        <dialog part="menu" role="menu">
           <slot name="menu"></slot>
         </dialog>
       `;
@@ -69,6 +69,7 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       this._menu.addEventListener('close', this._onClose.bind(this));
 
       this.__boundOnScroll = this._onScroll.bind(this);
+      this.__boundPositionMenu = this._positionMenu.bind(this);
     }
 
     this.__resizeObserver.observe(this);
@@ -81,13 +82,13 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     this._closeMenu();
   }
 
-  _openMenu(e) {
-    e?.stopPropagation();
+  _openMenu() {
     this._menu.showModal();
     this._positionMenu();
     this._menuButton.setAttribute('part', 'menu-button menu-button-active');
     document.body.addEventListener('click', this.__boundCloseMenu);
     window.addEventListener('scroll', this.__boundOnScroll, { capture: true, passive: true });
+    window.visualViewport.addEventListener('resize', this.__boundPositionMenu);
   }
 
   _closeMenu(e) {
@@ -100,7 +101,13 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     this._menuButton.setAttribute('part', 'menu-button');
     document.body.removeEventListener('click', this.__boundCloseMenu);
     window.removeEventListener('scroll', this.__boundOnScroll, { capture: true, passive: true });
-    this._menuButton.focus();
+    window.visualViewport.removeEventListener('resize', this.__boundPositionMenu);
+    // In Safari, <button> elements don't receive focus when clicked with the mouse.
+    // Therefore, it will not be the "previously focused element" when the dialog closes,
+    // unless we explicitly make it so. Programmatically focusing the button triggers the :focus styles.
+    // In other browsers, the button does get focused automatically.
+    // The :focus-visible styles are triggered in Chrome.
+    // this._menuButton.focus();
   }
 
   _onResize() {
@@ -158,8 +165,8 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     let menuRequiredHeight = menu.height + menuMargin * 2;
     let menuRequiredWidth = menu.width + menuMargin;
 
-    const pageWidth = document.documentElement.clientWidth; // or visualViewport.width?
-    const pageHeight = document.documentElement.clientHeight; // or visualViewport.height?
+    const pageWidth = visualViewport.width;
+    const pageHeight = visualViewport.height;
     // TODO take zoom into account somehow
 
     const spaceAboveButton = btn.top;
@@ -175,13 +182,13 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
         this._menu.style.height = (spaceAboveButton - menuMargin * 2) + 'px';
         menuRequiredHeight = spaceAboveButton;
       }
-      y = (btn.top - menuRequiredHeight) + 'px';
+      y = btn.top - menuRequiredHeight;
     } else {
       // Place menu below button
       if (menuRequiredHeight > spaceBelowButton) {
         this._menu.style.height = (spaceBelowButton - menuMargin * 2) + 'px';
       }
-      y = (btn.top + btn.height) + 'px';
+      y = btn.top + btn.height;
     }
 
     if (spaceBeforeButton > spaceAfterButton && (menuRequiredWidth > pageWidth / 2 || menuRequiredWidth > spaceAfterButton)) {
@@ -190,20 +197,26 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
         this._menu.style.width = (spaceBeforeButton - menuMargin * 2) + 'px';
       }
       if (this.__rtl) {
-        x = (btn.left + menuRequiredWidth - pageWidth) + 'px';
+        x = btn.left + menuRequiredWidth - pageWidth;
       } else {
-        x = (btn.left + btn.width - menuRequiredWidth) + 'px';
+        x = btn.left + btn.width - menuRequiredWidth;
       }
     } else {
       // Place after button
       if (this.__rtl) {
-        x = (menuMargin - spaceBeforeButton) + 'px';
+        x = menuMargin - spaceBeforeButton;
       } else {
-        x = (btn.left - menuMargin) + 'px';
+        x = btn.left - menuMargin;
       }
     }
 
-    this._menu.style.transform = `translate(${x}, ${y})`;
+    // In Safari, the visual viewport offset affects the transform/translate
+    if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+      x += visualViewport.offsetLeft;
+      y += visualViewport.offsetTop;
+    }
+
+    this._menu.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
   }
 }
 

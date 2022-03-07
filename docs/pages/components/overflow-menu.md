@@ -32,13 +32,19 @@ The main element needs be allowed to shrink and grow based on the available spac
     <button>Button 2</button>
     <div>Plain text</div>
     <input value="Text input">
-    <button class="icon"><icon calendar>calendar</icon><span>Icon button</span></button>
+    <button class="icon">
+      <icon calendar>calendar</icon>
+      <span>Icon button</span>
+    </button>
     <button>Button 3</button>
   </j-overflow-menu>
 
   <j-overflow-menu class="align-end">
     <button>Button 3</button>
-    <button class="icon"><icon calendar>calendar</icon><span>Icon button</span></button>
+    <button class="icon">
+      <icon calendar>calendar</icon>
+      <span>Icon button</span>
+    </button>
     <input value="Text input">
     <div>Plain text</div>
     <button>Button 2</button>
