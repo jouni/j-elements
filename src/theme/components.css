@@ -20,13 +20,13 @@
   line-height: var(--line-height-m);
 }
 
-:where([theme~="light"], [theme~="dark"]) {
+:where([theme~=light], [theme~=dark]) {
   color-scheme: light;
   background: var(--background);
   color: var(--color);
 }
 
-:where([theme~="dark"]) {
+:where([theme~=dark]) {
   color-scheme: dark;
 }
 
@@ -169,11 +169,11 @@
 
 /* Date input */
 
-:where(input[type="date"])::-webkit-datetime-edit-fields-wrapper {
+:where(input[type=date])::-webkit-datetime-edit-fields-wrapper {
   padding: 0;
 }
 
-:where(input[type="date"])::-webkit-calendar-picker-indicator {
+:where(input[type=date])::-webkit-calendar-picker-indicator {
   --mask-image: var(--icon-calendar);
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
@@ -447,7 +447,7 @@ html {
 
 /* Slider */
 
-:where(input[type="range"]) {
+:where(input[type=range]) {
   all: revert;
   -webkit-appearance: none;
   background: transparent;
@@ -455,29 +455,29 @@ html {
   --outline-offset: 2px;
 }
 
-:where(input[type="range"])::-webkit-slider-runnable-track {
+:where(input[type=range])::-webkit-slider-runnable-track {
   background: var(--slider-track-background, var(--background-ui));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--size-4, 0.25rem));
   transition: background-color 0.15s;
 }
 
-:where(input[type="range"])::-moz-range-track {
+:where(input[type=range])::-moz-range-track {
   background: var(--slider-track-background, var(--background-ui));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--size-4, 0.25rem));
   transition: background-color 0.15s;
 }
 
-:where(input[type="range"]:not(:disabled)):where(:hover, :focus)::-webkit-slider-runnable-track {
+:where(input[type=range]:not(:disabled)):where(:hover, :focus)::-webkit-slider-runnable-track {
   background: var(--slider-track-hover-background, var(--background-ui-hover));
 }
 
-:where(input[type="range"]:not(:disabled)):where(:hover, :focus)::-moz-range-track {
+:where(input[type=range]:not(:disabled)):where(:hover, :focus)::-moz-range-track {
   background: var(--slider-track-hover-background, var(--background-ui-hover));
 }
 
-:where(input[type="range"])::-webkit-slider-thumb {
+:where(input[type=range])::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--size-4, 0.25rem))) / -2);
   background: var(--slider-thumb-background, var(--background-accent));
@@ -488,7 +488,7 @@ html {
   transition: background-color 0.15s;
 }
 
-:where(input[type="range"])::-moz-range-thumb {
+:where(input[type=range])::-moz-range-thumb {
   margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--size-4, 0.25rem))) / -2);
   background: var(--slider-thumb-background, var(--background-accent));
   height: var(--slider-thumb-size, var(--size-16, 1rem));
@@ -498,36 +498,36 @@ html {
   transition: background-color 0.15s;
 }
 
-:where(input[type="range"]:not(:disabled))::-webkit-slider-thumb:hover {
+:where(input[type=range]:not(:disabled))::-webkit-slider-thumb:hover {
   background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
-:where(input[type="range"]:not(:disabled))::-moz-range-thumb:hover {
+:where(input[type=range]:not(:disabled))::-moz-range-thumb:hover {
   background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
-:where(input[type="range"]:not(:disabled))::-webkit-slider-thumb:active {
+:where(input[type=range]:not(:disabled))::-webkit-slider-thumb:active {
   background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
-:where(input[type="range"]:not(:disabled))::-moz-range-thumb:active {
+:where(input[type=range]:not(:disabled))::-moz-range-thumb:active {
   background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
-:where(input[type="range"]):where(:focus, :focus-visible) {
+:where(input[type=range]):where(:focus, :focus-visible) {
   box-shadow: none !important;
 }
 
-input[type="range"]:focus-visible::-webkit-slider-thumb {
+input[type=range]:focus-visible::-webkit-slider-thumb {
   outline: none;
   box-shadow:
     0 0 0 var(--outline-offset, 2px) var(--background),
     0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
 }
 
-input[type="range"]:focus-visible::-moz-range-thumb {
+input[type=range]:focus-visible::-moz-range-thumb {
   outline: none;
   box-shadow:
     0 0 0 var(--outline-offset, 2px) var(--background),
@@ -536,7 +536,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 
 /* Safari */
 @supports not selector(:focus-visible) {
-  input[type="range"]:focus::-webkit-slider-thumb {
+  input[type=range]:focus::-webkit-slider-thumb {
     outline: none;
     box-shadow:
       0 0 0 var(--outline-offset, 2px) var(--background),
@@ -544,7 +544,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   }
 }
 
-:where(input[type="range"]:disabled) {
+:where(input[type=range]:disabled) {
   --slider-thumb-background: var(--background-ui-active);
 }
 
