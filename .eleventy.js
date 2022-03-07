@@ -10,6 +10,9 @@ module.exports = function(config) {
   config.addPassthroughCopy('./docs/src');
   config.addWatchTarget('docs/src');
 
+  config.addPassthroughCopy('./docs/assets');
+  config.addWatchTarget('docs/assets');
+
   config.addPassthroughCopy('./src');
   config.addWatchTarget('src');
 

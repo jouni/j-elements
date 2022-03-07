@@ -120,3 +120,7 @@ if (typeof HTMLDialogElement !== 'undefined') {
 </style>
 
 Notice, that the overflowing items are placed in the menu using a named `<slot>`, by adding the `slot` attribute on the overflowing items dynamically. The benefit of this approach is that the items are not disconnected/reconnected from/to the DOM when they move to and from the menu.
+
+## Known issues
+
+- In Safari, it is not possible to focus elements inside a dialog, when the dialog is inside shadow DOM and the content is slotted into it. <!-- https://bugs.webkit.org/show_bug.cgi?id=233320 -->
