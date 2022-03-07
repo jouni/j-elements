@@ -45,7 +45,7 @@ title: JElements
   </head>
   <body>
     <header class="main-nav">
-      <h1>JElements</h1>
+      <h1><a href="/">JElements</a></h1>
       <details><summary>Menu</summary></details>
       <nav>
         {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({activeKey: eleventyNavigation.key, activeListItemClass: "active", listItemHasChildrenClass: "has-children"}) | safe }}

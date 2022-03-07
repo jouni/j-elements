@@ -63,6 +63,11 @@ table-of-contents + p {
   margin-bottom: 0;
 }
 
+.main-nav h1 a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .main-nav ul {
   list-style: none;
   margin: 0;
@@ -349,6 +354,10 @@ main {
     float: right;
   }
 
+  .main-nav details summary {
+    padding: 0 1rem;
+  }
+
   [dir=rtl] .main-nav details {
     float: left;
   }
@@ -358,10 +367,16 @@ main {
     width: auto;
     position: static;
     height: auto;
+    padding: 1rem 0.5rem;
   }
 
   .main-nav details:not([open]) + nav {
     display: none;
+  }
+
+  main {
+    padding-left: 1rem;
+    padding-right: 1em;
   }
 }
 
