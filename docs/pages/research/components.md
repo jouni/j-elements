@@ -42,7 +42,7 @@ There might have been a need to reimplement basic HTML elements before, due to o
 
 ## Using 3rd party CSS libraries
 
-Using 3rd-party CSS libraries, like [Bootstrap](http://getbootstrap.com), [Skeleton](http://getskeleton.com), or [Bulma](https://bulma.io), is a problem with Vaadin components. The selectors defined by 3rd party libraries do not apply to custom components, and it is impossible to add classes defined by those libraries to the correct elements in Vaadin components, because they are either generated at runtime or they are hidden inside shadow DOM.
+Using 3rd-party CSS libraries, like [Bootstrap](http://getbootstrap.com), [Skeleton](http://getskeleton.com), or [Bulma](https://bulma.io), is a problem with Vaadin components. The selectors defined by 3rd party libraries do not apply to custom components, and it is impossible to add classes defined by those libraries to the correct elements in Vaadin components, because they are either generated at runtime, or they are hidden inside shadow DOM, or they are not meant to be styled (for example, the native `<input>` element slotted inside Vaadin field components).
 
 ## Proposal: use basic HTML when possible
 
@@ -50,7 +50,9 @@ I believe we should deprecate some of the Vaadin components in favor of basic HT
 
 As Vaadin components already place the native `<input>`, `<textarea>`, and `<label>` elements in the light DOM of the components, it seems wasteful not to style those elements directly, and require developers to style elements inside shadow DOM instead.
 
-In addition to helping developers style components more easily, using basic HTML elements improves performance as there is less JavaScript to download, parse, and run, and potentially less DOM elements to render (this depends on other implementation details). The effort required to maintain components could also reduce, as more work is delegated to the browser instead of recreating it with JavaScript.
+In addition to helping developers style components more easily, using basic HTML elements improves performance as there is less JavaScript to download, parse, and run, and potentially less DOM elements to render (this depends on other implementation details). After all, performance (startup/rendering/runtime) can be seen as a major feature of any business application.
+
+The effort required to maintain components could also reduce, as more work is delegated to the browser instead of recreating it with JavaScript.
 
 ---
 
@@ -62,6 +64,7 @@ In addition to helping developers style components more easily, using basic HTML
 Benefits:
 - standard CSS applies
 - no shadow DOM
+- less DOM elements
 - no JavaScript to download, parse, and run
 - shorter HTML to write
 
