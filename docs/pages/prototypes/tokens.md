@@ -1,11 +1,10 @@
 ---
-title: Tokens
+title: Design tokens
 layout: page
 eleventyNavigation:
-  key: Tokens
-  parent: Theme
+  key: Design tokens
+  parent: Prototypes
   order: 10
-permalink: /tokens/
 imports:
   /src/theme/colors.css
   /src/theme/tokens.css
@@ -147,16 +146,18 @@ Small border radius. For example, checkbox.
 
 ## Outline
 
+Focus outlines are the primary use case for these properties.
+
 <render-props>
 
-`--outline-offset`
-Defaults to 2px
+`--outline-color` `var(--border-color-accent)`
+The color of the outline.
 
-`--outline-width`
-Defaults to 2px
+`--outline-offset` `2px`
+How far detached the outline is from the associated component.
 
-`--outline-color`
-Defaults to `var(--border-color-accent)`
+`--outline-width` `2px`
+The size of the outline.
 
 </render-props>
 

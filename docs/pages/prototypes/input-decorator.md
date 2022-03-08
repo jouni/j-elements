@@ -6,10 +6,10 @@ imports:
   /src/theme/colors.css
   /src/theme/tokens.css
   /src/theme/components.css
-permalink: /input/
 eleventyNavigation:
   key: Input decorator
-  parent: Components
+  parent: Prototypes
+  order: 50
 ---
 
 ## Prefix and suffix content

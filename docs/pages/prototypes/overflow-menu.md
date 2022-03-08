@@ -6,10 +6,10 @@ imports:
   /src/theme/colors.css
   /src/theme/tokens.css
   /src/theme/components.css
-permalink: /overflow-menu/
 eleventyNavigation:
   key: Overflow menu
-  parent: Components
+  parent: Prototypes
+  order: 60
 ---
 
 Thinking of ways to implement a general purpose overflow menu component which support any content elements. Element which don't visually fit, are be shown in the overflow menu.

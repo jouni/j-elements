@@ -8,10 +8,10 @@ imports:
   /src/theme/colors.css
   /src/theme/tokens.css
   /src/theme/components.css
-permalink: /field/
 eleventyNavigation:
   key: Form fields
-  parent: Components
+  parent: Prototypes
+  order: 40
 ---
 
 ## Label and description

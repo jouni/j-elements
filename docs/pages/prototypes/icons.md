@@ -3,28 +3,10 @@ title: Icons
 layout: page
 eleventyNavigation:
   key: Icons
-  parent: Theme
+  parent: Prototypes
   order: 30
-permalink: /icons/
 ---
 
-If we agree that icon fonts are the least desirable option for icons, we have two options left. Defining icons in JavaScript or defining icons in CSS.
-
-## Icons in JavaScript
-
-If defined in JavaScript, we need a custom element to conveniently use the icons, which adds a non-trivial amount of code to the front-end bundle ([vaadin-icon.js](https://github.com/vaadin/web-components/blob/master/packages/icon/src/vaadin-icon.js)). To define an icon set, another custom element is currently needed ([vaadin-iconset.js](https://github.com/vaadin/web-components/blob/master/packages/icon/src/vaadin-iconset.js)). The browser has to parse and execute these scripts to render the HTML for an icon (an `<svg>` element).
-
-## Icons in CSS
-
-If defined in CSS, a single style sheet is needed. The icons can be bundled in the style sheet as data URLs. Alternatively, they could be referenced as external resources, which might be suitable in some cases, to minimize the initial bundle size and accept a FOUC when the SVG files are downloading.
-
-The browser only needs to parse the CSS and the data URLs. Rendering the SVG path should be equal amount of work compared to the JavaScript alternative.
-
-Defining the icons can be considered equally cumbersome in both options. In CSS the SVG needs to be URL encoded and each icon separately defined using a CSS selector, while in JavaScript some boilerplate code is needed, both JS and SVG. A tool that generates the definitions from a collection of SVG files can be created for either option.
-
-An additional benefit of defining the icons in CSS is that they can be used to style standard HTML elements, such as `<select>` and `<input type="date">` (the calendar icon), which is not possible with the JavaScript alternative.
-
-## Defining icons in CSS
 An icon set is defined in CSS, as a collection of custom properties which define SVG data URLs.
 ```css
 html {

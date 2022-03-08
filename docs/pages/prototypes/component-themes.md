@@ -3,9 +3,8 @@ title: Component themes
 layout: page
 eleventyNavigation:
   key: Component themes
-  parent: Theme
+  parent: Prototypes
   order: 20
-permalink: /component-themes/
 imports:
   /src/theme/colors.css
   /src/theme/tokens.css
