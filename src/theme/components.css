@@ -40,11 +40,12 @@
 /* Focus outline */
 
 :focus:not(:focus-visible) {
-  outline: none;
+  /* Support Windows High Contrast Mode */
+  outline: 3px solid transparent;
 }
 
 :focus-visible {
-  outline: none;
+  outline: 3px solid transparent;
   box-shadow:
     0 0 0 var(--outline-offset, 2px) var(--background),
     0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
@@ -53,7 +54,7 @@
 /* Safari */
 @supports not selector(:focus-visible) {
   :focus {
-    outline: none;
+    outline: 3px solid transparent;
     box-shadow:
       0 0 0 var(--outline-offset, 2px) var(--background),
       0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
