@@ -150,6 +150,26 @@ All native input types are supported without extra effort.
 </j-field-group>
 ```
 
+### Text input group
+<render-example></render-example>
+```html
+<j-field-group>
+  <label>Multiple inputs</label>
+  <div description>Helper text for group</div>
+  <j-field>
+    <label>One</label>
+    <input type="text">
+  </j-field>
+  <j-field>
+    <label>Two</label>
+    <input type="text">
+  </j-field>
+  <j-field>
+    <label>Three</label>
+    <input type="text">
+  </j-field>
+</j-field-group>
+```
 
 ## Aligning with other components
 
