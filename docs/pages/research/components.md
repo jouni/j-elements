@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 20
 ---
 
-Custom implementations for basic HTML components, like `<vaadin-button>` vs `<button>`, `<vaadin-checkbox>` vs `<input type="checkbox">`, and `<vaadin-text-field>` vs `<input type="text">`, require you to learn how to style them.
+Custom implementations for basic HTML components, like button, checkbox, and various text inputs means you can't use standard CSS to style them.
 
 ## Custom CSS selectors
 With custom components you need to target a different element name, sometimes within shadow DOM using `::part()`. You need to target custom state attributes because native pseudo-classes do not work, for example, `[checked]` vs `:checked`.
@@ -42,7 +42,9 @@ There might have been a need to reimplement basic HTML elements before, due to o
 
 ## Using 3rd party CSS libraries
 
-Using 3rd-party CSS libraries, like [Bootstrap](http://getbootstrap.com), [Skeleton](http://getskeleton.com), or [Bulma](https://bulma.io), is a problem with Vaadin components. The selectors defined by 3rd party libraries do not apply to custom components, and it is impossible to add classes defined by those libraries to the correct elements in Vaadin components, because they are either generated at runtime, or they are hidden inside shadow DOM, or they are not meant to be styled (for example, the native `<input>` element slotted inside Vaadin field components).
+Using 3rd-party CSS libraries, like [Bootstrap](http://getbootstrap.com), [Skeleton](http://getskeleton.com), or [Bulma](https://bulma.io), is a problem with Vaadin components.
+
+The selectors defined by 3rd party libraries do not apply to custom components, and it is impossible to add classes defined by those libraries to the correct elements in Vaadin components, because they are either generated at runtime, or they are hidden inside shadow DOM, or they are not meant to be styled (for example, the native `<input>` element slotted inside Vaadin field components).
 
 ## Proposal: use basic HTML when possible
 
