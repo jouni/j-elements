@@ -9,6 +9,8 @@ imports:
   /src/theme/colors.css
   /src/theme/tokens.css
   /src/theme/components.css
+  /src/components/Field.js
+  /src/components/InputDecorator.js
 ---
 
 ## Component token names
@@ -323,3 +325,22 @@ details + details {
   margin-top: 1rem;
 }
 </style>
+
+## Vertical alignment
+<render-example></render-example>
+```html
+<span style="vertical-align: middle;">Text</span>
+<button><icon search></icon> Button</button>
+<j-input-decorator>
+  <icon search slot="prefix"></icon>
+  <input type="text" value="Text input">
+</j-input-decorator>
+<j-field>
+  <input type="checkbox">
+  <label>Checkbox</label>
+</j-field>
+<j-field>
+  <input type="checkbox" checked>
+  <label>Checkbox</label>
+</j-field>
+```
