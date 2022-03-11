@@ -14,7 +14,7 @@ eleventyNavigation:
 
 ## Prefix and suffix content
 
-Place prefix and suffix elements visually inside an input element. Only text-based input elements are supported.
+Place prefix and suffix elements visually inside an input element.
 
 Notice, that the input element styling is completely retained (coming from the theme), instead of being applied on the `<j-input-decorator>` element. The decorator element needs to be a CSS grid container (`grid` or `inline-grid`).
 
@@ -36,19 +36,24 @@ input {
 <j-input-decorator>
   <icon slot="prefix" search></icon>
   <input type="text" value="Input value">
-  <button slot="suffix" theme="tertiary"><icon chevron-down></icon></button>
+  <span slot="suffix">€</span>
 </j-input-decorator>
 
 <j-input-decorator>
   <icon slot="prefix" search></icon>
   <input type="text" value="Input value" theme="small">
-  <button slot="suffix" theme="tertiary small"><icon chevron-down></icon></button>
+  <span slot="suffix">€</span>
 </j-input-decorator>
 
 <j-input-decorator>
   <textarea>Text area value</textarea>
   <icon slot="prefix" search></icon>
-  <button slot="suffix" theme="tertiary"><icon chevron-down></icon></button>
+  <span slot="suffix">€</span>
+</j-input-decorator>
+
+<j-input-decorator>
+  <span slot="suffix">0/100</span>
+  <input type="range">
 </j-input-decorator>
 
 <h5>Select, prefix only</h5>
@@ -72,8 +77,8 @@ input {
 </j-input-decorator>
 
 <style>
-  icon[slot] {
-    margin: 0 0.5rem;
+  [slot] {
+    margin: 0.25rem 0.5rem;
   }
 
   textarea ~ [slot] {
@@ -96,6 +101,7 @@ The `autosize` attribute makes the contained input change its size based on the 
 <j-input-decorator autosize>
   <icon slot="prefix" search></icon>
   <input type="text" value="Input value">
+  <span slot="suffix">€</span>
 </j-input-decorator>
 
 <j-input-decorator autosize>

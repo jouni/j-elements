@@ -7,7 +7,7 @@ const styles = `
   }
 
   slot[name],
-  ::slotted(:is(input, textarea, select)) {
+  slot:not([name])::slotted(:is(input, textarea, select)) {
     grid-area: 1/1;
     box-sizing: border-box;
   }
@@ -29,11 +29,11 @@ const styles = `
     pointer-events: auto;
   }
 
-  :host([style*=prefix-width]) ::slotted(:is(input, textarea, select)) {
+  :host([style*=prefix-width]) slot:not([name])::slotted(:is(input, textarea, select)) {
     padding-inline-start: var(--prefix-width) !important;
   }
 
-  :host([style*=suffix-width]) ::slotted(:is(input, textarea)) {
+  :host([style*=suffix-width]) slot:not([name])::slotted(:is(input, textarea)) {
     padding-inline-end: var(--suffix-width) !important;
   }
 
@@ -120,7 +120,8 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
         }
 
         input.style[dimension.toLowerCase()] = '0';
-        this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd) + 'px';
+        // Text input caret needs 1px extra to be visible if a suffix element is used
+        this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd + (dimension=='Width' ? 1 : 0)) + 'px';
         input.style.padding = '';
         input.style.removeProperty('--prefix-width');
         input.style.removeProperty('--suffix-width');
