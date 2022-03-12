@@ -26,7 +26,7 @@ title: JElements
       imports.forEach(url => {
         if (url.endsWith('.js')) {
           import(url);
-        } else if (url.endsWith('.css')) {
+        } else if (url.endsWith('.css') && !document.querySelector(`link[href="${url}"]`)) {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
           link.href = url;
