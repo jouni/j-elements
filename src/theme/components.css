@@ -649,8 +649,18 @@ input[type=range]:focus-visible::-moz-range-thumb {
   margin-inline-start: auto;
 }
 
-html {
-  --avatar-background: var(--background-ui);
+::part(avatar) {
+  fill: var(--background-ui);
+}
+
+j-avatar {
+  line-height: var(--line-height-s);
+  gap: var(--size-8, 0.5rem);
+  --avatar-tooltip-background: var(--background-above);
+  --avatar-tooltip-color: var(--color);
+  --avatar-tooltip-box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
+  --avatar-tooltip-padding: var(--size-2, 0.125rem) var(--size-4, 0.25rem);
+  --avatar-tooltip-border-radius: var(--border-radius-s);
 }
 
 j-avatar-group {
@@ -659,9 +669,7 @@ j-avatar-group {
 }
 
 j-avatar-group j-avatar:not([slot=menu]) {
-  width: var(--avatar-size, 2.5rem);
-  height: var(--avatar-size, 2.5rem);
-  overflow: hidden;
+  --full: unset;
 }
 
 j-avatar-group j-avatar:not([slot=menu], :last-child) {
@@ -674,5 +682,8 @@ j-avatar-group::part(menu-button) {
   height: var(--avatar-size, 2.5rem);
   padding: 0;
   border-radius: var(--avatar-border-radius, 50%);
-  /* margin-inline-start: calc(var(--avatar-overlap, 0px) * -1); */
+}
+
+j-avatar-group::part(menu) {
+  gap: var(--size-12, 0.75rem);
 }

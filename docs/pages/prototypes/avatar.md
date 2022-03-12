@@ -13,22 +13,27 @@ imports:
 ## Single avatar
 
 ### Name
+The text content is used to form the abbreviation inside the avatar.
+
 <render-example></render-example>
 ```html
 <j-avatar>Jouni Koivuviita</j-avatar>
 ```
 
-### Details
+### Explicit abbreviation
+In case the text content is more than the persons name, you can override the abbreviation.
+
 <render-example></render-example>
 ```html
-<j-avatar>
-  Jouni Koivuviita
-  <span slot="details">jouni@vaadin.com</span>
+<j-avatar abbr="JK">
+  <div>Jouni Koivuviita</div>
+  <span>jouni@vaadin.com</span>
 </j-avatar>
 
 <style>
-  span[slot=details] {
+  j-avatar span {
     color: var(--color-low-contrast);
+    font-size: var(--font-size-s);
   }
 </style>
 ```
@@ -36,57 +41,63 @@ imports:
 ### Image
 <render-example></render-example>
 ```html
-<j-avatar src="https://avatars.githubusercontent.com/u/66382?s=60&v=4">Jouni Koivuviita</j-avatar>
+<j-avatar src="https://avatars.githubusercontent.com/u/66382?s=60&v=4">
+  Jouni Koivuviita
+</j-avatar>
 ```
 
 ### Avatar only
+When only the avatar is shown, the text content is show in a tooltip.
+
 <render-example></render-example>
 ```html
-<j-avatar theme="avatar-only">Jouni Koivuviita</j-avatar>
+<j-avatar minimal>Jouni Koivuviita</j-avatar>
 ```
 
 ## Avatar group
+A group of avatars. The [overflow menu](/prototypes/overflow-menu/) component is used to collapse overflowing avatars into a menu.
 
 <render-example></render-example>
 ```html
 <j-avatar-group>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
 </j-avatar-group>
 ```
 
 
-## Overlap, gap, roundness, size, and max items
+### Customization
+The avatar overlap, gap, roundness, size, background, and max number of items shown can be customized using CSS.
 
 <render-example></render-example>
 ```html
@@ -98,40 +109,46 @@ imports:
     --avatar-size: 30px;
     --avatar-group-max-items: 5;
   }
+
+  j-avatar-group.styled ::part(avatar) {
+    fill: var(--background-accent);
+    color: var(--background);
+    font-weight: var(--font-weight-strong);
+  }
 </style>
 
 <j-avatar-group class="styled">
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
-  <j-avatar>
-    <span>Jouni Koivuviita</span>
-    <span slot="details">jouni@vaadin.com</span>
+  <j-avatar abbr="JK">
+    <div>Jouni Koivuviita</div>
+    <span>jouni@vaadin.com</span>
   </j-avatar>
 </j-avatar-group>
 ```

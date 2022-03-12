@@ -3,28 +3,19 @@ import { DefineElementMixin } from '../util/DefineElementMixin.js';
 const styles = `
   :host {
     display: inline-flex;
-    vertical-align: middle;
     align-items: center;
-    gap: 0.5rem;
-  }
-
-  svg {
-    font: var(--avatar-font, inherit);
-    flex: none;
-  }
-
-  .background {
-    fill: var(--avatar-background, #eee);
+    vertical-align: middle;
   }
 
   svg,
   rect,
   image {
+    flex: none;
     width: var(--avatar-size, 2.5rem);
     height: var(--avatar-size, 2.5rem);
   }
 
-  rect {
+  mask rect {
     rx: var(--avatar-border-radius, 50%);
   }
 
@@ -34,30 +25,58 @@ const styles = `
     width: calc(var(--avatar-size, 2.5rem) + var(--avatar-gap, 2px) * 2);
     height: calc(var(--avatar-size, 2.5rem) + var(--avatar-gap, 2px) * 2);
     rx: calc(var(--avatar-border-radius, 50%) + var(--avatar-gap, 2px));
-    fill: var(--avatar-clip-fill, none);
   }
 
-  :host([theme~=avatar-only]) {
-    border-radius: var(--avatar-border-radius, 50%);
+  :host([slot=menu]) .clip {
+    fill: none;
   }
 
-  slot {
-    display: block;
-  }
-
-  :host([theme~=avatar-only]) {
-    width: var(--avatar-size, 2.5rem);
-    height: var(--avatar-size, 2.5rem);
-  }
-
-  :host([theme~=avatar-only]) slot:not([name=avatar]),
   [hidden],
   :host([src]) image:not([hidden]) + text {
     display: none;
   }
 
-  text {
-    line-height: 1;
+  slot {
+    display: block;
+    position: var(--full, absolute);
+    pointer-events: var(--full, none);
+    height: var(--full, 1px);
+    width: var(--full, 1px);
+    overflow: var(--full, hidden);
+    clip: var(--full, rect(1px, 1px, 1px, 1px));
+  }
+
+  :host(:hover) slot {
+    height: var(--full, auto);
+    width: var(--full, auto);
+    clip: var(--full, none);
+    top: var(--full, 100%);
+    left: var(--full, 50%);
+    transform: var(--full, translateX(-50%));
+    background: var(--full, var(--avatar-tooltip-background, transparent));
+    color: var(--full, var(--avatar-tooltip-color, inherit));
+    box-shadow: var(--full, var(--avatar-tooltip-box-shadow, none));
+    font: var(--full, var(--avatar-tooltip-font, inherit));
+    padding: var(--full, var(--avatar-tooltip-padding, 0));
+    border-radius: var(--full, var(--avatar-tooltip-border-radius, 0));
+    border: var(--full, var(--avatar-tooltip-border, none));
+    pointer-events: var(--full, auto);
+    white-space: var(--full, nowrap);
+    animation: var(--full, show-tooltip 200ms 1s both);
+  }
+
+  :host {
+    position: var(--full, relative);
+  }
+
+  :host(:not([minimal])) {
+    --full: 1;
+  }
+
+  @keyframes show-tooltip {
+    0% {
+      opacity: 0;
+    }
   }
 `;
 
@@ -68,20 +87,19 @@ export class Avatar extends DefineElementMixin(HTMLElement) {
       this.shadowRoot.innerHTML = `
         <style>${styles}</style>
         <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <mask id="mask">
-              <rect width="100%" height="100%" rx="100%" fill="white" />
-              <rect class="clip" width="100%" height="100%" rx="100%" fill="none" />
-            </mask>
-          </defs>
-          <rect width="100%" height="100%" rx="100%" class="background" mask="url(#mask)" />
-          <image xlink:href="" width="100%" height="100%" mask="url(#mask)" preserveAspectRatio="xMidYMid slice" />
-          <text y="50%" x="50%" text-anchor="middle" fill="currentColor" dominant-baseline="central" mask="url(#mask)"></text>
+          <g part="avatar" mask="url(#mask)">
+            <defs>
+              <mask id="mask">
+                <rect width="100%" height="100%" rx="100%" fill="white" />
+                <rect width="100%" height="100%" rx="100%" fill="black" class="clip" />
+              </mask>
+            </defs>
+            <rect width="100%" height="100%" />
+            <image xlink:href="" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
+            <text y="50%" x="50%" text-anchor="middle" fill="currentColor" dominant-baseline="central"></text>
+          </g>
         </svg>
-        <div>
-          <slot></slot>
-          <slot name="details"></slot>
-        </div>
+        <slot part="content"></slot>
       `;
     }
 
@@ -99,8 +117,6 @@ export class Avatar extends DefineElementMixin(HTMLElement) {
   }
 
   _onMutation() {
-    const main = this.shadowRoot.querySelector('slot');
-    const detail = this.shadowRoot.querySelector('slot[name="detail"]');
     const image = this.shadowRoot.querySelector('image');
     const text = this.shadowRoot.querySelector('text');
 
@@ -112,13 +128,16 @@ export class Avatar extends DefineElementMixin(HTMLElement) {
       image.removeAttribute('hidden');
     }
 
-    text.textContent = [...this.childNodes]
-        .filter(c => c.nodeType===3 || !c.hasAttribute('slot'))
+    if (this.hasAttribute('abbr')) {
+      text.textContent = this.getAttribute('abbr')
+    } else {
+      text.textContent = [...this.childNodes]
         .map(c => c.textContent)
         .join('')
         .split(' ')
         .map((word) => word.charAt(0))
         .join('');
+    }
   }
 }
 
