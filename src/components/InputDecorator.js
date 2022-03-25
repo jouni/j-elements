@@ -36,10 +36,6 @@ const styles = `
   :host([style*=suffix-width]) slot:not([name])::slotted(:is(input, textarea)) {
     padding-inline-end: var(--suffix-width) !important;
   }
-
-  ::slotted(textarea) {
-    resize: none !important;
-  }
 `;
 
 export class InputDecorator extends DefineElementMixin(HTMLElement) {

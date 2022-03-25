@@ -90,6 +90,8 @@
 
 :where(textarea) {
   resize: vertical;
+  /* TODO this assumes that --textinput-padding is always just a single value, and that --line-height-s-ps is used */
+  min-height: calc(var(--textinput-padding, var(--size-8, 0.5rem)) * 2 + var(--line-height-s-px));
 }
 
 @media (any-hover: hover) {
