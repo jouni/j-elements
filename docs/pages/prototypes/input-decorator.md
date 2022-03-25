@@ -52,8 +52,9 @@ input {
 </j-input-decorator>
 
 <j-input-decorator>
-  <span slot="suffix">0/100</span>
+  <span slot="prefix">0</span>
   <input type="range">
+  <span slot="suffix">100</span>
 </j-input-decorator>
 
 <h5>Select, prefix only</h5>
