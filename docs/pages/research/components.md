@@ -73,7 +73,7 @@ Benefits:
 Drawbacks:
 - the `:active` state is not triggered when clicking a button with the Enter key, but only when clicking with the Space key
 
-See the [prototype theme implementation for button](/component-themes/#button).
+See the [prototype theme implementation for button](/prototypes/component-themes/#button).
 
 ---
 
@@ -94,13 +94,13 @@ Drawbacks:
 
 Although it is not absolutely necessary, I would recommend a helper component that takes care of connecting the label and the input. This saves the developer from coming up with unique ID's for all inputs. That reintroduces some amount of JavaScript, so that benefit is diminished.
 
-See the [`<j-field>`](/field/#checkbox) prototype and the [prototype theme implementation for checkbox](/component-themes/#radio-button) and [radio button](/component-themes/#checkbox).
+See the [`<j-field>`](/prototypes/field/#checkbox) prototype and the [prototype theme implementation for checkbox](/prototypes/component-themes/#radio-button) and [radio button](/prototypes/component-themes/#checkbox).
 
 #### Checkbox and radio groups
 
 Grouping checkboxes and radio buttons still benefits from a component that makes it convenient to label the group and provide validation functionality (required field indicator, validation message).
 
-See the [`<j-field-group>`](/field/#field-group) prototype.
+See the [`<j-field-group>`](/prototypes/field/#field-group) prototype.
 
 ---
 
@@ -129,9 +129,9 @@ Drawbacks:
 - email input validation pattern is defined by the browser, and it is potentially more strict than what we want?
 - number input spinner buttons are placed differently from the controls that `<vaadin-number-field>` provides
 
-Similarly to checkbox and radio button, I recommend a helper component for labelling and validation purposes. See the [`<j-field>`](/field/) prototype and the [prototype theme implementation for text input](/component-themes/#text-input)
+Similarly to checkbox and radio button, I recommend a helper component for labelling and validation purposes. See the [`<j-field>`](/prototypes/field/) prototype and the [prototype theme implementation for text input](/prototypes/component-themes/#text-input)
 
-For prefix content and text area autosizing, I recommend another helper component. See the [`<j-input-decorator>`](/input/) prototype. It uses JavaScript and shadow DOM, so those benefit are diminished.
+For prefix content and text area autosizing, I recommend another helper component. See the [`<j-input-decorator>`](/prototypes/input-decorator/) prototype. It uses JavaScript and shadow DOM, so those benefit are diminished.
 
 To support the "clear input" button, the input decorator element could have that as a feature.
 
@@ -158,7 +158,7 @@ Drawbacks:
 
 The disabled state can be mimicked with `tabindex="-1"` + `pointer-events: none;`, which is of course less convenient.
 
-See the [prototype theme implementation for details](/component-themes/#details).
+See the [prototype theme implementation for details](/prototypes/component-themes/#details).
 
 ---
 

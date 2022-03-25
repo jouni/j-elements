@@ -22,7 +22,7 @@ Less is more for the majority of business application users. Lumo should aim to 
 
 I'm not proposing the removal of all visual styling, only the more elaborate ones, while keeping simple state change transition effects. Simple state transition effects are easier to customize, as the selectors are simpler (no pseudo-elements) and there are less properties to override (for example, no transforms). More elaborate styling could be better suited as Cookbook examples.
 
-See [Component themes](/component-themes/) for examples of simpler baseline styling.
+See [Component themes](/prototypes/component-themes/) for examples of simpler baseline styling.
 
 <!--
 ## Complex selectors
@@ -73,7 +73,7 @@ One aspect where the `theme` attribute is clearly worse than the standard `class
 
 CSS custom property names should follow a consistent naming convention.
 
-The following pages for [theme tokens](/tokens) and [component themes](/component-themes) contain prototype implementations for those.
+The [theme tokens](/prototypes/tokens/) and [component themes](/prototypes/component-themes/) pages contain prototype implementations for those.
 
 Themes for standard HTML elements should be delivered as plain `.css` files, not wrapped inside JavaScript modules. More complex components will still likely want to package their core theme with the JavaScript module, although I would recommend that additional themes such as "Lumo" or "Material" are maintained in plain `.css` files, and are opt-in by the user on top of the main component JavaScript import.
 
