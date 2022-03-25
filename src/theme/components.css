@@ -708,6 +708,7 @@ j-avatar-group::part(menu-button) {
   height: var(--avatar-size, 2.5rem);
   padding: 0;
   border-radius: var(--avatar-border-radius, 50%);
+  z-index: 1; /* For some reason the button is below the avatars. Maybe because of the svg masking */
 }
 
 j-avatar-group::part(menu) {
