@@ -51,7 +51,6 @@ The main element needs be allowed to shrink and grow based on the available spac
     <button>Button 1</button>
   </j-overflow-menu>
 </div>
-<p>Items are in reverse order in the source and not reversed by "end alignment".</p>
 
 <h5>30 items</h5>
 <j-overflow-menu class="many-items"></j-overflow-menu>
@@ -123,4 +122,4 @@ Notice, that the overflowing items are placed in the menu using a named `<slot>`
 
 ## Known issues
 
-- In Safari, it is not possible to focus elements inside a dialog, when the dialog is inside shadow DOM and the content is slotted into it. <!-- https://bugs.webkit.org/show_bug.cgi?id=233320 -->
+- In Safari, it is not possible to focus elements inside a dialog, when the dialog is inside shadow DOM and the content is slotted into it: https://bugs.webkit.org/show_bug.cgi?id=233320#c3
