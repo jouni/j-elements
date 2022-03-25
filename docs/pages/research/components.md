@@ -90,6 +90,7 @@ Benefits:
 
 Drawbacks:
 - adding a label for the input is less convenient (`<input id="">` + `<label for="">`)
+- no read-only state
 
 Although it is not absolutely necessary, I would recommend a helper component that takes care of connecting the label and the input. This saves the developer from coming up with unique ID's for all inputs. That reintroduces some amount of JavaScript, so that benefit is diminished.
 
