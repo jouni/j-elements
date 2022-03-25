@@ -77,6 +77,8 @@ The following pages for [theme tokens](/tokens) and [component themes](/componen
 
 Themes for standard HTML elements should be delivered as plain `.css` files, not wrapped inside JavaScript modules. More complex components will still likely want to package their core theme with the JavaScript module, although I would recommend that additional themes such as "Lumo" or "Material" are maintained in plain `.css` files, and are opt-in by the user on top of the main component JavaScript import.
 
+Importing CSS from JavaScript files should work via standard API: https://web.dev/css-module-scripts/, although it has the limitation of no supporting nested `@import` statements. I would assume front-end build tools (webpack, Vite) should handle this use case.
+
 
 <!-- ## Component sizing and spacing
 No built-in spacing outside the component (button and text field). No fixed height for buttons and inputs, rely on line height and padding instead (?) -->
