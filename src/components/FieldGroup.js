@@ -1,12 +1,7 @@
 import { Field } from './Field.js';
 
 /**
- * Adds label and validation features to a group of input/field elements. For example, a radio group.
- *
- * Applies the `required` attribute to itself if any of the contained inputs have that attribute.
- *
- * Sets the `invalid` attribute on itself and shows a validation message if any of the contained
- * input elements fail the checkValidity test.
+ * Set role=group and unique shared name for unnamed radio buttons within the group.
  */
 export class FieldGroup extends Field {
   _updateState() {
