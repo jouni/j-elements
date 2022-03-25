@@ -5,8 +5,6 @@ let fieldId = 0;
 /**
  * Adds label and validation features to an input element.
  *
- * Applies the `required` attribute to itself if any of the contained elements have that attribute.
- *
  * Sets the `invalid` attribute on itself and shows a validation message if the contained input
  * element fails the checkValidity test.
  */
@@ -92,7 +90,7 @@ export class Field extends DefineElementMixin(HTMLElement) {
       }
     }
 
-    if (this._isGroup() || !this._isInGroup()) {
+    if (this._isGroup() || !this._isInGroup()) {
       const inputElements = [...this.querySelectorAll('input, textarea, select')];
       const descriptions = [...this.querySelectorAll('[validation-message], [description]')];
       inputElements.forEach(inputElement=> {
@@ -103,13 +101,14 @@ export class Field extends DefineElementMixin(HTMLElement) {
         inputElement.setAttribute('aria-describedby', descriptions.reduce((acc, desc) => acc + ' ' + desc.id, ''));
       });
 
-      let requiredIndicatorElement = labelElement?.querySelector('[required-indicator]') || document.createElement('span');
-      if (this.querySelector(':required')) {
-        requiredIndicatorElement.setAttribute('required-indicator', '');
-        requiredIndicatorElement.setAttribute('aria-hidden', 'true');
-        labelElement.appendChild(requiredIndicatorElement);
-      } else if (labelElement && requiredIndicatorElement.parentNode == labelElement) {
-        labelElement.removeChild(requiredIndicatorElement);
+      let indicatorElement = labelElement?.querySelector('[required-indicator], [error-indicator]') || document.createElement('span');
+      if (this.querySelector(':required') || this.hasAttribute('invalid')) {
+        indicatorElement.setAttribute(this.hasAttribute('invalid') ? 'error-indicator' : 'required-indicator', '');
+        indicatorElement.removeAttribute(this.hasAttribute('invalid') ? 'required-indicator' : 'error-indicator', '');
+        indicatorElement.setAttribute('aria-hidden', 'true');
+        labelElement.appendChild(indicatorElement);
+      } else if (labelElement && indicatorElement.parentNode == labelElement) {
+        labelElement.removeChild(indicatorElement);
       }
     }
 
@@ -139,7 +138,7 @@ export class Field extends DefineElementMixin(HTMLElement) {
     });
 
     if (this._isGroup() || !this._isInGroup()) {
-      const validationMessageElement = this.querySelector(':scope > [validation-message]') || document.createElement('p');
+      const validationMessageElement = this.querySelector(':scope > [validation-message]') || document.createElement('p');
       if (this.querySelector(':invalid')) {
         validationMessageElement.setAttribute('validation-message', '');
         validationMessageElement.setAttribute('aria-live', 'assertive');
@@ -149,6 +148,8 @@ export class Field extends DefineElementMixin(HTMLElement) {
         this.removeChild(validationMessageElement);
       }
     }
+
+    this.toggleAttribute('invalid', invalid);
   }
 
   _isGroup() {

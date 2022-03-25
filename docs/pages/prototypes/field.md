@@ -156,18 +156,20 @@ All native input types are supported without extra effort.
 <j-field-group>
   <label>Multiple inputs</label>
   <div description>Helper text for group</div>
-  <j-field>
-    <label>One</label>
-    <input type="text">
-  </j-field>
-  <j-field>
-    <label>Two</label>
-    <input type="text">
-  </j-field>
-  <j-field>
-    <label>Three</label>
-    <input type="text">
-  </j-field>
+  <div>
+    <j-field inline>
+      <label>One</label>
+      <input type="text">
+    </j-field>
+    <j-field inline>
+      <label>Two</label>
+      <input type="text">
+    </j-field>
+    <j-field inline>
+      <label>Three</label>
+      <input type="text">
+    </j-field>
+  </div>
 </j-field-group>
 ```
 
@@ -178,12 +180,14 @@ All native input types are supported without extra effort.
 ```html
 <j-field>
   <label>Label</label>
-  <div description>Enter something in this field</div>
-  <j-input-decorator>
-    <icon slot="prefix" search style="margin: 0 0.5em"></icon>
-    <input type="text" required>
-  </j-input-decorator>
-  <button>Button <icon chevron-down></icon></button>
+  <div description>Describe the purpose of this field</div>
+  <div>
+    <j-input-decorator>
+      <icon slot="prefix" search style="margin: 0 0.5em"></icon>
+      <input type="text" required>
+    </j-input-decorator>
+    <button>Button <icon chevron-down></icon></button>
+  </div>
 </j-field>
 ```
 
@@ -192,10 +196,12 @@ All native input types are supported without extra effort.
 ```html
 <j-field>
   <label>Label</label>
-  <input type="text">
-  <j-field>
-    <input type="checkbox">
-    <label>Checkbox</label>
-  </j-field>
+  <div>
+    <input type="text">
+    <j-field>
+      <input type="checkbox">
+      <label>Checkbox</label>
+    </j-field>
+  </div>
 </j-field>
 ```

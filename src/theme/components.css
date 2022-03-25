@@ -350,27 +350,30 @@
 
 /* Field & Field Group */
 
-j-field {
-  display: inline-block;
+:where(j-field, j-field-group) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 0.375rem);
 }
 
-j-field-group,
-j-field-group j-field {
-  display: block;
+:where(j-field[inline]) {
+  display: inline-flex;
 }
 
 :where(j-field, j-field-group) :where(label) {
-  display: block;
   -webkit-tap-highlight-color: transparent;
 }
 
 :where(j-field, j-field-group) :where(label) {
   font: var(--font-label);
-  margin-bottom: var(--size-6, 0.375rem);
 }
 
-:where(j-field:focus-within, j-field-group:focus-within) :where(label) {
+:where(j-field:focus-within) :where(label) {
   color: var(--color-accent);
+}
+
+:where(j-field[type=radio], j-field[type=checkbox]) {
+  display: inline-block;
 }
 
 :where(j-field[type=radio], j-field[type=checkbox]) :where(label) {
@@ -387,18 +390,38 @@ j-field-group j-field {
 
 :where(j-field, j-field-group) :where([description], [validation-message]) {
   font-size: var(--font-size-s, 0.875em);
-  margin: var(--size-6, 0.375rem) 0;
+  margin: 0;
   color: var(--color-low-contrast);
+}
+
+[required-indicator] {
+  color: var(--color-low-contrast);
+  margin: 0 0.25em;
 }
 
 [required-indicator]::before {
-  content: var(--content-required, "*");
-  color: var(--color-low-contrast);
-  padding: 0 0.25em;
+  content: var(--content-required-indicator, "*");
 }
 
 j-field-group j-field {
-  --content-required: "";
+  --content-required-indicator: "";
+}
+
+[error-indicator] {
+  content: var(--content-error-indicator, "");
+  display: inline-block;
+  vertical-align: text-top;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.25em;
+  background: var(--color-error, var(--red-500));
+  --mask-image: var(--icon-error);
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 50%;
+  mask-position: 50%;
 }
 
 /* Icons */
@@ -411,6 +434,7 @@ html {
   --icon-search: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>');
   --icon-checkmark: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>');
   --icon-checkmark-small: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>');
+  --icon-error: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>');
 }
 
 :where(icon),
