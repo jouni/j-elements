@@ -47,7 +47,7 @@ In case the text content is more than the persons name, you can override the abb
 ```
 
 ### Avatar only
-When only the avatar is shown, the text content is show in a tooltip.
+When only the avatar is shown, the text content is show in a tooltip. Note, that the tooltip is clipped by scrolling containers or if overflow is hidden.
 
 <render-example></render-example>
 ```html
