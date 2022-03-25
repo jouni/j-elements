@@ -12,7 +12,7 @@ eleventyNavigation:
   order: 60
 ---
 
-Thinking of ways to implement a general purpose overflow menu component which support any content elements. Element which don't visually fit, are be shown in the overflow menu.
+Thinking of ways to implement a general purpose overflow menu component which support any content elements. Element which don't visually fit, are shown in the overflow menu.
 
 The main element needs be allowed to shrink and grow based on the available space in the surrounding layout, as a `ResizeObserver` is used on that element to react when to collapse and expand items.
 
