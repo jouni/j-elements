@@ -162,4 +162,7 @@ See the [prototype theme implementation for details](/prototypes/component-theme
 
 ---
 
-<!-- ### `<vaadin-progress-bar>` → `<meter>` -->
+<!--
+### `<vaadin-progress-bar>` → `<progress>`
+https://web.dev/building-a-loading-bar-component/
+-->
