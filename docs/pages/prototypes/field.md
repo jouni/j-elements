@@ -104,6 +104,15 @@ All native input types are supported without extra effort.
 </j-field>
 ```
 
+### Upload
+<render-example></render-example>
+```html
+<j-field>
+  <label>Upload a file</label>
+  <input type="file" required accept="application/pdf,.pdf">
+</j-field>
+```
+
 
 ## Field group
 
