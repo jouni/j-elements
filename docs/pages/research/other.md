@@ -50,8 +50,8 @@ The specificity of that selector is not enough to override the built-in hover co
 
 TODO: actually, using ::part will override any shadow DOM styles, so this point is moot if we package styles inside shadow DOM (though, which I'm arguing against at the moment).
 
-### Proposal: use :where() in built-in selectors
-The previous proposal for less elaborate visual styling/effects will help, but in addition, the built-in component selectors should use `:where()` extensively to reduce selector specificity and make overriding styles that much easier.
+### Proposal: use CSS cascale layers
+The previous proposal for less elaborate visual styling/effects will help, but in addition, we should use `@layer` to reduce selector specificity and make overriding styles that much easier.
 -->
 
 ## Baseline alignment "hack"
