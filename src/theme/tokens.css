@@ -3,6 +3,8 @@ html,
 :host,
 [theme~=light],
 :host([theme~=light]) {
+  color-scheme: light;
+
   --background: #fff;
   --background-above: #fff;
   --background-below: var(--zinc-50);
@@ -33,6 +35,8 @@ html,
 @media (prefers-color-scheme: dark) {
   html,
   :host {
+    color-scheme: dark;
+
     --background: var(--zinc-900);
     --background-above: var(--zinc-800);
     --background-below: #000;
@@ -63,6 +67,8 @@ html,
 
 [theme~=dark],
 :host([theme~=dark]) {
+  color-scheme: dark;
+
   --background: var(--zinc-900);
   --background-above: var(--zinc-800);
   --background-below: #000;
