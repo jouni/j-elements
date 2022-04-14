@@ -1,5 +1,7 @@
 import { DefineElementMixin } from '../util/DefineElementMixin.js';
 
+const FORCED_COLLAPSE_CLASS = 'overflow-menu';
+
 const styles = `
   :host {
     display: flex;
@@ -119,14 +121,26 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
 
   _updateOverflowingItems() {
     for (let i = 0; i < this.children.length; i++) {
-      this.children[i].removeAttribute('slot');
+      const child = this.children[i];
+      if (child.classList.contains(FORCED_COLLAPSE_CLASS)) {
+        child.setAttribute('slot', 'menu');
+      } else {
+        child.removeAttribute('slot');
+      }
     }
-    this.removeAttribute('overflow');
+
+    if (this.querySelector('.' + FORCED_COLLAPSE_CLASS)) {
+      this.setAttribute('overflow', '');
+    } else {
+      this.removeAttribute('overflow');
+    }
 
     const btn = this._menuButton;
 
-    for (let i = this.children.length - 1; i >= 0; i--) {
-      const child = this.children[i];
+    const visibleItems = this.querySelectorAll(`:scope > :not(.${FORCED_COLLAPSE_CLASS})`);
+
+    for (let i = visibleItems.length - 1; i >= 0; i--) {
+      const child = visibleItems[i];
 
       // is the overflow button outside the container (if it is visible)?
       const buttonOverflowing = this.__rtl ?
@@ -138,8 +152,8 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
                                     child.offsetLeft + child.offsetWidth > this.offsetLeft + this.clientWidth;
       // "end aligned": is the first item outside the container?
       const firstItemOverflowing = this.__rtl ?
-                                    this.children[0].offsetLeft + this.children[0].offsetWidth > this.offsetLeft + this.offsetWidth :
-                                    this.children[0].offsetLeft < this.offsetLeft;
+                                    visibleItems[0].offsetLeft + visibleItems[0].offsetWidth > this.offsetLeft + this.offsetWidth :
+                                    visibleItems[0].offsetLeft < this.offsetLeft;
 
       if (buttonOverflowing || lastItemOverflowing || firstItemOverflowing) {
         child.setAttribute('slot', 'menu');
