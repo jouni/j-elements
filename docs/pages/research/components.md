@@ -152,6 +152,7 @@ Benefits:
 - no shadow DOM
 - less DOM elements
 - no JavaScript to download, parse, and run
+- browsers "find in page" actually finds (auto-expands) content collapsed inside it
 
 Drawbacks:
 - no support for the disabled state
