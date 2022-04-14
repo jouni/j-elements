@@ -326,6 +326,11 @@ details + details {
 }
 </style>
 
+<!-- 
+## Definition list
+TODO: key-value pairs nicely laid out and styles (horizontal and vertical)
+ -->
+
 ## Vertical alignment
 <render-example></render-example>
 ```html
