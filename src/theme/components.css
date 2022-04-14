@@ -187,6 +187,12 @@
   height: 1em;
 }
 
+/* Search input */
+
+:where(input[type=search])::-webkit-search-cancel-button {
+  display: none;
+}
+
 /* Button */
 
 :where(button),
