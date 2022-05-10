@@ -172,11 +172,11 @@
 
 /* Date input */
 
-:where(input[type=date])::-webkit-datetime-edit-fields-wrapper {
+:where(input[type^=date])::-webkit-datetime-edit-fields-wrapper {
   padding: 0;
 }
 
-:where(input[type=date])::-webkit-calendar-picker-indicator {
+:where(input[type^=date])::-webkit-calendar-picker-indicator {
   --mask-image: var(--icon-calendar);
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
