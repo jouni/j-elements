@@ -10,6 +10,7 @@ const styles = `
   slot:not([name])::slotted(:is(input, textarea, select)) {
     grid-area: 1/1;
     box-sizing: border-box;
+    resize: none !important;
   }
 
   slot[name] {
