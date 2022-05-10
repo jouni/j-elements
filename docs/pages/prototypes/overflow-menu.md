@@ -122,4 +122,6 @@ Notice, that the overflowing items are placed in the menu using a named `<slot>`
 
 ## Known issues
 
-- In Safari, it is not possible to focus elements inside a dialog, when the dialog is inside shadow DOM and the content is slotted into it: https://bugs.webkit.org/show_bug.cgi?id=233320#c3
+In Safari (15.4), it is not possible to focus elements inside a dialog, when the dialog is inside shadow DOM and the content is slotted into it: https://bugs.webkit.org/show_bug.cgi?id=233320#c3
+
+This issue seems to have been fixed at least in Safari Tech Preview 144 (May 2022).

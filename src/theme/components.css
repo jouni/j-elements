@@ -719,3 +719,7 @@ j-avatar-group::part(menu-button) {
 j-avatar-group::part(menu) {
   gap: var(--size-12, 0.75rem);
 }
+
+j-avatar-group[overflow] {
+  --outline-color: transparent;
+}

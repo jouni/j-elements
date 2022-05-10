@@ -88,6 +88,8 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
   }
 
   _openMenu() {
+    // Force Safari to also consider the button as the "previous focused element" when the menu is closed
+    this._menuButton.focus();
     this._menu.showModal();
     this._positionMenu();
     this._menuButton.setAttribute('part', 'menu-button menu-button-active');
@@ -107,12 +109,6 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     document.body.removeEventListener('click', this.__boundCloseMenu);
     window.removeEventListener('scroll', this.__boundOnScroll, { capture: true, passive: true });
     window.visualViewport.removeEventListener('resize', this.__boundPositionMenu);
-    // In Safari, <button> elements don't receive focus when clicked with the mouse.
-    // Therefore, it will not be the "previously focused element" when the dialog closes,
-    // unless we explicitly make it so. Programmatically focusing the button triggers the :focus styles.
-    // In other browsers, the button does get focused automatically.
-    // The :focus-visible styles are triggered in Chrome.
-    // this._menuButton.focus();
   }
 
   _requestUpdate() {
