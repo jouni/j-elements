@@ -65,7 +65,8 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       this._menuButton = this.shadowRoot.querySelector('button');
       this._menuButton.onclick = this._openMenu.bind(this);
 
-      this.__resizeObserver = new ResizeObserver(this._onResize.bind(this));
+      this.__resizeObserver = new ResizeObserver(this._requestUpdate.bind(this));
+      this.__mutationObserver = new MutationObserver(this._requestUpdate.bind(this));
 
       this.__boundCloseMenu = this._closeMenu.bind(this);
       this._menu.addEventListener('close', this._onClose.bind(this));
@@ -75,12 +76,14 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     }
 
     this.__resizeObserver.observe(this);
+    this.__mutationObserver.observe(this, { childList: true });
 
     this.__rtl = getComputedStyle(this).getPropertyValue('direction') == 'rtl';
   }
 
   disconnectedCallback() {
     this.__resizeObserver.disconnect();
+    this.__mutationObserver.disconnect();
     this._closeMenu();
   }
 
@@ -112,11 +115,11 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     // this._menuButton.focus();
   }
 
-  _onResize() {
-    if(this.__resizeTimeout) {
-      clearTimeout(this.__resizeTimeout);
+  _requestUpdate() {
+    if(this.__updateTimeout) {
+      clearTimeout(this.__updateTimeout);
     }
-    this.__resizeTimeout = setTimeout(() => this._updateOverflowingItems(), 20);
+    this.__updateTimeout = setTimeout(() => this._updateOverflowingItems(), 20);
   }
 
   _updateOverflowingItems() {
@@ -138,6 +141,10 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
     const btn = this._menuButton;
 
     const visibleItems = this.querySelectorAll(`:scope > :not(.${FORCED_COLLAPSE_CLASS})`);
+
+    // Without this, at least Chrome is sometimes unwilling to render the child items that are no
+    // longer within it (unslotted), and reports 0x0 size for them
+    this._menu.style.display = 'block';
 
     for (let i = visibleItems.length - 1; i >= 0; i--) {
       const child = visibleItems[i];
@@ -162,6 +169,9 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
         break;
       }
     }
+
+    // Clear the workaround style
+    this._menu.style.display = '';
   }
 
   _onScroll(e) {
