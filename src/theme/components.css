@@ -682,18 +682,9 @@ input[type=range]:focus-visible::-moz-range-thumb {
   margin-inline-start: auto;
 }
 
-::part(avatar) {
-  fill: var(--background-ui);
-}
-
-j-avatar {
-  line-height: var(--line-height-s);
-  gap: var(--size-8, 0.5rem);
-  --avatar-tooltip-background: var(--background-above);
-  --avatar-tooltip-color: var(--color);
-  --avatar-tooltip-box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
-  --avatar-tooltip-padding: var(--size-2, 0.125rem) var(--size-4, 0.25rem);
-  --avatar-tooltip-border-radius: var(--border-radius-s);
+html {
+  --avatar-background-color: var(--background-ui);
+  --avatar-color: var(--color);
 }
 
 j-avatar-group {
@@ -701,21 +692,28 @@ j-avatar-group {
   max-width: calc(var(--avatar-size, 2.5rem) * var(--avatar-group-max-items) + var(--avatar-gap, 2px) * (var(--avatar-group-max-items) - 1) - var(--avatar-overlap, 0px) * (var(--avatar-group-max-items) - 1));
 }
 
-j-avatar-group j-avatar:not([slot=menu]) {
-  --full: unset;
-}
-
 j-avatar-group j-avatar:not([slot=menu], :last-child) {
-  --avatar-clip-fill: black;
   margin-inline-end: calc(var(--avatar-overlap, 0px) * -1);
 }
 
+/* TODO the reverse variant can't apply the correct clip/mask on the overflow button */
+/* Arguably, reverse stacking should not be used togethet with collapsing, as it can obscure the '+4' label */
+j-avatar-group:not([theme~=reverse]) j-avatar:not([slot=menu], :last-child),
+j-avatar-group[theme~=reverse] j-avatar:not([slot=menu], :first-child) {
+  --avatar-clip-fill: black;
+}
+
+j-avatar-group[theme~=reverse] j-avatar:not([slot=menu], :first-child) {
+  --avatar-clip-x-origin: calc(-100% - var(--avatar-gap, 2px) * 2);
+  --avatar-overlap-dir: -1;
+}
+
 j-avatar-group::part(menu-button) {
+  font: inherit;
   width: var(--avatar-size, 2.5rem);
   height: var(--avatar-size, 2.5rem);
   padding: 0;
   border-radius: var(--avatar-border-radius, 50%);
-  z-index: 1; /* For some reason the button is below the avatars. Maybe because of the svg masking */
 }
 
 j-avatar-group::part(menu) {

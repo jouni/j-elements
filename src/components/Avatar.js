@@ -2,141 +2,96 @@ import { DefineElementMixin } from '../util/DefineElementMixin.js';
 
 const styles = `
   :host {
-    display: inline-flex;
-    align-items: center;
+    --border-radius: var(--avatar-border-radius, 50%);
+    --size: var(--avatar-size, 2.5rem);
+    --gap: var(--avatar-group-gap, 2px);
+    --overlap: var(--avatar-overlap, 0px);
+    --background-color: var(--avatar-background-color, #ddd);
+    color: var(--avatar-color, inherit);
+    --border-width: var(--avatar-border-width, 2px);
+    --border-color: var(--avatar-border-color, transparent);
+
+    display: inline-block;
     vertical-align: middle;
+    width: var(--size);
+    height: var(--size);
+    flex: none;
+    overflow: hidden;
+    border-radius: var(--border-radius);
   }
 
   svg,
   rect,
-  image {
-    flex: none;
-    width: var(--avatar-size, 2.5rem);
-    height: var(--avatar-size, 2.5rem);
+  foreignobject,
+  ::slotted(img) {
+    width: var(--size);
+    height: var(--size);
   }
 
-  mask rect {
-    rx: var(--avatar-border-radius, 50%);
+  ::slotted(img) {
+    object-fit: cover;
+  }
+
+  .bg {
+    fill: var(--background-color);
+    stroke: var(--border-color);
+    stroke-width: calc(var(--border-width) * 2);
+    rx: var(--border-radius);
   }
 
   .clip {
-    y: calc(var(--avatar-gap, 2px) / -1);
-    x: calc(100% - var(--avatar-overlap, 0px));
-    width: calc(var(--avatar-size, 2.5rem) + var(--avatar-gap, 2px) * 2);
-    height: calc(var(--avatar-size, 2.5rem) + var(--avatar-gap, 2px) * 2);
-    rx: calc(var(--avatar-border-radius, 50%) + var(--avatar-gap, 2px));
+    y: calc(var(--gap) / -1);
+    x: calc(100% - var(--overlap));
+    width: calc(var(--size) + var(--gap) * 2);
+    height: calc(var(--size) + var(--gap) * 2);
+    rx: calc(var(--border-radius) + var(--gap));
   }
 
-  :host([slot=menu]) .clip {
-    fill: none;
+  .clip {
+    fill: var(--avatar-clip-fill, none);
   }
 
-  [hidden],
-  :host([src]) image:not([hidden]) + text {
+  [hidden] {
     display: none;
   }
 
   slot {
-    display: block;
-    position: var(--full, absolute);
-    pointer-events: var(--full, none);
-    height: var(--full, 1px);
-    width: var(--full, 1px);
-    overflow: var(--full, hidden);
-    clip: var(--full, rect(1px, 1px, 1px, 1px));
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
 
-  :host(:hover) slot {
-    height: var(--full, auto);
-    width: var(--full, auto);
-    clip: var(--full, none);
-    top: var(--full, 100%);
-    left: var(--full, 50%);
-    transform: var(--full, translateX(-50%));
-    background: var(--full, var(--avatar-tooltip-background, transparent));
-    color: var(--full, var(--avatar-tooltip-color, inherit));
-    box-shadow: var(--full, var(--avatar-tooltip-box-shadow, none));
-    font: var(--full, var(--avatar-tooltip-font, inherit));
-    padding: var(--full, var(--avatar-tooltip-padding, 0));
-    border-radius: var(--full, var(--avatar-tooltip-border-radius, 0));
-    border: var(--full, var(--avatar-tooltip-border, none));
-    pointer-events: var(--full, auto);
-    white-space: var(--full, nowrap);
-    animation: var(--full, show-tooltip 200ms 1s both);
-  }
-
-  :host {
-    position: var(--full, relative);
-  }
-
-  :host(:not([minimal])) {
-    --full: 1;
-  }
-
-  @keyframes show-tooltip {
-    0% {
-      opacity: 0;
-    }
+  slot svg {
+    width: 50%;
+    height: 50%;
   }
 `;
 
 export class Avatar extends DefineElementMixin(HTMLElement) {
   connectedCallback() {
     if (!this.shadowRoot) {
+      this.setAttribute('role', 'figure');
       this.attachShadow({mode: 'open'});
       this.shadowRoot.innerHTML = `
         <style>${styles}</style>
-        <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g part="avatar" mask="url(#mask)">
-            <defs>
-              <mask id="mask">
-                <rect width="100%" height="100%" rx="100%" fill="white" />
-                <rect width="100%" height="100%" rx="100%" fill="black" class="clip" />
-              </mask>
-            </defs>
-            <rect width="100%" height="100%" />
-            <image xlink:href="" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
-            <text y="50%" x="50%" text-anchor="middle" fill="currentColor" dominant-baseline="central"></text>
-          </g>
+        <svg xmlns="http://www.w3.org/2000/svg" part="avatar">
+          <defs>
+            <mask id="mask">
+              <rect width="100%" height="100%" fill="white" />
+              <rect width="100%" height="100%" rx="100%" fill="black" class="clip" />
+            </mask>
+          </defs>
+          <rect width="100%" height="100%" rx="100%" class="bg" mask="url(#mask)" />
+          <foreignobject width="100%" height="100%" mask="url(#mask)">
+            <slot>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+              </svg>
+            </slot>
+          </foreignobject>
         </svg>
-        <slot part="content"></slot>
       `;
-    }
-
-    if (!this.__mutationObserver) {
-      this.__mutationObserver = new MutationObserver(this._onMutation.bind(this));
-    }
-
-    this.__mutationObserver.observe(this, { childList: true });
-
-    this._onMutation();
-  }
-
-  disconnectedCallback() {
-    this.__mutationObserver.disconnect();
-  }
-
-  _onMutation() {
-    const image = this.shadowRoot.querySelector('image');
-    const text = this.shadowRoot.querySelector('text');
-
-    if (this.hasAttribute('src')) {
-      image.onerror = () => {
-        image.setAttribute('hidden', '');
-      }
-      image.setAttribute('xlink:href', this.getAttribute('src'));
-      image.removeAttribute('hidden');
-    }
-
-    if (this.hasAttribute('abbr')) {
-      text.textContent = this.getAttribute('abbr')
-    } else {
-      text.textContent = [...this.childNodes]
-        .map(c => c.textContent)
-        .join('')
-        .split(' ')
-        .map((word) => word.charAt(0))
-        .join('');
     }
   }
 }
