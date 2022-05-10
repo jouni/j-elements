@@ -30,12 +30,20 @@ const styles = `
     pointer-events: auto;
   }
 
-  :host([style*=prefix-width]) slot:not([name])::slotted(:is(input, textarea, select)) {
+  :host([style*=prefix-width]) slot:not([name])::slotted(:is(input:not([type=range]), textarea, select)) {
     padding-inline-start: var(--prefix-width) !important;
   }
 
-  :host([style*=suffix-width]) slot:not([name])::slotted(:is(input, textarea)) {
+  :host([style*=suffix-width]) slot:not([name])::slotted(:is(input:not([type=range]), textarea)) {
     padding-inline-end: var(--suffix-width) !important;
+  }
+
+  :host([style*=prefix-width]) slot:not([name])::slotted(input[type=range]) {
+    margin-inline-start: var(--prefix-width) !important;
+  }
+
+  :host([style*=suffix-width]) slot:not([name])::slotted(input[type=range]) {
+    margin-inline-end: var(--suffix-width) !important;
   }
 `;
 
