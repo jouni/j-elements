@@ -20,10 +20,10 @@ Notice, that the input element styling is completely retained (coming from the t
 
 <style>
 render-example {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: start;
+  --display: flex;
+  --flex-direction: column;
+  --gap: 1rem;
+  --align-items: start;
 }
 
 input {
