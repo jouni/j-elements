@@ -144,6 +144,7 @@ Does not apply to the tertiary variant.
 <div>
   <input type="text" placeholder="Text">
   <input type="date" placeholder="Date">
+  <input type="datetime-local" placeholder="Date">
   <input type="email" placeholder="Email">
   <input type="number" placeholder="Number">
   <input type="password" placeholder="Password">
@@ -326,7 +327,7 @@ details + details {
 }
 </style>
 
-<!-- 
+<!--
 ## Definition list
 TODO: key-value pairs nicely laid out and styles (horizontal and vertical)
  -->
