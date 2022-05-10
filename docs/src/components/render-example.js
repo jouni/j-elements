@@ -43,9 +43,9 @@ window.customElements.define('render-example', class extends HTMLElement {
         padding: var(--padding, 0);
       }`
     }
-    :host:not(.full) {
-      --padding: 2rem;
-    }
+      :host(:not(.full)) {
+        --padding: 2rem;
+      }
     </style>
     <slot></slot>
     <div class="resizer"></div>
