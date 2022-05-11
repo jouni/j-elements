@@ -13,7 +13,6 @@ const styles = `
   }
 
   button {
-    align-self: stretch;
     flex: none;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
