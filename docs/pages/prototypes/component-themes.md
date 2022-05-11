@@ -6,11 +6,7 @@ eleventyNavigation:
   parent: Prototypes
   order: 20
 imports:
-  /src/theme/colors.css
-  /src/theme/tokens.css
   /src/theme/components.css
-  /src/components/Field.js
-  /src/components/InputDecorator.js
 ---
 
 ## Component token names
@@ -335,6 +331,11 @@ TODO: key-value pairs nicely laid out and styles (horizontal and vertical)
 ## Vertical alignment
 <render-example></render-example>
 ```html
+<script type="module">
+  import '/src/components/InputDecorator.js';
+  import '/src/components/Field.js';
+</script>
+
 <span style="vertical-align: middle;">Text</span>
 <button><icon search></icon> Button</button>
 <j-input-decorator>

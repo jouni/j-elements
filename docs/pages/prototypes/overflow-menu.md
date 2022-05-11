@@ -3,9 +3,6 @@ title: Overflow menu
 layout: page
 imports:
   /src/components/OverflowMenu.js
-  /src/theme/colors.css
-  /src/theme/tokens.css
-  /src/theme/components.css
 eleventyNavigation:
   key: Overflow menu
   parent: Prototypes

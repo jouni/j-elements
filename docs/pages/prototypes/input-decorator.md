@@ -3,9 +3,6 @@ title: Input decorator
 layout: page
 imports:
   /src/components/InputDecorator.js
-  /src/theme/colors.css
-  /src/theme/tokens.css
-  /src/theme/components.css
 eleventyNavigation:
   key: Input decorator
   parent: Prototypes

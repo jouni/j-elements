@@ -4,10 +4,6 @@ layout: page
 imports:
   /src/components/Field.js
   /src/components/FieldGroup.js
-  /src/components/InputDecorator.js
-  /src/theme/colors.css
-  /src/theme/tokens.css
-  /src/theme/components.css
 eleventyNavigation:
   key: Form fields
   parent: Prototypes
@@ -187,6 +183,10 @@ All native input types are supported without extra effort.
 ### Text input and prefix content and button
 <render-example></render-example>
 ```html
+<script type="module">
+import '/src/components/InputDecorator.js';
+</script>
+
 <j-field>
   <label>Label</label>
   <div description>Describe the purpose of this field</div>
