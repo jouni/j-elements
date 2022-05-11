@@ -336,7 +336,6 @@
   background-color: currentColor;
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
-  /* Tailwind UI / Heroicons */
   --mask-image: var(--icon-checkmark-small);
 }
 
@@ -428,54 +427,6 @@ j-field-group j-field {
   mask-repeat: no-repeat;
   -webkit-mask-position: 50%;
   mask-position: 50%;
-}
-
-/* Icons */
-
-html {
-  /* Heroicons */
-  --icon-chevron-down: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>');
-  --icon-chevron-down-gray: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="rgba(122,122,122,1)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>');
-  --icon-calendar: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>');
-  --icon-search: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>');
-  --icon-checkmark: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>');
-  --icon-checkmark-small: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>');
-  --icon-cross: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>');
-  --icon-error: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>');
-}
-
-:where(icon),
-:where(summary)::before {
-  display: inline-block;
-  vertical-align: baseline;
-  width: var(--icon-size, 1.125em);
-  height: var(--icon-size, 1.125em);
-  overflow: hidden;
-  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"></svg>');
-  -webkit-mask-image: var(--mask-image);
-  mask-image: var(--mask-image);
-  background-color: currentColor;
-  flex: none;
-  margin-top: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
-  margin-bottom: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-:where(icon[search]) {
-  --mask-image: var(--icon-search);
-}
-
-:where(icon[chevron-down]) {
-  --mask-image: var(--icon-chevron-down);
-}
-
-:where(icon[calendar]) {
-  --mask-image: var(--icon-calendar);
-}
-
-:where(icon[checkmark]) {
-  --mask-image: var(--icon-checkmark);
 }
 
 /* Slider */
@@ -638,7 +589,21 @@ input[type=range]:focus-visible::-moz-range-thumb {
 }
 
 :where(summary)::before {
-  /* Some styles defined together with "icon" */
+  /* Styles duplicated from <icon> */
+  display: inline-block;
+  vertical-align: baseline;
+  width: var(--icon-size, 1.125em);
+  height: var(--icon-size, 1.125em);
+  overflow: hidden;
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  background-color: currentColor;
+  flex: none;
+  margin-top: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
+  margin-bottom: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
+  -webkit-user-select: none;
+  user-select: none;
+  /* End of duplicated styles */
   content: "";
   --mask-image: var(--icon-chevron-down);
   transition: 0.15s;

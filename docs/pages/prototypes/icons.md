@@ -5,6 +5,8 @@ eleventyNavigation:
   key: Icons
   parent: Prototypes
   order: 30
+imports:
+  /src/theme/icons.css
 ---
 
 An icon set is defined in CSS, as a collection of custom properties which define SVG data URLs.
