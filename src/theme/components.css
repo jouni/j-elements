@@ -602,10 +602,6 @@ input[type=range]:focus-visible::-moz-range-thumb {
   color: var(--color);
 }
 
-::part(menu-button) {
-  width: 3em;
-}
-
 /* Details */
 
 :where(details, summary) {
@@ -685,35 +681,6 @@ input[type=range]:focus-visible::-moz-range-thumb {
 html {
   --avatar-background-color: var(--background-ui);
   --avatar-color: var(--color);
-}
-
-j-avatar-group {
-  gap: var(--avatar-gap, 2px);
-  max-width: calc(var(--avatar-size, 2.5rem) * var(--avatar-group-max-items) + var(--avatar-gap, 2px) * (var(--avatar-group-max-items) - 1) - var(--avatar-overlap, 0px) * (var(--avatar-group-max-items) - 1));
-}
-
-j-avatar-group j-avatar:not([slot=menu], :last-child) {
-  margin-inline-end: calc(var(--avatar-overlap, 0px) * -1);
-}
-
-/* TODO the reverse variant can't apply the correct clip/mask on the overflow button */
-/* Arguably, reverse stacking should not be used togethet with collapsing, as it can obscure the '+4' label */
-j-avatar-group:not([theme~=reverse]) j-avatar:not([slot=menu], :last-child),
-j-avatar-group[theme~=reverse] j-avatar:not([slot=menu], :first-child) {
-  --avatar-clip-fill: black;
-}
-
-j-avatar-group[theme~=reverse] j-avatar:not([slot=menu], :first-child) {
-  --avatar-clip-x-origin: calc(-100% - var(--avatar-gap, 2px) * 2);
-  --avatar-overlap-dir: -1;
-}
-
-j-avatar-group::part(menu-button) {
-  font: inherit;
-  width: var(--avatar-size, 2.5rem);
-  height: var(--avatar-size, 2.5rem);
-  padding: 0;
-  border-radius: var(--avatar-border-radius, 50%);
 }
 
 j-avatar-group::part(menu) {

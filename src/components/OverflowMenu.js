@@ -24,7 +24,6 @@ const styles = `
     border: 0;
     padding: 0.25em 0.5em;
     background: transparent;
-    width: 2em;
   }
 
   :host(:not([overflow])) button {

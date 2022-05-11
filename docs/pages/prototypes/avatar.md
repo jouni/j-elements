@@ -69,8 +69,8 @@ The avatar overlap, gap, roundness, size, background, and max number of items sh
 ```html
 <style>
   j-avatar-group.styled {
-    --avatar-overlap: 10px;
-    --avatar-gap: 4px;
+    --avatar-group-overlap: 10px;
+    --avatar-group-gap: 4px;
     --avatar-border-radius: 6px;
     --avatar-size: 30px;
     --avatar-group-max-items: 5;

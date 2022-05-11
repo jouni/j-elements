@@ -4,12 +4,12 @@ const styles = `
   :host {
     --border-radius: var(--avatar-border-radius, 50%);
     --size: var(--avatar-size, 2.5rem);
-    --gap: var(--avatar-group-gap, 2px);
-    --overlap: var(--avatar-overlap, 0px);
     --background-color: var(--avatar-background-color, #ddd);
     color: var(--avatar-color, inherit);
     --border-width: var(--avatar-border-width, 2px);
     --border-color: var(--avatar-border-color, transparent);
+    --gap: var(--avatar-group-gap, 2px);
+    --overlap: var(--avatar-group-overlap, 0px);
 
     display: inline-block;
     vertical-align: middle;
