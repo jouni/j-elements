@@ -1,4 +1,4 @@
-export const DefineElementMixin = superClass => class DefineElement extends superClass {
+export const DefineElementMixin = superClass => class extends superClass {
   static defineElement() {
     const prefixAndName = arguments[0] || {};
     const prefix = prefixAndName.prefix || 'j';

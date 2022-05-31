@@ -1,4 +1,4 @@
-export const MutationAnimationMixin = superClass => class MutationAnimation extends superClass {
+export const MutationAnimationMixin = superClass => class extends superClass {
   _initAnimationMutationObserver() {
     this._insertClassName = this._insertClassName || 'j-ma-insert';
     this._removeClassName = this._removeClassName || 'j-ma-remove';

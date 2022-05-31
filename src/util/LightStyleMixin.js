@@ -1,4 +1,4 @@
-export const LightStyleMixin = superClass => class LightStyle extends superClass {
+export const LightStyleMixin = superClass => class extends superClass {
   connectedCallback() {
     if (super.connectedCallback) super.connectedCallback();
 

@@ -1,6 +1,6 @@
 import bemToShadow from './bemToShadow.js';
 
-export const Portal = superClass => class PortalMixin extends superClass  {
+export const Portal = superClass => class extends superClass  {
   constructor() {
     super();
 
