@@ -316,6 +316,12 @@ Background blend mode is used to support the both light and dark mode with a sin
   <input value="Input">
   <button>Button</button>
 </details>
+
+<h5>Disabled</h5>
+<details disabled>
+  <summary>Summary</summary>
+  <div>Detail contents</div>
+</details>
 ```
 <style>
 details + details {
