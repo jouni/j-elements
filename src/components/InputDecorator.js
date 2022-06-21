@@ -50,7 +50,7 @@ const styles = `
 export class InputDecorator extends DefineElementMixin(HTMLElement) {
   connectedCallback() {
     if (!this.shadowRoot) {
-      this.attachShadow({mode: 'open'});
+      this.attachShadow({ mode: 'open' });
       this.shadowRoot.innerHTML = `
         <style>${styles}</style>
         <slot name="prefix"></slot>
@@ -103,13 +103,17 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
 
     if (this.hasAttribute('autosize')) {
       if (input.localName == 'select') {
-        this.style.width = '';
+        this.style.width = '0'; // Needed for Safari
         input.style.width = '';
-        const options = [...input.querySelectorAll('option')].map((option, i) => {return { option, i }});
-        options.forEach(({option, i}) => !option.selected && input.removeChild(option));
-        this.style.width = input.offsetWidth + 'px';
-        input.style.width = '100%';
-        options.forEach(({option, i}) => input.insertBefore(option, input.children[i]));
+        const options = [...input.querySelectorAll('option')].map((option, i) => { return { option, i } });
+        options.forEach(({ option, i }) => !option.selected && input.removeChild(option));
+        // Safari fails to re-layout/paint the select even when reading offsetWidth
+        requestAnimationFrame(() => {
+          this.style.width = '';
+          this.style.width = input.offsetWidth + 'px';
+          input.style.width = '100%';
+          options.forEach(({ option, i }) => input.insertBefore(option, input.children[i]));
+        });
       } else {
         const borderWidth = parseInt(window.getComputedStyle(input)['border-width']);
 
@@ -126,7 +130,7 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
 
         input.style[dimension.toLowerCase()] = '0';
         // Text input caret needs 1px extra to be visible if a suffix element is used
-        this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd + (dimension=='Width' ? 1 : 0)) + 'px';
+        this.style[dimension.toLowerCase()] = (input['scroll' + dimension] + borderWidth * 2 + paddingInlineStart + paddingInlineEnd + (dimension == 'Width' ? 1 : 0)) + 'px';
         input.style.padding = '';
         input.style.removeProperty('--prefix-width');
         input.style.removeProperty('--suffix-width');
