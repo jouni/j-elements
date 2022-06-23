@@ -25,18 +25,6 @@ const styles = `
   }
   */
 
-  button[part^="menu-button"] {
-    border-radius: var(--avatar-border-radius, 50%) !important;
-    width: var(--avatar-size, 2.5rem) !important;
-    height: var(--avatar-size, 2.5rem) !important;
-    background-color: var(--avatar-background-color, #ddd) !important;
-    color: var(--avatar-color, inherit) !important;
-    border-style: solid !important;
-    border-width: var(--avatar-border-width, 2px) !important;
-    border-color: var(--avatar-border-color, transparent) !important;
-    padding: 0 !important;
-    font: inherit !important;
-  }
 `;
 
 export class AvatarGroup extends OverflowMenu {
@@ -48,7 +36,7 @@ export class AvatarGroup extends OverflowMenu {
   }
   _updateOverflowingItems() {
     super._updateOverflowingItems();
-    this.shadowRoot.querySelector('[part="menu-button"]').textContent = '+' + this.querySelectorAll('[slot="menu"]').length;
+    this.shadowRoot.querySelector('slot[name="overflow-button"]').assignedNodes({ flatten: true }).find(el => el.nodeType == 1).textContent = '+' + this.querySelectorAll('[slot="menu"]').length;
   }
 }
 

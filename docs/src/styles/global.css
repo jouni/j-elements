@@ -199,7 +199,7 @@ blockquote {
   border-radius: var(--border-radius-l);
 }
 
-blockquote :is(h5, h6):first-child {
+blockquote :is(h2, h3, h4, h5, h6):first-child {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -263,9 +263,6 @@ module-size dl {
 
 module-size dt {
   color: var(--color);
-}
-
-module-size dd {
 }
 
 main > module-size {

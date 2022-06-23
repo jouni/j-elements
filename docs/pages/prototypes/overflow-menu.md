@@ -13,12 +13,7 @@ Thinking of ways to implement a general purpose overflow menu component which su
 
 The main element needs be allowed to shrink and grow based on the available space in the surrounding layout, as a `ResizeObserver` is used on that element to react when to collapse and expand items.
 
-> ##### Depends on the native dialog element
-> The native `<dialog>` element is used internally for the overflow menu. When shown as "modal", it escapes any parent stacking contexts, and prevents mouse and keyboard interaction with the other parts of the page. The Escape key also closes the dialog element.
->
-> No polyfill is loaded automatically. Polyfills unfortunately can't overcome the "clipping stacking context" issue.
->
-> <p class="dialog-not-supported">Your browser does not support the native <code>&lt;dialog&gt;</code> element.</p>
+The overflowing items are placed in the menu by setting the `slot` attribute on the them dynamically. The benefit of this approach is that the items are not disconnected/reconnected from/to the DOM when they move to and from the menu.
 
 <render-example></render-example>
 ```html
@@ -70,16 +65,6 @@ The main element needs be allowed to shrink and grow based on the available spac
     display: none;
   }
 
-  /* Style the buttons differently when they are in the overflow menu */
-  button[slot=menu] {
-    font: inherit;
-    text-align: start;
-  }
-
-  button[slot=menu]:not(:hover):not(:active) {
-    background: transparent;
-  }
-
   button[slot=menu].icon span {
     display: inline;
   }
@@ -102,23 +87,3 @@ The main element needs be allowed to shrink and grow based on the available spac
   }
 </script>
 ```
-
-<script>
-if (typeof HTMLDialogElement !== 'undefined') {
-  document.querySelector('.dialog-not-supported').style.display = 'none';
-}
-</script>
-
-<style>
-.dialog-not-supported {
-  color: var(--red-600);
-}
-</style>
-
-Notice, that the overflowing items are placed in the menu using a named `<slot>`, by adding the `slot` attribute on the overflowing items dynamically. The benefit of this approach is that the items are not disconnected/reconnected from/to the DOM when they move to and from the menu.
-
-## Known issues
-
-In Safari (15.4), it is not possible to focus elements inside a dialog, when the dialog is inside shadow DOM and the content is slotted into it: https://bugs.webkit.org/show_bug.cgi?id=233320#c3
-
-This issue seems to have been fixed at least in Safari Tech Preview 144 (May 2022).

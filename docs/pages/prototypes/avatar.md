@@ -4,7 +4,7 @@ layout: page
 eleventyNavigation:
   key: Avatar
   parent: Prototypes
-  order: 30
+  order: 70
 imports:
   /src/components/Avatar.js
   /src/components/AvatarGroup.js

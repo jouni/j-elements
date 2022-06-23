@@ -195,8 +195,7 @@
 
 /* Button */
 
-:where(button),
-::part(menu-button) {
+:where(button) {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   background: var(--button-background, var(--background-ui));
@@ -213,17 +212,14 @@
 }
 
 @media (any-hover: hover) {
-  :where(button:not(:disabled):hover),
-  ::part(menu-button):hover {
+  :where(button:not(:disabled):hover) {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
   }
 }
 
-:where(button:not(:disabled):active),
-::part(menu-button):active,
-::part(menu-button-active) {
+:where(button:not(:disabled):is(:active, [active])) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
   color: var(--button-active-color, var(--button-color, var(--color)));
@@ -247,8 +243,7 @@
   --button-border: var(--button-tertiary-border, 1px solid transparent);
 }
 
-:where(button[theme~=small]),
-:where([theme~=small])::part(menu-button) {
+:where(button[theme~=small]) {
   --button-font: var(--button-small-font, var(--font-button-small));
   --button-padding: var(--button-small-padding, var(--size-6, 0.375rem) var(--size-8, 0.5rem));
 }
@@ -531,6 +526,15 @@ input[type=range]:focus-visible::-moz-range-thumb {
   --slider-thumb-background: var(--background-ui-active);
 }
 
+/* Menu */
+:where(button[role=menuitem]) {
+  text-align: start;
+}
+
+:where(button[role=menuitem]:not(:active, :hover)) {
+  background: transparent;
+}
+
 /* Overflow menu */
 
 /* Needed for Safari (Tech Preview) */
@@ -542,7 +546,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
   gap: var(--size-4, 0.25rem);
 }
 
-::part(menu) {
+::part(popup) {
   background: var(--background-above);
   box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
   padding: var(--size-8, 0.5rem);
@@ -652,10 +656,18 @@ html {
   --avatar-color: var(--color);
 }
 
-j-avatar-group::part(menu) {
+j-avatar-group::part(popup) {
   gap: var(--size-12, 0.75rem);
 }
 
-j-avatar-group[overflow] {
-  --outline-color: transparent;
+/* These should be kept in sync with j-avatar styles */
+j-avatar-group :where([slot="overflow-button"]) {
+  border-radius: var(--avatar-border-radius, 50%);
+  width: var(--avatar-size, 2.5rem);
+  height: var(--avatar-size, 2.5rem);
+  background-color: var(--avatar-background-color, #ddd);
+  color: var(--avatar-color, inherit);
+  border: var(--avatar-border-width, 2px) solid var(--avatar-border-color, transparent);
+  padding: 0;
+  font: inherit;
 }
