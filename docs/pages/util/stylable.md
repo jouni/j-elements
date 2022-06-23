@@ -1,9 +1,9 @@
 ---
 title: Stylable
 layout: page
-eleventyNavigation:
-  key: Stylable
-  parent: Utilities
+# eleventyNavigation:
+#   key: Stylable
+#   parent: Utilities
 permalink: /stylable/
 imports: /src/util/Stylable.js
 ---

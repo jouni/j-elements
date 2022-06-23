@@ -1,9 +1,9 @@
 ---
 title: Portal
 layout: page
-eleventyNavigation:
-  key: Portal
-  parent: Utilities
+# eleventyNavigation:
+#   key: Portal
+#   parent: Utilities
 permalink: /portal/
 imports:
   /src/util/Portal.js
