@@ -41,13 +41,11 @@ const styles = `
 
   .clip {
     y: calc(var(--gap) / -1);
+    /* TODO RTL support */
     x: calc(100% - var(--overlap));
     width: calc(var(--size) + var(--gap) * 2);
     height: calc(var(--size) + var(--gap) * 2);
     rx: calc(var(--border-radius) + var(--gap));
-  }
-
-  .clip {
     fill: var(--avatar-clip-fill, none);
   }
 
@@ -72,7 +70,7 @@ export class Avatar extends DefineElementMixin(HTMLElement) {
   connectedCallback() {
     if (!this.shadowRoot) {
       this.setAttribute('role', 'figure');
-      this.attachShadow({mode: 'open'});
+      this.attachShadow({ mode: 'open' });
       this.shadowRoot.innerHTML = `
         <style>${styles}</style>
         <svg xmlns="http://www.w3.org/2000/svg" part="avatar">
