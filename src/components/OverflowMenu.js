@@ -81,37 +81,22 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       this.removeAttribute('overflow');
     }
 
-    const btn = this._overflowButton;
+    // Without this, at least Chrome is sometimes unwilling to render the child items that are no
+    // longer within it (unslotted), and reports 0x0 size for them
     const popup = this.shadowRoot.querySelector('j-menu')._popup;
+    popup.style.setProperty('display', 'block');
+
+    // Make this.scrollWidth report a different value than this.offsetWidth
+    if (getComputedStyle(this).getPropertyValue('justify-content') == 'flex-end') {
+      this.style.setProperty('flex-direction', 'row-reverse');
+    }
 
     const visibleItems = this.querySelectorAll(`:scope > :not(.${FORCED_COLLAPSE_CLASS}):not([slot="overflow-button"])`);
 
-    // Without this, at least Chrome is sometimes unwilling to render the child items that are no
-    // longer within it (unslotted), and reports 0x0 size for them
-    popup.style.display = 'block';
-
     for (let i = visibleItems.length - 1; i >= 0; i--) {
       const child = visibleItems[i];
-      let measuredChild = child;
 
-      if (child.localName == 'j-menu') {
-        measuredChild = child.querySelector('[slot="trigger"');
-      }
-
-      // is the overflow button outside the container (if it is visible)?
-      const buttonOverflowing = this.__rtl ?
-        btn.offsetWidth > 0 && btn.offsetLeft < this.offsetLeft :
-        btn.offsetWidth > 0 && btn.offsetLeft + btn.offsetWidth > this.offsetLeft + this.clientWidth + 1; // Chrome sometimes reports the button 1px outside the container
-      // "start aligned": is the last visible item outside the container?
-      const lastItemOverflowing = this.__rtl ?
-        measuredChild.offsetLeft < this.offsetLeft :
-        measuredChild.offsetLeft + measuredChild.offsetWidth > this.offsetLeft + this.clientWidth;
-      // "end aligned": is the first item outside the container?
-      const firstItemOverflowing = this.__rtl ?
-        visibleItems[0].offsetLeft + visibleItems[0].offsetWidth > this.offsetLeft + this.offsetWidth :
-        visibleItems[0].offsetLeft < this.offsetLeft;
-
-      if (buttonOverflowing || lastItemOverflowing || firstItemOverflowing) {
+      if (this.offsetWidth < this.scrollWidth) {
         child.setAttribute('slot', 'menu');
         this.setAttribute('overflow', '');
       } else {
@@ -119,8 +104,9 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       }
     }
 
-    // Clear the workaround style
-    popup.style.display = '';
+    // Clear workaround styles
+    popup.style.removeProperty('display');
+    this.style.removeProperty('flex-direction');
   }
 }
 
