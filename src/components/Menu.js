@@ -30,13 +30,17 @@ export class Menu extends DefineElementMixin(HasPopup) {
     if (!this._popup.hasAttribute('role')) {
       this._popup.setAttribute('role', 'menu');
       this._popup.addEventListener('click', this._onClick.bind(this));
+      this._popup.addEventListener('item-click', this.closePopup.bind(this));
 
       const popupSlot = this.shadowRoot.querySelector('slot:not([name])');
       popupSlot.onslotchange = () => {
-        this._menuItems = popupSlot.assignedNodes({ flatten: true }).reduce((items, el) => {
+        if (this._menuItems) {
+          this._menuItems.forEach(button => button.removeAttribute('role'));
+        }
+        this._menuItems = popupSlot.assignedElements({ flatten: true }).reduce((items, el) => {
           if (el.localName == 'button') return items.concat([el]);
-          else if (el.nodeType == 1) return items.concat([...el.querySelectorAll('button')]);
-          return items;
+          else if (el.localName == this.localName) return items.concat([el.querySelector('[slot="trigger"')]);
+          else return items.concat([...el.querySelectorAll(`button`)]);
         }, []);
         this._menuItems.forEach(button => button.setAttribute('role', 'menuitem'));
       }
@@ -56,7 +60,6 @@ export class Menu extends DefineElementMixin(HasPopup) {
   _onClick(e) {
     const button = e.target.closest('button');
     if (this._menuItems.includes(button) && !button?.hasAttribute('aria-haspopup')) {
-      this.closePopup();
       button.dispatchEvent(new CustomEvent('item-click', { bubbles: true, composed: true }));
     }
   }

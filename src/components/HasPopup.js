@@ -47,7 +47,7 @@ export class HasPopup extends HTMLElement {
       this.__boundOnScroll = this._onScroll.bind(this);
       this.__boundPositionPopup = this._positionPopup.bind(this);
 
-      this._popup.onclick = this.closePopup.bind(this);
+      this._popup.addEventListener('click', this.closePopup.bind(this));
     }
 
     this.__rtl = getComputedStyle(this).getPropertyValue('direction') == 'rtl';
@@ -58,7 +58,7 @@ export class HasPopup extends HTMLElement {
   }
 
   _onTriggerSlotChange() {
-    this._triggerElement = this.shadowRoot.querySelector('slot[name="trigger"]').assignedNodes({ flatten: true }).find(el => el.nodeType === 1) || this;
+    this._triggerElement = this.shadowRoot.querySelector('slot[name="trigger"]').assignedElements({ flatten: true })[0] || this;
     this._triggerElement.setAttribute('aria-haspopup', 'dialog');
     this._triggerElement.addEventListener('click', this.openPopup.bind(this));
   }
@@ -71,6 +71,7 @@ export class HasPopup extends HTMLElement {
   }
 
   _onOpen() {
+    // TODO consider using a class name instead (faster CSS selector)
     this._triggerElement.setAttribute('active', '');
     this._positionPopup();
     window.addEventListener('scroll', this.__boundOnScroll, { capture: true, passive: true });

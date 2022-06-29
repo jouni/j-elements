@@ -3,6 +3,7 @@ title: Overflow menu
 layout: page
 imports:
   /src/components/OverflowMenu.js
+  /src/components/Menu.js
 eleventyNavigation:
   key: Overflow menu
   parent: Prototypes
@@ -22,6 +23,11 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
   <j-overflow-menu>
     <button>Button 1</button>
     <button>Button 2</button>
+    <j-menu>
+      <button slot="trigger">With sub-items</button>
+      <button>Sub-item 1</button>
+      <button>Sub-item 2</button>
+    </j-menu>
     <div>Plain text</div>
     <input value="Text input">
     <button class="icon">
@@ -39,6 +45,11 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
     </button>
     <input value="Text input">
     <div>Plain text</div>
+     <j-menu>
+      <button slot="trigger">With sub-items</button>
+      <button>Sub-item 1</button>
+      <button>Sub-item 2</button>
+    </j-menu>
     <button>Button 2</button>
     <button>Button 1</button>
   </j-overflow-menu>
@@ -59,6 +70,10 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
 
   .layout j-overflow-menu {
     flex: 1;
+  }
+
+  button {
+    white-space: nowrap;
   }
 
   button.icon span {
