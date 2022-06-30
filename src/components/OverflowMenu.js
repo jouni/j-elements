@@ -47,8 +47,6 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
 
     this.__resizeObserver.observe(this);
     this.__mutationObserver.observe(this, { childList: true });
-
-    this.__rtl = getComputedStyle(this).getPropertyValue('direction') == 'rtl';
   }
 
   disconnectedCallback() {
