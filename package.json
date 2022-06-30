@@ -24,7 +24,7 @@
     "@11ty/eleventy": "^1.0.0",
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
-    "@node-minify/core": "^5.2.0",
+    "@node-minify/core": "^6.2.0",
     "@node-minify/uglify-es": "^5.2.0",
     "markdown-it-anchor": "^8.4.1"
   }
