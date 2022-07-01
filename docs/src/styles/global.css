@@ -328,6 +328,10 @@ main {
     padding: 0 1rem;
   }
 
+  [dir=rtl] .main-nav {
+    float: none;
+  }
+
   [dir=rtl] .main-nav details {
     float: left;
   }
