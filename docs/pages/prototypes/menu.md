@@ -15,7 +15,10 @@ The menu utilizes the [`HasPopup`](/prototypes/popup) base class.
 <render-example></render-example>
 ```html
 <j-menu>
-  <button slot="trigger">Open menu</button>
+  <button slot="trigger">
+    Open menu
+    <icon chevron-down></icon>
+  </button>
   <div role="group" aria-label="Primary actions">
     <button>Action 1</button>
     <button>Action 2</button>

@@ -3,8 +3,13 @@ import { HasPopup } from './HasPopup.js';
 
 export class Menu extends DefineElementMixin(HasPopup) {
   styles = `
+    :host {
+      --popup-min-width: var(--anchor-width);
+    }
+
     [part="popup"] {
-      min-width: var(--anchor-width);
+      width: var(--popup-min-width);
+      min-width: fit-content;
     }
 
     [part="popup"],
@@ -21,6 +26,11 @@ export class Menu extends DefineElementMixin(HasPopup) {
     ::slotted(hr) {
       margin: 0 !important;
       width: 100%;
+    }
+
+    slot:not([name])::slotted(*) {
+      --popup-align: horizontal;
+      --popup-min-width: fit-content;
     }
   `;
 

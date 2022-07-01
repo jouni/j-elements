@@ -531,7 +531,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
   text-align: start;
 }
 
-:where(button[role=menuitem]:not(:active, :hover)) {
+:where(button[role=menuitem]:not(:active, [active], :hover)) {
   background: transparent;
 }
 
@@ -554,6 +554,8 @@ input[type=range]:focus-visible::-moz-range-thumb {
   gap: var(--size-2, 0.125rem);
   border: 0;
   margin: var(--size-4, 0.25rem);
+  max-width: calc(100% - var(--size-4, 0.25rem) * 2);
+  max-height: calc(100% - var(--size-4, 0.25rem) * 2);
   color: var(--color);
 }
 
