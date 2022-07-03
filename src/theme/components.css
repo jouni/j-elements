@@ -616,7 +616,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
   transition-property: transform, color;
 }
 
-:where(details:not([open]), details[disabled]) :where(summary)::before {
+:where(details:not([open])) :where(summary)::before {
   transform: rotate(-90deg);
 }
 
@@ -624,10 +624,6 @@ input[type=range]:focus-visible::-moz-range-thumb {
 [dir=rtl]:where(details:not([open])) :where(summary)::before,
 :host([dir=rtl]) :where(details:not([open])) :where(summary)::before {
   transform: rotate(90deg);
-}
-
-:where(details[disabled]) > :where(:not(summary)) {
-  display: none;
 }
 
 :where(details[theme~=filled]) {
@@ -651,6 +647,10 @@ input[type=range]:focus-visible::-moz-range-thumb {
 :where(details[theme~=reverse]) :where(summary)::before {
   order: 1;
   margin-inline-start: auto;
+}
+
+:where(details) :where(summary[tabindex="-1"]) {
+  pointer-events: none;
 }
 
 html {

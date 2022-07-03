@@ -318,8 +318,14 @@ Background blend mode is used to support the both light and dark mode with a sin
 </details>
 
 <h5>Disabled</h5>
-<details disabled>
-  <summary>Summary</summary>
+To disable a details panel, set <code>tabindex="-1"</code> on the <code>&lt;summary&gt;</code> element.
+<details>
+  <summary tabindex="-1">Summary</summary>
+  <div>Detail contents</div>
+</details>
+
+<details open>
+  <summary tabindex="-1">Summary</summary>
   <div>Detail contents</div>
 </details>
 ```
