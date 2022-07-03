@@ -28,9 +28,9 @@ For example, the token for UI control background, when hovered:
 
 `colors.css` defines a collection of static color scales – a range of colors from light to dark – for various hues, for example, "slate", "red", "emerald", "purple", and "rose". At the moment those scales are copied from [Tailwind CSS](https://tailwindcss.com/docs/customizing-colors).
 
-## Palette
+## Dark mode
 
-The palette tokens adapt to light and dark modes, mapping to the static color scales.
+The color tokens adapt to light and dark modes, mapping to the static color scales.
 
 The `theme="dark"` and `theme="light"` attributes can be used to toggle between modes, at any level of DOM hierarchy.
 
@@ -40,7 +40,9 @@ The `theme="dark"` and `theme="light"` attributes can be used to toggle between 
 <p theme="dark">Always dark</p>
 ```
 
-### Background
+## Background
+Note, that the background tokens are meant to be used for the CSS `background` shorthand property, and not for the `background-color` property.
+
 <render-props>
 
 `--background`
@@ -70,7 +72,7 @@ Background for UI controls when activated (for example, clicked with a mouse or 
 </render-props>
 
 
-### Text
+## Text color
 <render-props>
 
 `--color`
@@ -94,7 +96,7 @@ Disabled text color.
 </render-props>
 
 
-### Border
+## Border
 <render-props>
 
 `--border-color`
@@ -111,7 +113,7 @@ Low contrast border color.
 </render-props>
 
 
-## Border presets
+### Border presets
 <render-props>
 
 `--border-ui`
@@ -129,7 +131,7 @@ Border for UI controls when focused.
 </render-props>
 
 
-## Border radius
+### Border radius
 <render-props>
 
 `--border-radius-l`
@@ -146,7 +148,7 @@ Small border radius. For example, checkbox.
 
 ## Outline
 
-Focus outlines are the primary use case for these properties.
+Focus outlines are the primary use case for these tokens.
 
 <render-props>
 
