@@ -208,7 +208,7 @@ These tokens apply to Select as well.
 
 `--textinput-padding` `var(--size-8, 0.5rem)`
 
-`--textinput-padding-small` `var(--size-6, 0.375rem)`
+`--textinput-small-padding` `var(--size-6, 0.375rem)`
 
 </render-props>
 

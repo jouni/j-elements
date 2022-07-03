@@ -138,7 +138,7 @@
 
 :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([theme~=small]) {
   --textinput-font: var(--font-textinput-small);
-  padding: var(--textinput-padding-small, var(--size-6, 0.375rem));
+  padding: var(--textinput-small-padding, var(--size-6, 0.375rem));
 }
 
 /* Select */
