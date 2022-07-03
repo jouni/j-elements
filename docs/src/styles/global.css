@@ -365,7 +365,7 @@ main {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  background-color: var(--value);
+  background: var(--value);
   vertical-align: text-top;
   margin: 0 0.5em;
   position: relative;
