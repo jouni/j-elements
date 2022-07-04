@@ -96,8 +96,6 @@ export class HasPopup extends HTMLElement {
     if (!isInDialog) {
       this._popup.close();
     }
-
-    // e.stopPropagation();
   }
 
   _onClose() {
