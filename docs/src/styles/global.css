@@ -74,7 +74,7 @@ table-of-contents + p {
 }
 
 .main-nav ul a:any-link {
-  color: var(--color-low-contrast);
+  color: var(--color);
   padding: 0.25rem 0.5rem;
   display: block;
   border-radius: 0.5em;
@@ -97,8 +97,8 @@ table-of-contents + p {
 }
 
 .main-nav .has-children > a:any-link {
-  font-weight: 500;
-  color: var(--color-high-contrast);
+  font-weight: 600;
+  margin-bottom: var(--size-4);
 }
 
 main > h1::after {
@@ -291,7 +291,6 @@ hr {
   width: 15rem;
   max-width: 100%;
   font-size: var(--font-size-s);
-  background-color: var(--background-below);
   position: sticky;
   top: 0;
   box-sizing: border-box;
