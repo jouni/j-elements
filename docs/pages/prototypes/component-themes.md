@@ -17,6 +17,12 @@ For example, the text color for the primary button, when hovered:
 `--button-primary-hover-color`
 
 <style>
+render-example.flex {
+  --display: flex;
+  --flex-wrap: wrap;
+  --gap: 1rem;
+}
+
 render-example.flex,
 render-example > div {
   width: 100%;
