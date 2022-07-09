@@ -14,6 +14,7 @@ window.customElements.define('render-example', class extends HTMLElement {
       slot {
         display: var(--display, block);
         flex-direction: var(--flex-direction);
+        flex-wrap: var(--flex-wrap);
         align-items: var(--align-items);
         padding: var(--padding, 0);
         gap: var(--gap, 0);
