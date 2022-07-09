@@ -29,6 +29,7 @@ input {
 </style>
 
 <render-example></render-example>
+
 ```html
 <j-input-decorator>
   <icon slot="prefix" search></icon>
