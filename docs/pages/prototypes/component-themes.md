@@ -46,6 +46,9 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
 </style>
 
 ## Button
+
+Buttons don't define a fixed height. They are sized by their content. Different states are indicated with a background or text color change, with a subtle transition.
+
 <render-example class="flex"></render-example>
 ```html
 <div>
@@ -55,8 +58,8 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
 </div>
 <div>
   <button theme="primary">Primary <icon chevron-down></icon></button>
-  <button>Secondary <icon chevron-down></icon></button>
-  <button theme="tertiary">Tertiary <icon chevron-down></icon></button>
+  <button><icon search></icon> Secondary</button>
+  <button theme="tertiary">Tertiary <icon arrow-right></icon></button>
 </div>
 <h5>Small</h5>
 <div>
@@ -66,8 +69,8 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
 </div>
 <div>
   <button theme="primary small">Primary <icon chevron-down></icon></button>
-  <button theme="small">Secondary <icon chevron-down></icon></button>
-  <button theme="tertiary small">Tertiary <icon chevron-down></icon></button>
+  <button theme="small"><icon search></icon> Secondary</button>
+  <button theme="tertiary small">Tertiary <icon arrow-right></icon></button>
 </div>
 <h5>Disabled</h5>
 <div>
