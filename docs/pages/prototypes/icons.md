@@ -18,7 +18,7 @@ html {
 }
 ```
 
-A utility class or any other selector, for example, a custom element name, is defined which uses the SVG data URLs as a mask image. A mask image allows us to change the color of the icon using CSS. Each individual icon is defined using an additional selector.
+A custom element name `icon` is used to define a SVG data URL as a mask image. A mask image allows us to change the color of the icon using CSS. Each individual icon is defined using an additional selector.
 ```css
 icon {
   background-color: currentColor;
@@ -42,13 +42,18 @@ icon[checkmark] {
 ```
 
 ## Using icons in CSS
-The consumers of the icons import the style sheet and apply the desired utility class on an element (or use a custom element name, or whatever the CSS selector requires). An accessible label/name for the icon can be placed inside the element.
+Import the style sheet and use the `<icon>` element. An accessible label/name for the icon can be placed inside the element.
 
-<render-example></render-example>
+<render-example class="example"></render-example>
 ```html
 <icon calendar>calendar</icon>
 <icon search>search</icon>
 <icon checkmark>checkmark</icon>
 ```
 
-The drawback of using mask images is that style customization is more limited than with inline SVGs. For example, stroke width can't be modified per instance.
+<style>
+  .example {
+    --display: flex;
+    --gap: 1rem;
+  }
+</style>

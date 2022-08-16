@@ -19,12 +19,14 @@ If we agree that icon fonts are the least desirable option for icons, we have tw
 ## Defining icons in JavaScript
 
 Benefits:
-- I can't really think of benefits with the current implementation or when comparing to the CSS alternative
+- Inline SVGs are more customizable using CSS (for example, `stroke-width`)
 
 Drawbacks:
 - a custom element is currently used to define an iconset ([vaadin-iconset.js](https://github.com/vaadin/web-components/blob/master/packages/icon/src/vaadin-iconset.js), [example of an icon set](https://github.com/vaadin/web-components/blob/master/packages/vaadin-lumo-styles/vaadin-iconset.js))
 - a custom element is needed to conveniently use the icons, which adds a non-trivial amount of code to the front-end bundle ([vaadin-icon.js](https://github.com/vaadin/web-components/blob/master/packages/icon/src/vaadin-icon.js))
 - the browser has to parse and execute these scripts to render the HTML for an icon (an `<svg>` element)
+
+<!-- See https://www.webperf.tips/tip/cached-js-misconceptions/ for more reasoning why we should avoid JS as much as possible -->
 
 ## Defining icons in CSS
 
@@ -34,7 +36,8 @@ Benefits:
 - the icons can be used to style standard HTML elements, such as `<select>` (the toggle/dropdown icon) and `<input type="date">` (the calendar icon), which is not possible with the JavaScript alternative.
 
 Drawbacks:
-- I can't think of drawbacks compared to the JavaScript alternative
+- Less customizable using CSS (for example, can't adjust `stroke-width`)
+- No multi-color icons (except with opacity)
 
 
 ## Authoring an using icons
