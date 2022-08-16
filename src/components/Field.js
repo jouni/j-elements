@@ -7,6 +7,8 @@ let fieldId = 0;
  *
  * Sets the `invalid` attribute on itself and shows a validation message if the contained input
  * element fails the checkValidity test.
+ *
+ * TODO: sets aria-invalid on the input element
  */
 export class Field extends DefineElementMixin(HTMLElement) {
   constructor() {

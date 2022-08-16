@@ -16,9 +16,13 @@ The visual style of Lumo in particular can be complicated in some cases for not 
 
 For example, the hover and activation effects on many components (button, checkbox, text input) involve both `::before` and `::after` elements with transforms and transition. That means it is difficult for theme customizations to utilize those pseudo elements for their own purposes, which usually means that they either hide them completely, or don't try to override the effects.
 
+<!--
+- Text Field mask image for overflowing text is causing issues: https://github.com/vaadin/web-components/issues/3898
+->
+
 
 ### Proposal: clean, minimal, functional visual styling
-Less is more for the majority of business application users. Lumo should aim to be a great baseline theme, from which custom themes can easily extend upon, instead of tying to be the flashiest and most polished theme out of the box.  
+Less is more for the majority of business application users. Lumo should aim to be a great baseline theme, from which custom themes can easily extend upon, instead of tying to be the flashiest and most polished theme out of the box.
 
 I'm not proposing the removal of all visual styling, only the more elaborate ones, while keeping simple state change transition effects. Simple state transition effects are easier to customize, as the selectors are simpler (no pseudo-elements) and there are less properties to override (for example, no transforms). More elaborate styling could be better suited as Cookbook examples.
 

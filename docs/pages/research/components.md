@@ -75,6 +75,8 @@ Drawbacks:
 
 See the [prototype theme implementation for button](/prototypes/component-themes/#button).
 
+<!-- TODO disabled vs aria-disabled (allow focusing disabled buttons) -->
+
 ---
 
 ### Checkbox and Radio Button
@@ -92,7 +94,7 @@ Drawbacks:
 - adding a label for the input is less convenient (`<input id="">` + `<label for="">`)
 - no read-only state
 
-Although it is not absolutely necessary, I would recommend a helper component that takes care of connecting the label and the input. This saves the developer from coming up with unique ID's for all inputs. That reintroduces some amount of JavaScript, so that benefit is diminished.
+Although it is not absolutely necessary, I would recommend a helper component that takes care of connecting the label and the input. This saves the developer from coming up with unique ID's for all inputs. That reintroduces some amount of JavaScript, so that benefit is diminished. A shared “field” component would fix all inconsistency issue across input field components, most prominently validation-related behavior.
 
 See the [`<j-field>`](/prototypes/field/#checkbox) prototype and the [prototype theme implementation for checkbox](/prototypes/component-themes/#radio-button) and [radio button](/prototypes/component-themes/#checkbox).
 
@@ -101,6 +103,11 @@ See the [`<j-field>`](/prototypes/field/#checkbox) prototype and the [prototype 
 Grouping checkboxes and radio buttons still benefits from a component that makes it convenient to label the group and provide validation functionality (required field indicator, validation message).
 
 See the [`<j-field-group>`](/prototypes/field/#field-group) prototype.
+
+<!--
+Potential regressions:
+- checkboxes and radio buttons no longer get focused in Safari when clicked: https://github.com/vaadin/web-components/issues/4165
+-->
 
 ---
 
@@ -128,6 +135,7 @@ Drawbacks:
 - the `:invalid` pseudo-class behaves differently than the `[invalid]` attribute (the latter is similar to `:user-invalid`, which is only supported in Firefox)
 - email input validation pattern is defined by the browser, and it is potentially more strict than what we want?
 - number input spinner buttons are placed differently from the controls that `<vaadin-number-field>` provides
+- no “auto-select” feature
 
 Similarly to checkbox and radio button, I recommend a helper component for labelling and validation purposes. See the [`<j-field>`](/prototypes/field/) prototype and the [prototype theme implementation for text input](/prototypes/component-themes/#text-input)
 

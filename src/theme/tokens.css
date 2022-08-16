@@ -117,6 +117,7 @@ html,
   --font-family-monospace: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --font-family: var(--font-family-sans-serif);
 
+  /* Using viewport based font sizes causes rendering issues with Avatar clip path in Safari */
   --font-size-3xl: clamp(2rem, 3vw, 3rem);
   --font-size-2xl: clamp(1.625rem, 2.4vw, 2.375rem);
   --font-size-2xs: clamp(0.6875rem, 0.95vw, 0.8125rem);

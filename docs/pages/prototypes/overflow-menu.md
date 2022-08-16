@@ -92,6 +92,8 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
   j-overflow-menu input {
     width: 6em;
   }
+
+  /* TODO styles for the case when there is only one button visible */
 </style>
 
 <script>
