@@ -279,17 +279,18 @@
   flex: none;
   transition: background-color 0.15s;
   --outline-offset: 2px;
+  contain: strict;
 }
 
 @media (any-hover: hover) {
-  :where(input[type=checkbox], input[type=radio]):where(:not(:disabled):hover) {
+  :where(:is(input[type=checkbox], input[type=radio]):not(:disabled):hover) {
     background: var(--optionbox-hover-background, var(--background-ui-hover));
     border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
     color: var(--optionbox-hover-color, var(--optionbox-color, var(--color)));
   }
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:not(:disabled):active) {
+:where(:is(input[type=checkbox], input[type=radio]):not(:disabled):active) {
   background: var(--optionbox-active-background, var(--background-ui-active));
   border: var(--optionbox-active-border, var(--optionbox-border, var(--border-ui-active)));
   color: var(--optionbox-active-color, var(--optionbox-color, var(--color)));
@@ -303,26 +304,26 @@
 }
 
 @media (any-hover: hover) {
-  :where(input[type=checkbox], input[type=radio]):where(:checked:not(:disabled):hover) {
+  :where(:is(input[type=checkbox], input[type=radio]):checked:not(:disabled):hover) {
     background: var(--optionbox-checked-hover-background, var(--background-accent-hover));
     border: var(--optionbox-checked-hover-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
     color: var(--optionbox-checked-hover-color, var(--optionbox-checked-color, var(--background)));
   }
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:checked:not(:disabled):active) {
+:where(:is(input[type=checkbox], input[type=radio]):checked:not(:disabled):active) {
   background: var(--optionbox-checked-active-background, var(--background-accent-active));
   border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
   color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
 }
 
-:where(input[type=checkbox], input[type=radio]):where(:disabled) {
+:where(:is(input[type=checkbox], input[type=radio]):disabled) {
   background: var(--optionbox-disabled-background, var(--background-ui));
   border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
   color: var(--optionbox-disabled-color, var(--color-low-contrast));
 }
 
-:where(input[type=checkbox]:where(:checked, :indeterminate), input[type=radio]:checked)::before {
+:where(input[type=checkbox]:is(:checked, :indeterminate), input[type=radio]:checked)::before {
   content: "";
   display: inline-block;
   width: 100%;
@@ -353,43 +354,52 @@
 :where(j-field, j-field-group) {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6, 0.375rem);
+  gap: var(--space-8, 0.5rem);
+}
+
+:where(j-field-group) {
+  align-items: flex-start;
 }
 
 :where(j-field[inline]) {
   display: inline-flex;
 }
 
-:where(j-field, j-field-group) :where(label) {
+:where(:is(j-field, j-field-group) label) {
   -webkit-tap-highlight-color: transparent;
 }
 
-:where(j-field, j-field-group) :where(label) {
-  font: var(--font-label);
+:where(:is(j-field, j-field-group) label:first-child) {
+  font: var(--font-field-label);
 }
 
-:where(j-field:focus-within) :where(label) {
+:where(:is(j-field, j-field-group):focus-within > label:first-child) {
   color: var(--color-accent);
 }
 
-:where(j-field[type=radio], j-field[type=checkbox]) {
-  display: inline-block;
-}
-
-:where(j-field[type=radio], j-field[type=checkbox]) :where(label) {
-  display: initial;
-  font: inherit;
-  color: inherit;
+:where(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child)) {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: var(--size-8, 0.5rem);
+  row-gap: var(--size-4, 0.25rem);
   vertical-align: middle;
-  margin-bottom: 0;
 }
 
-:where(j-field[type=radio], j-field[type=checkbox]) :where(input + label) {
-  margin-inline-start: var(--size-2, 0.125rem);
+:where(:is(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child)) input:not(:first-child)) {
+  grid-row: 1;
 }
 
-:where(j-field, j-field-group) :where([description], [validation-message]) {
-  font-size: var(--font-size-s, 0.875em);
+:where(:is(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child))) :where(:not(input:first-child)) {
+  grid-column: 1;
+}
+
+:where(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child)) :where(input:not(:first-child), input:first-child ~ *) {
+  grid-column: 2;
+}
+
+:where(:is(j-field, j-field-group) :is([description], [validation-message])) {
+  font: var(--font-field-description);
   margin: 0;
   color: var(--color-low-contrast);
 }
@@ -494,7 +504,7 @@ j-field-group j-field {
   transition: none;
 }
 
-:where(input[type=range]):where(:focus, :focus-visible) {
+:where(input[type=range]:is(:focus, :focus-visible)) {
   box-shadow: none !important;
 }
 

@@ -97,6 +97,7 @@ All native input types are supported without extra effort.
 <j-field>
   <input type="checkbox" required>
   <label>Accept terms and conditions</label>
+  <p description>You need to accept these before continuing</p>
 </j-field>
 ```
 
@@ -117,21 +118,21 @@ All native input types are supported without extra effort.
 ### Checkbox group
 <render-example></render-example>
 ```html
-<j-field-group>
-  <label>Options</label>
+<j-field-group aria-labelledby="foo">
+  <label id="foo">Options</label>
   <p description>Description for checkbox group</p>
-  <j-field>
+  <label>
     <input type="checkbox">
-    <label>Option one</label>
-  </j-field>
-  <j-field>
+    Option one
+  </label>
+  <label>
     <input type="checkbox">
-    <label>Option two</label>
-  </j-field>
-  <j-field>
+    Option two
+  </label>
+  <label>
     <input type="checkbox">
-    <label>Option three</label>
-  </j-field>
+    Option three
+  </label>
 </j-field-group>
 ```
 
@@ -140,18 +141,18 @@ All native input types are supported without extra effort.
 ```html
 <j-field-group>
   <label>Options</label>
-  <j-field>
+  <label>
     <input type="radio" required>
-    <label>Option one</label>
-  </j-field>
-  <j-field>
+    Option one
+  </label>
+  <label>
     <input type="radio">
-    <label>Option two</label>
-  </j-field>
-  <j-field>
+    Option two
+  </label>
+  <label>
     <input type="radio">
-    <label>Option three</label>
-  </j-field>
+    Option three
+  </label>
 </j-field-group>
 ```
 
