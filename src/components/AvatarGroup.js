@@ -12,7 +12,7 @@ const styles = `
   }
 
   /* TODO the reverse variant can't apply the correct clip/mask on the overflow button */
-  /* Arguably, reverse stacking should not be used togethet with collapsing, as it can obscure the '+4' label */
+  /* Arguably, reverse stacking should not be used together with collapsing, as it can obscure the overflow label (e.g. '+4') */
   :host(:not([theme~=reverse])) ::slotted(:not([slot=menu], :last-child)),
   :host([theme~=reverse]) ::slotted(:not([slot=menu], :first-child)) {
     --avatar-clip-fill: black;
