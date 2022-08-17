@@ -26,6 +26,7 @@ html {
   margin-bottom: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
   -webkit-user-select: none;
   user-select: none;
+  contain: strict;
 }
 
 :where(icon[search]) {
