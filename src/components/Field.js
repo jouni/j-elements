@@ -1,4 +1,5 @@
 import { DefineElementMixin } from '../util/DefineElementMixin.js';
+import { MutationsMixin } from '../util/MutationsMixin.js';
 
 let fieldId = 0;
 
@@ -10,31 +11,28 @@ let fieldId = 0;
  *
  * TODO: sets aria-invalid on the input element
  */
-export class Field extends DefineElementMixin(HTMLElement) {
+export class Field extends MutationsMixin(DefineElementMixin(HTMLElement)) {
+  observedMutations = { childList: true, attributes: true, subtree: true };
+
   constructor() {
     super();
     this.__id = `${this.localName}-${fieldId++}__`;
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     this.addEventListener('focusout', this._onFocusOut);
     this.addEventListener('change', this._onChange);
     this.addEventListener('input', this._onInput);
-
-    if (!this.__mutationObserver) {
-      this.__mutationObserver = new MutationObserver(this._onMutation.bind(this));
-    }
-
-    this.__mutationObserver.observe(this, { childList: true, attributes: true, subtree: true });
-
-    this._onMutation();
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
+
     this.removeEventListener('focusout', this._onFocusOut);
     this.removeEventListener('change', this._onChange);
     this.removeEventListener('input', this._onInput);
-    this.__mutationObserver.disconnect();
   }
 
   _onFocusOut(e) {
@@ -56,15 +54,8 @@ export class Field extends DefineElementMixin(HTMLElement) {
     }
   }
 
-  _onMutation(e) {
-    if (!this.__processingMutations) {
-      clearTimeout(this.__mutationsDebounce);
-      this.__mutationsDebounce = setTimeout(() => {
-        this.__processingMutations = true;
-        this._updateState();
-        requestAnimationFrame(() => this.__processingMutations = false);
-      }, 1);
-    }
+  handleMutations() {
+    this._updateState();
   }
 
   _updateState() {
@@ -103,8 +94,9 @@ export class Field extends DefineElementMixin(HTMLElement) {
         inputElement.setAttribute('aria-describedby', descriptions.reduce((acc, desc) => acc + ' ' + desc.id, ''));
       });
 
+      // TODO no way to mark a checkbox group as required at the moment ("choose at least one")
       let indicatorElement = labelElement?.querySelector('[required-indicator], [error-indicator]') || document.createElement('span');
-      if (this.querySelector(':required') || this.hasAttribute('invalid')) {
+      if (labelElement && this.querySelector(':required') || this.hasAttribute('invalid')) {
         indicatorElement.setAttribute(this.hasAttribute('invalid') ? 'error-indicator' : 'required-indicator', '');
         indicatorElement.removeAttribute(this.hasAttribute('invalid') ? 'required-indicator' : 'error-indicator', '');
         indicatorElement.setAttribute('aria-hidden', 'true');

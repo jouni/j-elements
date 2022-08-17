@@ -1,4 +1,5 @@
 import { DefineElementMixin } from '../util/DefineElementMixin.js';
+import { MutationsMixin } from '../util/MutationsMixin.js';
 import './Menu.js';
 
 const FORCED_COLLAPSE_CLASS = 'overflow-menu';
@@ -20,8 +21,12 @@ const styles = `
   }
 `;
 
-export class OverflowMenu extends DefineElementMixin(HTMLElement) {
+export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)) {
+  observedMutations = { childList: true };
+
   connectedCallback() {
+    super.connectedCallback();
+
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.innerHTML = `
@@ -42,16 +47,18 @@ export class OverflowMenu extends DefineElementMixin(HTMLElement) {
       this._overflowButton.setAttribute('slot', 'overflow-button');
 
       this.__resizeObserver = new ResizeObserver(this._requestUpdate.bind(this));
-      this.__mutationObserver = new MutationObserver(this._requestUpdate.bind(this));
     }
 
     this.__resizeObserver.observe(this);
-    this.__mutationObserver.observe(this, { childList: true });
   }
 
   disconnectedCallback() {
     this.__resizeObserver.disconnect();
-    this.__mutationObserver.disconnect();
+    super.disconnectedCallback();
+  }
+
+  handleMutations() {
+    this._requestUpdate();
   }
 
   _requestUpdate() {

@@ -1,4 +1,5 @@
 import { DefineElementMixin } from '../util/DefineElementMixin.js';
+import { MutationsMixin } from '../util/MutationsMixin.js';
 
 const styles = `
   :host {
@@ -47,8 +48,12 @@ const styles = `
   }
 `;
 
-export class InputDecorator extends DefineElementMixin(HTMLElement) {
+export class InputDecorator extends DefineElementMixin(MutationsMixin(HTMLElement)) {
+  observedMutations = { childList: true, characterData: true, subtree: true };
+
   connectedCallback() {
+    super.connectedCallback();
+
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
       this.shadowRoot.innerHTML = `
@@ -60,26 +65,16 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
     }
 
     this.addEventListener('input', this._updateSize);
-
-    if (!this.__mutationObserver) {
-      this.__mutationObserver = new MutationObserver(this._onMutation.bind(this));
-    }
-
-    this.__mutationObserver.observe(this, { childList: true });
-
-    this._onMutation();
-    this._updateSize();
   }
 
   disconnectedCallback() {
     this.removeEventListener('input', this._updateSize);
-    this.__mutationObserver.disconnect();
+    super.disconnectedCallback();
   }
 
-  _onMutation() {
+  handleMutations() {
     const prefix = this.shadowRoot.querySelector('slot[name="prefix"]');
     const suffix = this.shadowRoot.querySelector('slot[name="suffix"]');
-    const input = this.querySelector('input, textarea, select');
 
     const prefixRect = prefix.getBoundingClientRect();
     if (prefix.assignedElements().length > 0 && prefixRect.width > 0) {
@@ -94,10 +89,14 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
     } else {
       this.style.removeProperty('--suffix-width');
     }
+
+    this._updateSize();
   }
 
   // TODO should use a ResizeObserver as well to call it
   _updateSize() {
+    this.pauseMutations();
+
     const input = this.querySelector('input, textarea, select');
     const dimension = input.localName == 'textarea' ? 'Height' : 'Width';
 
@@ -140,6 +139,8 @@ export class InputDecorator extends DefineElementMixin(HTMLElement) {
       this.style[dimension.toLowerCase()] = '';
       input.style[dimension.toLowerCase()] = '';
     }
+
+    this.resumeMutations();
   }
 }
 
