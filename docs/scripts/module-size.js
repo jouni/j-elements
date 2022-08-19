@@ -1,10 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
-const gzip = zlib.createGzip();
-const gunzip = zlib.createGunzip();
-const minify = require('@node-minify/core');
-// const uglifyes = require('@node-minify/uglify-es');
 
 const root = path.resolve(__dirname, '../../src');
 
@@ -25,22 +21,6 @@ async function traverseFolder(dirPath, stats) {
         resolve();
       } else {
         let fileContents = fs.readFileSync(filePath, "utf8");
-
-        // if (file.indexOf('.js') > 0) {
-        //   // Minify JS files
-        //   const min = await minify({
-        //     compressor: uglifyes,
-        //     content: fileContents,
-        //     options: {
-        //       warnings: true,
-        //       mangle: {
-        //         properties: true
-        //       },
-        //       compress: true,
-        //     }
-        //   });
-        //   fileContents = min;
-        // }
 
         // Remove comments
         // fileContents = fileContents.replace(/(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gm, '');
