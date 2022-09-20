@@ -2,18 +2,20 @@
 title: Popup
 layout: page
 imports:
-  /src/components/HasPopup.js
+  /src/util/PopupMixin.js
+  /src/util/positionPopup.js
 eleventyNavigation:
   key: Popup
   parent: Prototypes
   order: 51
 ---
 
-A base class that can be used to create components that have a popup. A click event from within the main element shows the popup. Use `slot="trigger"` to mark a dedicated trigger element.
+A mixin class that can be used to create components that have a popup. A click event from within the main element shows the popup. Use `slot="trigger"` to mark a dedicated trigger element.
 
 The popup is placed below and aligned with the leading edge of the anchoring element (the first element inside the main element). Depending on the size of the popup and the available space around the anchoring element, the popup may also be placed above and aligned with the trailing edge of the anchoring element.
 
 <render-example></render-example>
+
 ```html
 <x-popup>
   <button slot="trigger">Open popup</button>
@@ -21,9 +23,9 @@ The popup is placed below and aligned with the leading edge of the anchoring ele
 </x-popup>
 
 <script type="module">
-  import { HasPopup } from '/src/components/HasPopup.js';
+  import { PopupMixin } from '/src/util/PopupMixin.js';
 
-  customElements.define('x-popup', class extends HasPopup {});
+  customElements.define('x-popup', class extends PopupMixin(HTMLElement) {});
 </script>
 ```
 
@@ -33,7 +35,7 @@ The host element is not meant to be styled, and defines `display: contents` by d
 
 Use `::part(popup)` to style the popup element. A margin can be used to make space between the triggering element and the browser viewport. The margin should be uniform, meaning the same value is used for all sides of the popup.
 
-The `--anchor-width` custom property is set on the `::part(popup)` element, and it defines the width of the triggering/anchoring element (the button in the example before). You can use it to make the popup always the same size as the triggering/anchroring element.
+The `--anchor-width` and `--anchor-height` custom properties are set on the `:host` element, and it defines the width of the triggering/anchoring element (the button in the example before). You can use it to make the popup always the same size as the triggering/anchroring element.
 
 ## Accessibility
 

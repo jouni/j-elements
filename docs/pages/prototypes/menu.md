@@ -3,14 +3,15 @@ title: Menu
 layout: page
 imports:
   /src/components/Menu.js
-  /src/components/HasPopup.js
+  /src/util/PopupMixin.js
+  /src/util/positionPopup.js
 eleventyNavigation:
   key: Menu
   parent: Prototypes
   order: 55
 ---
 
-The menu utilizes the [`HasPopup`](/prototypes/popup) base class.
+The menu utilizes the [`PopupMixin`](/prototypes/popup) base class.
 
 <render-example></render-example>
 ```html
