@@ -43,7 +43,7 @@ function queueMutations(mutations) {
 function processMutations() {
   queue.forEach(mutation => {
     if (mutation.type == 'childList') {
-      [...mutation.target.querySelectorAll('[tooltip]')].forEach(el => addTooltip(el));
+      mutation.target.querySelectorAll('[tooltip]').forEach(el => addTooltip(el));
       [...mutation.removedNodes].forEach(node => {
         if (node.nodeType == 1) {
           if (node.hasAttribute('tooltip')) removeTooltip(node);
