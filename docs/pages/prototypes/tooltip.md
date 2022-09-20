@@ -36,6 +36,8 @@ document.querySelector('button + button').addEventListener('click', function() {
 </script>
 ```
 
+**Major/blocker issue: tooltips like this can't be show for items inside `<dialog>`, meaning any menus/popups.**
+
 Ideas
 - when you import "tooltip.js", one "tooltip controller/service" is added globally to document body
 - starts a mutation observer on the document
