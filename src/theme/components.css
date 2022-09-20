@@ -565,6 +565,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
 
 ::part(popup) {
   background: var(--background-above);
+  /* TODO create shadow tokens */
   box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
   padding: var(--size-8, 0.5rem);
   border-radius: var(--border-radius-l);
@@ -689,4 +690,20 @@ j-avatar-group :where([slot="overflow-button"]) {
   border: var(--avatar-border-width, 2px) solid var(--avatar-border-color, transparent);
   padding: 0;
   font: inherit;
+}
+
+:where(j-tooltip) {
+  animation: fade-in .2s 1s both;
+  background-color: var(--background-ui);
+  color: var(--color);
+  box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
+  padding: var(--size-4, 0.25rem);
+  margin: var(--size-4, 0.25rem);
+  font-size: var(--font-size-s);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
 }
