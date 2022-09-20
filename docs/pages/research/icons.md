@@ -14,7 +14,7 @@ The current way of defining and using icons in a Vaadin application involves Jav
 
 For icons used in components, a custom icon font is needed to be able to override them. This leads to duplication of the same icon in two formats.
 
-If we agree that icon fonts are the least desirable option for icons, we have two options left: defining SVG-based icons in JavaScript or CSS.
+If we agree that icon fonts are the least desirable option for icons, as they are the most difficult to author (binary formats), we have two options left: defining SVG-based icons in JavaScript or CSS.
 
 ## Defining icons in JavaScript
 
