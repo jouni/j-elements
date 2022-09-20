@@ -113,19 +113,29 @@ html,
 html,
 :host {
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-serif:;
+  --font-family-serif: ui-serif, serif;
   --font-family-monospace: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --font-family: var(--font-family-sans-serif);
 
-  /* Using viewport based font sizes causes rendering issues with Avatar clip path in Safari */
-  --font-size-3xl: clamp(2rem, 3vw, 3rem);
+  /* TODO Using viewport based font sizes causes rendering issues with Avatar clip path in Safari */
+  /* TODO Viewport-based font-sizing is not ideal in many cases. We might rather want container-based sizing (upcoming cqw) or opt-in presets developers can apply if desired */
+  /* --font-size-3xl: clamp(2rem, 3vw, 3rem);
   --font-size-2xl: clamp(1.625rem, 2.4vw, 2.375rem);
-  --font-size-2xs: clamp(0.6875rem, 0.95vw, 0.8125rem);
   --font-size-xl: clamp(1.375rem, 1.8vw, 1.75rem);
   --font-size-l: clamp(1.125rem, 1.4vw, 1.375rem);
   --font-size-m: clamp(1rem, 1.125vw, 1.125rem);
   --font-size-s: clamp(0.875rem, 1.05vw, 1rem);
   --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --font-size-2xs: clamp(0.6875rem, 0.95vw, 0.8125rem); */
+
+  --font-size-3xl: 2.5rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-l: 1.25rem;
+  --font-size-m: 1rem;
+  --font-size-s: 0.875rem;
+  --font-size-xs: 0.8125rem;
+  --font-size-2xs: 0.75rem;
 
   --font-weight-strongest: 600;
   --font-weight-strong: 500;
