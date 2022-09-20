@@ -144,11 +144,12 @@
 /* Select */
 
 :where(select) {
-  padding-inline-end: var(--select-padding-inline-end, var(--size-32, 2rem));
+  --_padding-inline-end: var(--select-padding-inline-end, calc(var(--icon-size, 1.125em) + var(--size-8, 0.5rem) * 2));
+  padding-inline-end: var(--_padding-inline-end);
   background-image: var(--select-background-image);
   background-repeat: no-repeat;
   background-size: var(--icon-size, 1.125em);
-  background-position: calc(100% - var(--select-background-position-x, var(--size-8, 0.5rem))) 50%;
+  background-position: right calc((var(--_padding-inline-end) - var(--icon-size, 1.125em)) / 2) center;
   background-blend-mode: var(--select-background-blend-mode, multiply);
   --select-background-image: var(--icon-chevron-down-gray);
 }
@@ -198,17 +199,23 @@
 :where(button) {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-12, 0.75rem);
   background: var(--button-background, var(--background-ui));
-  border: var(--button-border, 1px solid transparent); /* Should match with textinput-border, so that the heights are equal */
+  border: var(--button-border, 1px solid transparent); /* Should match with --textinput-border, so that the heights are equal */
   border-radius: var(--button-border-radius, var(--border-radius-m));
   color: var(--button-color, var(--color));
   font: var(--button-font, var(--font-button, inherit));
-  padding: var(--button-padding, var(--size-8, 0.5rem) var(--size-12, 0.75rem));
+  padding: var(--button-padding, var(--size-8, 0.5rem) var(--size-16, 1rem));
+  min-width: var(--button-min-width, var(--size-40, 2.5rem));
+  min-height: var(--button-min-height, var(--size-40, 2.5rem));
   box-sizing: border-box;
   margin: 0;
   vertical-align: middle;
   touch-action: manipulation;
-  transition: background-color 0.15s;
+  transition: background 0.15s;
 }
 
 @media (any-hover: hover) {
@@ -232,7 +239,6 @@
   --button-active-background: var(--button-primary-active-background, var(--background-accent-active));
   --button-color: var(--button-primary-color, var(--background));
   --button-border: var(--button-primary-border, 1px solid transparent);
-
 }
 
 :where(button[theme~=tertiary]) {
@@ -245,7 +251,9 @@
 
 :where(button[theme~=small]) {
   --button-font: var(--button-small-font, var(--font-button-small));
-  --button-padding: var(--button-small-padding, var(--size-6, 0.375rem) var(--size-8, 0.5rem));
+  --button-padding: var(--button-small-padding, var(--size-6, 0.375rem) var(--size-12, 0.75rem));
+  --button-min-width: var(--size-32, 2rem);
+  --button-min-height: var(--size-32, 2rem);
 }
 
 :where(button:disabled) {
@@ -257,9 +265,8 @@
   --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
 
-:where(button) :where(icon) + *,
-:where(button) * + :where(icon)  {
-  margin-inline-start: var(--size-8, 0.5rem);
+:where(button) icon {
+  margin: 0 calc(var(--size-6, 0.375rem) * -1);
 }
 
 /* Checkbox & Radio Button*/
@@ -538,7 +545,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
 
 /* Menu */
 :where(button[role=menuitem]) {
-  text-align: start;
+  justify-content: start;
 }
 
 :where(button[role=menuitem]:not(:active, [active], :hover)) {

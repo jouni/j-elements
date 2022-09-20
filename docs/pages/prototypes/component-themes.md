@@ -72,6 +72,17 @@ Buttons don't define a fixed height. They are sized by their content. Different 
   <button theme="small"><icon search></icon> Secondary</button>
   <button theme="tertiary small">Tertiary <icon arrow-right></icon></button>
 </div>
+<h5>Icon</h5>
+<div>
+  <button theme="primary"><icon search></icon></button>
+  <button theme=""><icon search></icon></button>
+  <button theme="tertiary"><icon search></icon></button>
+</div>
+<div>
+  <button theme="primary small"><icon search></icon></button>
+  <button theme="small"><icon search></icon></button>
+  <button theme="tertiary small"><icon search></icon></icon></button>
+</div>
 <h5>Disabled</h5>
 <div>
   <button disabled theme="primary">Primary</button>
@@ -86,8 +97,10 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 `--button-border-radius` `var(--border-radius-m)`
 
 `--button-padding` `var(--size-8, 0.5rem) var(--size-12, 0.75rem)`
+The vertical padding should match the vertical padding defined in `--textinput-padding`.
 
 `--button-font` `var(--font-button)`
+The line-height should match the line-height defined in `--textinput-font`.
 
 #### Secondary variant (default)
 
@@ -99,7 +112,8 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 
 `--button-color` `var(--color)`
 
-`--button-border` `none`
+`--button-border` `1px solid transparent`
+The border width should match the width defined in `--textinput-border`.
 
 #### Primary variant
 
@@ -196,6 +210,7 @@ These tokens apply to Select as well.
 `--textinput-readonly-background` `var(--textinput-readonly-background, var(--background))`
 
 `--textinput-border` `var(--border-ui)`
+The border width should match the width defined in `--button-border`.
 
 `--textinput-hover-border` `var(--textinput-border, var(--border-ui-hover))`
 
@@ -210,19 +225,23 @@ These tokens apply to Select as well.
 `--textinput-border-radius` `var(--border-radius-m)`
 
 `--textinput-font` `var(--font-textinput, inherit)`
+The line-height should match the line-height defined in `--button-font`.
 
 `--textinput-color` `var(--color)`
 
 `--textinput-disabled-color` `var(--color-disabled)`
 
 `--textinput-padding` `var(--size-8, 0.5rem)`
+The vertical padding should match the vertical padding defined in `--button-padding`.
 
 `--textinput-small-padding` `var(--size-6, 0.375rem)`
+The vertical padding should match the vertical padding defined in `--button-small-padding`.
 
 </render-props>
 
 
 ## Select
+
 <render-example></render-example>
 ```html
 <select>
@@ -247,15 +266,15 @@ These tokens apply to Select as well.
 ```
 
 ### Select tokens
-See the tokens for Text Input.
+All Text Input tokens apply for Select as well.
 
 <render-props>
 
-`--select-padding-inline-end` `var(--size-32, 2rem)`
+`--select-padding-inline-end` `calc(var(--icon-size) + var(--size-8) * 2)`
 Used to reserve the space for the drop down icon, which is set as a background image.
 
 `--select-background-image` `var(--icon-chevron-down-gray)`
-A `url(data:...)`, which is used for the drop down icon. Use a neutral gray color if to support both light and dark mode with the same image/icon.
+A `url(data:...)`, which is used for the drop down icon. Use a neutral gray color to support both light and dark mode with the same image/icon.
 
 `--select-background-blend-mode` `multiply` (`screen` in dark mode)
 Background blend mode is used to support the both light and dark mode with a single image/icon.
@@ -268,18 +287,22 @@ Background blend mode is used to support the both light and dark mode with a sin
 <input type="checkbox">
 <input type="checkbox" checked>
 <input type="checkbox" class="indeterminate">
-
 <h5>Disabled</h5>
 <input type="checkbox" disabled>
 <input type="checkbox" disabled checked>
 <input type="checkbox" disabled class="indeterminate">
-
 <script>
 [...document.querySelectorAll('input.indeterminate')].forEach(checkbox =>
   checkbox.indeterminate = true
 );
 </script>
 ```
+
+### Checkbox tokens
+
+<render-props>
+TODO
+</render-props>
 
 ## Radio Button
 <render-example></render-example>
@@ -292,12 +315,26 @@ Background blend mode is used to support the both light and dark mode with a sin
 <input type="radio" disabled name="disabled-example" checked>
 ```
 
+### Radio Button tokens
+
+<render-props>
+TODO
+</render-props>
+
+
 ## Slider
 <render-example></render-example>
 ```html
 <input type="range">
 <input type="range" disabled>
 ```
+
+### Slider tokens
+
+<render-props>
+TODO
+</render-props>
+
 
 ## Details
 <render-example></render-example>
@@ -318,12 +355,14 @@ Background blend mode is used to support the both light and dark mode with a sin
   <summary>Summary</summary>
   <input value="Input">
   <button>Button</button>
+  <input type="range">
 </details>
 
 <details theme="filled reverse">
   <summary>Summary</summary>
   <input value="Input">
   <button>Button</button>
+  <input type="range">
 </details>
 
 <h5>Disabled</h5>
@@ -343,6 +382,13 @@ details + details {
   margin-top: 1rem;
 }
 </style>
+
+### Details tokens
+
+<render-props>
+TODO
+</render-props>
+
 
 <!--
 ## Definition list
