@@ -70,7 +70,9 @@ The proprietary `theme` attribute is almost the same as the standard `class` att
 
 Using the `theme` attribute  is likely not a big issue for most developers, as copy-pasting code from examples is easy enough, and the exact API naming is perhaps not much of a concern. Styling sub-components is a case that needs a solution, though, so without the `theme` attribute the `class` attribute would need to be copied to sub-components.
 
-One aspect where the `theme` attribute is clearly worse than the standard `class` attribute is the DOM API for manipulating the values. Adding, removing, and toggling class names is very easy through the `classList` API, whereas with the `theme` attribute developers have to manually manipulate a space-separated string value.
+One aspect where the `theme` attribute is clearly worse than the standard `class` attribute is the DOM API for manipulating the values. Adding, removing, and toggling class names is very easy through the `classList` API, whereas with the `theme` attribute developers have to manually manipulate a space-separated string value. Though, component variants are most often statically defined and not modified at runtime, so this could be an irrelevant point.
+
+CSS selector performance could be an issue to consider, as class selectors are faster than attribute selectors, especially in Safari using global styles ([source](https://nolanlawson.com/2022/06/22/style-scoping-versus-shadow-dom-which-is-fastest/)).
 
 ## Theme implementation
 
@@ -81,7 +83,7 @@ The [theme tokens](/prototypes/tokens/) and [component themes](/prototypes/compo
 
 Themes for standard HTML elements should be delivered as plain `.css` files, not wrapped inside JavaScript modules. More complex components will still likely want to package their core theme with the JavaScript module, although I would recommend that additional themes such as "Lumo" or "Material" are maintained in plain `.css` files, and are opt-in by the user on top of the main component JavaScript import.
 
-Importing CSS from JavaScript files should work via standard API: https://web.dev/css-module-scripts/, although it has the limitation of no supporting nested `@import` statements. I would assume front-end build tools (webpack, Vite) should handle this use case.
+Importing CSS from JavaScript files should work via standard API: https://web.dev/css-module-scripts/, although it has the limitation of not supporting nested `@import` statements. I would assume front-end build tools (webpack, Vite) should handle this use case.
 
 
 <!-- ## Component sizing and spacing
