@@ -36,7 +36,7 @@ input[type=text]:focus {
 
 }
 ```
-While they are similar in selector complexity, the HTML element selectors require less explicit documentation from our part, as that is readily available online with a vast number of tutorials explaining how to style HTML elements.
+While they are similar in selector complexity, the HTML element selectors require less explicit documentation from our part, as that is readily available online with a vast number of tutorials explaining how to style HTML elements. Also, attribute selectors are the worst performing CSS selector (the data doesn't show pseudo-classes, I assume them to be as fast as regular classes): https://nolanlawson.com/2022/06/22/style-scoping-versus-shadow-dom-which-is-fastest/
 
 There might have been a need to reimplement basic HTML elements before, due to older browsers. With modern browsers, we can reconsider that and avoid making theming/styling more complicated than necessary.
 
