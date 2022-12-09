@@ -10,6 +10,8 @@ eleventyNavigation:
   order: 40
 ---
 
+<!-- TODO Disabled fields and field groups -->
+
 ## Label and description
 Wrap any native input element and a label with `<j-field>`, and accessibility is handled for you automatically without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
 
