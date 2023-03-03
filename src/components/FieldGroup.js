@@ -1,3 +1,4 @@
+// TODO remove, replace with standard <fieldset> instead
 import { Field } from './Field.js';
 
 /**
