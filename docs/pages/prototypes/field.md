@@ -113,9 +113,13 @@ All native input types are supported without extra effort.
 
 ## Field group
 
+<!-- TODO remove, replace with <fieldset> + <legend> -->
+<!-- OR hmm, how do you create a more complex fieldset then? -->
+
 `<j-field-group>` allows you to group multiple checkbox or radio button fields together. For radio buttons, you don't need to decide on a name for the group, if you don't want to.
 
 ### Checkbox group
+
 <render-example></render-example>
 ```html
 <j-field-group aria-labelledby="foo">
