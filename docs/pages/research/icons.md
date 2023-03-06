@@ -39,6 +39,10 @@ Drawbacks:
 - Less customizable using CSS (for example, can't adjust `stroke-width`)
 - No multi-color icons (except with opacity)
 
+<!--
+TODO how to define RTL compatible icons easily?
+-->
+
 
 ## Authoring an using icons
 
