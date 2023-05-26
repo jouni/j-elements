@@ -7,8 +7,8 @@ const styles = `
     }
 
     [part="popup"] {
-      width: var(--popup-min-width);
-      min-width: fit-content;
+      min-width: var(--popup-min-width);
+      width: fit-content;
     }
 
     [part="popup"],
@@ -23,8 +23,12 @@ const styles = `
     }
 
     ::slotted(hr) {
-      margin: 0 !important;
-      width: 100%;
+      all: unset !important;
+      height: var(--divider-height, 1px) !important;
+      margin: var(--divider-margin, 0.5rem 0.25rem) !important;
+      background: var(--divider-color, currentColor) !important;
+      flex: none !important;
+      align-self: stretch !important;
     }
 
     :is(slot:not([name]), slot[name=""])::slotted(*) {
@@ -45,6 +49,8 @@ export class Menu extends DefineElementMixin(PopupMixin(HTMLElement)) {
       this._popup.setAttribute('role', 'menu');
       this._popup.addEventListener('click', this._onClick.bind(this));
       this._popup.addEventListener('item-click', this.closePopup.bind(this));
+      this._popup.addEventListener('keydown', this._onKeyDown.bind(this));
+      this._popup.addEventListener('mousemove', this._onMouseOver);
 
       const popupSlot = this.shadowRoot.querySelector('slot:not([name]), slot[name=""]');
       popupSlot.onslotchange = () => {
@@ -66,15 +72,30 @@ export class Menu extends DefineElementMixin(PopupMixin(HTMLElement)) {
     this._triggerElement.setAttribute('aria-haspopup', 'menu');
   }
 
-  _onOpenPopup() {
-    super._onOpenPopup();
-    this._menuItems.find(button => !button.hasAttribute('disabled'))?.focus();
-  }
-
   _onClick(e) {
     const button = e.target.closest('button');
     if (this._menuItems.includes(button) && !button?.hasAttribute('aria-haspopup')) {
       button.dispatchEvent(new CustomEvent('item-click', { bubbles: true, composed: true }));
+      e.stopPropagation();
+    }
+  }
+
+  _onKeyDown(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      e.stopPropagation();
+      const activeItems = this._menuItems.filter(item => !item.hasAttribute('disabled'));
+      let index = activeItems.indexOf(document.activeElement);
+      index += (e.key === 'ArrowDown') ? 1 : -1;
+      if (index < 0) index = activeItems.length - 1;
+      if (index >= activeItems.length) index = 0;
+      activeItems[index].focus();
+    }
+  }
+
+  _onMouseOver(e) {
+    if (e.target.getAttribute('role') === 'menuitem' && !e.target.hasAttribute('disabled')) {
+      e.target.focus({ preventScroll: true, focusVisible: false });
     }
   }
 }

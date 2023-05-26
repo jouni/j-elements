@@ -2,7 +2,7 @@ import { positionPopup } from '../util/positionPopup.js';
 
 export const tooltipElement = document.createElement('j-tooltip');
 tooltipElement.style.setProperty('position', 'fixed');
-tooltipElement.style.setProperty('z-index', 'var(--tooltip-z-index, 9999');
+tooltipElement.style.setProperty('z-index', 'var(--tooltip-z-index, 9999)');
 tooltipElement.style.setProperty('top', '0');
 tooltipElement.style.setProperty('left', '0');
 tooltipElement.addEventListener('mouseenter', showTooltip);
@@ -88,6 +88,29 @@ function showTooltip() {
   clearTimeout(hideTimeout);
   if (currentTarget != this && this != tooltipElement) {
     currentTarget = this;
+
+    // Move the tooltip element inside dialogs to make it visible on top of them
+    const dialog = closestDialog(currentTarget);
+    if (dialog && tooltipElement.parentNode !== dialog) {
+      // Special case for Menu and OverflowMenu implementations
+      let host = dialog.getRootNode().host;
+      while (host && host.getRootNode().host) {
+        host = host.getRootNode().host;
+      }
+      if (host) {
+        tooltipElement.slot = 'tooltip';
+        host.appendChild(tooltipElement);
+      } else {
+        // Let's hope the dialog element is not clipping its contents...
+        tooltipElement.slot = '';
+        dialog.appendChild(tooltipElement);
+      }
+    } else if (tooltipElement.parentNode !== document.body) {
+      // Otherwise move it back to body
+      tooltipElement.slot = '';
+      document.body.appendChild(tooltipElement);
+    }
+
     tooltipElement.textContent = this.getAttribute('tooltip');
     tooltipElement.style.removeProperty('display');
   }
@@ -147,4 +170,12 @@ function unlistenScrollOnAncestors(target) {
   getAncestorRoots(target).forEach(root => {
     root.removeEventListener('scroll', updateTooltipPosition, true);
   });
+}
+
+function closestDialog(el) {
+  if (!el || el === document || el === window) return null;
+  if (el.localName === 'dialog') return el;
+  if (el.assignedSlot) return closestDialog(el.assignedSlot);
+  if (el.parentNode?.host) return closestDialog(el.parentNode.host);
+  return closestDialog(el.parentNode);
 }

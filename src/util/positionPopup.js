@@ -78,5 +78,13 @@ export function positionPopup(popupElement, anchorElement) {
     x = Math.max(x, 0);
   }
 
+  if (popupElement.slot === 'tooltip') {
+    // Need to adjust coordinates inside a menu dialog
+    let tooltipSlot = popupElement.assignedSlot;
+    while (tooltipSlot.slot === 'tooltip') tooltipSlot = tooltipSlot.assignedSlot;
+    const dialogBox = tooltipSlot.parentNode.getBoundingClientRect();
+    x -= dialogBox.x;
+    y -= dialogBox.y;
+  }
   popupElement.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
 }

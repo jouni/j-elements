@@ -19,6 +19,16 @@ const styles = `
   :host(:not([overflow])) slot[name="overflow-button"] {
     display: none;
   }
+
+  ::slotted(hr:not([slot="menu"])) {
+      all: unset !important;
+      height: auto !important;
+      align-self: stretch !important;
+      width: var(--divider-width, 1px) !important;
+      margin: var(--divider-margin, 0.5rem 0.25rem) !important;
+      background: var(--divider-color, currentColor) !important;
+      flex: none !important;
+    }
 `;
 
 export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)) {
@@ -35,6 +45,7 @@ export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)
         <j-menu exportparts="popup">
           <slot name="overflow-button" slot="trigger"></slot>
           <slot name="menu"></slot>
+          <slot name="tooltip" slot="tooltip"></slot>
         </j-menu>
       `;
 
@@ -71,7 +82,7 @@ export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)
   _updateOverflowingItems() {
     for (let i = 0; i < this.children.length; i++) {
       const child = this.children[i];
-      if (child.getAttribute('slot') != 'overflow-button') {
+      if (child.slot !== 'overflow-button' && child.slot !== 'tooltip') {
         if (child.classList.contains(FORCED_COLLAPSE_CLASS)) {
           child.setAttribute('slot', 'menu');
         } else {
@@ -93,10 +104,10 @@ export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)
 
     // Make this.scrollWidth report a different value than this.offsetWidth
     if (getComputedStyle(this).getPropertyValue('justify-content') == 'flex-end') {
-      this.style.setProperty('flex-direction', 'row-reverse');
+      this.style.setProperty('justify-content', 'flex-start');
     }
 
-    const visibleItems = this.querySelectorAll(`:scope > :not(.${FORCED_COLLAPSE_CLASS}):not([slot="overflow-button"])`);
+    const visibleItems = this.querySelectorAll(`:scope > :not(.${FORCED_COLLAPSE_CLASS}):not([slot="overflow-button"],[slot="tooltip"])`);
 
     for (let i = visibleItems.length - 1; i >= 0; i--) {
       const child = visibleItems[i];
@@ -111,7 +122,7 @@ export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)
 
     // Clear workaround styles
     popup.style.removeProperty('display');
-    this.style.removeProperty('flex-direction');
+    this.style.removeProperty('justify-content');
   }
 }
 

@@ -9,6 +9,8 @@ eleventyNavigation:
   order: 80
 ---
 
+An easy way to add customizable tooltips to any element, by simply adding the `tooltip` attribute on them.
+
 <render-example></render-example>
 ```html
 <button tooltip="Add item">
@@ -36,19 +38,10 @@ document.querySelector('button + button').addEventListener('click', function() {
 </script>
 ```
 
-**Major/blocker issue: tooltips like this can't be show for items inside `<dialog>`, meaning any menus/popups.**
-
-Ideas
-- when you import "tooltip.js", one "tooltip controller/service" is added globally to document body
-- starts a mutation observer on the document
-- when a node is added/connected or removed/disconnected (or the attribute is added/removed), check if it has "tooltip" attribute, and attach/detach related event listeners
-  - mousein/mouseout, focusin/focusout
-  - when triggered, fetch the "tooltip" attribute text value and show the overlay
+TODO:
 - configuration could be done using CSS custom props
-  - --tooltip-alignment - on which side to show the tooltip preferably
-  - --tooltip-anchor - TODO/QUESTION: how could this be used to set a different tooltip anchor, like an element in the shadow root of a component? Maybe as simply as using it as a CSS selector (e.g. --tooltip-anchor: '.inner-class'), and it always looks inside the shadow root (as light dom content could just as well use the "tooltip" attribute)
+  - `--tooltip-alignment` - on which side to show the tooltip preferably
+  - `--tooltip-anchor` - QUESTION: how could this be used to set a different tooltip anchor, like an element in the shadow root of a component? Maybe as simply as using it as a CSS selector (e.g. --tooltip-anchor: '.inner-class'), and it always looks inside the shadow root (as light dom content could just as well use the "tooltip" attribute)
     - should event listeners also then be placed on that element instead of the host?
 - opt-in for shadow roots, need to  call an explicit method to start monitoring DOM changes inside a shadow tree
-  - Rich Text Editor would be an example, where each toolbar item would have its own tooltip attribute
-
-Read and learn: https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom
+- Read and learn (as the implementation is based on `MutationObserver`): https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom

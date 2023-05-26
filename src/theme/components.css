@@ -546,6 +546,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
 /* Menu */
 :where(button[role=menuitem]) {
   justify-content: start;
+  text-align: start;
 }
 
 :where(button[role=menuitem]:not(:active, [active], :hover)) {
@@ -569,11 +570,6 @@ input[type=range]:focus-visible::-moz-range-thumb {
   box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
   padding: var(--size-8, 0.5rem);
   border-radius: var(--border-radius-l);
-  gap: var(--size-2, 0.125rem);
-  border: 0;
-  margin: var(--size-4, 0.25rem);
-  max-width: calc(100% - var(--size-4, 0.25rem) * 2);
-  max-height: calc(100% - var(--size-4, 0.25rem) * 2);
   color: var(--color);
 }
 
@@ -706,4 +702,14 @@ j-avatar-group :where([slot="overflow-button"]) {
   0% {
     opacity: 0;
   }
+}
+
+:where(j-menu) {
+  --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
+  --divider-color: var(--border-color-low-contrast);
+}
+
+:where(j-overflow-menu) {
+  --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
+  --divider-color: var(--border-color-low-contrast);
 }

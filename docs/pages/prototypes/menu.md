@@ -23,7 +23,7 @@ The menu utilizes the [`PopupMixin`](/prototypes/popup) base class.
   <div role="group" aria-label="Primary actions">
     <button>Action 1</button>
     <button>Action 2</button>
-    <button>Action 3</button>
+    <button disabled>Action 3</button>
   </div>
   <hr>
   <j-menu>
