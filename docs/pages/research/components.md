@@ -169,6 +169,8 @@ The disabled state can be mimicked with `tabindex="-1"` + `pointer-events: none;
 
 See the [prototype theme implementation for details](/prototypes/component-themes/#details).
 
+<!-- TODO take into consideration: https://www.scottohara.me/blog/2022/09/12/details-summary.html -->
+
 ---
 
 <!--
