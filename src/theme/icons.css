@@ -29,7 +29,7 @@ html {
   mask-size: var(--_size);
   mask-position: 50%;
   mask-repeat: no-repeat;
-  background-color: currentColor;
+  background: currentColor;
   flex: none;
   -webkit-user-select: none;
   user-select: none;
