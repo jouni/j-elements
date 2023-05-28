@@ -14,7 +14,7 @@ html {
 }
 
 :where(icon) {
-  --_size: var(--icon-size, 1.25em);
+  --_size: var(--icon-size, 1.249em); /* with 1.25em iOS Safari doesn't always render the icon as a square */
   display: inline-block;
   vertical-align: baseline;
   width: var(--_size);
