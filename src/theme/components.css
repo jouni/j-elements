@@ -243,6 +243,8 @@
 
 :where(button[theme~=tertiary]) {
   --button-background: var(--button-tertiary-background, transparent);
+  --button-hover-background: var(--button-tertiary-hover-background, var(--background-ui));
+  --button-active-background: var(--button-tertiary-active-background, var(--background-ui-hover));
   --button-color: var(--button-tertiary-color, var(--color-accent));
   --button-hover-color: var(--button-tertiary-hover-color, var(--color-accent-high-contrast));
   --button-active-color: var(--button-tertiary-active-color, var(--color));
