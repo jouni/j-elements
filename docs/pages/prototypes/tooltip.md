@@ -13,23 +13,23 @@ An easy way to add customizable tooltips to any element, by simply adding the `t
 
 <render-example></render-example>
 ```html
-<button tooltip="Add item">
+<button tooltip="Add item" id="add-item">
   <icon plus></icon>
 </button>
 
-<button tooltip="Remove item">
+<button tooltip="Remove item" id="remove-item">
   <icon minus></icon>
 </button>
 
 <script>
-document.querySelector('button').addEventListener('click', function() {
+document.querySelector('#add-item').addEventListener('click', function() {
   const btn = document.createElement('button');
   btn.textContent = 'Button';
-  btn.setAttribute('tooltip', 'Another tooltip');
+  btn.setAttribute('tooltip', 'Item ' + (this.parentElement.childElementCount - 2));
   this.parentElement.append(btn);
 });
 
-document.querySelector('button + button').addEventListener('click', function() {
+document.querySelector('#remove-item').addEventListener('click', function() {
   const lastBtn = this.parentElement.querySelector('button:last-child');
   if (lastBtn) {
     this.parentElement.removeChild(lastBtn);
