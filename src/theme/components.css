@@ -733,6 +733,9 @@ j-avatar-group :where([slot="overflow-button"]) {
   padding: var(--size-4, 0.25rem);
   margin: var(--size-4, 0.25rem);
   font-size: var(--font-size-s);
+  border-radius: var(--border-radius-s);
+  /* TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable) */
+  pointer-events: none;
 }
 
 @keyframes fade-in {
