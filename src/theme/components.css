@@ -198,6 +198,7 @@
 
 :where(button) {
   -webkit-appearance: none;
+  appearance: none;
   -webkit-tap-highlight-color: transparent;
   display: inline-flex;
   align-items: center;
@@ -223,6 +224,10 @@
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
+  }
+
+  :where(button:disabled:hover) {
+    background: var(--button-background, var(--background-ui));
   }
 }
 
@@ -356,6 +361,18 @@
 
 :where(input[type=radio]:checked)::before {
   --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3"/></svg>');
+}
+
+@media (forced-colors: active) {
+  :where(input[type=checkbox]) {
+    -webkit-appearance: checkbox;
+    appearance: checkbox;
+  }
+
+  :where(input[type=radio]) {
+    -webkit-appearance: radio;
+    appearance: radio;
+  }
 }
 
 /* Field & Field Group */
@@ -545,14 +562,24 @@ input[type=range]:focus-visible::-moz-range-thumb {
   --slider-thumb-background: var(--background-ui-active);
 }
 
+@media (forced-colors: active) {
+  :where(input[type=range]) {
+    outline: 1px solid;
+  }
+
+  :where(input[type=range])::-webkit-slider-thumb {
+    -webkit-appearance: sliderthumb-horizontal;
+  }
+}
+
 /* Menu */
 :where(button[role=menuitem]) {
   justify-content: start;
   text-align: start;
 }
 
-:where(button[role=menuitem]:not(:active, [active], :hover)) {
-  background: transparent;
+:where(button[role=menuitem]:not(:active, [active], :not(:disabled):hover)) {
+  --button-background: transparent;
 }
 
 /* Overflow menu */
@@ -573,6 +600,8 @@ input[type=range]:focus-visible::-moz-range-thumb {
   padding: var(--size-8, 0.5rem);
   border-radius: var(--border-radius-l);
   color: var(--color);
+  /* For forced color mode */
+  outline: 2px solid transparent;
 }
 
 /* Details */
@@ -634,6 +663,12 @@ input[type=range]:focus-visible::-moz-range-thumb {
 
 :where(details:not([open])) :where(summary)::before {
   transform: rotate(-90deg);
+}
+
+@media (forced-colors: active) {
+  :where(summary)::before {
+    background: ButtonText;
+  }
 }
 
 [dir=rtl] :where(details:not([open])) :where(summary)::before,

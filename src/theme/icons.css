@@ -36,6 +36,12 @@ html {
   contain: strict;
 }
 
+@media (forced-colors: active) {
+  :where(icon) {
+    background: ButtonText;
+  }
+}
+
 :where(icon[search]) {
   --mask-image: var(--icon-search);
 }
