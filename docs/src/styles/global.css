@@ -204,16 +204,17 @@ blockquote :is(h2, h3, h4, h5, h6):first-child {
   margin-bottom: 1em;
 }
 
-pre[class*="language"],
 code {
   font-family: var(--font-family-monospace);
   font-size: 0.875em;
-  background: var(--background-below) !important;
+  background: var(--background-below);
 }
 
 code:not([class*="language"]) {
   padding: 0.1em 0.3em;
   border-radius: 0.25em;
+  margin: 0 0.2em;
+  font-weight: 500;
 }
 
 render-example {
