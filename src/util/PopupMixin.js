@@ -19,12 +19,16 @@ export const PopupMixin = superClass => class extends superClass {
 
   __initDom() {
     if (!this.shadowRoot) {
-      this.attachShadow({ mode: 'open' });
+      this.attachShadow({ mode: 'open', delegatesFocus: true });
     }
 
     const template = document.createElement('template');
     template.innerHTML = `
       <style>
+        :host {
+          --popup-mode: modal;
+        }
+
         dialog {
           box-sizing: border-box;
           margin: 0;
@@ -36,6 +40,8 @@ export const PopupMixin = superClass => class extends superClass {
           max-height: 100%;
           outline: none;
           display: flex;
+          top: 0;
+          left: 0;
         }
 
         dialog:not([open]) {
@@ -55,7 +61,7 @@ export const PopupMixin = superClass => class extends superClass {
       </style>
       <slot name="trigger"></slot>
       <dialog>
-        <div part="popup">
+        <div part="popup" tabindex="-1">
           <slot name=""></slot>
         </div>
         <slot name="tooltip"></slot>
@@ -69,70 +75,82 @@ export const PopupMixin = superClass => class extends superClass {
     this._triggerElement = this;
     this.shadowRoot.querySelector('slot[name="trigger"]').onslotchange = this._onTriggerSlotChange.bind(this);
 
+    this._onPopupClick = this._onPopupClick.bind(this);
+    this._onPopupKeydown = this._onPopupKeydown.bind(this);
+    this._positionPopup = this._positionPopup.bind(this);
+
     this._popup.addEventListener('close', this._onClosePopup.bind(this));
-
-    this.__boundOnScroll = this._onScroll.bind(this);
-    this.__boundPositionPopup = this._positionPopup.bind(this);
-
-    this._popup.addEventListener('click', this.closePopup.bind(this));
+    this._popup.addEventListener('click', this._onPopupClick);
+    this._popup.addEventListener('keydown', this._onPopupKeydown);
   }
 
   _onTriggerSlotChange() {
     this._triggerElement = this.shadowRoot.querySelector('slot[name="trigger"]').assignedElements({ flatten: true })[0] || this;
     this._triggerElement.setAttribute('aria-haspopup', 'dialog');
-    this._triggerElement.addEventListener('click', this.openPopup.bind(this));
+    this._triggerElement.addEventListener('click', this._onTriggerClick.bind(this));
   }
 
-  openPopup() {
+  openPopup(withKeyboard) {
+    this.isModal = getComputedStyle(this._popup).getPropertyValue('--popup-mode').trim().toLowerCase() === 'modal';
+
     if (!this._popup.open) {
-      this._popup.showModal();
-      this._onOpenPopup();
+      if (this.isModal) {
+        this._popup.showModal();
+      } else {
+        this._popup.show();
+      }
+      this._onOpenPopup(withKeyboard);
     }
   }
 
-  _onOpenPopup() {
+  _onOpenPopup(withKeyboard) {
     // TODO consider using a class name instead (faster CSS selector)
     this._triggerElement.setAttribute('active', '');
     this._positionPopup();
-    this._popup.focus();
-    window.addEventListener('scroll', this.__boundOnScroll, { capture: true, passive: true });
-    window.visualViewport.addEventListener('resize', this.__boundPositionPopup);
+    window.addEventListener('scroll', this._positionPopup, { capture: true, passive: true });
+    window.visualViewport.addEventListener('resize', this._positionPopup);
   }
 
-  closePopup(e) {
-    // No event: programmatically closed
-    if (!e) {
-      this._popup.close();
-      return;
-    }
+  closePopup() {
+    this._popup.close();
+  }
 
-    // Ignore click events that are triggered with the keyboard
-    if (e.detail === 0) {
-      return;
-    }
+  _onTriggerClick(e) {
+    this.openPopup(e.detail === 0);
+    // Consume the click event
+    e.stopPropagation();
+  }
 
+  _onPopupClick(e) {
+    // Ignore click events from keyboard
+    if (e.detail === 0) return;
     var rect = this._popup.getBoundingClientRect();
     var isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
       && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
     if (!isInDialog) {
-      this._popup.close();
+      this.closePopup();
+    }
+  }
+
+  _onPopupKeydown(e) {
+    if (!this.isModal && e.key === 'Escape' && this._popup.open) {
+      e.stopPropagation();
+      e.preventDefault();
+      this.closePopup();
+      this._triggerElement.focus();
     }
   }
 
   _onClosePopup() {
     this._triggerElement.removeAttribute('active');
     this._triggerElement.focus();
-    window.removeEventListener('scroll', this.__boundOnScroll, { capture: true, passive: true });
-    window.visualViewport.removeEventListener('resize', this.__boundPositionPopup);
-  }
-
-  _onScroll() {
-    this._positionPopup();
+    window.removeEventListener('scroll', this._positionPopup, { capture: true, passive: true });
+    window.visualViewport.removeEventListener('resize', this._positionPopup);
   }
 
   _positionPopup() {
     this.style.setProperty('--anchor-width', `${Math.round(this._triggerElement.offsetWidth)}px`);
     this.style.setProperty('--anchor-height', `${Math.round(this._triggerElement.offsetHeight)}px`);
-    positionPopup(this._popup, this._anchorElement || this._triggerElement);
+    positionPopup(this._popup, this._anchorElement || this._triggerElement, this.isModal);
   }
 }

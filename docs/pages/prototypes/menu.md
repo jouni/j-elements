@@ -3,19 +3,19 @@ title: Menu
 layout: page
 imports:
   /src/components/Menu.js
-  /src/util/PopupMixin.js
-  /src/util/positionPopup.js
+    /src/util/PopupMixin.js
+      /src/util/positionPopup.js
 eleventyNavigation:
   key: Menu
   parent: Prototypes
   order: 55
 ---
 
-The menu utilizes the [`PopupMixin`](/prototypes/popup) base class.
+The menu component is based on [Popup](/prototypes/popup).
 
 <render-example></render-example>
 ```html
-<j-menu>
+<j-menu id="example">
   <button slot="trigger">
     Open menu
     <icon chevron-down></icon>
@@ -27,17 +27,22 @@ The menu utilizes the [`PopupMixin`](/prototypes/popup) base class.
   </div>
   <hr>
   <j-menu>
-    <button slot="trigger">Open sub-menu</button>
-    <button disabled>Action 4</button>
+    <button slot="trigger">Additional actions</button>
+    <button>Action 4</button>
+    <j-menu>
+      <button slot="trigger">More actions</button>
+      <button>Action 7</button>
+      <button>Action 8</button>
+    </j-menu>
     <button>Action 5</button>
-    <button>Action 6</button>
+    <button disabled>Action 6</button>
   </j-menu>
 </j-menu>
 
 <p class="clicked"></p>
 
 <script>
-  document.querySelector('j-menu').addEventListener('item-click', (e) => {
+  document.querySelector('#example').addEventListener('click', (e) => {
     document.querySelector('.clicked').textContent = 'Clicked: ' + e.target.textContent;
   });
 </script>

@@ -85,9 +85,15 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 </div>
 <h5>Disabled</h5>
 <div>
+  <h6>Native</h6>
   <button disabled theme="primary">Primary</button>
   <button disabled>Secondary</button>
   <button disabled theme="tertiary">Tertiary</button>
+
+  <h6>ARIA-disabled</h6>
+  <button aria-disabled="true" theme="primary">Primary</button>
+  <button aria-disabled="true">Secondary</button>
+  <button aria-disabled="true" theme="tertiary">Tertiary</button>
 </div>
 ```
 

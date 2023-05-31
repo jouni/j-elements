@@ -90,6 +90,9 @@ function showTooltip() {
     currentTarget = this;
 
     // Move the tooltip element inside dialogs to make it visible on top of them
+    // TODO apparently focus management gets a bit messed up in Safari when slotted content
+    // is changed inside a <dialog> element, so consider if there should be a permanent
+    // tooltip element inside all Popup components instead.
     const dialog = closestDialog(currentTarget);
     if (dialog && tooltipElement.parentNode !== dialog) {
       // Special case for Menu and OverflowMenu implementations
@@ -98,16 +101,16 @@ function showTooltip() {
         host = host.getRootNode().host;
       }
       if (host) {
-        tooltipElement.slot = 'tooltip';
+        tooltipElement.setAttribute('slot', 'tooltip');
         host.appendChild(tooltipElement);
       } else {
         // Let's hope the dialog element is not clipping its contents...
-        tooltipElement.slot = '';
+        tooltipElement.removeAttribute('slot');
         dialog.appendChild(tooltipElement);
       }
     } else if (tooltipElement.parentNode !== document.body) {
       // Otherwise move it back to body
-      tooltipElement.slot = '';
+      tooltipElement.removeAttribute('slot');
       document.body.appendChild(tooltipElement);
     }
 
@@ -119,7 +122,7 @@ function showTooltip() {
 
 function updateTooltipPosition() {
   if (currentTarget) {
-    positionPopup(tooltipElement, currentTarget);
+    positionPopup(tooltipElement, currentTarget, tooltipElement.slot !== 'tooltip');
   }
 }
 

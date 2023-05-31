@@ -3,6 +3,7 @@ title: Tooltip
 layout: page
 imports:
   /src/components/Tooltip.js
+    /src/util/positionPopup.js
 eleventyNavigation:
   key: Tooltip
   parent: Prototypes

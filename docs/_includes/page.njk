@@ -22,6 +22,9 @@ title: JElements
     <script type="module" src="{{ '/docs/src/components/render-example.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/render-props.js' | url }}"></script>
 
+    <script type="module" src="{{ '/src/components/Menu.js' | url }}"></script>
+    <script type="module" src="{{ '/src/components/Tooltip.js' | url }}"></script>
+
     <script type="module">
       const imports = `{{ imports }}`.split(/\s/g).map(str => str.trim()).filter(s => s);
       imports.forEach(url => {
@@ -40,13 +43,24 @@ title: JElements
       class MyList extends MutationAnimationMixin(HTMLElement) {}
       window.customElements.define('my-list', MyList);
 
-      // Enable :active styles
+      // Enable :active styles on touch devices (mainly iOS)
       document.addEventListener('touchstart', () => {});
     </script>
   </head>
   <body>
     <header class="main-nav">
-      <h1><a href="/">JElements</a></h1>
+      <h1>
+        <a href="/">JElements</a>
+        <j-menu>
+          <button slot="trigger" theme="small tertiary">
+            Theme
+            <icon chevron-down></icon>
+          </button>
+          <button theme="small">Light</button>
+          <button theme="small">Dark</button>
+          <button theme="small">System</button>
+        </j-menu>
+      </h1>
       <details theme="reverse"><summary>Menu</summary></details>
       <nav>
         {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({activeKey: eleventyNavigation.key, activeListItemClass: "active", listItemHasChildrenClass: "has-children"}) | safe }}
