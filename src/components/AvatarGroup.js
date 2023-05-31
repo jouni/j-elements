@@ -11,6 +11,11 @@ const styles = `
     margin-inline-end: calc(var(--avatar-group-overlap, 0px) * -1);
   }
 
+  ::slotted([slot="overflow-button"]) {
+    --button-min-width: var(--avatar-size, 2.5rem);
+    --button-min-height: var(--avatar-size, 2.5rem);
+  }
+
   /* TODO the reverse variant can't apply the correct clip/mask on the overflow button */
   /* Arguably, reverse stacking should not be used together with collapsing, as it can obscure the overflow label (e.g. '+4') */
   :host(:not([theme~=reverse])) ::slotted(:not([slot=menu], :last-child)),
