@@ -27,10 +27,16 @@ The menu component is based on [Popup](/prototypes/popup).
   </div>
   <hr>
   <j-menu>
-    <button slot="trigger">Additional actions</button>
+    <button slot="trigger">
+      Additional actions
+      <icon chevron-right directional></icon>
+    </button>
     <button>Action 4</button>
     <j-menu>
-      <button slot="trigger">More actions</button>
+      <button slot="trigger">
+        More actions
+        <icon chevron-right directional></icon>
+      </button>
       <button>Action 7</button>
       <button>Action 8</button>
     </j-menu>
