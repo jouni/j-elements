@@ -1,4 +1,3 @@
-import { DefineElementMixin } from '../util/DefineElementMixin.js';
 import { MutationsMixin } from '../util/MutationsMixin.js';
 
 let fieldId = 0;
@@ -11,7 +10,7 @@ let fieldId = 0;
  *
  * TODO: sets aria-invalid on the input element
  */
-export class Field extends MutationsMixin(DefineElementMixin(HTMLElement)) {
+export class Field extends MutationsMixin(HTMLElement) {
   observedMutations = { childList: true, attributes: true, subtree: true };
 
   constructor() {
@@ -162,4 +161,4 @@ export class Field extends MutationsMixin(DefineElementMixin(HTMLElement)) {
   }
 }
 
-Field.defineElement();
+customElements.define('j-field', Field);

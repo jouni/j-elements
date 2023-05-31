@@ -1,4 +1,3 @@
-import { DefineElementMixin } from '../util/DefineElementMixin.js';
 import { PopupMixin } from '../util/PopupMixin.js';
 
 const styles = `
@@ -130,4 +129,4 @@ export class Menu extends PopupMixin(HTMLElement) {
 
 }
 
-Menu.defineElement();
+customElements.define('j-menu', Menu);

@@ -40,4 +40,4 @@ export class AvatarGroup extends OverflowMenu {
   }
 }
 
-AvatarGroup.defineElement();
+customElements.define('j-avatar-group', AvatarGroup);

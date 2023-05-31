@@ -1,4 +1,3 @@
-import { DefineElementMixin } from '../util/DefineElementMixin.js';
 import { MutationsMixin } from '../util/MutationsMixin.js';
 import './Menu.js';
 
@@ -31,7 +30,7 @@ const styles = `
     }
 `;
 
-export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)) {
+export class OverflowMenu extends MutationsMixin(HTMLElement) {
   observedMutations = { childList: true };
 
   connectedCallback() {
@@ -126,4 +125,4 @@ export class OverflowMenu extends DefineElementMixin(MutationsMixin(HTMLElement)
   }
 }
 
-OverflowMenu.defineElement();
+customElements.define('j-overflow-menu', OverflowMenu);

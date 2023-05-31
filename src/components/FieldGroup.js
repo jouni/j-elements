@@ -26,4 +26,4 @@ export class FieldGroup extends Field {
   }
 }
 
-FieldGroup.defineElement();
+customElements.define('j-field-group', FieldGroup);

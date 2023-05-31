@@ -1,5 +1,3 @@
-import { DefineElementMixin } from '../util/DefineElementMixin.js';
-
 const styles = `
   :host {
     --border-radius: var(--avatar-border-radius, 50%);
@@ -66,7 +64,7 @@ const styles = `
   }
 `;
 
-export class Avatar extends DefineElementMixin(HTMLElement) {
+export class Avatar extends HTMLElement {
   connectedCallback() {
     if (!this.shadowRoot) {
       this.setAttribute('role', 'figure');
@@ -94,4 +92,4 @@ export class Avatar extends DefineElementMixin(HTMLElement) {
   }
 }
 
-Avatar.defineElement();
+customElements.define('j-avatar', Avatar);

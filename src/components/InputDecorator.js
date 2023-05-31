@@ -1,4 +1,3 @@
-import { DefineElementMixin } from '../util/DefineElementMixin.js';
 import { MutationsMixin } from '../util/MutationsMixin.js';
 
 const styles = `
@@ -48,7 +47,7 @@ const styles = `
   }
 `;
 
-export class InputDecorator extends DefineElementMixin(MutationsMixin(HTMLElement)) {
+export class InputDecorator extends MutationsMixin(HTMLElement) {
   observedMutations = { childList: true, characterData: true, subtree: true };
 
   connectedCallback() {
@@ -144,4 +143,4 @@ export class InputDecorator extends DefineElementMixin(MutationsMixin(HTMLElemen
   }
 }
 
-InputDecorator.defineElement();
+customElements.define('j-input-decorator', InputDecorator);
