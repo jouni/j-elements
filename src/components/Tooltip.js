@@ -1,5 +1,7 @@
 import { positionPopup } from '../util/positionPopup.js';
 
+// TODO accessibility (aria-describedby)
+
 export const tooltipElement = document.createElement('j-tooltip');
 tooltipElement.style.setProperty('position', 'fixed');
 tooltipElement.style.setProperty('z-index', 'var(--tooltip-z-index, 9999)');
