@@ -3,15 +3,16 @@ title: Overflow menu
 layout: page
 imports:
   /src/components/OverflowMenu.js
-  /src/components/Menu.js
-  /src/components/Tooltip.js
+    /src/components/Menu.js
+      /src/util/PopupMixin.js
+        /src/util/positionPopup.js
 eleventyNavigation:
   key: Overflow menu
   parent: Prototypes
   order: 60
 ---
 
-Thinking of ways to implement a general purpose overflow menu component which supports any content elements. Element which don't visually fit, are shown in the overflow menu.
+A general purpose overflow menu component which supports any content elements. Elements which don't visually fit, are shown in the overflow menu. Uses [Menu](/prototypes/menu) internally.
 
 The main element needs be allowed to shrink and grow based on the available space in the surrounding layout, as a `ResizeObserver` is used on that element to react when to collapse and expand items.
 
