@@ -575,7 +575,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
   text-align: start;
 }
 
-:where(button[role=menuitem]:not(:active:not(:disabled), :hover:not(:disabled))) {
+:where(button[role=menuitem]:not(:active:not(:disabled), [active]:not(:disabled), :hover:not(:disabled))) {
   --button-background: transparent;
   --button-hover-background: transparent;
   --button-active-background: transparent;
