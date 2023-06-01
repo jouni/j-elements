@@ -71,7 +71,7 @@ export class Menu extends PopupMixin(HTMLElement) {
 
   _onPopupClick(e) {
     super._onPopupClick(e);
-    if (e.target.closest('button')?.getAttribute('role') === 'menuitem') {
+    if (e.target.closest('button')?.getAttribute('role').match(/menuitem|option/)) {
       // Clicked on a menu item. Close the popup, and allow the event to propagate.
       this.closePopup();
     } else if (e.target === this._popup || (e.target.assignedSlot || e.target).closest('[part="popup"]')) {

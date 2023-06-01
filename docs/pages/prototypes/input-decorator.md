@@ -76,7 +76,7 @@ input {
 </j-input-decorator>
 
 <style>
-  [slot] {
+  [slot=prefix], [slot=suffix] {
     margin: 0.25rem 0.5rem;
   }
 

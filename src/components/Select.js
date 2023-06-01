@@ -9,7 +9,7 @@ export class Select extends MutationsMixin(Menu) {
     super.connectedCallback();
     this._popup.removeAttribute('role');
     this._popup.querySelector('[part="popup"]').setAttribute('role', 'listbox');
-    this._popup.addEventListener('click', (e) => {
+    this.addEventListener('click', (e) => {
       this.querySelectorAll('button').forEach(button => {
         button.removeAttribute('selected');
         button.setAttribute('aria-selected','false');

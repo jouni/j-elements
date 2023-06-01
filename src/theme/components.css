@@ -752,3 +752,10 @@ j-avatar-group :where([slot="overflow-button"]) {
   --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
   --divider-color: var(--border-color-low-contrast);
 }
+
+/* Select */
+
+j-select:not(:defined):has([selected]) button:not([selected]),
+j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
+  display: none;
+}

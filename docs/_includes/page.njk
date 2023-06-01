@@ -57,15 +57,17 @@ title: JElements
           <button value="" selected theme="small">System</button>
         </j-select>
         <script>
-          const theme = localStorage.getItem('theme');
+          const theme = localStorage.getItem('theme')?.trim();
+          if (theme !== undefined) {
           document.documentElement.setAttribute('theme', theme);
-          document.querySelectorAll('#theme button').forEach(button => {
-            if (button.getAttribute('value') == theme) {
-              button.setAttribute('selected', '');
-            } else {
-              button.removeAttribute('selected');
-            }
-          });
+            document.querySelectorAll('#theme button').forEach(button => {
+              if (button.getAttribute('value') == theme) {
+                button.setAttribute('selected', '');
+              } else {
+                button.removeAttribute('selected');
+              }
+            });
+          }
           document.querySelector('#theme').addEventListener('change', (e) => {
             const theme = e.detail.value;
             document.documentElement.setAttribute('theme', theme);
