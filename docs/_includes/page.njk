@@ -22,7 +22,7 @@ title: JElements
     <script type="module" src="{{ '/docs/src/components/render-example.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/render-props.js' | url }}"></script>
 
-    <script type="module" src="{{ '/src/components/Menu.js' | url }}"></script>
+    <script type="module" src="{{ '/src/components/Select.js' | url }}"></script>
     <script type="module" src="{{ '/src/components/Tooltip.js' | url }}"></script>
 
     <script type="module">
@@ -51,15 +51,27 @@ title: JElements
     <header class="main-nav">
       <h1>
         <a href="/">JElements</a>
-        <j-menu>
-          <button slot="trigger" theme="small tertiary">
-            Theme
-            <icon chevron-down></icon>
-          </button>
-          <button theme="small">Light</button>
-          <button theme="small">Dark</button>
-          <button theme="small">System</button>
-        </j-menu>
+        <j-select aria-label="Select theme" id="theme">
+          <button value="light" theme="small">Light</button>
+          <button value="dark" theme="small">Dark</button>
+          <button value="" selected theme="small">System</button>
+        </j-select>
+        <script>
+          const theme = localStorage.getItem('theme');
+          document.documentElement.setAttribute('theme', theme);
+          document.querySelectorAll('#theme button').forEach(button => {
+            if (button.getAttribute('value') == theme) {
+              button.setAttribute('selected', '');
+            } else {
+              button.removeAttribute('selected');
+            }
+          });
+          document.querySelector('#theme').addEventListener('change', (e) => {
+            const theme = e.detail.value;
+            document.documentElement.setAttribute('theme', theme);
+            localStorage.setItem('theme', theme);
+          });
+        </script>
       </h1>
       <details theme="reverse"><summary>Menu</summary></details>
       <nav>

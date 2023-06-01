@@ -125,8 +125,6 @@ export class Menu extends PopupMixin(HTMLElement) {
       }
     });
   }
-
-
 }
 
 customElements.define('j-menu', Menu);
