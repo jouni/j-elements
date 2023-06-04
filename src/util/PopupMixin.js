@@ -116,7 +116,11 @@ export const PopupMixin = superClass => class extends superClass {
   }
 
   _onTriggerClick(e) {
-    this.openPopup(e.detail === 0);
+    if (this._popup.open) {
+      this.closePopup();
+    } else {
+      this.openPopup(e.detail === 0);
+    }
     // Consume the click event
     e.stopPropagation();
   }
