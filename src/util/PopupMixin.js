@@ -78,6 +78,7 @@ export const PopupMixin = superClass => class extends superClass {
     this._onPopupClick = this._onPopupClick.bind(this);
     this._onPopupKeydown = this._onPopupKeydown.bind(this);
     this._positionPopup = this._positionPopup.bind(this);
+    this._onTriggerClick = this._onTriggerClick.bind(this);
 
     this._popup.addEventListener('close', this._onClosePopup.bind(this));
     this._popup.addEventListener('click', this._onPopupClick);
@@ -85,9 +86,14 @@ export const PopupMixin = superClass => class extends superClass {
   }
 
   _onTriggerSlotChange() {
+    // Clean up old trigger element
+    if (this._triggerElement) {
+      this._triggerElement.removeAttribute('aria-has-popup');
+      this._triggerElement.removeEventListener('click', this._onTriggerClick);
+    }
     this._triggerElement = this.shadowRoot.querySelector('slot[name="trigger"]').assignedElements({ flatten: true })[0] || this;
     this._triggerElement.setAttribute('aria-haspopup', 'dialog');
-    this._triggerElement.addEventListener('click', this._onTriggerClick.bind(this));
+    this._triggerElement.addEventListener('click', this._onTriggerClick);
   }
 
   openPopup(withKeyboard) {
