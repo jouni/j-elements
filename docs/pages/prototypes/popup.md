@@ -10,9 +10,9 @@ eleventyNavigation:
   order: 51
 ---
 
-A mixin class that can be used to create components that have a popup. A click event from within the main element shows the popup. Use `slot="trigger"` to mark a dedicated trigger element.
+A mixin class that can be used to create components that have a popup. Use `slot="trigger"` to mark the trigger element. Clicking on the trigger element toggles the popup.
 
-The popup is placed below and aligned with the leading edge of the anchoring element (the first element inside the main element). Depending on the size of the popup and the available space around the anchoring element, the popup may also be placed above and aligned with the trailing edge of the anchoring element.
+The popup is placed below and aligned with the leading edge of the trigger element. Depending on the size of the popup and the available space around the trigger element, the popup may also be placed above and aligned with the trailing edge of the trigger element.
 
 <render-example></render-example>
 
@@ -31,15 +31,16 @@ The popup is placed below and aligned with the leading edge of the anchoring ele
 
 ## Styling
 
-The host element is not meant to be styled, and defines `display: contents` by default.
+The host element is not meant to be styled.
 
-Use `::part(popup)` to style the popup element. A margin can be used to make space between the triggering element and the browser viewport. The margin should be uniform, meaning the same value is used for all sides of the popup.
+Use `::part(popup)` to style the popup element.
+<!-- A margin can be used to make space between the triggering element and the browser viewport. The margin should be uniform, meaning the same value is used for all sides of the popup. -->
 
-The `--anchor-width` and `--anchor-height` custom properties are set on the `:host` element, and it defines the width of the triggering/anchoring element (the button in the example before). You can use it to make the popup always the same size as the triggering/anchroring element.
+The `--anchor-width` and `--anchor-height` custom properties are set on the host element, and they define the width and height of the trigger element (the button in the example before). You can use it to make the popup always the same size as the trigger element.
 
 ## Accessibility
 
-There is no explicit accessibility role defined for the popup or any of its content, and the triggering element is not connected to the popup semantically. Those are left for specialized implementing classes to handle.
+The trigger element defines `aria-haspopup="dialog"`. Other than that, there's no explicit accessibility role defined for the popup or any of its content. Those are left for specialized implementing classes to handle.
 
 ## Depends on the native dialog element
 
