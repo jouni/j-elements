@@ -78,6 +78,7 @@ title: JElements
 
           const lightSheet = document.querySelector('#prism-light');
           const darkSheet = document.querySelector('#prism-dark');
+          togglePrismTheme(theme);
 
           function togglePrismTheme(theme) {
             lightSheet.toggleAttribute('disabled', theme === 'dark');
