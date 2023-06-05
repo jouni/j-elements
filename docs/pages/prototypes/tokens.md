@@ -38,24 +38,6 @@ The `theme="dark"` and `theme="light"` attributes can be used to toggle between 
 ```html
 <p theme="light">Always light</p>
 <p theme="dark">Always dark</p>
-
-<button id="light-theme">Use light theme</button>
-<button id="dark-theme">Use dark theme</button>
-<button id="auto-theme">Auto (user preference)</button>
-
-<script>
-document.querySelector("#light-theme").onclick = () => {
-  document.documentElement.setAttribute("theme", "light");
-};
-
-document.querySelector("#dark-theme").onclick = () => {
-  document.documentElement.setAttribute("theme", "dark");
-};
-
-document.querySelector("#auto-theme").onclick = () => {
-  document.documentElement.removeAttribute("theme");
-}
-</script>
 ```
 
 ## Background
