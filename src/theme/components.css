@@ -1,4 +1,4 @@
-:where(html),
+html,
 :host {
   font-family: var(--font-family);
 
@@ -13,20 +13,20 @@
   text-size-adjust: none;
 
   accent-color: var(--accent-ui);
-}
-
-:where(body) {
-  font-size: var(--font-size-m);
-  line-height: var(--line-height-m);
-}
-
-:where([theme~=light], [theme~=dark]) {
-  color-scheme: light;
   background: var(--background);
   color: var(--color);
 }
 
-:where([theme~=dark]) {
+body {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+}
+
+[theme~=light] {
+  color-scheme: light;
+}
+
+[theme~=dark] {
   color-scheme: dark;
 }
 
@@ -37,7 +37,11 @@
   }
 }
 
-/* Focus outline */
+
+
+
+
+/* Focus outline ---------------------------------------------------- */
 
 :focus:not(:focus-visible) {
   /* Support Windows High Contrast Mode */
@@ -61,19 +65,29 @@
   }
 }
 
-/* Link/Anchor */
 
-:where(a) {
+
+
+
+/* Link/Anchor ---------------------------------------------------- */
+
+a {
   color: var(--link-color, var(--color-accent));
 }
 
-:where(a:visited) {
+a:visited {
   color: var(--link-visited-color, var(--color-accent-high-contrast));
 }
 
-/* Text Input, Text Area, Select */
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select) {
+
+
+
+/* Text Input, Text Area, Select ---------------------------------------------------- */
+
+input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+textarea,
+select {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   background: var(--textinput-background, var(--background));
@@ -88,62 +102,103 @@
   transition: border 0.15s;
 }
 
-:where(textarea) {
+textarea {
   resize: vertical;
   /* TODO this assumes that --textinput-padding is always just a single value, and that --line-height-s-ps is used */
   min-height: calc(var(--textinput-padding, var(--size-8, 0.5rem)) * 2 + var(--line-height-s-px));
 }
 
 @media (any-hover: hover) {
-  :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not(:disabled):hover) {
+  :is(
+    input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+    textarea,
+    select
+  ):not(:disabled, [aria-disabled=true]):hover {
     background: var(--textinput-hover-background, var(--textinput-background, var(--background)));
     border: var(--textinput-hover-border, var(--textinput-border, var(--border-ui-hover)));
   }
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:not(:disabled):active) {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):not(:disabled, [aria-disabled=true]):active {
   background: var(--textinput-active-background, var(--textinput-background, var(--background)));
   border: var(--textinput-active-border, var(--textinput-border, var(--border-ui-active)));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:focus) {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):focus {
   --outline-offset: -1px;
   border: var(--textinput-focus-border, var(--textinput-border, var(--border-ui-focus)));
   transition: none;
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where(:disabled) {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):is(:disabled, [aria-disabled=true]) {
   color: var(--textinput-disabled-color, var(--color-disabled));
   border: var(--textinput-disabled-border, 1px solid var(--border-color-low-contrast));
   background: var(--textinput-disabled-background, var(--background));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([readonly]) {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):read-only {
   cursor: default;
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([readonly]:not(:focus)) {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):read-only:not(:focus) {
   border: var(--textinput-readonly-border, 1px solid var(--border-color-low-contrast));
   background: var(--textinput-readonly-background, var(--background));
 }
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea)::placeholder {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea
+)::placeholder {
   color: var(--textinput-placeholder-color, var(--color-low-contrast));
 }
 
 /* TODO invalid fields which have not been edited should not be marked */
-/* :where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):invalid {
+/*
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):invalid {
   border: var(--textinput-invalid-border, 1px solid var(--red-500));
-} */
+}
+*/
 
-:where(input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]), textarea, select):where([theme~=small]) {
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):is([theme~=small]) {
   --textinput-font: var(--font-textinput-small);
   padding: var(--textinput-small-padding, var(--size-6, 0.375rem));
 }
 
-/* Select */
 
-:where(select) {
+
+
+
+/* Select ---------------------------------------------------- */
+
+select {
   --_padding-inline-end: var(--select-padding-inline-end, calc(var(--icon-size, 1.125em) + var(--size-8, 0.5rem) * 2));
   padding-inline-end: var(--_padding-inline-end);
   background-image: var(--select-background-image);
@@ -155,29 +210,33 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :where(select) {
+  select {
     --select-background-blend-mode: screen;
   }
 }
 
-[theme~=dark] :where(select),
-:where(select[theme~=dark]) {
+[theme~=dark] select,
+select[theme~=dark] {
   --select-background-blend-mode: screen;
 }
 
-[dir=rtl] :where(select),
-[dir=rtl]:where(select),
-:host([dir=rtl]) :where(select) {
+[dir=rtl] select,
+select[dir=rtl],
+:host([dir=rtl]) select {
   background-position-x: var(--select-background-position-x, var(--size-8, 0.5rem));
 }
 
-/* Date input */
 
-:where(input[type^=date])::-webkit-datetime-edit-fields-wrapper {
+
+
+
+/* Date input ---------------------------------------------------- */
+
+input[type^=date]::-webkit-datetime-edit-fields-wrapper {
   padding: 0;
 }
 
-:where(input[type^=date])::-webkit-calendar-picker-indicator {
+input[type^=date]::-webkit-calendar-picker-indicator {
   --mask-image: var(--icon-calendar);
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
@@ -188,15 +247,23 @@
   height: 1em;
 }
 
-/* Search input */
 
-:where(input[type=search])::-webkit-search-cancel-button {
+
+
+
+/* Search input ---------------------------------------------------- */
+
+input[type=search]::-webkit-search-cancel-button {
   display: none;
 }
 
-/* Button */
 
-:where(button) {
+
+
+
+/* Button ---------------------------------------------------- */
+
+button {
   -webkit-appearance: none;
   appearance: none;
   -webkit-tap-highlight-color: transparent;
@@ -220,31 +287,31 @@
 }
 
 @media (any-hover: hover) {
-  :where(button:not(:disabled):hover) {
+  button:not(:disabled):hover {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
   }
 
-  :where(button:disabled:hover) {
+  button:disabled:hover {
     background: var(--button-background, var(--background-ui));
   }
 }
 
-:where(button:not(:disabled):is(:active, [active])) {
+button:not(:disabled):is(:active, [active]) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
   color: var(--button-active-color, var(--button-color, var(--color)));
   transition: none;
 }
 
-:where(button:disabled) {
+button:disabled {
   --button-color: var(--button-disabled-color, var(--color-disabled));
   --button-background: var(--button-disabled-background, var(--background-ui));
   --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
 
-:where(button[theme~=primary]) {
+button[theme~=primary] {
   --button-background: var(--button-primary-background, var(--background-accent));
   --button-hover-background: var(--button-primary-hover-background, var(--background-accent-hover));
   --button-active-background: var(--button-primary-active-background, var(--background-accent-active));
@@ -252,7 +319,7 @@
   --button-border: var(--button-primary-border, 1px solid transparent);
 }
 
-:where(button[theme~=tertiary]) {
+button[theme~=tertiary] {
   --button-background: var(--button-tertiary-background, transparent);
   --button-hover-background: var(--button-tertiary-hover-background, var(--background-ui));
   --button-active-background: var(--button-tertiary-active-background, var(--background-ui-hover));
@@ -262,21 +329,29 @@
   --button-border: var(--button-tertiary-border, 1px solid transparent);
 }
 
-:where(button[theme~=small]) {
+button[theme~=small] {
   --button-font: var(--button-small-font, var(--font-button-small));
   --button-padding: var(--button-small-padding, var(--size-6, 0.375rem) var(--size-12, 0.75rem));
   --button-min-width: var(--size-32, 2rem);
   --button-min-height: var(--size-32, 2rem);
 }
 
-:where(button) icon {
+button icon {
   margin: 0 calc(var(--size-6, 0.375rem) * -1);
 }
 
-/* Checkbox & Radio Button*/
 
-:where(input[type=checkbox], input[type=radio]) {
+
+
+
+/* Checkbox & Radio Button ---------------------------------------------------- */
+
+:is(
+  input[type=checkbox],
+  input[type=radio]
+) {
   -webkit-appearance: none;
+  appearance: none;
   -webkit-tap-highlight-color: transparent;
   background: var(--optionbox-background, var(--background-ui));
   border: var(--optionbox-border, var(--border-ui));
@@ -294,47 +369,67 @@
 }
 
 @media (any-hover: hover) {
-  :where(:is(input[type=checkbox], input[type=radio]):not(:disabled):hover) {
+  :is(
+    input[type=checkbox],
+    input[type=radio]
+  ):not(:disabled):hover {
     background: var(--optionbox-hover-background, var(--background-ui-hover));
     border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
     color: var(--optionbox-hover-color, var(--optionbox-color, var(--color)));
   }
 }
 
-:where(:is(input[type=checkbox], input[type=radio]):not(:disabled):active) {
+:is(
+  input[type=checkbox],
+  input[type=radio]
+):not(:disabled):active {
   background: var(--optionbox-active-background, var(--background-ui-active));
   border: var(--optionbox-active-border, var(--optionbox-border, var(--border-ui-active)));
   color: var(--optionbox-active-color, var(--optionbox-color, var(--color)));
   transition: none;
 }
 
-:where(input[type=checkbox]:where(:checked, :indeterminate), input[type=radio]:checked) {
+/* Can't use :is(:checked, :indeterminate) with type=radio, it always matches */
+input[type=checkbox]:is(:checked, :indeterminate),
+input[type=radio]:checked {
   background: var(--optionbox-checked-background, var(--background-accent));
   border: var(--optionbox-checked-border, var(--optionbox-border, 0));
   color: var(--optionbox-checked-color, var(--background));
 }
 
 @media (any-hover: hover) {
-  :where(:is(input[type=checkbox], input[type=radio]):checked:not(:disabled):hover) {
+  :is(
+    input[type=checkbox],
+    input[type=radio]
+  ):checked:not(:disabled):hover {
     background: var(--optionbox-checked-hover-background, var(--background-accent-hover));
     border: var(--optionbox-checked-hover-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
     color: var(--optionbox-checked-hover-color, var(--optionbox-checked-color, var(--background)));
   }
 }
 
-:where(:is(input[type=checkbox], input[type=radio]):checked:not(:disabled):active) {
+:is(
+  input[type=checkbox],
+  input[type=radio]
+):checked:not(:disabled):active {
   background: var(--optionbox-checked-active-background, var(--background-accent-active));
   border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
   color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
 }
 
-:where(:is(input[type=checkbox], input[type=radio]):disabled) {
+:is(
+  input[type=checkbox],
+  input[type=radio]
+):disabled {
   background: var(--optionbox-disabled-background, var(--background-ui));
   border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
   color: var(--optionbox-disabled-color, var(--color-low-contrast));
 }
 
-:where(input[type=checkbox]:is(:checked, :indeterminate), input[type=radio]:checked)::before {
+:is(
+  input[type=checkbox]:is(:checked, :indeterminate),
+  input[type=radio]:checked
+)::before {
   content: "";
   display: inline-block;
   width: 100%;
@@ -346,61 +441,84 @@
   --mask-image: var(--icon-checkmark-small);
 }
 
-:where(input[type=checkbox]:indeterminate)::before {
+input[type=checkbox]:indeterminate::before {
   --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>');
 }
 
-/* Radio Button */
-
-:where(input[type=radio]) {
-  border-radius: 50%;
-}
-
-:where(input[type=radio]:checked)::before {
-  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3"/></svg>');
-}
-
 @media (forced-colors: active) {
-  :where(input[type=checkbox]) {
+  input[type=checkbox] {
     -webkit-appearance: checkbox;
     appearance: checkbox;
   }
 
-  :where(input[type=radio]) {
+  input[type=radio] {
     -webkit-appearance: radio;
     appearance: radio;
   }
 }
 
-/* Field & Field Group */
 
-:where(j-field, j-field-group) {
+
+
+
+/* Radio Button ---------------------------------------------------- */
+
+input[type=radio] {
+  border-radius: 50%;
+}
+
+input[type=radio]:checked::before {
+  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3"/></svg>');
+}
+
+
+
+
+
+/* Field & Field Group ---------------------------------------------------- */
+
+j-field,
+j-field-group {
   display: flex;
   flex-direction: column;
   gap: var(--space-8, 0.5rem);
 }
 
-:where(j-field-group) {
+j-field-group {
   align-items: flex-start;
 }
 
-:where(j-field[inline]) {
+j-field[inline] {
   display: inline-flex;
 }
 
-:where(:is(j-field, j-field-group) label) {
+:is(
+  j-field,
+  j-field-group
+) label {
   -webkit-tap-highlight-color: transparent;
 }
 
-:where(:is(j-field, j-field-group) label:first-child) {
+:is(
+  j-field,
+  j-field-group
+) label:first-child {
   font: var(--font-field-label);
 }
 
-:where(:is(j-field, j-field-group):focus-within > label:first-child) {
+/* TODO consider removing */
+:is(
+  j-field,
+  j-field-group
+):focus-within > label:first-child {
   color: var(--color-accent);
 }
 
-:where(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child)) {
+:is(
+  j-field[type=radio],
+  j-field[type=checkbox],
+  j-field-group label:not(:first-child)
+) {
   display: inline-grid;
   grid-template-columns: auto auto;
   align-items: center;
@@ -409,19 +527,41 @@
   vertical-align: middle;
 }
 
-:where(:is(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child)) input:not(:first-child)) {
+/* Grid placement styles are related to fields where the checkbox/radio button is after the label */
+:is(
+  j-field[type=radio],
+  j-field[type=checkbox],
+  j-field-group label:not(:first-child)
+) > input:not(:first-child) {
   grid-row: 1;
 }
 
-:where(:is(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child))) :where(:not(input:first-child)) {
+:is(
+  j-field[type=radio],
+  j-field[type=checkbox],
+  j-field-group label:not(:first-child)
+) > :not(input:first-child) {
   grid-column: 1;
 }
 
-:where(j-field[type=radio], j-field[type=checkbox], j-field-group label:not(:first-child)) :where(input:not(:first-child), input:first-child ~ *) {
+:is(
+  j-field[type=radio],
+  j-field[type=checkbox],
+  j-field-group label:not(:first-child)
+) > :is(
+  input:not(:first-child),
+  input:first-child ~ *
+) {
   grid-column: 2;
 }
 
-:where(:is(j-field, j-field-group) :is([description], [validation-message])) {
+:is(
+  j-field,
+  j-field-group
+) :is(
+  [description],
+  [validation-message]
+) {
   font: var(--font-field-description);
   margin: 0;
   color: var(--color-low-contrast);
@@ -457,38 +597,43 @@ j-field-group j-field {
   mask-position: 50%;
 }
 
-/* Slider */
 
-:where(input[type=range]) {
+
+
+
+/* Slider ---------------------------------------------------- */
+
+input[type=range] {
   -webkit-appearance: none;
+  appearance: none;
   background: transparent;
   width: calc(var(--size-16, 1rem) * 8);
   --outline-offset: 2px;
 }
 
-:where(input[type=range])::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track {
   background: var(--slider-track-background, var(--background-ui));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--size-4, 0.25rem));
   transition: background-color 0.15s;
 }
 
-:where(input[type=range])::-moz-range-track {
+input[type=range]::-moz-range-track {
   background: var(--slider-track-background, var(--background-ui));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--size-4, 0.25rem));
   transition: background-color 0.15s;
 }
 
-:where(input[type=range]:not(:disabled)):where(:hover, :focus)::-webkit-slider-runnable-track {
+input[type=range]:not(:disabled):is(:hover, :focus)::-webkit-slider-runnable-track {
   background: var(--slider-track-hover-background, var(--background-ui-hover));
 }
 
-:where(input[type=range]:not(:disabled)):where(:hover, :focus)::-moz-range-track {
+input[type=range]:not(:disabled):is(:hover, :focus)::-moz-range-track {
   background: var(--slider-track-hover-background, var(--background-ui-hover));
 }
 
-:where(input[type=range])::-webkit-slider-thumb {
+input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--size-4, 0.25rem))) / -2);
   background: var(--slider-thumb-background, var(--background-accent));
@@ -499,7 +644,7 @@ j-field-group j-field {
   transition: background-color 0.15s;
 }
 
-:where(input[type=range])::-moz-range-thumb {
+input[type=range]::-moz-range-thumb {
   margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--size-4, 0.25rem))) / -2);
   background: var(--slider-thumb-background, var(--background-accent));
   height: var(--slider-thumb-size, var(--size-16, 1rem));
@@ -509,25 +654,25 @@ j-field-group j-field {
   transition: background-color 0.15s;
 }
 
-:where(input[type=range]:not(:disabled))::-webkit-slider-thumb:hover {
+input[type=range]:not(:disabled)::-webkit-slider-thumb:hover {
   background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
-:where(input[type=range]:not(:disabled))::-moz-range-thumb:hover {
+input[type=range]:not(:disabled)::-moz-range-thumb:hover {
   background: var(--slider-thumb-hover-background, var(--background-accent-hover));
 }
 
-:where(input[type=range]:not(:disabled))::-webkit-slider-thumb:active {
+input[type=range]:not(:disabled)::-webkit-slider-thumb:active {
   background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
-:where(input[type=range]:not(:disabled))::-moz-range-thumb:active {
+input[type=range]:not(:disabled)::-moz-range-thumb:active {
   background: var(--slider-thumb-active-background, var(--background-accent-active));
   transition: none;
 }
 
-:where(input[type=range]:is(:focus, :focus-visible)) {
+input[type=range]:is(:focus, :focus-visible) {
   box-shadow: none !important;
 }
 
@@ -555,7 +700,7 @@ input[type=range]:focus-visible::-moz-range-thumb {
   }
 }
 
-:where(input[type=range]:disabled) {
+input[type=range]:disabled {
   --slider-thumb-background: var(--background-ui-active);
 }
 
@@ -569,28 +714,26 @@ input[type=range]:focus-visible::-moz-range-thumb {
   }
 }
 
-/* Menu */
-:where(button:is([role=menuitem], [role=option])) {
-  justify-content: start;
-  text-align: start;
-}
 
-:where(button:is([role=menuitem], [role=option]):not(:active:not(:disabled), [active]:not(:disabled), :hover:not(:disabled))) {
-  --button-background: transparent;
-  --button-hover-background: transparent;
-  --button-active-background: transparent;
-}
 
-/* Overflow menu */
+
+
+/* Overflow menu ---------------------------------------------------- */
 
 /* Needed for Safari (Tech Preview) */
-:where(j-overflow-menu):focus {
+j-overflow-menu:focus {
   box-shadow: none;
 }
 
-:where(j-overflow-menu) {
+j-overflow-menu {
   gap: var(--size-4, 0.25rem);
 }
+
+
+
+
+
+/* Popup ---------------------------------------------------- */
 
 ::part(popup) {
   background: var(--background-above);
@@ -603,14 +746,21 @@ input[type=range]:focus-visible::-moz-range-thumb {
   outline: 2px solid transparent;
 }
 
-/* Details */
 
-:where(details, summary) {
+
+
+
+/* Details ---------------------------------------------------- */
+
+:is(
+  details,
+  summary
+) {
   /* Can't inherit because of Chrome's implementation, slot element in between */
   border-radius: var(--border-radius-l);
 }
 
-:where(summary) {
+summary {
   font-weight: var(--font-weight-strong);
   color: var(--color);
   padding: var(--size-8, 0.5rem) 0;
@@ -621,24 +771,24 @@ input[type=range]:focus-visible::-moz-range-thumb {
 }
 
 @media (any-hover: hover) {
-  :where(details:not([disabled])) > :where(summary:hover) {
+  details:not([disabled]) > summary:hover {
     color: var(--color-high-contrast);
   }
 }
 
-:where(summary)::-webkit-details-marker {
+summary::-webkit-details-marker {
   display: none;
 }
 
-:where(summary)::marker {
+summary::marker {
   content: "";
 }
 
-:where(summary) > * {
+summary > * {
   flex: 1;
 }
 
-:where(summary)::before {
+summary::before {
   /* Styles duplicated from <icon> */
   display: inline-block;
   vertical-align: baseline;
@@ -660,50 +810,57 @@ input[type=range]:focus-visible::-moz-range-thumb {
   transition-property: transform, color;
 }
 
-:where(details:not([open])) :where(summary)::before {
+details:not([open]) summary::before {
   transform: rotate(-90deg);
 }
 
 @media (forced-colors: active) {
-  :where(summary)::before {
+  summary::before {
     background: ButtonText;
   }
 }
 
-[dir=rtl] :where(details:not([open])) :where(summary)::before,
-[dir=rtl]:where(details:not([open])) :where(summary)::before,
-:host([dir=rtl]) :where(details:not([open])) :where(summary)::before {
+[dir=rtl] details:not([open]) summary::before,
+details[dir=rtl]:not([open]) summary::before,
+:host([dir=rtl]) details:not([open]) summary::before {
   transform: rotate(90deg);
 }
 
-:where(details[theme~=filled]) {
+details[theme~=filled] {
   background: var(--background-ui);
   padding: var(--size-16, 1rem);
 }
 
-:where(details[theme~=filled]) :where(summary) {
+details[theme~=filled] summary {
   margin: calc(var(--size-16, 1rem) * -1);
   padding-inline: var(--size-8, 0.5rem);
 }
 
-:where(details[theme~=filled][open]) :where(summary) {
+details[theme~=filled][open] summary {
   margin-bottom: 0;
 }
 
-:where(details[theme~=reverse][theme~=filled]) :where(summary) {
+details[theme~=reverse][theme~=filled] summary {
   padding-inline-start: var(--size-16, 1rem);
 }
 
-:where(details[theme~=reverse]) :where(summary)::before {
+details[theme~=reverse] summary::before {
   order: 1;
   margin-inline-start: auto;
 }
 
-:where(details) :where(summary[tabindex="-1"]) {
+details summary[tabindex="-1"] {
   pointer-events: none;
 }
 
-html {
+
+
+
+
+/* Avatar & Avatar Group ---------------------------------------------------- */
+
+html,
+:host {
   --avatar-background-color: var(--background-ui);
   --avatar-color: var(--color);
 }
@@ -713,7 +870,7 @@ j-avatar-group::part(popup) {
 }
 
 /* These should be kept in sync with j-avatar styles */
-j-avatar-group :where([slot="overflow-button"]) {
+j-avatar-group [slot=overflow-button] {
   border-radius: var(--avatar-border-radius, 50%);
   width: var(--avatar-size, 2.5rem);
   height: var(--avatar-size, 2.5rem);
@@ -724,7 +881,12 @@ j-avatar-group :where([slot="overflow-button"]) {
   font: inherit;
 }
 
-:where(j-tooltip) {
+
+
+
+/* Tooltip ---------------------------------------------------- */
+
+j-tooltip {
   animation: fade-in .2s 1s both;
   background-color: var(--background-ui);
   color: var(--color);
@@ -743,18 +905,46 @@ j-avatar-group :where([slot="overflow-button"]) {
   }
 }
 
-:where(j-menu) {
+
+
+
+
+/* Menu ---------------------------------------------------- */
+
+button:is(
+  [role=menuitem],
+  [role=option]
+) {
+  justify-content: start;
+  text-align: start;
+}
+
+button:is(
+  [role=menuitem],
+  [role=option]
+):not(
+  :active:not(:disabled),
+  [active]:not(:disabled),
+  :hover:not(:disabled)
+) {
+  --button-background: transparent;
+  --button-hover-background: transparent;
+  --button-active-background: transparent;
+}
+
+j-menu,
+j-overflow-menu {
   --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
   --divider-color: var(--border-color-low-contrast);
 }
 
-:where(j-overflow-menu) {
-  --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
-  --divider-color: var(--border-color-low-contrast);
-}
 
-/* Select */
 
+
+
+/* Select ---------------------------------------------------- */
+
+/* Prevent layout shift */
 j-select:not(:defined):has([selected]) button:not([selected]),
 j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
   display: none;
