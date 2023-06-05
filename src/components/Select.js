@@ -14,12 +14,13 @@ export class Select extends MutationsMixin(Menu) {
         button.removeAttribute('selected');
         button.setAttribute('aria-selected','false');
       });
-      e.target.setAttribute('selected', '');
-      e.target.setAttribute('aria-selected', 'true');
+      const selected = e.target.closest('[role="option"]');
+      selected.setAttribute('selected', '');
+      selected.setAttribute('aria-selected', 'true');
       this.handleMutations();
       this.closePopup();
       this.dispatchEvent(new CustomEvent('change', { detail: {
-        value: e.target.hasAttribute('value') ? e.target.getAttribute('value') : e.target.textContent
+        value: selected.hasAttribute('value') ? selected.getAttribute('value') : selected.textContent
       }}));
     })
   }
