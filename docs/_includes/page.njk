@@ -9,8 +9,8 @@ title: JElements
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} | JElements</title>
     <link rel="stylesheet" href="{{ '/docs/src/styles/global.css' | url }}">
-    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)">
-    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)" id="prism-light">
+    <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)" id="prism-dark">
 
     <link rel="stylesheet" href="{{ '/src/theme/colors.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/tokens.css' | url }}">
@@ -68,11 +68,23 @@ title: JElements
               }
             });
           }
+
           document.querySelector('#theme').addEventListener('change', (e) => {
             const theme = e.detail.value;
             document.documentElement.setAttribute('theme', theme);
+            togglePrismTheme(theme);
             localStorage.setItem('theme', theme);
           });
+
+          const lightSheet = document.querySelector('#prism-light');
+          const darkSheet = document.querySelector('#prism-dark');
+
+          function togglePrismTheme(theme) {
+            lightSheet.toggleAttribute('disabled', theme === 'dark');
+            darkSheet.toggleAttribute('disabled', theme === 'light');
+            lightSheet.media = theme ? '' : '(prefers-color-scheme: light)';
+            darkSheet.media = theme ? '' : '(prefers-color-scheme: dark)';
+          }
         </script>
       </h1>
       <details theme="reverse"><summary>Menu</summary></details>
