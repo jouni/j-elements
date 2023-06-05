@@ -759,3 +759,39 @@ j-select:not(:defined):has([selected]) button:not([selected]),
 j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
   display: none;
 }
+
+j-select button[slot=trigger]::after,
+j-select [role=option]::before {
+  content: "";
+  /* Copied from icons.css */
+  --_size: var(--icon-size, 1.249em);
+  display: inline-block;
+  vertical-align: baseline;
+  width: var(--_size);
+  height: var(--_size);
+  overflow: hidden;
+  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"></svg>');
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  -webkit-mask-size: var(--_size);
+  -webkit-mask-position: 50%;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: var(--_size);
+  mask-position: 50%;
+  mask-repeat: no-repeat;
+  background: currentColor;
+  flex: none;
+  -webkit-user-select: none;
+  user-select: none;
+  contain: strict;
+  /* Copied from 'button icon' */
+  margin: 0 calc(var(--size-6, 0.375rem) * -1);
+}
+
+j-select button[slot=trigger]::after {
+  --mask-image: var(--icon-chevron-down);
+}
+
+j-select [role=option][selected]::before {
+  --mask-image: var(--icon-checkmark);
+}
