@@ -185,13 +185,13 @@ These tokens apply to Select as well.
 
 `--textinput-background` `var(--background)`
 
-`--textinput-hover-background` `var(--textinput-background, var(--background))`
+`--textinput-hover-background` `var(--textinput-background)`
 
-`--textinput-active-background` `var(--textinput-background, var(--background))`
+`--textinput-active-background` `var(--textinput-background)`
 
-`--textinput-disabled-background` `var(--textinput-disabled-background, var(--background))`
+`--textinput-disabled-background` `var(--textinput-background)`
 
-`--textinput-readonly-background` `var(--textinput-readonly-background, var(--background))`
+`--textinput-readonly-background` `var(--textinput-background)`
 
 `--textinput-border` `var(--border-ui)`
 The border width should match the width defined in `--button-border`.
@@ -202,9 +202,9 @@ The border width should match the width defined in `--button-border`.
 
 `--textinput-focus-border` `var(--textinput-border, var(--border-ui-focus))`
 
-`--textinput-disabled-border`, `1px solid var(--border-color-low-contrast)`
+`--textinput-disabled-border` `1px solid var(--border-color-low-contrast)`
 
-`--textinput-readonly-border`, `1px solid var(--border-color-low-contrast)`
+`--textinput-readonly-border` `1px solid var(--border-color-low-contrast)`
 
 `--textinput-border-radius` `var(--border-radius-m)`
 
