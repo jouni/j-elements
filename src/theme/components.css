@@ -831,7 +831,7 @@ details[dir=rtl]:not([open]) summary::before,
 }
 
 details[theme~=filled] {
-  background: var(--background-ui);
+  background: var(--background-above);
   padding: var(--size-16, 1rem);
 }
 
