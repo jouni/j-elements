@@ -279,7 +279,7 @@ button {
   background: var(--button-background, var(--background-ui));
   border: var(--button-border, 1px solid transparent); /* Should match with --textinput-border, so that the heights are equal */
   border-radius: var(--button-border-radius, var(--border-radius-m));
-  color: var(--button-color, var(--color));
+  color: var(--button-color, var(--color-accent));
   font: var(--button-font, var(--font-button, inherit));
   padding: var(--button-padding, var(--size-8, 0.5rem) var(--size-16, 1rem));
   min-width: var(--button-min-width, var(--size-40, 2.5rem));
@@ -288,29 +288,28 @@ button {
   margin: 0;
   vertical-align: middle;
   touch-action: manipulation;
-  transition: background-color 0.15s, filter 0.15s;
+  transition: background-color 0.15s, color 0.15s;
 }
 
 @media (any-hover: hover) {
   button:not(:disabled, [aria-disabled=true]):hover {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
-    color: var(--button-hover-color, var(--button-color, var(--color)));
+    color: var(--button-hover-color, var(--button-color, var(--color-accent-high-contrast)));
   }
 }
 
 button:not(:disabled, [aria-disabled=true]):is(:active, [active]) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
-  color: var(--button-active-color, var(--button-color, var(--color)));
+  color: var(--button-active-color, var(--button-color, var(--color-high-contrast)));
   transition: none;
-  filter: brightness(0.9);
 }
 
 button[theme~=filled] {
-  --button-background: var(--color);
-  --button-hover-background: var(--color-high-contrast);
-  --button-active-background: var(--color-high-contrast);
+  --button-background: var(--background-accent);
+  --button-hover-background: var(--background-accent-hover);
+  --button-active-background: var(--background-accent-active);
   --button-color: var(--background);
 }
 
@@ -324,7 +323,7 @@ button[theme~=outline],
 button[theme~=ghost] {
   --button-background: transparent !important;
   --button-hover-background: var(--background-ui);
-  --button-active-background: var(--background-ui);
+  --button-active-background: var(--background-ui-hover);
 }
 
 button[theme~=small] {
