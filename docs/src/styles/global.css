@@ -413,3 +413,7 @@ render-props > p > code:first-child {
   font-size: inherit;
   margin-inline-start: -1.5rem;
 }
+
+#theme [slot=trigger] span {
+  display: none;
+}

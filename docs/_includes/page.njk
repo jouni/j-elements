@@ -52,9 +52,15 @@ title: JElements
       <h1>
         <a href="/">JElements</a>
         <j-select aria-label="Select theme" id="theme">
-          <button value="light" theme="small">Light</button>
-          <button value="dark" theme="small">Dark</button>
-          <button value="" selected theme="small">System</button>
+          <button value="light" theme="small">
+            <icon sun></icon> <span>Light</span>
+          </button>
+          <button value="dark" theme="small">
+            <icon moon></icon> <span>Dark</span>
+          </button>
+          <button value="" selected theme="small">
+            <icon computer></icon> <span>System</span>
+          </button>
         </j-select>
         <script>
           const theme = localStorage.getItem('theme')?.trim();
