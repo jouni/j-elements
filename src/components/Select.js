@@ -40,9 +40,11 @@ export class Select extends MutationsMixin(Menu) {
       selected.setAttribute('aria-selected', 'true');
     } else {
       trigger = document.createElement('button');
-      trigger.textContent = "Select";
+      trigger.textContent = "Select option";
     }
     trigger.setAttribute('slot', 'trigger');
+    trigger.removeAttribute('selected');
+    trigger.removeAttribute('aria-selected');
     trigger.removeAttribute('role');
     this.appendChild(trigger);
   }
