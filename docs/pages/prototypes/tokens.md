@@ -282,10 +282,16 @@ Form field labels.
 `--font-button`
 
 `--font-button-small`
+Font size and line height should match those of `--font-textinput-small`.
 
 `--font-textinput`
 
 `--font-textinput-small`
+Font size and line height should match those of `--font-button-small`.
+
+`--font-field-label`
+
+`--font-field-description`
 
 </render-props>
 
