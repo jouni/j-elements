@@ -292,10 +292,6 @@ button {
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
   }
-
-  button:is(:disabled, [aria-disabled=true]):hover {
-    background: var(--button-background, var(--background-ui));
-  }
 }
 
 button:not(:disabled, [aria-disabled=true]):is(:active, [active]) {
