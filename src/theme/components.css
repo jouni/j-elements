@@ -11,15 +11,19 @@ html,
   /* We assume apps are built with responsive layouting in mind */
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-
-  accent-color: var(--accent-ui);
-  background: var(--background);
-  color: var(--color);
 }
 
 body {
   font-size: var(--font-size-m);
   line-height: var(--line-height-m);
+}
+
+html,
+[theme~=light],
+[theme~=dark] {
+  accent-color: var(--accent-ui);
+  background: var(--background);
+  color: var(--color);
 }
 
 [theme~=light] {
