@@ -361,10 +361,18 @@ main {
   }
 }
 
+.preview + code,
 .preview {
+  display: inline-block;
   font-family: var(--font-family-monospace);
+  font-weight: 500;
+  padding: 0;
   color: var(--color-low-contrast);
   font-size: var(--font-size-xs);
+  line-height: var(--line-height-s);
+  margin: 0;
+  margin-bottom: 0.5em;
+  background-color: transparent;
 }
 
 .preview.color span {
@@ -395,6 +403,7 @@ render-props {
 render-props p {
   color: var(--color-low-contrast);
   padding: 0 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 render-props > p > code:first-child {
