@@ -17,6 +17,11 @@ title: JElements
     <link rel="stylesheet" href="{{ '/src/theme/components.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/icons.css' | url }}">
 
+    <link rel="stylesheet" href="{{ '/src/theme/zinc.css' | url }}" class="accent-color zinc" disabled>
+    <link rel="stylesheet" href="{{ '/src/theme/orange.css' | url }}" class="accent-color orange" disabled>
+    <link rel="stylesheet" href="{{ '/src/theme/sky.css' | url }}" class="accent-color sky" disabled>
+    <link rel="stylesheet" href="{{ '/src/theme/emerald.css' | url }}" class="accent-color emerald" disabled>
+
     <script type="module" src="{{ '/docs/src/components/module-size.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/table-of-contents.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/render-example.js' | url }}"></script>
@@ -51,6 +56,25 @@ title: JElements
     <header class="main-nav">
       <h1>
         <a href="/">JElements</a>
+
+        <j-select aria-label="Select accent color" id="accent-color">
+          <button value="" theme="small" selected>
+            <span>Indigo</span>
+          </button>
+          <button value="zinc" theme="small">
+            <span>Zinc</span>
+          </button>
+          <button value="emerald" theme="small">
+            <span>Emerald</span>
+          </button>
+          <button value="sky" theme="small">
+            <span>Sky</span>
+          </button>
+          <button value="orange" theme="small">
+            <span>Orange</span>
+          </button>
+        </j-select>
+
         <j-select aria-label="Select theme" id="theme">
           <button value="light" theme="small">
             <icon sun></icon> <span>Light</span>
@@ -65,7 +89,7 @@ title: JElements
         <script>
           const theme = localStorage.getItem('theme')?.trim();
           if (theme !== undefined) {
-          document.documentElement.setAttribute('theme', theme);
+            document.documentElement.setAttribute('theme', theme);
             document.querySelectorAll('#theme button').forEach(button => {
               if (button.getAttribute('value') == theme) {
                 button.setAttribute('selected', '');
@@ -92,6 +116,29 @@ title: JElements
             lightSheet.media = theme ? '' : '(prefers-color-scheme: light)';
             darkSheet.media = theme ? '' : '(prefers-color-scheme: dark)';
           }
+
+
+          document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
+          const accentColor = localStorage.getItem('accent-color')?.trim();
+          if (accentColor) {
+            document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
+            document.querySelectorAll('#accent-color button').forEach(button => {
+              if (button.getAttribute('value') == accentColor) {
+                button.setAttribute('selected', '');
+              } else {
+                button.removeAttribute('selected');
+              }
+            });
+          }
+
+          document.querySelector('#accent-color').addEventListener('change', (e) => {
+            document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
+            const accentColor = e.detail.value;
+            if (accentColor) {
+              document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
+            }
+            localStorage.setItem('accent-color', accentColor);
+          });
         </script>
       </h1>
       <details theme="reverse"><summary>Menu</summary></details>

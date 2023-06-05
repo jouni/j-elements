@@ -1,0 +1,37 @@
+/* Palette */
+html,
+:host,
+[theme~=light],
+:host([theme~=light]) {
+  --background-accent: var(--zinc-600);
+  --background-accent-hover: var(--zinc-700);
+  --background-accent-active: var(--zinc-800);
+  --color-accent: var(--zinc-700);
+  --color-accent-high-contrast: var(--zinc-800);
+  --color-accent-low-contrast: var(--zinc-600);
+  --border-color-accent: var(--zinc-600);
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  :host {
+    --background-accent: var(--zinc-400);
+    --background-accent-hover: var(--zinc-300);
+    --background-accent-active: var(--zinc-200);
+    --color-accent: var(--zinc-300);
+    --color-accent-high-contrast: var(--zinc-200);
+    --color-accent-low-contrast: var(--zinc-400);
+    --border-color-accent: var(--zinc-400);
+  }
+}
+
+[theme~=dark],
+:host([theme~=dark]) {
+  --background-accent: var(--zinc-400);
+  --background-accent-hover: var(--zinc-300);
+  --background-accent-active: var(--zinc-200);
+  --color-accent: var(--zinc-300);
+  --color-accent-high-contrast: var(--zinc-200);
+  --color-accent-low-contrast: var(--zinc-400);
+  --border-color-accent: var(--zinc-400);
+}

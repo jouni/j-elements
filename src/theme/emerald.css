@@ -1,0 +1,37 @@
+/* Palette */
+html,
+:host,
+[theme~=light],
+:host([theme~=light]) {
+  --background-accent: var(--emerald-700);
+  --background-accent-hover: var(--emerald-800);
+  --background-accent-active: var(--emerald-900);
+  --color-accent: var(--emerald-700);
+  --color-accent-high-contrast: var(--emerald-800);
+  --color-accent-low-contrast: var(--emerald-600);
+  --border-color-accent: var(--emerald-600);
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  :host {
+    --background-accent: var(--emerald-400);
+    --background-accent-hover: var(--emerald-300);
+    --background-accent-active: var(--emerald-200);
+    --color-accent: var(--emerald-300);
+    --color-accent-high-contrast: var(--emerald-200);
+    --color-accent-low-contrast: var(--emerald-400);
+    --border-color-accent: var(--emerald-400);
+  }
+}
+
+[theme~=dark],
+:host([theme~=dark]) {
+  --background-accent: var(--emerald-400);
+  --background-accent-hover: var(--emerald-300);
+  --background-accent-active: var(--emerald-200);
+  --color-accent: var(--emerald-300);
+  --color-accent-high-contrast: var(--emerald-200);
+  --color-accent-low-contrast: var(--emerald-400);
+  --border-color-accent: var(--emerald-400);
+}

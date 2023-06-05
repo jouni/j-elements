@@ -830,7 +830,7 @@ details[dir=rtl]:not([open]) summary::before,
 }
 
 details[theme~=filled] {
-  background: var(--background-above);
+  background: var(--background-below);
   padding: var(--size-16, 1rem);
 }
 

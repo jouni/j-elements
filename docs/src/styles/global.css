@@ -60,12 +60,14 @@ table-of-contents + p {
   margin-bottom: 0;
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  gap: 0.25rem;
 }
 
 .main-nav h1 a:any-link {
   color: inherit;
   text-decoration: none;
+  flex: auto;
+  margin-inline-end: 0.5em;
 }
 
 .main-nav ul {
@@ -323,7 +325,7 @@ main {
 
 @media (max-width: 50rem) {
   .main-nav h1 {
-    display: inline-block;
+    flex: auto;
   }
 
   .main-nav details {
@@ -349,6 +351,13 @@ main {
     position: static;
     height: auto;
     padding: 1rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  .main-nav nav {
+    width: 100%;
   }
 
   .main-nav details:not([open]) + nav {
@@ -416,4 +425,33 @@ render-props > p > code:first-child {
 
 #theme [slot=trigger] span {
   display: none;
+}
+
+#accent-color button span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  color: transparent;
+  margin: 0 -0.25em;
+}
+
+#accent-color [value=zinc] span {
+  background-color: var(--zinc-500);
+}
+
+#accent-color [value=""] span {
+  background-color: var(--indigo-500);
+}
+
+#accent-color [value=emerald] span {
+  background-color: var(--emerald-500);
+}
+
+#accent-color [value=sky] span {
+  background-color: var(--sky-500);
+}
+
+#accent-color [value=orange] span {
+  background-color: var(--orange-500);
 }
