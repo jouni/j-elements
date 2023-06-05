@@ -283,7 +283,7 @@ button {
   margin: 0;
   vertical-align: middle;
   touch-action: manipulation;
-  transition: background 0.15s;
+  transition: background-color 0.15s;
 }
 
 @media (any-hover: hover) {
