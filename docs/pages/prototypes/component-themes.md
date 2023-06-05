@@ -13,8 +13,8 @@ imports:
 Component token names are prefixed with the component name + variant + state, and suffixed with the CSS property name they are targeting:
 `--[component]-[variant]-[state]-[property]`
 
-For example, the text color for the primary button, when hovered:
-`--button-primary-hover-color`
+For example, the font for the small button variant:
+`--button-small-font`
 
 <style>
 render-example.flex {
@@ -29,6 +29,10 @@ render-example > div {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+render-example :is(h5, h6) {
+  width: 100%;
 }
 
 render-example h5 {
@@ -52,48 +56,56 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 <render-example class="flex"></render-example>
 ```html
 <div>
-  <button theme="primary">Primary</button>
-  <button>Secondary</button>
-  <button theme="tertiary">Tertiary</button>
+  <button theme="filled">Filled</button>
+  <button>Normal</button>
+  <button theme="outline">Outline</button>
+  <button theme="ghost">Ghost</button>
 </div>
 <div>
-  <button theme="primary">Primary <icon chevron-down></icon></button>
-  <button><icon search></icon> Secondary</button>
-  <button theme="tertiary">Tertiary <icon arrow-right></icon></button>
+  <button theme="filled">Filled <icon chevron-down></icon></button>
+  <button><icon search></icon> Normal</button>
+  <button theme="outline">Outline <icon sun></icon></button>
+  <button theme="ghost">Ghost <icon arrow-right></icon></button>
 </div>
 <h5>Small</h5>
 <div>
-  <button theme="primary small">Primary</button>
-  <button theme="small">Secondary</button>
-  <button theme="tertiary small">Tertiary</button>
+  <button theme="filled small">Filled</button>
+  <button theme="small">Normal</button>
+  <button theme="outline small">Outline</button>
+  <button theme="ghost small">Ghost</button>
 </div>
 <div>
-  <button theme="primary small">Primary <icon chevron-down></icon></button>
-  <button theme="small"><icon search></icon> Secondary</button>
-  <button theme="tertiary small">Tertiary <icon arrow-right></icon></button>
+  <button theme="filled small">Filled <icon chevron-down></icon></button>
+  <button theme="small"><icon search></icon> Normal</button>
+  <button theme="outline small">Outline <icon sun></icon></button>
+  <button theme="ghost small">Ghost <icon arrow-right></icon></button>
 </div>
 <h5>Icon</h5>
 <div>
-  <button theme="primary"><icon search></icon></button>
+  <button theme="filled"><icon search></icon></button>
   <button theme=""><icon search></icon></button>
-  <button theme="tertiary"><icon search></icon></button>
+  <button theme="outline"><icon search></icon></button>
+  <button theme="ghost"><icon search></icon></button>
 </div>
 <div>
-  <button theme="primary small"><icon search></icon></button>
+  <button theme="filled small"><icon search></icon></button>
   <button theme="small"><icon search></icon></button>
-  <button theme="tertiary small"><icon search></icon></icon></button>
+  <button theme="outline small"><icon search></icon></button>
+  <button theme="ghost small"><icon search></icon></icon></button>
 </div>
 <h5>Disabled</h5>
 <div>
   <h6>Native</h6>
-  <button disabled theme="primary">Primary</button>
-  <button disabled>Secondary</button>
-  <button disabled theme="tertiary">Tertiary</button>
+  <button disabled theme="filled">Filled</button>
+  <button disabled>Normal</button>
+  <button disabled theme="outline">Outline</button>
+  <button disabled theme="ghost">Ghost</button>
 
   <h6>ARIA-disabled</h6>
-  <button aria-disabled="true" theme="primary">Primary</button>
-  <button aria-disabled="true">Secondary</button>
-  <button aria-disabled="true" theme="tertiary">Tertiary</button>
+  <button aria-disabled="true" theme="filled">Filled</button>
+  <button aria-disabled="true">Normal</button>
+  <button aria-disabled="true" theme="outline">Outline</button>
+  <button aria-disabled="true" theme="ghost">Ghost</button>
 </div>
 ```
 
@@ -108,8 +120,6 @@ The vertical padding should match the vertical padding defined in `--textinput-p
 `--button-font` `var(--font-button)`
 The line-height should match the line-height defined in `--textinput-font`.
 
-#### Secondary variant (default)
-
 `--button-background` `var(--background-ui)`
 
 `--button-hover-background` `var(--button-background, var(--background-ui-hover))`
@@ -118,48 +128,16 @@ The line-height should match the line-height defined in `--textinput-font`.
 
 `--button-color` `var(--color)`
 
+`--button-hover-color` `var(--button-color)`
+
+`--button-active-color` `var(--button-color)`
+
 `--button-border` `1px solid transparent`
 The border width should match the width defined in `--textinput-border`.
 
-#### Primary variant
+`--button-hover-border` `var(--button-border)`
 
-`--button-primary-background` `var(--background-accent)`
-
-`--button-primary-hover-background` `var(--background-accent-hover)`
-
-`--button-primary-active-background` `var(--background-accent-active)`
-
-`--button-primary-color` `var(--background)`
-
-`--button-primary-border` `none`
-
-#### Tertiary variant
-
-`--button-tertiary-background` `transparent`
-
-`--button-tertiary-color` `var(--color-accent)`
-
-`--button-tertiary-hover-color` `var(--color-accent-high-contrast)`
-
-`--button-tertiary-active-color` `var(--color)`
-
-`--button-tertiary-border` `none`
-
-#### Small variant
-
-`--button-small-font` `var(--font-button-small)`
-
-`--button-small-padding` `var(--size-6, 0.375rem) var(--size-8, 0.5rem)`
-
-#### Disabled variant
-
-`--button-disabled-color` `var(--color-disabled)`
-
-`--button-disabled-background` `var(--background-ui)`
-Does not apply to the tertiary variant.
-
-`--button-disabled-border` `var(--button-border, none)`
-Does not apply to the tertiary variant.
+`--button-active-border` `var(--button-border)`
 
 </render-props>
 
