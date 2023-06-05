@@ -287,28 +287,22 @@ button {
 }
 
 @media (any-hover: hover) {
-  button:not(:disabled):hover {
+  button:not(:disabled, [aria-disabled=true]):hover {
     background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
     border: var(--button-hover-border, var(--button-border, 1px solid transparent));
     color: var(--button-hover-color, var(--button-color, var(--color)));
   }
 
-  button:disabled:hover {
+  button:is(:disabled, [aria-disabled=true]):hover {
     background: var(--button-background, var(--background-ui));
   }
 }
 
-button:not(:disabled):is(:active, [active]) {
+button:not(:disabled, [aria-disabled=true]):is(:active, [active]) {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
   color: var(--button-active-color, var(--button-color, var(--color)));
   transition: none;
-}
-
-button:disabled {
-  --button-color: var(--button-disabled-color, var(--color-disabled));
-  --button-background: var(--button-disabled-background, var(--background-ui));
-  --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
 
 button[theme~=primary] {
@@ -334,6 +328,12 @@ button[theme~=small] {
   --button-padding: var(--button-small-padding, var(--size-6, 0.375rem) var(--size-12, 0.75rem));
   --button-min-width: var(--size-32, 2rem);
   --button-min-height: var(--size-32, 2rem);
+}
+
+button:is(:disabled, [aria-disabled=true]) {
+  --button-color: var(--button-disabled-color, var(--color-disabled));
+  --button-background: var(--button-disabled-background, var(--background-ui));
+  --button-border: var(--button-disabled-border, var(--button-border, 1px solid transparent));
 }
 
 button icon {
