@@ -151,6 +151,24 @@ Some of the related components, like `<vaadin-combo-box>` and `<vaadin-date-pick
 ---
 
 
+### Progress bar
+
+`<vaadin-progress-bar>` → `<progress>`
+
+Benefits:
+- standard CSS applies
+- no shadow DOM
+- less DOM elements
+- no JavaScript to download, parse, and run
+
+Drawbacks:
+- None
+
+See the [prototype theme implementation for progress bar](/prototypes/component-themes/#progress-and-meter).
+
+---
+
+
 ### Details
 
 `<vaadin-details>` → `<details>`

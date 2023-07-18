@@ -320,6 +320,32 @@ TODO
 </render-props>
 
 
+## Progress and Meter
+<style>
+render-example.progress-bar :is(progress, meter) {
+  margin-inline-end: 1em;
+}
+</style>
+<render-example class="progress-bar"></render-example>
+```html
+<h4>Progress</h4>
+<progress min=0 max=5 value=3></progress>
+<progress></progress>
+
+<h4>Meter</h4>
+<meter min=0 max=5 value=3></meter>
+<meter min=0 max=100 low=33 high=66 optimum=80 value=50>at 50/100</meter>
+<meter min=0 max=100 low=33 high=66 optimum=80 value=20>at 20/100</meter>
+<meter min=0 max=100 low=33 high=66 optimum=80 value=90>at 90/100</meter>
+
+```
+
+### Progress and Meter tokens
+
+<render-props>
+TODO
+</render-props>
+
 ## Details
 <render-example></render-example>
 ```html
@@ -380,6 +406,8 @@ TODO: key-value pairs nicely laid out and styles (horizontal and vertical)
  -->
 
 ## Vertical alignment
+Testing the vertical alignment of components.
+
 <render-example></render-example>
 ```html
 <script type="module">
@@ -401,4 +429,6 @@ TODO: key-value pairs nicely laid out and styles (horizontal and vertical)
   <input type="checkbox" checked>
   <label>Checkbox</label>
 </j-field>
+<progress value=0.4></progress>
+<meter value=0.4></meter>
 ```
