@@ -47,6 +47,10 @@ const styles = `
     fill: var(--avatar-clip-fill, none);
   }
 
+  .clip:dir(rtl) {
+    x: calc(var(--overlap) - 100% - var(--gap) * 2);
+  }
+
   [hidden] {
     display: none;
   }
