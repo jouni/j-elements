@@ -53,3 +53,10 @@ The menu component is based on [Popup](/prototypes/popup).
   });
 </script>
 ```
+
+<!--
+TODO: Instead of relying on a dynamically generated svg that you hover over, use the distance of the pointer from the submenu is an indication if the user is moving towards it. If the user continues to move closer within a 300ms timer, then keep the menu open and ignore events on other menu items.
+
+Inspiration: https://www.youtube.com/watch?v=o0NtjY17v5w
+
+-->
