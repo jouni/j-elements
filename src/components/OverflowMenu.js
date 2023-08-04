@@ -108,15 +108,27 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
 
     const visibleItems = this.querySelectorAll(`:scope > :not(.${FORCED_COLLAPSE_CLASS}):not([slot="overflow-button"],[slot="tooltip"])`);
 
-    for (let i = visibleItems.length - 1; i >= 0; i--) {
-      const child = visibleItems[i];
+    const overflowingItems = [];
+    this.setAttribute('overflow', '');
 
-      if (this.offsetWidth < this.scrollWidth) {
+    for (let i = 0; i < visibleItems.length; i++) {
+      const child = visibleItems[i];
+      if (child.offsetLeft + child.offsetWidth > this.offsetLeft + this.offsetWidth) {
+        overflowingItems.push(child);
+      }
+    }
+
+    if (overflowingItems.length > 0) {
+      overflowingItems.forEach(child => {
         child.setAttribute('slot', 'menu');
         this.setAttribute('overflow', '');
-      } else {
-        break;
+      });
+      // Check if the overflow button is outside, and move one more item to the slot if needed
+      if (this._overflowButton.offsetLeft > this.offsetWidth) {
+        overflowingItems[0].previousElementSibling?.setAttribute('slot', 'menu');
       }
+    }else {
+      this.removeAttribute('overflow');
     }
 
     // Clear workaround styles
