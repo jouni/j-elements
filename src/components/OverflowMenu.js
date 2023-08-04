@@ -110,10 +110,13 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
 
     const overflowingItems = [];
     this.setAttribute('overflow', '');
+    const groupBox = this.getBoundingClientRect();
 
     for (let i = 0; i < visibleItems.length; i++) {
       const child = visibleItems[i];
-      if (child.offsetLeft + child.offsetWidth > this.offsetLeft + this.offsetWidth) {
+      const childBox = child.getBoundingClientRect();
+      // Account for both LTR and RTL directions at the same time
+      if (childBox.left < groupBox.left || childBox.right > groupBox.right) {
         overflowingItems.push(child);
       }
     }
@@ -124,7 +127,8 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
         this.setAttribute('overflow', '');
       });
       // Check if the overflow button is outside, and move one more item to the slot if needed
-      if (this._overflowButton.offsetLeft > this.offsetWidth) {
+      const overflowButtonBox = this._overflowButton.getBoundingClientRect();
+      if (overflowButtonBox.left < groupBox.left || overflowButtonBox.right > groupBox.right) {
         overflowingItems[0].previousElementSibling?.setAttribute('slot', 'menu');
       }
     }else {
