@@ -97,3 +97,20 @@ The avatar overlap, gap, roundness, size, background, and max number of items sh
   <j-avatar><icon search></icon></j-avatar>
 </j-avatar-group>
 ```
+
+
+### Performance test
+
+<render-example></render-example>
+```html
+<j-avatar-group id="perfo-test"></j-avatar-group>
+
+<script>
+const group = document.querySelector('#perfo-test');
+for (let i = 0; i < 200; i++) {
+  const avatar = document.createElement('j-avatar');
+  avatar.textContent = 'FL';
+  group.appendChild(avatar);
+}
+</script>
+``````
