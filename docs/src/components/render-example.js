@@ -28,7 +28,7 @@ window.customElements.define('render-example', class extends HTMLElement {
         flex: none;
         transform: scaleX(-1);
         max-width: calc(100% - 0.5em - var(--padding) * 2);
-        background: #eee;
+        background: var(--background-ui);
       }`
       :
       `:host {
