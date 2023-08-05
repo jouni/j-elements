@@ -60,6 +60,15 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
 <h5>30 items, with dividers</h5>
 <j-overflow-menu class="many-items"></j-overflow-menu>
 
+<h5>Force items to overflow menu</h5>
+<j-overflow-menu>
+  <button>Button 1</button>
+  <button class="">Button 2</button>
+  <button class="overflow-menu">Button 3</button>
+  <button class="overflow-menu">Button 4</button>
+  <button class="overflow-menu">Button 5</button>
+</j-overflow-menu>
+
 <style>
   j-overflow-menu.align-end {
     justify-content: flex-end;
