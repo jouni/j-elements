@@ -49,13 +49,15 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
         </j-menu>
       `;
 
-      // TODO check if overflow button is already present, use that instead
-      this._overflowButton = document.createElement('button');
-      this._overflowButton.textContent = '···';
-      this._overflowButton.setAttribute('aria-label', 'open menu');
+      this._overflowButton = this.querySelector('[slot="overflow-button"]');
+      if (!this._overflowButton) {
+        this._overflowButton = document.createElement('button');
+        this._overflowButton.textContent = '···';
+        this._overflowButton.setAttribute('aria-label', 'open menu');
+        this._overflowButton.setAttribute('slot', 'overflow-button');
+        this.append(this._overflowButton);
+      }
       this._overflowButton.setAttribute('aria-haspopup', 'menu');
-      this.append(this._overflowButton);
-      this._overflowButton.setAttribute('slot', 'overflow-button');
 
       this.__resizeObserver = new ResizeObserver(this._requestUpdate.bind(this));
     }
