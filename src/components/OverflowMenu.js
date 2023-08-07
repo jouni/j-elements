@@ -124,7 +124,7 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
       }
     }
 
-    if (firstOverflowItemIndex < visibleItems.length || forcedOverflowItems) {
+    if (firstOverflowItemIndex < visibleItems.length || forcedOverflowItems.length > 0) {
       // Make sure the overflow button has space
       let spaceAvailable = 0;
       const prop = isRtl ? 'left' : 'right';
@@ -142,7 +142,7 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
       [...visibleItems].slice(firstOverflowItemIndex).forEach(item => {
         item.setAttribute('slot', 'menu');
       });
-    } else if (!this.querySelector('.' + FORCED_COLLAPSE_CLASS)) {
+    } else {
       // No overflowing items
       this.removeAttribute('overflow', '');
     }
