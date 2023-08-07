@@ -10,7 +10,7 @@ eleventyNavigation:
   order: 80
 ---
 
-An easy way to add customizable tooltips to any element, by simply adding the `tooltip` attribute on them.
+An easy way to add customizable tooltips to any element, by simply adding the `tooltip` attribute on them. You can add a tooltip (or content with a tooltip) dynamically as well.
 
 <render-example></render-example>
 ```html
@@ -39,6 +39,14 @@ document.querySelector('#remove-item').addEventListener('click', function() {
 </script>
 ```
 
+<style>
+render-example button {
+  margin: 0.25rem;
+}
+</style>
+
+<!--
+
 TODO:
 - configuration could be done using CSS custom props
   - `--tooltip-alignment` - on which side to show the tooltip preferably
@@ -46,3 +54,5 @@ TODO:
     - should event listeners also then be placed on that element instead of the host?
 - opt-in for shadow roots, need to  call an explicit method to start monitoring DOM changes inside a shadow tree
 - Read and learn (as the implementation is based on `MutationObserver`): https://stackoverflow.com/questions/31659567/performance-of-mutationobserver-to-detect-nodes-in-entire-dom
+
+-->
