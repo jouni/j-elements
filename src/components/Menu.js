@@ -35,6 +35,10 @@ const styles = `
       --popup-min-width: fit-content;
       --popup-mode: modeless;
     }
+
+    ::slotted(j-menu) {
+      display: contents;
+    }
   `;
 
 export class Menu extends PopupMixin(HTMLElement) {
