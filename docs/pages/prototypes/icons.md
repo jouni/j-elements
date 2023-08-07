@@ -41,7 +41,7 @@ icon[checkmark] {
 }
 ```
 
-## Using icons in CSS
+## Using Icons in CSS
 Import the style sheet and use the `<icon>` element. An accessible label/name for the icon can be placed inside the element.
 
 <render-example class="example"></render-example>

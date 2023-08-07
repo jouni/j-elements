@@ -1,15 +1,15 @@
 ---
-title: Basic components
+title: Basic Components
 layout: page
 eleventyNavigation:
   parent: Research
-  key: Basic components
+  key: Basic Components
   order: 20
 ---
 
 Custom implementations for basic HTML components, like button, checkbox, and various text inputs means you can't use standard CSS to style them.
 
-## Custom CSS selectors
+## Custom CSS Selectors
 With custom components you need to target a different element name, sometimes within shadow DOM using `::part()`. You need to target custom state attributes because native pseudo-classes do not work, for example, `[checked]` vs `:checked`.
 
 For example, compare styling a checkbox:
@@ -40,13 +40,13 @@ While they are similar in selector complexity, the HTML element selectors requir
 
 There might have been a need to reimplement basic HTML elements before, due to older browsers. With modern browsers, we can reconsider that and avoid making theming/styling more complicated than necessary.
 
-## Using 3rd party CSS libraries
+## Using 3rd-Party CSS Libraries
 
 Using 3rd-party CSS libraries, like [Bootstrap](http://getbootstrap.com), [Skeleton](http://getskeleton.com), or [Bulma](https://bulma.io), is a problem with Vaadin components.
 
 The selectors defined by 3rd party libraries do not apply to custom components, and it is impossible to add classes defined by those libraries to the correct elements in Vaadin components, because they are either generated at runtime, or they are hidden inside shadow DOM, or they are not meant to be styled (for example, the native `<input>` element slotted inside Vaadin field components).
 
-## Proposal: use basic HTML when possible
+## Proposal: Use Basic HTML When Possible
 
 I believe we should deprecate some of the Vaadin components in favor of basic HTML components. That said, many of the current use cases covered by Vaadin components can not be easily covered with basic HTML elements, so there is still a need for convenience APIs on top of the standard elements. I'm arguing for a change in the abstraction of those APIs.
 
@@ -98,7 +98,7 @@ Although it is not absolutely necessary, I would recommend a helper component th
 
 See the [`<j-field>`](/prototypes/field/#checkbox) prototype and the [prototype theme implementation for checkbox](/prototypes/component-themes/#checkbox) and [radio button](/prototypes/component-themes/#radio-button).
 
-#### Checkbox and radio groups
+#### Checkbox and Radio Groups
 
 Grouping checkboxes and radio buttons still benefits from a component that makes it convenient to label the group and provide validation functionality (required field indicator, validation message).
 
@@ -111,7 +111,7 @@ Potential regressions:
 
 ---
 
-### Text inputs
+### Text Inputs
 
 - `<vaadin-text-field>` → `<input type="text">`
 - `<vaadin-password-field>` → `<input type="password">`
@@ -151,7 +151,7 @@ Some of the related components, like `<vaadin-combo-box>` and `<vaadin-date-pick
 ---
 
 
-### Progress bar
+### Progress Bar
 
 `<vaadin-progress-bar>` → `<progress>`
 

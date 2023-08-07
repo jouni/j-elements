@@ -12,7 +12,7 @@ eleventyNavigation:
 
 <!-- TODO Disabled fields and field groups -->
 
-## Label and description
+## Label and Description
 Wrap any native input element and a label with `<j-field>`, and accessibility is handled for you automatically without the need to manually use `id`, `for`, `aria-labelledby`, or `aria-describedby` attributes.
 
 <render-example></render-example>
@@ -24,11 +24,11 @@ Wrap any native input element and a label with `<j-field>`, and accessibility is
 </j-field>
 ```
 
-## Validation messages
+## Validation Messages
 
 Validation messages are provided by the browsers by default, but you can provide a custom message as well. Again, no need to use `id` or `aria-describedby` attributes.
 
-### Required validation
+### Required Validation
 <render-example></render-example>
 ```html
 <j-field>
@@ -37,7 +37,7 @@ Validation messages are provided by the browsers by default, but you can provide
 </j-field>
 ```
 
-### Pattern validation
+### Pattern Validation
 <render-example></render-example>
 ```html
 <j-field>
@@ -47,7 +47,7 @@ Validation messages are provided by the browsers by default, but you can provide
 </j-field>
 ```
 
-### Custom validation message
+### Custom Validation Message
 <render-example></render-example>
 ```html
 <j-field validation-message="You should really type something here.">
@@ -56,11 +56,11 @@ Validation messages are provided by the browsers by default, but you can provide
 </j-field>
 ```
 
-## Input types
+## Input Types
 
 All native input types are supported without extra effort.
 
-### Date input
+### Date Input
 <render-example></render-example>
 ```html
 <j-field>
@@ -69,7 +69,7 @@ All native input types are supported without extra effort.
 </j-field>
 ```
 
-### Text area
+### Text Area
 <render-example></render-example>
 ```html
 <j-field>
@@ -113,14 +113,14 @@ All native input types are supported without extra effort.
 ```
 
 
-## Field group
+## Field Group
 
 <!-- TODO remove, replace with <fieldset> + <legend> -->
 <!-- OR hmm, how do you create a more complex fieldset then? -->
 
 `<j-field-group>` allows you to group multiple checkbox or radio button fields together. For radio buttons, you don't need to decide on a name for the group, if you don't want to.
 
-### Checkbox group
+### Checkbox Group
 
 <render-example></render-example>
 ```html
@@ -142,7 +142,7 @@ All native input types are supported without extra effort.
 </j-field-group>
 ```
 
-### Radio group
+### Radio Group
 <render-example></render-example>
 ```html
 <j-field-group>
@@ -162,7 +162,7 @@ All native input types are supported without extra effort.
 </j-field-group>
 ```
 
-### Text input group
+### Text Input Group
 <render-example></render-example>
 ```html
 <j-field-group>
@@ -185,9 +185,9 @@ All native input types are supported without extra effort.
 </j-field-group>
 ```
 
-## Aligning with other components
+## Aligning with Other Components
 
-### Text input and prefix content and button
+### Text Input and Prefix Content and Button
 <render-example></render-example>
 ```html
 <script type="module">
@@ -207,7 +207,7 @@ import '/src/components/InputDecorator.js';
 </j-field>
 ```
 
-### Text input and checkbox
+### Text Input and Checkbox
 <render-example></render-example>
 ```html
 <j-field>

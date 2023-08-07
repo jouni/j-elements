@@ -50,7 +50,7 @@ No polyfill is loaded automatically. Polyfills can't overcome the "clipping stac
 
 <p class="dialog-not-supported">Your browser does not support the native <code>&lt;dialog&gt;</code> element.</p>
 
-### Known issues
+### Known Issues
 
 In Safari 15.4 (the first version to support the `<dialog>` element), it is not possible to focus elements inside a `<dialog>`, when the dialog is inside shadow DOM and the content is slotted into it: https://bugs.webkit.org/show_bug.cgi?id=233320#c3
 

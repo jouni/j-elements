@@ -1,15 +1,15 @@
 ---
-title: Input decorator
+title: Input Decorator
 layout: page
 imports:
   /src/components/InputDecorator.js
 eleventyNavigation:
-  key: Input decorator
+  key: Input Decorator
   parent: Prototypes
   order: 50
 ---
 
-## Prefix and suffix content
+## Prefix and Suffix Content
 
 Place prefix and suffix elements visually inside an input element.
 
@@ -91,7 +91,7 @@ input {
 ```
 
 
-## Auto size
+## Auto-Size
 
 The `autosize` attribute makes the contained input change its size based on the contained text value. Manual text area resizing is disabled when auto size is used.
 

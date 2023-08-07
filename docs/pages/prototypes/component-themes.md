@@ -1,16 +1,16 @@
 ---
-title: Component themes
+title: Component Themes
 layout: page
 eleventyNavigation:
-  key: Component themes
+  key: Component Themes
   parent: Prototypes
   order: 20
 imports:
   /src/theme/components.css
 ---
 
-## Component token names
-Component token names are prefixed with the component name + variant + state, and suffixed with the CSS property name they are targeting:
+## Token Names
+Token names are prefixed with the component name + variant + state, and suffixed with the CSS property name they are targeting:
 `--[component]-[variant]-[state]-[property]`
 
 For example, the font for the small button variant:
@@ -109,7 +109,7 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 </div>
 ```
 
-### Button tokens
+### Button Tokens
 <render-props>
 
 `--button-border-radius` `var(--border-radius-m)`
@@ -178,7 +178,7 @@ The border width should match the width defined in `--textinput-border`.
 </div>
 ```
 
-### Text Input tokens
+### Text Input Tokens
 These tokens apply to Select as well.
 
 <render-props>
@@ -249,7 +249,7 @@ The vertical padding should match the vertical padding defined in `--button-smal
 </select>
 ```
 
-### Select tokens
+### Select Tokens
 All Text Input tokens apply for Select as well.
 
 <render-props>
@@ -282,7 +282,7 @@ Background blend mode is used to support the both light and dark mode with a sin
 </script>
 ```
 
-### Checkbox tokens
+### Checkbox Tokens
 
 <render-props>
 TODO
@@ -299,7 +299,7 @@ TODO
 <input type="radio" disabled name="disabled-example" checked>
 ```
 
-### Radio Button tokens
+### Radio Button Tokens
 
 <render-props>
 TODO
@@ -313,7 +313,7 @@ TODO
 <input type="range" disabled>
 ```
 
-### Slider tokens
+### Slider Tokens
 
 <render-props>
 TODO
@@ -340,7 +340,7 @@ render-example.progress-bar :is(progress, meter) {
 
 ```
 
-### Progress and Meter tokens
+### Progress and Meter Tokens
 
 <render-props>
 TODO
@@ -393,7 +393,7 @@ details + details {
 }
 </style>
 
-### Details tokens
+### Details Tokens
 
 <render-props>
 TODO
@@ -405,7 +405,7 @@ TODO
 TODO: key-value pairs nicely laid out and styles (horizontal and vertical)
  -->
 
-## Vertical alignment
+## Vertical Alignment
 Testing the vertical alignment of components.
 
 <render-example></render-example>

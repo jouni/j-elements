@@ -1,9 +1,9 @@
 ---
-title: Defining and using icons
+title: Defining and Using Icons
 layout: page
 eleventyNavigation:
   parent: Research
-  key: Icons research
+  key: Icons Research
   title: Icons
   order: 30
 ---
@@ -16,7 +16,7 @@ For icons used in components, a custom icon font is needed to be able to overrid
 
 If we agree that icon fonts are the least desirable option for icons, as they are the most difficult to author (binary formats), we have two options left: defining SVG-based icons in JavaScript or CSS.
 
-## Defining icons in JavaScript
+## Defining Icons in JavaScript
 
 Benefits:
 - Inline SVGs are more customizable using CSS (for example, `stroke-width`)
@@ -28,7 +28,7 @@ Drawbacks:
 
 <!-- See https://www.webperf.tips/tip/cached-js-misconceptions/ for more reasoning why we should avoid JS as much as possible -->
 
-## Defining icons in CSS
+## Defining Icons in CSS
 
 Benefits:
 - a single style sheet is enough. The icons can be bundled in the style sheet as data URLs. Alternatively, they could be referenced as external resources, which might be suitable in some cases, to minimize the initial bundle size and accept a FOUC when the SVG files are downloading.
@@ -44,7 +44,7 @@ TODO how to define RTL compatible icons easily?
 -->
 
 
-## Authoring an using icons
+## Authoring an Using Icons
 
 Authoring an icon set can be considered equally cumbersome in both options. In CSS the SVG needs to be URL encoded and each icon separately defined using a CSS selector, while in JavaScript some boilerplate code is needed, both JS and SVG. A tool that generates the definitions from a collection of SVG files can be created for either option.
 

@@ -1,13 +1,13 @@
 ---
-title: Other theming issues
+title: Other Theming Issues
 layout: page
 eleventyNavigation:
   parent: Research
-  key: Other theming issues
+  key: Other Theming Issues
   order: 40
 ---
 
-## Visual style complexity
+## Visual Style Complexity
 The visual style of Lumo in particular can be complicated in some cases for not much benefit, aiming for visual flair at the cost of simplicity.
 
 <video src="/docs/assets/textfield-focus.mov" autoplay loop style="width:203px;"></video>
@@ -58,14 +58,14 @@ TODO: actually, using ::part will override any shadow DOM styles, so this point 
 The previous proposal for less elaborate visual styling/effects will help, but in addition, we should use `@layer` to reduce selector specificity and make overriding styles that much easier.
 -->
 
-## Baseline alignment "hack"
+## Baseline Alignment "Hack"
 The way the Lumo theme tries to ensure components align vertically as expected is complex and brittle. We should remove it, and make sure that component alignments are good enough by other means, for example, by relying on the browser more and making it easier to use lower-level building blocks which align without extra effort (deconstruct field components).
 
-## Inconsistent custom properties
+## Inconsistent Custom Properties
 Lumo custom properties are inconsistently named, making it harder than necessary to remember them or remember where they should be used.
 
 
-## The "theme" attribute
+## The "Theme" Attribute
 The proprietary `theme` attribute is almost the same as the standard `class` attribute, except that it is copied to "sub-components" (another element with shadow DOM) inside the main component's shadow DOM.
 
 Using the `theme` attribute  is likely not a big issue for most developers, as copy-pasting code from examples is easy enough, and the exact API naming is perhaps not much of a concern. Styling sub-components is a case that needs a solution, though, so without the `theme` attribute the `class` attribute would need to be copied to sub-components.
@@ -74,7 +74,7 @@ One aspect where the `theme` attribute is clearly worse than the standard `class
 
 CSS selector performance could be an issue to consider, as class selectors are faster than attribute selectors, especially in Safari using global styles ([source](https://nolanlawson.com/2022/06/22/style-scoping-versus-shadow-dom-which-is-fastest/)).
 
-## Theme implementation
+## Theme Implementation
 
 
 CSS custom property names should follow a consistent naming convention.

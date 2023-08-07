@@ -1,9 +1,9 @@
 ---
-title: Mutation animation
+title: Mutation Animation
 layout: page
 eleventyNavigation:
-  key: Mutation animation
-  parent: Utilities
+  key: Mutation Animation
+  parent: Misc Utilities
 permalink: /mutation-animation/
 imports: /src/util/MutationAnimationMixin.js
 ---

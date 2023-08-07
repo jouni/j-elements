@@ -1,5 +1,5 @@
 ---
-title: Overflow menu
+title: Overflow Menu
 layout: page
 imports:
   /src/components/OverflowMenu.js
@@ -18,7 +18,7 @@ The main element needs be allowed to shrink and grow based on the available spac
 
 The overflowing items are placed in the menu by setting the `slot` attribute on the them dynamically. The benefit of this approach is that the items are not disconnected/reconnected from/to the DOM when they move to and from the menu.
 
-## Aligned to start
+## Aligned to Start
 <render-example></render-example>
 ```html
 <j-overflow-menu>
@@ -33,7 +33,7 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
 </j-overflow-menu>
 ```
 
-## Aligned to end
+## Aligned to End
 <render-example></render-example>
 ```html
 <j-overflow-menu class="align-end">
@@ -77,7 +77,7 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
 ```
 
 
-## Force items to overflow, custom overflow button
+## Forced Overflow, Custom Overflow Button
 <render-example></render-example>
 ```html
 <h5>Force items to overflow menu and custom overflow button</h5>
@@ -94,7 +94,7 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
 ```
 
 
-## Custom items
+## Custom Items
 <render-example></render-example>
 ```html
 <j-overflow-menu>

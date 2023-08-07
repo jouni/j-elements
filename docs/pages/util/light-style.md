@@ -1,9 +1,9 @@
 ---
-title: Light style
+title: Light Style
 layout: page
 eleventyNavigation:
-  key: Light style
-  parent: Utilities
+  key: Light Style
+  parent: Misc Utilities
 permalink: /light-style/
 imports: /src/util/LightStyleMixin.js
 ---

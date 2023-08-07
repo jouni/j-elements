@@ -1,8 +1,8 @@
 ---
-title: Design tokens
+title: Design Tokens
 layout: page
 eleventyNavigation:
-  key: Design tokens
+  key: Design Tokens
   parent: Prototypes
   order: 10
 imports:
@@ -10,7 +10,7 @@ imports:
   /src/theme/tokens.css
 ---
 
-## Token names
+## Token Names
 
 Token (CSS custom property) names start with the CSS property name they are primarily meant to be used for:
 `--[property]`
@@ -24,11 +24,11 @@ Token variants and states are suffixed after the property name:
 For example, the token for UI control background, when hovered:
 `--background-ui-hover`
 
-## Color scales
+## Color Scales
 
 `colors.css` defines a collection of static color scales – a range of colors from light to dark – for various hues, for example, "slate", "red", "emerald", "purple", and "rose". At the moment those scales are copied from [Tailwind CSS](https://tailwindcss.com/docs/customizing-colors).
 
-## Dark mode
+## Dark Mode
 
 The color tokens adapt to light and dark modes, mapping to the static color scales.
 
@@ -72,7 +72,7 @@ Background for UI controls when activated (for example, clicked with a mouse or 
 </render-props>
 
 
-## Text color
+## Text Color
 <render-props>
 
 `--color`
@@ -113,7 +113,7 @@ Low contrast border color.
 </render-props>
 
 
-### Border presets
+### Border Presets
 <render-props>
 
 `--border-ui`
@@ -131,7 +131,7 @@ Border for UI controls when focused.
 </render-props>
 
 
-### Border radius
+### Border Radius
 <render-props>
 
 `--border-radius-l`
@@ -167,7 +167,7 @@ The size of the outline.
 
 ## Typography
 
-### Font family
+### Font Family
 
 <render-props>
 
@@ -182,7 +182,7 @@ The size of the outline.
 </render-props>
 
 
-### Font size
+### Font Size
 Font sizes scale slightly based on the browser viewport size.
 <style>
 .font-size {
@@ -226,7 +226,7 @@ Font sizes scale slightly based on the browser viewport size.
 </render-props>
 
 
-### Line height
+### Line Height
 
 <render-props>
 
@@ -245,7 +245,7 @@ Font sizes scale slightly based on the browser viewport size.
 </render-props>
 
 
-### Font weight
+### Font Weight
 
 <render-props>
 
@@ -262,7 +262,7 @@ Font sizes scale slightly based on the browser viewport size.
 </render-props>
 
 
-### Font smoothing
+### Font Smoothing
 
 <render-props>
 
@@ -296,7 +296,7 @@ Font size and line height should match those of `--font-button-small`.
 </render-props>
 
 
-## Size / space
+## Size / Space
 
 <render-props>
 
