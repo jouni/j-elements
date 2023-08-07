@@ -80,7 +80,6 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
 ## Forced Overflow, Custom Overflow Button
 <render-example></render-example>
 ```html
-<h5>Force items to overflow menu and custom overflow button</h5>
 <j-overflow-menu>
   <button>Button 1</button>
   <button class="overflow-menu">Button 2</button>
