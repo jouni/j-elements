@@ -23,7 +23,7 @@ The menu component is based on [Popup](/prototypes/popup).
   <div role="group" aria-label="Primary actions">
     <button>Action 1</button>
     <button>Action 2</button>
-    <button disabled>Action 3</button>
+    <button aria-disabled="true" tooltip="This action is not available at the moment">Action 3</button>
   </div>
   <hr>
   <j-menu>

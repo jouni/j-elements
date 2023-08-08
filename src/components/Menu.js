@@ -76,8 +76,12 @@ export class Menu extends PopupMixin(HTMLElement) {
   _onPopupClick(e) {
     super._onPopupClick(e);
     if (e.target.closest('button')?.getAttribute('role').match(/menuitem|option/)) {
-      // Clicked on a menu item. Close the popup, and allow the event to propagate.
-      this.closePopup();
+      if (e.target.getAttribute('aria-disabled') === 'true') {
+        e.stopPropagation();
+      } else {
+        // Clicked on a menu item. Close the popup, and allow the event to propagate.
+        this.closePopup();
+      }
     } else if (e.target === this._popup || (e.target.assignedSlot || e.target).closest('[part="popup"]')) {
       // Clicked inside the popup element. Consume the event.
       e.stopPropagation();
@@ -89,7 +93,7 @@ export class Menu extends PopupMixin(HTMLElement) {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       e.stopPropagation();
-      const activeItems = this._menuItems.filter(item => (!item.hasAttribute('disabled') && !item.hasAttribute('aria-disabled')));
+      const activeItems = this._menuItems.filter(item => !item.hasAttribute('disabled'));
       let index = activeItems.indexOf(document.activeElement);
       index += (e.key === 'ArrowDown') ? 1 : -1;
       if (index < 0) index = activeItems.length - 1;
