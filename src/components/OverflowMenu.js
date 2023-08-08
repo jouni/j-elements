@@ -9,6 +9,8 @@ const styles = `
     align-items: center;
     /* Allow the host to shrink smaller children */
     min-width: 0;
+    /* Prevent parent container from getting a scrollbar when resizing the menu (before items are moved to the overflow menu) */
+    contain: layout;
   }
 
   ::slotted(*) {
