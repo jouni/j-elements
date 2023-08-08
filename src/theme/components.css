@@ -992,6 +992,8 @@ j-tooltip {
   box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
   padding: var(--size-4, 0.25rem);
   margin: var(--size-4, 0.25rem);
+  width: max-content;
+  max-width: 20em;
   font-size: var(--font-size-s);
   border-radius: var(--border-radius-s);
   /* TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable) */
