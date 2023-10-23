@@ -182,3 +182,9 @@ html,
   --size-96: 6rem;
   --size-128: 8rem;
 }
+
+/* Other */
+html,
+:host {
+  --transition-duration-1: 80ms;
+}
