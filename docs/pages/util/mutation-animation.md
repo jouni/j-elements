@@ -36,13 +36,19 @@ First we create a new custom element using the mixin.
 
 ```html
 <script type="module">
-  import {MutationAnimationMixin} from 'j-elements';
+  import { MutationAnimationMixin } from '/src/util/MutationAnimationMixin.js';
 
   class MyList extends MutationAnimationMixin(HTMLElement) {}
 
   customElements.define('my-list', MyList);
 </script>
 ```
+<script type="module">
+  import {MutationAnimationMixin} from '/src/util/MutationAnimationMixin.js';
+  class MyList extends MutationAnimationMixin(HTMLElement) {}
+  customElements.define('my-list', MyList);
+</script>
+
 
 Then we can use the new element and apply animations for inserted and removed elements.
 

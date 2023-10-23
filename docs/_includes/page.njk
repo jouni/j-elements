@@ -43,11 +43,6 @@ title: JElements
         }
       });
 
-      // Needed for the example
-      import {MutationAnimationMixin} from '{{ '/src/util/MutationAnimationMixin.js' | url }}';
-      class MyList extends MutationAnimationMixin(HTMLElement) {}
-      window.customElements.define('my-list', MyList);
-
       // Enable :active styles on touch devices (mainly iOS)
       document.addEventListener('touchstart', () => {});
     </script>
@@ -147,7 +142,7 @@ title: JElements
       </nav>
     </header>
       <main>
-        <h1>{{ title }}</h1>
+        <h1>{{ title }}</h1>
         <table-of-contents></table-of-contents>
         {% if imports %}
         <module-size modules="{{ imports }}"></module-size>
