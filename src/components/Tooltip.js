@@ -1,6 +1,6 @@
 import { positionPopup } from '../util/positionPopup.js';
 
-// TODO accessibility (aria-describedby)
+// TODO accessibility (aria-describedby, make sure the elements are in the same DOM scope)
 
 export const tooltipElement = document.createElement('j-tooltip');
 tooltipElement.style.setProperty('position', 'fixed');
