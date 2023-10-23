@@ -44,7 +44,7 @@ html,
 
 
 
-
+/* TODO: Safari now supports rounded outlines */
 /* Focus outline ---------------------------------------------------- */
 
 :focus:not(:focus-visible) {
