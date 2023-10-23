@@ -105,6 +105,7 @@ select {
   margin: 0;
   vertical-align: middle;
   transition: border 0.15s;
+  contain: content;
 }
 
 textarea {
@@ -212,6 +213,7 @@ select {
   background-position: right calc((var(--_padding-inline-end) - var(--icon-size, 1.125em)) / 2) center !important;
   background-blend-mode: var(--select-background-blend-mode, multiply) !important;
   --select-background-image: var(--icon-chevron-down-gray);
+  contain: content;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -289,6 +291,7 @@ button {
   vertical-align: middle;
   touch-action: manipulation;
   transition: background-color 0.15s, color 0.15s;
+  contain: content;
 }
 
 @media (any-hover: hover) {
@@ -485,6 +488,7 @@ j-field-group {
   display: flex;
   flex-direction: column;
   gap: var(--space-8, 0.5rem);
+  contain: content;
 }
 
 j-field-group {
@@ -612,6 +616,7 @@ input[type=range] {
   background: transparent;
   width: calc(var(--size-16, 1rem) * 8);
   --outline-offset: 2px;
+  contain: layout;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -733,6 +738,7 @@ progress {
   vertical-align: initial;
   /* Workaround for ::-internal-fallback pseudo-element-selector not working */
   overflow: hidden;
+  contain: strict;
 }
 
 meter::-internal-fallback {
@@ -867,6 +873,7 @@ summary {
   display: flex;
   align-items: center;
   gap: var(--size-4, 0.25rem);
+  contain: content;
 }
 
 @media (any-hover: hover) {
@@ -998,6 +1005,7 @@ j-tooltip {
   border-radius: var(--border-radius-s);
   /* TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable) */
   pointer-events: none;
+  contain: content;
 }
 
 @keyframes fade-in {
