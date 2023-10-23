@@ -89,11 +89,13 @@ export const PopupMixin = superClass => class extends superClass {
   _onTriggerSlotChange() {
     // Clean up old trigger element
     if (this._triggerElement) {
-      this._triggerElement.removeAttribute('aria-has-popup');
+      this._triggerElement.removeAttribute('aria-haspopup');
+      this._triggerElement.removeAttribute('aria-expanded');
       this._triggerElement.removeEventListener('click', this._onTriggerClick);
     }
     this._triggerElement = this.shadowRoot.querySelector('slot[name="trigger"]').assignedElements({ flatten: true })[0] || this;
-    this._triggerElement.setAttribute('aria-haspopup', 'dialog');
+    this._triggerElement.setAttribute('aria-haspopup', this._popup.getAttribute('role') || 'dialog');
+    this._triggerElement.setAttribute('aria-expanded', 'false');
     this._triggerElement.addEventListener('click', this._onTriggerClick);
   }
 
@@ -113,6 +115,7 @@ export const PopupMixin = superClass => class extends superClass {
   _onOpenPopup(withKeyboard) {
     // TODO consider using a class name instead (faster CSS selector)
     this._triggerElement.setAttribute('active', '');
+    this._triggerElement.setAttribute('aria-expanded', 'true');
     this._positionPopup();
     window.addEventListener('scroll', this._positionPopup, { capture: true, passive: true });
     window.visualViewport.addEventListener('resize', this._positionPopup);
@@ -154,6 +157,7 @@ export const PopupMixin = superClass => class extends superClass {
 
   _onClosePopup() {
     this._triggerElement.removeAttribute('active');
+    this._triggerElement.setAttribute('aria-expanded', 'false');
     this._triggerElement.focus();
     window.removeEventListener('scroll', this._positionPopup, { capture: true, passive: true });
     window.visualViewport.removeEventListener('resize', this._positionPopup);
