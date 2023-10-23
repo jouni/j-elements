@@ -50,7 +50,7 @@ body {
   margin: 0;
 }
 
-table-of-contents + p {
+table-of-contents+p {
   font-size: var(--font-size-l);
 }
 
@@ -84,7 +84,7 @@ table-of-contents + p {
   text-decoration: none;
 }
 
-.main-nav nav .active > a {
+.main-nav nav .active>a {
   background-color: var(--background-ui);
   color: var(--color-high-contrast);
 }
@@ -99,12 +99,12 @@ table-of-contents + p {
   margin-top: 1.5rem;
 }
 
-.main-nav .has-children > a:any-link {
+.main-nav .has-children>a:any-link {
   font-weight: 600;
   margin-bottom: var(--size-4);
 }
 
-main > h1::after {
+main>h1::after {
   content: "";
   display: block;
   width: 5rem;
@@ -120,7 +120,7 @@ table-of-contents {
   margin-bottom: 6em;
 }
 
-main > footer {
+main>footer {
   width: 100%;
   display: flex;
   align-items: center;
@@ -148,7 +148,7 @@ main > footer {
     float: left;
   }
 
-  main > :not(table-of-contents) {
+  main> :not(table-of-contents) {
     margin-inline-end: 17rem !important;
     direction: inherit !important;
   }
@@ -159,14 +159,14 @@ table-of-contents h6 {
   color: var(--color-low-contrast);
 }
 
-table-of-contents > ol {
+table-of-contents>ol {
   list-style: none;
   margin: 1em 0 2em;
   padding-inline-start: 1.5em;
-  border-inline-start: 2px solid var(--border-color-low-contrast);
+  border-inline-start: 1px solid var(--border-color-low-contrast);
 }
 
-table-of-contents > ol ol {
+table-of-contents>ol ol {
   list-style: none;
   padding-inline-start: 1em;
 }
@@ -185,12 +185,12 @@ table-of-contents a:hover {
   color: var(--color);
 }
 
-main > footer a:any-link {
+main>footer a:any-link {
   color: inherit;
   text-align: end;
 }
 
-main > footer a:hover {
+main>footer a:hover {
   color: var(--color-accent);
 }
 
@@ -232,7 +232,7 @@ render-example {
   margin-bottom: 0;
 }
 
-[class^="example-"] + pre[class*="language-"] {
+[class^="example-"]+pre[class*="language-"] {
   margin-top: 0;
   border-radius: 0.5em;
   border-top-left-radius: 0;
@@ -254,11 +254,13 @@ h2, h3 {
 [id]:target,
 [id][target] {
   animation: flash 1s;
+  box-shadow: none;
 }
 
 @keyframes flash {
   30% {
-    background-color: var(--color-accent-low-contrast)
+    background-color: var(--color-accent-low-contrast);
+    color: var(--background);
   }
 }
 
@@ -275,7 +277,7 @@ module-size dt {
   color: var(--color);
 }
 
-main > module-size {
+main>module-size {
   display: block;
   margin-top: -3rem;
 }
@@ -360,7 +362,7 @@ main {
     width: 100%;
   }
 
-  .main-nav details:not([open]) + nav {
+  .main-nav details:not([open])+nav {
     display: none;
   }
 
@@ -370,7 +372,7 @@ main {
   }
 }
 
-.preview + code,
+.preview+code,
 .preview {
   display: inline-block;
   font-family: var(--font-family-monospace);
@@ -385,37 +387,41 @@ main {
 }
 
 .preview.color span {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  background: var(--value);
+  display: inline-flex;
+  align-items: center;
   vertical-align: text-top;
-  margin: 0 0.5em;
-  position: relative;
+  gap: 0.5em;
 }
 
 .preview.color span::before {
   content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px black, 0 0 0 1px white;
-  opacity: 0.5;
+  display: block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: var(--value);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.5);
 }
 
 render-props {
   display: flow-root;
+  border: 1px solid var(--border-color-low-contrast);
+  border-radius: var(--border-radius-l);
 }
 
 render-props p {
   color: var(--color-low-contrast);
-  padding: 0 1.5rem;
-  margin-bottom: 1.25rem;
+  padding: 1.25rem 2.5rem 0;
+  border-top: 1px solid var(--border-color-low-contrast);
+  margin-top: 0;
 }
 
-render-props > p > code:first-child {
+render-props p:first-child {
+  border-top: 0;
+}
+
+render-props>p>code:first-child {
   color: var(--color-high-contrast);
   font-weight: var(--font-weight-strongest);
   background: transparent !important;
@@ -454,4 +460,44 @@ render-props > p > code:first-child {
 
 #accent-color [value=orange] span {
   background-color: var(--orange-500);
+}
+
+render-props.color-scale {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  padding: 1rem;
+  gap: 1rem;
+}
+
+render-props.color-scale p {
+  border: 0;
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0;
+  min-width: max-content;
+  padding: 0;
+  text-align: center;
+}
+
+render-props.color-scale .color.preview {
+  order: -1;
+  background-color: var(--value);
+  padding: 1rem;
+  border-radius: var(--border-radius-m);
+}
+
+render-props.color-scale .color.preview span::before {
+  display: none;
+}
+
+render-props.color-scale .color.preview span {
+  color: var(--value);
+  mix-blend-mode: difference;
+}
+
+render-props.color-scale p code {
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  margin: 0;
+  padding: 0;
 }

@@ -28,6 +28,57 @@ For example, the token for UI control background, when hovered:
 
 `colors.css` defines a collection of static color scales – a range of colors from light to dark – for various hues, for example, "slate", "red", "emerald", "purple", and "rose". At the moment those scales are copied from [Tailwind CSS](https://tailwindcss.com/docs/customizing-colors).
 
+### Slate
+<render-props class="color-scale">
+
+`--slate-50`
+
+`--slate-100`
+
+`--slate-200`
+
+`--slate-300`
+
+`--slate-400`
+
+`--slate-500`
+
+`--slate-600`
+
+`--slate-700`
+
+`--slate-800`
+
+`--slate-900`
+
+</render-props>
+
+### Orange
+<render-props class="color-scale">
+
+`--orange-50`
+
+`--orange-100`
+
+`--orange-200`
+
+`--orange-300`
+
+`--orange-400`
+
+`--orange-500`
+
+`--orange-600`
+
+`--orange-700`
+
+`--orange-800`
+
+`--orange-900`
+
+</render-props>
+
+
 ## Dark Mode
 
 The color tokens adapt to light and dark modes, mapping to the static color scales.
@@ -168,10 +219,23 @@ The size of the outline.
 ## Typography
 
 ### Font Family
+<style>
+.font-family {
+  display: block;
+}
+.font-family p {
+  margin: var(--size-8) 0;
+  line-height: var(--line-height-xs);
+}
+</style>
+<render-example class="font-family"></render-example>
+```html
+<p style="font-family: var(--font-family-sans-serif);">Lorem ipsum</p>
+<p style="font-family: var(--font-family-serif);">Lorem ipsum</p>
+<p style="font-family: var(--font-family-monospace);">Lorem ipsum</p>
+```
 
 <render-props>
-
-`--font-family`
 
 `--font-family-sans-serif`
 
@@ -179,11 +243,12 @@ The size of the outline.
 
 `--font-family-monospace`
 
+`--font-family` `var(--font-family-sans-serif)`
+
 </render-props>
 
 
 ### Font Size
-Font sizes scale slightly based on the browser viewport size.
 <style>
 .font-size {
   display: block;

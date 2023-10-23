@@ -10,7 +10,7 @@ window.customElements.define('render-props', class extends HTMLElement {
       const preview = document.createElement('span');
       preview.classList.add('preview');
       preview.style.setProperty('--value', val);
-      preview.innerHTML = `<span></span>${val}`;
+      preview.innerHTML = `<span>${val}</span>`;
       if (val.match(/#|rgb|hsl|hwb|lch|lab|color/)) {
         preview.classList.add('color');
       }
