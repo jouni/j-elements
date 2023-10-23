@@ -55,6 +55,7 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 
 <render-example class="flex"></render-example>
 ```html
+<!-- TODO add "accent" variant which uses the accent color (others use gray) -->
 <div>
   <button theme="filled">Filled</button>
   <button>Normal</button>
