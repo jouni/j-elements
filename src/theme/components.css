@@ -104,7 +104,7 @@ select {
   box-sizing: border-box;
   margin: 0;
   vertical-align: middle;
-  transition: border 0.15s;
+  transition: border var(--transition-duration-1);
   contain: content;
 }
 
@@ -290,7 +290,7 @@ button {
   margin: 0;
   vertical-align: middle;
   touch-action: manipulation;
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color var(--transition-duration-1), color var(--transition-duration-1), border-color var(--transition-duration-1);
   contain: content;
 }
 
@@ -369,7 +369,7 @@ button icon {
   margin: 0;
   vertical-align: middle;
   flex: none;
-  transition: background-color 0.15s;
+  transition: background-color var(--transition-duration-1), border-color var(--transition-duration-1);
   --outline-offset: 2px;
   contain: strict;
 }
@@ -623,14 +623,14 @@ input[type=range]::-webkit-slider-runnable-track {
   background: var(--slider-track-background, var(--background-ui-hover));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--size-4, 0.25rem));
-  transition: background-color 0.15s;
+  transition: background-color var(--transition-duration-1);
 }
 
 input[type=range]::-moz-range-track {
   background: var(--slider-track-background, var(--background-ui-hover));
   border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--size-4, 0.25rem));
-  transition: background-color 0.15s;
+  transition: background-color var(--transition-duration-1);
 }
 
 input[type=range]:not(:disabled):is(:hover, :focus)::-webkit-slider-runnable-track {
@@ -649,7 +649,7 @@ input[type=range]::-webkit-slider-thumb {
   width: var(--slider-thumb-size, var(--size-16, 1rem));
   border-radius: var(--slider-thumb-border-radius, 50%);
   border: 0;
-  transition: background-color 0.15s;
+  transition: background-color var(--transition-duration-1);
 }
 
 input[type=range]::-moz-range-thumb {
@@ -659,7 +659,7 @@ input[type=range]::-moz-range-thumb {
   width: var(--slider-thumb-size, var(--size-16, 1rem));
   border-radius: var(--slider-thumb-border-radius, 50%);
   border: 0;
-  transition: background-color 0.15s;
+  transition: background-color var(--transition-duration-1);
 }
 
 input[type=range]:not(:disabled)::-webkit-slider-thumb:hover {
@@ -869,7 +869,7 @@ summary {
   font-weight: var(--font-weight-strong);
   color: var(--color);
   padding: var(--size-8, 0.5rem) 0;
-  transition: color 0.15s;
+  transition: color var(--transition-duration-1);
   display: flex;
   align-items: center;
   gap: var(--size-4, 0.25rem);
@@ -912,7 +912,7 @@ summary::before {
   /* End of duplicated styles */
   content: "";
   --mask-image: var(--icon-chevron-down);
-  transition: 0.15s;
+  transition: var(--transition-duration-1);
   transition-property: transform, color;
 }
 
