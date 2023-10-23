@@ -1047,6 +1047,9 @@ j-overflow-menu {
   --divider-color: var(--border-color-low-contrast);
 }
 
+button:not([slot=menu])+hr[slot=menu] {
+  display: none;
+}
 
 
 
