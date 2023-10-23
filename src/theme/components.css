@@ -831,6 +831,7 @@ j-overflow-menu:focus {
 
 j-overflow-menu {
   gap: var(--size-4, 0.25rem);
+  contain: content;
 }
 
 
