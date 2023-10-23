@@ -217,13 +217,12 @@ select {
 }
 
 @media (prefers-color-scheme: dark) {
-  select {
+  html {
     --select-background-blend-mode: screen !important;
   }
 }
 
-[theme~=dark] select,
-select[theme~=dark] {
+[theme~=dark] {
   --select-background-blend-mode: screen !important;
 }
 
