@@ -4,6 +4,8 @@ import { positionPopup } from '../util/positionPopup.js';
 
 export const tooltipElement = document.createElement('j-tooltip');
 tooltipElement.style.setProperty('position', 'fixed');
+// TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable)
+tooltipElement.style.setProperty('pointer-events', 'none');
 tooltipElement.style.setProperty('z-index', 'var(--tooltip-z-index, 9999)');
 tooltipElement.style.setProperty('top', '0');
 tooltipElement.style.setProperty('left', '0');

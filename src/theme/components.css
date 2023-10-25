@@ -1003,8 +1003,6 @@ j-tooltip {
   max-width: 20em;
   font-size: var(--font-size-s);
   border-radius: var(--border-radius-s);
-  /* TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable) */
-  pointer-events: none;
   contain: content;
 }
 
@@ -1020,25 +1018,37 @@ j-tooltip {
 
 /* Menu ---------------------------------------------------- */
 
+/* TODO should define additional menu item tokens */
 button:is(
   [role=menuitem],
   [role=option]
 ) {
   justify-content: start;
   text-align: start;
+  --button-background: transparent;
+  --button-hover-color: var(--color);
+  --button-hover-background: transparent;
+  --button-active-color: var(--color-high-contrast);
+  --button-active-background: var(--background-ui-active);
 }
 
 button:is(
   [role=menuitem],
   [role=option]
-):not(
-  :active:not(:disabled),
-  [active]:not(:disabled),
-  :hover:not(:disabled)
-) {
-  --button-background: transparent;
-  --button-hover-background: transparent;
-  --button-active-background: transparent;
+):not(:disabled, [aria-disabled=true]) {
+  --button-color: var(--color);
+}
+
+button:is(
+  [role=menuitem],
+  [role=option]
+):not(:disabled, [aria-disabled=true]):focus {
+  --button-color: var(--background);
+  --button-background: var(--color);
+  --button-hover-color: var(--background);
+  --button-hover-background: var(--color);
+  /* TODO use outline */
+  box-shadow: none;
 }
 
 j-menu,
