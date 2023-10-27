@@ -177,12 +177,12 @@ export class Menu extends PopupMixin(HTMLElement) {
         }
       }
 
-      menuitem.focus({ preventScroll: true, focusVisible: false });
+      menuitem.focus({ preventScroll: true });
 
       this._updateItemTabIndexes();
     } else if (e.target.closest('dialog') == this._popup) {
       // Mouse outside popup
-      this._focusPopup({ preventScroll: true, focusVisible: false });
+      this._focusPopup({ preventScroll: true });
     }
   }
 
@@ -190,7 +190,7 @@ export class Menu extends PopupMixin(HTMLElement) {
     super._onOpenPopup(withKeyboard);
     if (withKeyboard) {
       const firstItem = this._menuItems.filter(menuitem => (!menuitem.hasAttribute('disabled') && !menuitem.hasAttribute('aria-disabled')))[0];
-      firstItem?.focus({ focusVisible: true });
+      firstItem?.focus();
     }
     this._updateItemTabIndexes(true);
   }
