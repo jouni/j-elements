@@ -8,6 +8,10 @@ eleventyNavigation:
 imports:
   /src/components/Avatar.js
   /src/components/AvatarGroup.js
+    /src/components/OverflowMenu.js
+      /src/components/Menu.js
+        /src/util/PopupMixin.js
+          /src/util/positionPopup.js
 ---
 
 ## Single avatar
