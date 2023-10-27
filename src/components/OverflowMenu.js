@@ -17,11 +17,11 @@ const styles = `
     flex-shrink: 0;
   }
 
-  :host(:not([overflow])) slot[name="overflow-button"] {
+  :host(:not([overflow])) slot[name=overflow-button] {
     display: none;
   }
 
-  ::slotted(hr:not([slot="menu"])) {
+  ::slotted(hr:not([slot=menu])) {
       all: unset !important;
       height: auto !important;
       align-self: stretch !important;
@@ -44,14 +44,14 @@ export class OverflowMenu extends MutationsMixin(HTMLElement) {
       this.shadowRoot.innerHTML = `
         <style>${styles}</style>
         <slot></slot>
-        <j-menu exportparts="popup">
-          <slot name="overflow-button" slot="trigger"></slot>
-          <slot name="menu"></slot>
-          <slot name="tooltip" slot="tooltip"></slot>
+        <j-menu exportparts=popup>
+          <slot name=overflow-button slot=trigger></slot>
+          <slot name=menu></slot>
+          <slot name=tooltip slot=tooltip></slot>
         </j-menu>
       `;
 
-      this._overflowButton = this.querySelector('[slot="overflow-button"]');
+      this._overflowButton = this.querySelector('[slot=overflow-button]');
       if (!this._overflowButton) {
         this._overflowButton = document.createElement('button');
         this._overflowButton.textContent = '···';

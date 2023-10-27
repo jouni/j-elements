@@ -41,7 +41,7 @@ export class AvatarGroup extends OverflowMenu {
   }
   _updateOverflowingItems() {
     super._updateOverflowingItems();
-    this.shadowRoot.querySelector('slot[name="overflow-button"]').assignedElements({ flatten: true })[0].textContent = '+' + this.querySelectorAll('[slot="menu"]').length;
+    this.shadowRoot.querySelector('slot[name=overflow-button]').assignedElements({ flatten: true })[0].textContent = '+' + this.querySelectorAll('[slot=menu]').length;
   }
 }
 

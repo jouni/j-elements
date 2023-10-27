@@ -53,19 +53,19 @@ export const PopupMixin = superClass => class extends superClass {
           opacity: 0;
         }
 
-        [part="popup"] {
+        [part=popup] {
           overscroll-behavior: contain;
           overflow: auto;
           display: block;
           box-sizing: border-box;
         }
       </style>
-      <slot name="trigger"></slot>
+      <slot name=trigger></slot>
       <dialog>
-        <div part="popup" tabindex="-1">
+        <div part=popup tabindex=-1>
           <slot name=""></slot>
         </div>
-        <slot name="tooltip"></slot>
+        <slot name=tooltip></slot>
       </dialog>
     `;
 
@@ -74,7 +74,7 @@ export const PopupMixin = superClass => class extends superClass {
     this._popup = this.shadowRoot.querySelector('dialog');
 
     this._triggerElement = this;
-    this.shadowRoot.querySelector('slot[name="trigger"]').onslotchange = this._onTriggerSlotChange.bind(this);
+    this.shadowRoot.querySelector('slot[name=trigger]').onslotchange = this._onTriggerSlotChange.bind(this);
 
     this._onPopupClick = this._onPopupClick.bind(this);
     this._onPopupKeydown = this._onPopupKeydown.bind(this);
@@ -93,7 +93,7 @@ export const PopupMixin = superClass => class extends superClass {
       this._triggerElement.removeAttribute('aria-expanded');
       this._triggerElement.removeEventListener('click', this._onTriggerClick);
     }
-    this._triggerElement = this.shadowRoot.querySelector('slot[name="trigger"]').assignedElements({ flatten: true })[0] || this;
+    this._triggerElement = this.shadowRoot.querySelector('slot[name=trigger]').assignedElements({ flatten: true })[0] || this;
     this._triggerElement.setAttribute('aria-haspopup', this._popup.getAttribute('role') || 'dialog');
     this._triggerElement.setAttribute('aria-expanded', 'false');
     this._triggerElement.addEventListener('click', this._onTriggerClick);
