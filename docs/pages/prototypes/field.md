@@ -1,5 +1,5 @@
 ---
-title: Form fields
+title: Form Fields
 layout: page
 imports:
   /src/components/Field.js
