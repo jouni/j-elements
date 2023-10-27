@@ -49,93 +49,96 @@ title: JElements
   </head>
   <body>
     <header class="main-nav">
-      <h1>
-        <a href="/">JElements</a>
+      <h1><a href="/">JElements</a></h1>
 
+      <div class="prefs">
         <j-select aria-label="Select accent color" id="accent-color">
-          <button value="" theme="small" selected>
+          <button slot="trigger" theme="small"></button>
+          <button value="" aria-selected="true">
             <span>Indigo</span>
           </button>
-          <button value="zinc" theme="small">
+          <div role="option" value="zinc">
             <span>Zinc</span>
-          </button>
-          <button value="emerald" theme="small">
+          </div>
+          <div role="option" value="emerald">
             <span>Emerald</span>
-          </button>
-          <button value="sky" theme="small">
+          </div>
+          <div role="option" value="sky">
             <span>Sky</span>
-          </button>
-          <button value="orange" theme="small">
+          </div>
+          <div role="option" value="orange">
             <span>Orange</span>
-          </button>
+          </div>
         </j-select>
 
         <j-select aria-label="Select theme" id="theme">
-          <button value="light" theme="small">
-            <icon sun></icon> <span>Light</span>
-          </button>
-          <button value="dark" theme="small">
-            <icon moon></icon> <span>Dark</span>
-          </button>
-          <button value="" selected theme="small">
+          <button slot="trigger" theme="small"></button>
+          <div role="option" value="system" aria-selected="true">
             <icon computer></icon> <span>System</span>
-          </button>
+          </div>
+          <div role="option" value="light">
+            <icon sun></icon> <span>Light</span>
+          </div>
+          <div role="option" value="dark">
+            <icon moon></icon> <span>Dark</span>
+          </div>
         </j-select>
-        <script>
-          const theme = localStorage.getItem('theme')?.trim();
-          if (theme !== undefined) {
-            document.documentElement.setAttribute('theme', theme);
-            document.querySelectorAll('#theme button').forEach(button => {
-              if (button.getAttribute('value') == theme) {
-                button.setAttribute('selected', '');
-              } else {
-                button.removeAttribute('selected');
-              }
-            });
-          }
+      </div>
 
-          document.querySelector('#theme').addEventListener('change', (e) => {
-            const theme = e.detail.value;
-            document.documentElement.setAttribute('theme', theme);
-            togglePrismTheme(theme);
-            localStorage.setItem('theme', theme);
+      <script>
+        const theme = localStorage.getItem('theme')?.trim();
+        if (theme !== undefined) {
+          document.documentElement.setAttribute('theme', theme);
+          document.querySelectorAll('#theme option').forEach(option => {
+            if (option.getAttribute('value') == theme) {
+              option.setAttribute('selected', '');
+            } else {
+              option.removeAttribute('selected');
+            }
           });
+        }
 
-          const lightSheet = document.querySelector('#prism-light');
-          const darkSheet = document.querySelector('#prism-dark');
+        document.querySelector('#theme').addEventListener('change', (e) => {
+          const theme = e.detail.value;
+          document.documentElement.setAttribute('theme', theme);
           togglePrismTheme(theme);
+          localStorage.setItem('theme', theme);
+        });
 
-          function togglePrismTheme(theme) {
-            lightSheet.toggleAttribute('disabled', theme === 'dark');
-            darkSheet.toggleAttribute('disabled', theme === 'light');
-            lightSheet.media = theme ? '' : '(prefers-color-scheme: light)';
-            darkSheet.media = theme ? '' : '(prefers-color-scheme: dark)';
-          }
+        const lightSheet = document.querySelector('#prism-light');
+        const darkSheet = document.querySelector('#prism-dark');
+        togglePrismTheme(theme);
+
+        function togglePrismTheme(theme) {
+          lightSheet.toggleAttribute('disabled', theme === 'dark');
+          darkSheet.toggleAttribute('disabled', theme === 'light');
+          lightSheet.media = theme ? '' : '(prefers-color-scheme: light)';
+          darkSheet.media = theme ? '' : '(prefers-color-scheme: dark)';
+        }
 
 
+        document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
+        const accentColor = localStorage.getItem('accent-color')?.trim();
+        if (accentColor) {
+          document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
+          document.querySelectorAll('#accent-color button').forEach(button => {
+            if (button.getAttribute('value') == accentColor) {
+              button.setAttribute('selected', '');
+            } else {
+              button.removeAttribute('selected');
+            }
+          });
+        }
+
+        document.querySelector('#accent-color').addEventListener('change', (e) => {
           document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
-          const accentColor = localStorage.getItem('accent-color')?.trim();
+          const accentColor = e.detail.value;
           if (accentColor) {
             document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
-            document.querySelectorAll('#accent-color button').forEach(button => {
-              if (button.getAttribute('value') == accentColor) {
-                button.setAttribute('selected', '');
-              } else {
-                button.removeAttribute('selected');
-              }
-            });
           }
-
-          document.querySelector('#accent-color').addEventListener('change', (e) => {
-            document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
-            const accentColor = e.detail.value;
-            if (accentColor) {
-              document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
-            }
-            localStorage.setItem('accent-color', accentColor);
-          });
-        </script>
-      </h1>
+          localStorage.setItem('accent-color', accentColor);
+        });
+      </script>
       <details theme="reverse"><summary>Menu</summary></details>
       <nav>
         {{ collections.all | eleventyNavigation | eleventyNavigationToHtml({activeKey: eleventyNavigation.key, activeListItemClass: "active", listItemHasChildrenClass: "has-children"}) | safe }}

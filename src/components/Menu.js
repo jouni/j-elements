@@ -5,19 +5,19 @@ const styles = `
       --popup-min-width: var(--anchor-width);
     }
 
-    [part="popup"] {
+    [part=popup] {
       min-width: var(--popup-min-width);
       width: fit-content;
     }
 
-    [part="popup"],
-    ::slotted([role="group"]) {
+    [part=popup],
+    ::slotted([role=group]) {
       display: flex;
       flex-direction: column;
     }
 
     :is(slot:not([name]), slot[name=""]),
-    ::slotted([role="group"]) {
+    ::slotted([role=group]) {
       gap: inherit;
     }
 
@@ -63,15 +63,17 @@ export class Menu extends PopupMixin(HTMLElement) {
       style.textContent = styles;
       this.shadowRoot.appendChild(style);
 
-      this._popup.addEventListener('mousemove', this._onPopupMouseMove.bind(this));
+      if (window.matchMedia('(any-hover: hover)').matches) {
+        this._popup.addEventListener('mousemove', this._onPopupMouseMove.bind(this));
+      }
       this.addEventListener('keydown', this._onKeydown.bind(this));
 
       const popupSlot = this.shadowRoot.querySelector('slot:not([name]), slot[name=""]');
       popupSlot.onslotchange = () => {
         this._menuItems = popupSlot.assignedElements({ flatten: true }).reduce((items, el) => {
-          if (el.localName == 'button') return items.concat([el]);
-          else if (el.localName == this.localName) return items.concat([el.querySelector('[slot="trigger"]')]);
-          else return items.concat([...el.querySelectorAll('button')]);
+          if (el.matches('button, option, [role=menuitem], [role=option]')) return items.concat([el]);
+          else if (el.localName == this.localName) return items.concat([el.querySelector('[slot=trigger]')]);
+          else return items.concat([...el.querySelectorAll('button, option, [role=menuitem], [role=option]')]);
         }, []);
         this._menuItems.forEach(menuitem => {if (!menuitem.hasAttribute('role')) menuitem.setAttribute('role', 'menuitem')});
         this._updateItemTabIndexes();
@@ -81,7 +83,7 @@ export class Menu extends PopupMixin(HTMLElement) {
 
   _onPopupClick(e) {
     super._onPopupClick(e);
-    const menuitem = e.target.closest('[role=menuitem], [role=option');
+    const menuitem = e.target.closest('[role=menuitem], [role=option], option');
     if (menuitem) {
       if (menuitem.disabled || menuitem.getAttribute('aria-disabled') === 'true') {
         e.stopPropagation();
@@ -89,7 +91,7 @@ export class Menu extends PopupMixin(HTMLElement) {
         // Clicked on a menu item. Close the popup, and allow the event to propagate.
         this.closePopup();
       }
-    } else if (e.target === this._popup || (e.target.assignedSlot || e.target).closest('[part="popup"]')) {
+    } else if (e.target === this._popup || (e.target.assignedSlot || e.target).closest('[part=popup]')) {
       // Clicked inside the popup element. Consume the event.
       e.stopPropagation();
     }
@@ -97,7 +99,7 @@ export class Menu extends PopupMixin(HTMLElement) {
 
   _onPopupKeydown(e) {
     super._onPopupKeydown(e);
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    if (this._menuItems.length > 0 && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
       e.preventDefault();
       e.stopPropagation();
 
@@ -116,10 +118,14 @@ export class Menu extends PopupMixin(HTMLElement) {
       activeItems[index].scrollIntoView({ block: 'nearest' });
 
       this._updateItemTabIndexes();
-    } else if (e.target.matches('[role="menuitem"]:not([aria-haspopup])') && (e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
+    } else if (e.target.matches('[role=menuitem]:not([aria-haspopup])') && (e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
       e.preventDefault();
       e.stopPropagation();
       this.closePopup();
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      e.target.closest('[role=menuitem], [role=option]')?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     }
   }
 
@@ -132,13 +138,15 @@ export class Menu extends PopupMixin(HTMLElement) {
     e.stopPropagation();
 
     let menuitem = e.target.closest(`[role=menuitem], [role=option], ${this.localName}`);
-    if (menuitem?.localName === this.localName) menuitem = menuitem._triggerElement;
-    if (!this._menuItems.includes(menuitem)) {
-      menuitem = null;
-    }
+    if (menuitem?.localName === this.localName && menuitem != this) menuitem = menuitem._triggerElement;
 
-    if (e.target.closest(this.localName) != this.__currentSubmenu && e.target.closest('dialog') != this._popup) {
-      this.closeSubMenu();
+    // Close the current submenu if mouse is over some other element than the currently open submenu, or if the mouse is over the root level popup.
+    if (
+      e.target.closest(this.localName) != this.__currentSubmenu && e.target.closest('dialog') != this._popup
+      ||
+      e.target.closest('[part=popup]') == this._popup.querySelector('[part=popup]')
+      ) {
+      this._closeSubMenu();
     }
 
     // Open submenus on mouse hover, and provide an additional tracking surface
@@ -173,7 +181,7 @@ export class Menu extends PopupMixin(HTMLElement) {
       menuitem.focus({ preventScroll: true, focusVisible: false });
 
       this._updateItemTabIndexes();
-    } else if (e.target == this._popup) {
+    } else if (e.target.closest('dialog') == this._popup) {
       // Mouse outside popup
       this._focusPopup({ preventScroll: true, focusVisible: false });
     }
@@ -183,25 +191,27 @@ export class Menu extends PopupMixin(HTMLElement) {
     super._onOpenPopup(withKeyboard);
     if (withKeyboard) {
       const firstItem = this._menuItems.filter(menuitem => (!menuitem.hasAttribute('disabled') && !menuitem.hasAttribute('aria-disabled')))[0];
-      firstItem.focus({ focusVisible: true });
+      firstItem?.focus({ focusVisible: true });
     }
     this._updateItemTabIndexes(true);
   }
 
   closePopup() {
     if (this._popup.open) {
-      this.closeSubMenu();
+      this._closeSubMenu();
       super.closePopup();
     }
   }
 
-  closeSubMenu() {
+  _closeSubMenu() {
     if (this.__currentSubmenu) {
       this.__currentSubmenu.closePopup();
       this.__currentSubmenu.style.removeProperty('--_p1');
       this.__currentSubmenu.style.removeProperty('--_p2');
       this.__currentSubmenu.style.removeProperty('--_p3');
       delete this.__currentSubmenu;
+    } else {
+      this.querySelectorAll('j-menu').forEach(menu => menu.closePopup());
     }
   }
 
@@ -213,7 +223,7 @@ export class Menu extends PopupMixin(HTMLElement) {
   }
 
   _onKeydown(e) {
-    if (this._triggerElement.matches('[role="menuitem"][aria-haspopup]') && (e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
+    if (this._triggerElement.matches('[role=menuitem][aria-haspopup]') && (e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
       e.preventDefault();
       e.stopPropagation();
       this.openPopup(true);

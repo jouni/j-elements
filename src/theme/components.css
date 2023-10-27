@@ -1022,43 +1022,45 @@ j-tooltip {
 
 /* Menu ---------------------------------------------------- */
 
-/* TODO should define additional menu item tokens */
-button:is(
-  [role=menuitem],
-  [role=option]
-) {
-  justify-content: start;
-  text-align: start;
-  --button-background: transparent;
-  --button-hover-color: var(--color);
-  --button-hover-background: transparent;
-  --button-active-color: var(--color-high-contrast);
-  --button-active-background: var(--background-ui-active);
+/* TODO should define menu item tokens */
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]),
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):where(:hover, :active, :focus) {
+  all: initial;
+  display: flex;
+  align-items: center;
+  gap: var(--size-12, 0.75rem);
+  font: inherit;
+  color: inherit;
+  box-sizing: border-box;
+  padding: var(--size-6, 0.375rem) var(--size-12, 0.75rem);
+  padding-inline-end: var(--size-16, 1rem);
+  border-radius: var(--border-radius-s);
+  cursor: default;
 }
 
-button:is(
-  [role=menuitem],
-  [role=option]
-):not(:disabled, [aria-disabled=true]) {
-  --button-color: var(--color);
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is(:focus, :active) {
+  background: var(--color);
+  color: var(--background);
 }
 
-button:is(
-  [role=menuitem],
-  [role=option]
-):not(:disabled, [aria-disabled=true]):focus {
-  --button-color: var(--background);
-  --button-background: var(--color);
-  --button-hover-color: var(--background);
-  --button-hover-background: var(--color);
-  /* TODO use outline */
-  box-shadow: none;
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is([aria-expanded=true]),
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]):focus-visible {
+  background: var(--background-ui-hover);
+}
+
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]) {
+  color: var(--color-disabled);
+  cursor: not-allowed;
 }
 
 j-menu,
 j-overflow-menu {
   --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
   --divider-color: var(--border-color-low-contrast);
+}
+
+:is(j-menu, j-overflow-menu, j-select)::part(popup) {
+  border-radius: var(--border-radius-m);
 }
 
 button:not([slot=menu])+hr[slot=menu] {
@@ -1101,14 +1103,16 @@ j-select [role=option]::before {
   -webkit-user-select: none;
   user-select: none;
   contain: strict;
-  /* Copied from 'button icon' */
   margin: 0 calc(var(--size-6, 0.375rem) * -1);
 }
 
 j-select button[slot=trigger]::after {
   --mask-image: var(--icon-chevron-down);
+  margin-inline-start: 0;
+  width: 0.75em;
+  height: 0.75em;
 }
 
-j-select [role=option][selected]::before {
+j-select [role=option]:is([selected], [aria-selected=true])::before {
   --mask-image: var(--icon-checkmark);
 }

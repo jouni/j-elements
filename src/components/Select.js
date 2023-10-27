@@ -10,11 +10,11 @@ export class Select extends MutationsMixin(Menu) {
     // TODO should not run multiple times if detached and reattached (moved in the DOM)
     this._popup.setAttribute('role', 'listbox');
     this.addEventListener('click', (e) => {
-      this.querySelectorAll('button').forEach(button => {
-        button.removeAttribute('selected');
-        button.setAttribute('aria-selected','false');
+      this.querySelectorAll('button, option, [role=option]').forEach(option => {
+        option.removeAttribute('selected');
+        option.setAttribute('aria-selected', 'false');
       });
-      const selected = e.target.closest('[role="option"]');
+      const selected = e.target.closest('[role=option], option');
       selected.setAttribute('selected', '');
       selected.setAttribute('aria-selected', 'true');
       this.handleMutations();
@@ -26,28 +26,28 @@ export class Select extends MutationsMixin(Menu) {
   }
 
   handleMutations(e) {
-    this.querySelectorAll('button').forEach(button => {
-      button.setAttribute('role', 'option');
-      button.setAttribute('aria-selected', 'false');
+    this.querySelectorAll('button:not([slot=trigger]), option, [role=option]').forEach(option => {
+      option.setAttribute('role', 'option');
+      if (!option.matches('[selected], [aria-selected=true')) {
+        option.removeAttribute('selected');
+        option.setAttribute('aria-selected', 'false');
+      }
     });
 
-    let trigger = this.querySelector('[slot="trigger"]');
-    if (trigger) {
-      this.removeChild(trigger);
-    }
-    const selected = this.querySelector('[selected]');
-    if (selected) {
-      trigger = selected.cloneNode(true);
-      selected.setAttribute('aria-selected', 'true');
-    } else {
+    let trigger = this.querySelector('[slot=trigger]');
+    if (!trigger) {
       trigger = document.createElement('button');
-      trigger.textContent = "Select option";
+      trigger.setAttribute('slot', 'trigger');
+      this.appendChild(trigger);
     }
-    trigger.setAttribute('slot', 'trigger');
-    trigger.removeAttribute('selected');
-    trigger.removeAttribute('aria-selected');
-    trigger.removeAttribute('role');
-    this.appendChild(trigger);
+    const selected = this.querySelector('[selected], [aria-selected=true]');
+    if (selected) {
+      trigger.innerHTML = selected.innerHTML;
+      trigger.setAttribute('value', selected.hasAttribute('value') ? selected.getAttribute('value') : selected.textContent);
+    } else {
+      trigger.textContent = "Select option";
+      trigger.removeAttribute('value');
+    }
   }
 }
 
