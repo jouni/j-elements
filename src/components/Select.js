@@ -28,7 +28,7 @@ export class Select extends MutationsMixin(Menu) {
   handleMutations(e) {
     this.querySelectorAll('button:not([slot=trigger]), option, [role=option]').forEach(option => {
       option.setAttribute('role', 'option');
-      if (!option.matches('[selected], [aria-selected=true')) {
+      if (!option.matches('[selected], [aria-selected=true]')) {
         option.removeAttribute('selected');
         option.setAttribute('aria-selected', 'false');
       }

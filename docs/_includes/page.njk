@@ -54,9 +54,9 @@ title: JElements
       <div class="prefs">
         <j-select aria-label="Select accent color" id="accent-color">
           <button slot="trigger" theme="small"></button>
-          <button value="" aria-selected="true">
+          <div role="option" value="">
             <span>Indigo</span>
-          </button>
+          </div>
           <div role="option" value="zinc">
             <span>Zinc</span>
           </div>
@@ -73,7 +73,7 @@ title: JElements
 
         <j-select aria-label="Select theme" id="theme">
           <button slot="trigger" theme="small"></button>
-          <div role="option" value="system" aria-selected="true">
+          <div role="option" value="system">
             <icon computer></icon> <span>System</span>
           </div>
           <div role="option" value="light">
@@ -89,11 +89,11 @@ title: JElements
         const theme = localStorage.getItem('theme')?.trim();
         if (theme !== undefined) {
           document.documentElement.setAttribute('theme', theme);
-          document.querySelectorAll('#theme option').forEach(option => {
+          document.querySelectorAll('#theme [role=option]').forEach(option => {
             if (option.getAttribute('value') == theme) {
-              option.setAttribute('selected', '');
+              option.setAttribute('aria-selected', 'true');
             } else {
-              option.removeAttribute('selected');
+              option.removeAttribute('aria-selected');
             }
           });
         }
@@ -119,13 +119,15 @@ title: JElements
 
         document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
         const accentColor = localStorage.getItem('accent-color')?.trim();
-        if (accentColor) {
-          document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
-          document.querySelectorAll('#accent-color button').forEach(button => {
-            if (button.getAttribute('value') == accentColor) {
-              button.setAttribute('selected', '');
+        if (accentColor !== undefined) {
+          if (accentColor) {
+            document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
+          }
+          document.querySelectorAll('#accent-color [role=option]').forEach(option => {
+            if (option.getAttribute('value') == accentColor) {
+              option.setAttribute('aria-selected', 'true');
             } else {
-              button.removeAttribute('selected');
+              option.removeAttribute('aria-selected');
             }
           });
         }

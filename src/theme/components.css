@@ -308,7 +308,7 @@ button:not(:disabled, [aria-disabled=true]):active {
   transition: none;
 }
 
-button[aria-expanded=true]:not(:active, :hover, :focus) {
+button[aria-expanded=true] {
   background: var(--background-ui-hover);
 }
 
