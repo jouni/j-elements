@@ -22,7 +22,7 @@ const styles = `
     }
 
     ::slotted(hr) {
-      all: unset !important;
+      all: unset;
       height: var(--divider-height, 1px) !important;
       margin: var(--divider-margin, 0.5rem 0.25rem) !important;
       background: var(--divider-color, currentColor) !important;
@@ -38,6 +38,17 @@ const styles = `
 
     ::slotted(j-menu) {
       display: contents;
+      --_p1: initial;
+      --_p2: initial;
+      --_p3: initial;
+    }
+
+    ::slotted(j-menu)::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: var(--_p1);
+      clip-path: polygon(var(--_p2), var(--_p3));
     }
   `;
 
@@ -45,38 +56,34 @@ export class Menu extends PopupMixin(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
 
-    const style = document.createElement('style');
-    style.textContent = styles;
-    this.shadowRoot.appendChild(style);
-
     if (!this._popup.hasAttribute('role')) {
       this._popup.setAttribute('role', 'menu');
+
+      const style = document.createElement('style');
+      style.textContent = styles;
+      this.shadowRoot.appendChild(style);
+
       this._popup.addEventListener('mousemove', this._onPopupMouseMove.bind(this));
+      this.addEventListener('keydown', this._onKeydown.bind(this));
 
       const popupSlot = this.shadowRoot.querySelector('slot:not([name]), slot[name=""]');
       popupSlot.onslotchange = () => {
-        if (this._menuItems) {
-          this._menuItems.forEach(button => button.removeAttribute('role'));
-        }
         this._menuItems = popupSlot.assignedElements({ flatten: true }).reduce((items, el) => {
           if (el.localName == 'button') return items.concat([el]);
           else if (el.localName == this.localName) return items.concat([el.querySelector('[slot="trigger"]')]);
           else return items.concat([...el.querySelectorAll('button')]);
         }, []);
-        this._menuItems.forEach(button => button.setAttribute('role', 'menuitem'));
+        this._menuItems.forEach(menuitem => {if (!menuitem.hasAttribute('role')) menuitem.setAttribute('role', 'menuitem')});
+        this._updateItemTabIndexes();
       }
     }
   }
 
-  _onTriggerSlotChange() {
-    super._onTriggerSlotChange();
-    this._triggerElement.setAttribute('aria-haspopup', 'menu');
-  }
-
   _onPopupClick(e) {
     super._onPopupClick(e);
-    if (e.target.closest('button')?.getAttribute('role').match(/menuitem|option/)) {
-      if (e.target.getAttribute('aria-disabled') === 'true') {
+    const menuitem = e.target.closest('[role=menuitem], [role=option');
+    if (menuitem) {
+      if (menuitem.disabled || menuitem.getAttribute('aria-disabled') === 'true') {
         e.stopPropagation();
       } else {
         // Clicked on a menu item. Close the popup, and allow the event to propagate.
@@ -93,45 +100,134 @@ export class Menu extends PopupMixin(HTMLElement) {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       e.stopPropagation();
+
       const activeItems = this._menuItems.filter(item => !item.hasAttribute('disabled'));
       let index = activeItems.indexOf(document.activeElement);
       index += (e.key === 'ArrowDown') ? 1 : -1;
       if (index < 0) index = activeItems.length - 1;
       if (index >= activeItems.length) index = 0;
-      activeItems[index].focus();
+
+      // If the keyboard navigation causes the popup to scroll, that triggers
+      // a mousemove event in Safari if the mouse cursor is over the popup
+      clearTimeout(this.__preventMouseMoveListenerTimeout);
+      this.__preventMouseMoveListenerTimeout = setTimeout(() => this.__preventMouseMoveListenerTimeout = null, 300);
+
+      activeItems[index].focus({ preventScroll: true });
+      activeItems[index].scrollIntoView({ block: 'nearest' });
+
+      this._updateItemTabIndexes();
+    } else if (e.target.matches('[role="menuitem"]:not([aria-haspopup])') && (e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.closePopup();
     }
   }
 
   _onPopupMouseMove(e) {
-    if (this._menuItems.includes(e.target) && (!e.target.hasAttribute('disabled') || !e.target.hasAttribute('aria-disabled'))) {
-      if (!e.target.hasAttribute('aria-haspopup')) {
-        this.closeSubMenus();
+    if (this.__preventMouseMoveListenerTimeout) {
+      return;
+    }
+
+    // Don't let the event pass to parent menus
+    e.stopPropagation();
+
+    let menuitem = e.target.closest(`[role=menuitem], [role=option], ${this.localName}`);
+    if (menuitem?.localName === this.localName) menuitem = menuitem._triggerElement;
+    if (!this._menuItems.includes(menuitem)) {
+      menuitem = null;
+    }
+
+    if (e.target.closest(this.localName) != this.__currentSubmenu && e.target.closest('dialog') != this._popup) {
+      this.closeSubMenu();
+    }
+
+    // Open submenus on mouse hover, and provide an additional tracking surface
+    // (the ::after pseudo-element) to move the cursor diagonally over other menu items towards the submenu
+    if (menuitem) {
+      if (menuitem.hasAttribute('aria-haspopup')) {
+        this.__currentSubmenu = menuitem.closest(this.localName);
+        if (this.__currentSubmenu) {
+          this.__currentSubmenu.openPopup();
+
+          const origo = this._popup.getBoundingClientRect();
+          const menu = this.__currentSubmenu._popup.getBoundingClientRect();
+
+          // inset
+          this.__currentSubmenu.style.setProperty('--_p1', `${menu.y - origo.y}px 0 ${origo.bottom - menu.bottom}px 0`);
+
+          const clipX = (origo.x > menu.x) ? menu.right - origo.x : menu.x - origo.x;
+          // clip-path
+          this.__currentSubmenu.style.setProperty('--_p2', `${clipX}px 0, ${clipX}px 100%`);
+
+          const mouse = { x: e.clientX - origo.x, y: e.clientY - menu.y};
+          // clip-path, part 2
+          this.__currentSubmenu.style.setProperty('--_p3', `${mouse.x}px ${mouse.y}px`);
+
+          clearTimeout(this.__submenuTimeout);
+          this.__submenuTimeout = setTimeout(() => {
+            this.__currentSubmenu?.style.removeProperty('--_p1');
+            this.__currentSubmenu?.style.removeProperty('--_p2');
+            this.__currentSubmenu?.style.removeProperty('--_p3');
+          }, 1000);
+        }
       }
-      e.target.focus({ preventScroll: true, focusVisible: false });
+
+      menuitem.focus({ preventScroll: true, focusVisible: false });
+
+      this._updateItemTabIndexes();
+    } else if (e.target == this._popup) {
+      // Mouse outside popup
+      this._focusPopup({ preventScroll: true, focusVisible: false });
     }
   }
 
   _onOpenPopup(withKeyboard) {
     super._onOpenPopup(withKeyboard);
     if (withKeyboard) {
-      const firstItem = this._menuItems.filter(item => (!item.hasAttribute('disabled') && !item.hasAttribute('aria-disabled')))[0];
+      const firstItem = this._menuItems.filter(menuitem => (!menuitem.hasAttribute('disabled') && !menuitem.hasAttribute('aria-disabled')))[0];
       firstItem.focus({ focusVisible: true });
     }
+    this._updateItemTabIndexes(true);
   }
 
   closePopup() {
     if (this._popup.open) {
-      this.closeSubMenus();
+      this.closeSubMenu();
       super.closePopup();
     }
   }
 
-  closeSubMenus() {
-    this._menuItems.forEach(button => {
-      if (button.hasAttribute('aria-haspopup')) {
-        button.parentElement.closePopup();
-      }
+  closeSubMenu() {
+    if (this.__currentSubmenu) {
+      this.__currentSubmenu.closePopup();
+      this.__currentSubmenu.style.removeProperty('--_p1');
+      this.__currentSubmenu.style.removeProperty('--_p2');
+      this.__currentSubmenu.style.removeProperty('--_p3');
+      delete this.__currentSubmenu;
+    }
+  }
+
+  _updateItemTabIndexes(makeFirstFocusable) {
+    const activeItems = this._menuItems.filter(item => !item.hasAttribute('disabled'));
+    activeItems.forEach((menuitem, i) => {
+      menuitem.setAttribute('tabindex', ((makeFirstFocusable && i == 0) || menuitem === document.activeElement) ? '0' : '-1');
     });
+  }
+
+  _onKeydown(e) {
+    if (this._triggerElement.matches('[role="menuitem"][aria-haspopup]') && (e.key == 'ArrowLeft' || e.key == 'ArrowRight')) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.openPopup(true);
+    }
+  }
+
+  _focusPopup(opts) {
+    if (this.__currentSubmenu) {
+      this.__currentSubmenu._focusPopup(opts);
+    } else {
+      this._popup.querySelector('[part="popup"]').focus(opts);
+    }
   }
 }
 

@@ -301,11 +301,15 @@ button {
   }
 }
 
-button:not(:disabled, [aria-disabled=true]):is(:active, [active]) {
+button:not(:disabled, [aria-disabled=true]):active {
   background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
   border: var(--button-active-border, var(--button-border, 1px solid transparent));
   color: var(--button-active-color, var(--button-color, var(--color-high-contrast)));
   transition: none;
+}
+
+button[aria-expanded=true]:not(:active, :hover, :focus) {
+  background: var(--background-ui-hover);
 }
 
 button[theme~=filled] {

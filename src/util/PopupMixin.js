@@ -113,8 +113,6 @@ export const PopupMixin = superClass => class extends superClass {
   }
 
   _onOpenPopup(withKeyboard) {
-    // TODO consider using a class name instead (faster CSS selector)
-    this._triggerElement.setAttribute('active', '');
     this._triggerElement.setAttribute('aria-expanded', 'true');
     this._positionPopup();
     window.addEventListener('scroll', this._positionPopup, { capture: true, passive: true });
@@ -156,7 +154,6 @@ export const PopupMixin = superClass => class extends superClass {
   }
 
   _onClosePopup() {
-    this._triggerElement.removeAttribute('active');
     this._triggerElement.setAttribute('aria-expanded', 'false');
     this._triggerElement.focus();
     window.removeEventListener('scroll', this._positionPopup, { capture: true, passive: true });
