@@ -1036,6 +1036,7 @@ j-tooltip {
   padding-inline-end: var(--size-16, 1rem);
   border-radius: var(--border-radius-s);
   cursor: default;
+  width: 100%;
 }
 
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is(:focus, :active) {

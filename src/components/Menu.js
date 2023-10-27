@@ -37,7 +37,6 @@ const styles = `
     }
 
     ::slotted(j-menu) {
-      display: contents;
       --_p1: initial;
       --_p2: initial;
       --_p3: initial;
