@@ -143,7 +143,7 @@ export class Menu extends PopupMixin(HTMLElement) {
 
     // Open submenus on mouse hover, and provide an additional tracking surface
     // (the ::after pseudo-element) to move the cursor diagonally over other menu items towards the submenu
-    if (menuitem) {
+    if (menuitem && e.target != this.__currentSubmenu) {
       if (menuitem.hasAttribute('aria-haspopup')) {
         this.__currentSubmenu = menuitem.closest(this.localName);
         if (this.__currentSubmenu) {
@@ -151,15 +151,13 @@ export class Menu extends PopupMixin(HTMLElement) {
 
           const origo = this._popup.getBoundingClientRect();
           const menu = this.__currentSubmenu._popup.getBoundingClientRect();
+          const clipX = (origo.x > menu.x) ? menu.right - origo.x : menu.x - origo.x;
+          const mouse = { x: e.clientX - origo.x, y: e.clientY - menu.y};
 
           // inset
           this.__currentSubmenu.style.setProperty('--_p1', `${menu.y - origo.y}px 0 ${origo.bottom - menu.bottom}px 0`);
-
-          const clipX = (origo.x > menu.x) ? menu.right - origo.x : menu.x - origo.x;
           // clip-path
           this.__currentSubmenu.style.setProperty('--_p2', `${clipX}px 0, ${clipX}px 100%`);
-
-          const mouse = { x: e.clientX - origo.x, y: e.clientY - menu.y};
           // clip-path, part 2
           this.__currentSubmenu.style.setProperty('--_p3', `${mouse.x}px ${mouse.y}px`);
 
