@@ -2,7 +2,7 @@ import { PopupMixin } from '../util/PopupMixin.js';
 
 const styles = `
     :host {
-      --popup-min-width: var(--anchor-width);
+      --popup-min-width: var(--trigger-width);
     }
 
     [part=popup] {
@@ -55,8 +55,9 @@ export class Menu extends PopupMixin(HTMLElement) {
   connectedCallback() {
     super.connectedCallback();
 
-    if (!this._popup.hasAttribute('role')) {
-      this._popup.setAttribute('role', 'menu');
+    // TODO better way to check if the component is initialized
+    if (!this._visiblePopup.getAttribute('role') !== 'menu') {
+      this._visiblePopup.setAttribute('role', 'menu');
 
       const style = document.createElement('style');
       style.textContent = styles;
@@ -69,6 +70,9 @@ export class Menu extends PopupMixin(HTMLElement) {
 
       const popupSlot = this.shadowRoot.querySelector('slot:not([name]), slot[name=""]');
       popupSlot.onslotchange = () => {
+        if (this._menuItems) {
+          this._menuItems.forEach(button => button.removeAttribute('role'));
+        }
         this._menuItems = popupSlot.assignedElements({ flatten: true }).reduce((items, el) => {
           if (el.matches('button, option, [role=menuitem], [role=option]')) return items.concat([el]);
           else if (el.localName == this.localName) return items.concat([el.querySelector('[slot=trigger]')]);
@@ -189,8 +193,7 @@ export class Menu extends PopupMixin(HTMLElement) {
   _onOpenPopup(withKeyboard) {
     super._onOpenPopup(withKeyboard);
     if (withKeyboard) {
-      const firstItem = this._menuItems.filter(menuitem => (!menuitem.hasAttribute('disabled') && !menuitem.hasAttribute('aria-disabled')))[0];
-      firstItem?.focus();
+      this._focusFirstItem();
     }
     this._updateItemTabIndexes(true);
   }
@@ -226,6 +229,7 @@ export class Menu extends PopupMixin(HTMLElement) {
       e.preventDefault();
       e.stopPropagation();
       this.openPopup(true);
+      this._focusFirstItem();
     }
   }
 
@@ -235,6 +239,11 @@ export class Menu extends PopupMixin(HTMLElement) {
     } else {
       this._popup.querySelector('[part="popup"]').focus(opts);
     }
+  }
+
+  _focusFirstItem() {
+    const firstItem = this._menuItems.filter(menuitem => (!menuitem.hasAttribute('disabled') && !menuitem.hasAttribute('aria-disabled')))[0];
+    firstItem?.focus();
   }
 }
 

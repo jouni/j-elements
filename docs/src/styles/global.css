@@ -291,10 +291,6 @@ hr {
   display: none;
 }
 
-.main-nav .prefs {
-  margin: 0.25rem;
-}
-
 .main-nav {
   float: left;
   height: 100vh;
@@ -306,6 +302,9 @@ hr {
   position: sticky;
   top: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 [dir=rtl] .main-nav {
@@ -445,7 +444,7 @@ render-props>p>code:first-child {
 }
 
 #accent-color [value=zinc] span {
-  background-color: var(--zinc-500);
+  background-color: var(--zinc-600);
 }
 
 #accent-color [value=""] span {
@@ -453,15 +452,15 @@ render-props>p>code:first-child {
 }
 
 #accent-color [value=emerald] span {
-  background-color: var(--emerald-500);
+  background-color: var(--emerald-600);
 }
 
 #accent-color [value=sky] span {
-  background-color: var(--sky-500);
+  background-color: var(--sky-600);
 }
 
 #accent-color [value=orange] span {
-  background-color: var(--orange-500);
+  background-color: var(--orange-600);
 }
 
 render-props.color-scale {
@@ -502,4 +501,23 @@ render-props.color-scale p code {
   font-size: var(--font-size-xs);
   margin: 0;
   padding: 0;
+}
+
+#theme button icon[computer] {
+  --mask-image: var(--icon-sun);
+}
+
+@media (prefers-color-scheme: dark) {
+  #theme button icon[computer] {
+    --mask-image: var(--icon-moon);
+  }
+}
+
+:is(#accent-color, #theme) [slot=trigger]::after {
+  display: none;
+}
+
+:is(#accent-color, #theme) [role=option]::before {
+  order: 1;
+  margin-inline-start: auto;
 }

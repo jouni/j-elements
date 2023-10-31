@@ -8,7 +8,7 @@ export class Select extends MutationsMixin(Menu) {
   connectedCallback() {
     super.connectedCallback();
     // TODO should not run multiple times if detached and reattached (moved in the DOM)
-    this._popup.setAttribute('role', 'listbox');
+    this._visiblePopup.setAttribute('role', 'listbox');
     this.addEventListener('click', (e) => {
       this.querySelectorAll('button, option, [role=option]').forEach(option => {
         option.removeAttribute('selected');

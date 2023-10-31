@@ -103,7 +103,7 @@ The overflowing items are placed in the menu by setting the `slot` attribute on 
     <button>Sub-item 1</button>
     <button>Sub-item 2</button>
      <j-menu>
-      <button slot="trigger">More items <icon chevron-right directional></icon></button>
+      <button slot="trigger">More items</button>
       <button>Sub-item 3</button>
       <button>Sub-item 4</button>
     </j-menu>

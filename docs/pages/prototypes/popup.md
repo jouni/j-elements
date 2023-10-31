@@ -36,7 +36,7 @@ The host element is not meant to be styled.
 Use `::part(popup)` to style the popup element.
 <!-- A margin can be used to make space between the triggering element and the browser viewport. The margin should be uniform, meaning the same value is used for all sides of the popup. -->
 
-The `--anchor-width` and `--anchor-height` custom properties are set on the host element, and they define the width and height of the trigger element (the button in the example before). You can use it to make the popup always the same size as the trigger element.
+The `--trigger-width` and `--trigger-height` custom properties are set on the host element, and they define the width and height of the trigger element (the button in the example before). You can use it to make the popup always the same size as the trigger element.
 
 ## Accessibility
 

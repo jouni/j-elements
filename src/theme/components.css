@@ -847,12 +847,16 @@ j-overflow-menu {
 ::part(popup) {
   background: var(--background-above);
   /* TODO create shadow tokens */
-  box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 16px -2px rgba(0,0,0,0.2);
   padding: var(--size-8, 0.5rem);
   border-radius: var(--border-radius-l);
   color: var(--color);
   /* For forced color mode */
   outline: 2px solid transparent;
+}
+
+[theme=dark] ::part(popup) {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 16px -2px rgba(0,0,0,0.2);
 }
 
 
@@ -1000,14 +1004,19 @@ j-tooltip {
   animation: fade-in .2s 1s both;
   background-color: var(--background-ui);
   color: var(--color);
-  box-shadow: 0 4px 16px -2px rgba(0,0,0,0.2);
-  padding: var(--size-4, 0.25rem);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 4px 16px -2px rgba(0,0,0,0.2);
+  padding: var(--size-4, 0.25rem) var(--size-6, 0.375rem);
   margin: var(--size-4, 0.25rem);
   width: max-content;
   max-width: 20em;
   font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
   border-radius: var(--border-radius-s);
   contain: content;
+}
+
+[theme=dark] j-tooltip {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 16px -2px rgba(0,0,0,0.2);
 }
 
 @keyframes fade-in {
@@ -1037,6 +1046,8 @@ j-tooltip {
   border-radius: var(--border-radius-s);
   cursor: default;
   width: 100%;
+  /* Prevent the border from flashing when a button is removed from the overflow menu) */
+  border-color: transparent;
 }
 
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is(:focus, :active) {
@@ -1056,18 +1067,22 @@ j-tooltip {
 
 j-menu,
 j-overflow-menu {
-  --divider-margin: var(--size-8, 0.5rem) var(--size-4, 0.25rem);
+  --divider-margin: var(--size-6, 0.375rem) calc(var(--size-6, 0.375rem) * -1);
   --divider-color: var(--border-color-low-contrast);
 }
 
 :is(j-menu, j-overflow-menu, j-select)::part(popup) {
   border-radius: var(--border-radius-m);
+  padding: var(--size-6, 0.375rem);
 }
 
 button:not([slot=menu])+hr[slot=menu] {
   display: none;
 }
 
+:is([role=menuitem], [role=option]) icon {
+  margin: 0 calc(var(--size-4, 0.25rem) * -1);
+}
 
 
 
@@ -1080,8 +1095,8 @@ j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
   display: none;
 }
 
-j-select button[slot=trigger]::after,
-j-select [role=option]::before {
+:is(j-select, j-menu) button[slot=trigger]::after,
+:is(j-select, j-menu) [role=option]::before {
   content: "";
   /* Copied from icons.css */
   --_size: var(--icon-size, 1.249em);
@@ -1107,13 +1122,19 @@ j-select [role=option]::before {
   margin: 0 calc(var(--size-6, 0.375rem) * -1);
 }
 
-j-select button[slot=trigger]::after {
+:is(j-select, j-menu) button[slot=trigger]::after {
   --mask-image: var(--icon-chevron-down);
-  margin-inline-start: 0;
-  width: 0.75em;
-  height: 0.75em;
+  --icon-size: 1em;
 }
 
 j-select [role=option]:is([selected], [aria-selected=true])::before {
   --mask-image: var(--icon-checkmark);
+}
+
+j-menu [role=menuitem][aria-haspopup]::after {
+  rotate: -90deg;
+}
+
+[dir=rtl] j-menu [role=menuitem][aria-haspopup]::after {
+  rotate: 90deg;
 }
