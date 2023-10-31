@@ -491,7 +491,7 @@ j-field-group {
   display: flex;
   flex-direction: column;
   gap: var(--space-8, 0.5rem);
-  contain: content;
+  contain: layout;
 }
 
 j-field-group {
