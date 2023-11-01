@@ -17,25 +17,16 @@ The menu component is based on [Popup](/prototypes/popup).
 
 ```html
 <j-menu id="example">
-  <button slot="trigger">
-    Open menu
-  </button>
-  <button disabled>
-    <icon plus></icon>
-    Action 1
-  </button>
+  <button slot="trigger">Open menu</button>
+  <button disabled><icon plus></icon> Action 1</button>
   <button>Action 2</button>
   <button aria-disabled="true" tooltip="This action is not available at the moment">Action 3</button>
   <hr role=none>
   <j-menu>
-    <button slot="trigger">
-      Additional actions
-    </button>
+    <button slot="trigger">Additional actions</button>
     <button>Action 4</button>
     <j-menu>
-      <button slot="trigger">
-        More actions
-      </button>
+      <button slot="trigger">More actions</button>
       <button>Action 7</button>
       <button>Action 8</button>
     </j-menu>
