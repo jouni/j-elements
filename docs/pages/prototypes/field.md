@@ -124,8 +124,8 @@ All native input types are supported without extra effort.
 
 <render-example></render-example>
 ```html
-<j-field-group aria-labelledby="foo">
-  <label id="foo">Options</label>
+<j-field-group>
+  <label>Options</label>
   <p description>Description for checkbox group</p>
   <label>
     <input type="checkbox">
