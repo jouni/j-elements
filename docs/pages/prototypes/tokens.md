@@ -21,116 +21,81 @@ For example, the token for the default text color:
 Token variants and states are suffixed after the property name:
 `--[property]-[variant]-[state]`
 
-For example, the token for UI control background, when hovered:
-`--background-ui-hover`
-
-## Color Scales
-
-`colors.css` defines a collection of static color scales – a range of colors from light to dark – for various hues, for example, "slate", "red", "emerald", "purple", and "rose". At the moment those scales are copied from [Tailwind CSS](https://tailwindcss.com/docs/customizing-colors).
-
-### Slate
-<render-props class="color-scale">
-
-`--slate-50`
-
-`--slate-100`
-
-`--slate-200`
-
-`--slate-300`
-
-`--slate-400`
-
-`--slate-500`
-
-`--slate-600`
-
-`--slate-700`
-
-`--slate-800`
-
-`--slate-900`
-
-</render-props>
-
-### Orange
-<render-props class="color-scale">
-
-`--orange-50`
-
-`--orange-100`
-
-`--orange-200`
-
-`--orange-300`
-
-`--orange-400`
-
-`--orange-500`
-
-`--orange-600`
-
-`--orange-700`
-
-`--orange-800`
-
-`--orange-900`
-
-</render-props>
+For example, the token for low contrast (secondary) text:
+`--color-low-contrast`
 
 
 ## Dark Mode
 
-The color tokens adapt to light and dark modes, mapping to the static color scales.
+Light and dark theme presets are available. The `theme="dark"` and `theme="light"` attributes can be used to toggle between modes, at any level of DOM hierarchy.
 
-The `theme="dark"` and `theme="light"` attributes can be used to toggle between modes, at any level of DOM hierarchy.
-
-<render-example></render-example>
+<render-example style="--display: flex; --gap: 1em;"></render-example>
 ```html
-<p theme="light">Always light</p>
-<p theme="dark">Always dark</p>
+<div theme="light">Always light</div>
+<div theme="dark">Always dark</div>
 ```
+
+You can customize the hue, saturation, and lightness of the grayscale colors easily.
+
+<render-example style="--display: flex; --gap: 1em;"></render-example>
+```html
+<div theme="custom-theme">Custom theme</div>
+<style>
+  [theme="custom-theme"] {
+    --gray-h: 200;
+    --gray-s: 20%;
+    --gray-l: 20%;
+  }
+</style>
+```
+<style>
+  div[theme] {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 0;
+    border: var(--border-ui);
+  }
+</style>
 
 ## Background
 Note, that the background tokens are meant to be used for the CSS `background` shorthand property, and not for the `background-color` property.
 
-<render-props>
+> You need to combine these properties with the `--background-blend-mode-surface` property.
 
-`--background`
-The default application background / surface.
+<render-props class="surface">
 
-`--background-above`
-Background / surface which is above the default background.
+`--background-surface-4`
+Surface which is visually the highest (most elevated). Mainly used for popups/popovers/menus.
 
-`--background-below`
-Background / surface which is below the default background.
+`--background-surface-3`
+Surface which is above the default surface. Mainly used for cards, dialogs, and other containers.
 
-`--background-ui`
-Background for UI controls, such as buttons.
+`--background-surface-2`
+The default surface.
 
-`--background-ui-hover`
-Background for UI controls when hovered.
+`--background-surface-1`
+Surface which is below the default surface.
 
-`--background-ui-active`
-Background for UI controls when activated (for example, clicked with a mouse or pressed with a finger).
-
-`--background-accent`
-
-`--background-accent-hover`
-
-`--background-accent-active`
+`--background-surface-0`
+Surface which is visually the lowest (most recessed).
 
 </render-props>
+
+<style>
+.preview.color span::before {
+  background-blend-mode: var(--background-blend-mode-surface);
+}
+</style>
 
 
 ## Text Color
 <render-props>
 
-`--color`
-Default text color. Should have at least 7:1 contrast ratio on top of all backgrounds.
-
 `--color-high-contrast`
 High contrast text color. Use, for example, for heading text elements.
+
+`--color`
+Default text color. Should have at least 7:1 contrast ratio on top of all backgrounds/surfaces.
 
 `--color-low-contrast`
 Low contrast text color. Use, for example, for secondary text elements. Should have at least 4.5:1 contrast ratio on top of all non-UI backgrounds.

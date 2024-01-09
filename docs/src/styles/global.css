@@ -82,7 +82,7 @@ table-of-contents+p {
 }
 
 .main-nav nav .active>a {
-  background-color: var(--background-ui);
+  backdrop-filter: invert(0.08) saturate(1.5);
   color: var(--color-high-contrast);
 }
 
@@ -99,6 +99,12 @@ table-of-contents+p {
 .main-nav .has-children>a:any-link {
   font-weight: 600;
   margin-bottom: var(--size-4);
+}
+
+main>h1 span {
+  display: block;
+  font-size: var(--font-size-m);
+  color: var(--color-low-contrast);
 }
 
 main>h1::after {
@@ -207,10 +213,12 @@ blockquote :is(h2, h3, h4, h5, h6):first-child {
 code {
   font-family: var(--font-family-monospace);
   font-size: 0.875em;
-  background: var(--background-below);
+  background: var(--background-surface-1);
+  background-blend-mode: var(--background-blend-mode-surface);
 }
 
 code:not([class*="language"]) {
+  border: 1px solid var(--border-color);
   padding: 0.1em 0.3em;
   border-radius: 0.25em;
   margin: 0 0.2em;
@@ -221,20 +229,32 @@ render-example {
   border-radius: 0.5em;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border: 1px solid var(--border-color-low-contrast);
-  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  background: var(--background-surface-3);
+  background-blend-mode: var(--background-blend-mode-surface);
 }
-
 [class^="example-"] {
   margin-bottom: 0;
 }
 
+pre[class*="language-"][class*="language-"] {
+  background: var(--background-surface-1);
+  background-blend-mode: var(--background-blend-mode-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5em;
+}
+
+pre[class*="language-"] code[class*="language-"] {
+  background-color: transparent;
+  text-shadow: none;
+}
+
 [class^="example-"]+pre[class*="language-"] {
   margin-top: 0;
-  border-radius: 0.5em;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   max-height: 20em;
+  border-top: 0;
 }
 
 [id]:is(h2, h3) {
@@ -257,7 +277,7 @@ h2, h3 {
 @keyframes flash {
   30% {
     background-color: var(--color-accent-low-contrast);
-    color: var(--background);
+    color: var(--gray);
   }
 }
 
@@ -383,7 +403,8 @@ main {
   line-height: var(--line-height-s);
   margin: 0;
   margin-bottom: 0.5em;
-  background-color: transparent;
+  background: transparent;
+  border: 0;
 }
 
 .preview.color span {
@@ -398,6 +419,7 @@ main {
   display: block;
   width: 1em;
   height: 1em;
+  flex: none;
   border-radius: 50%;
   background: var(--value);
   border: 1px solid rgba(0, 0, 0, 0.5);
@@ -411,6 +433,7 @@ render-props {
 }
 
 render-props p {
+  font-size: var(--font-size-xs);
   color: var(--color-low-contrast);
   padding: 1.25rem 2.5rem 0;
   border-top: 1px solid var(--border-color-low-contrast);
@@ -427,6 +450,7 @@ render-props>p>code:first-child {
   background: transparent !important;
   font-size: inherit;
   margin-inline-start: -1.5rem;
+  border: 0;
 }
 
 #theme [slot=trigger] span {
@@ -501,6 +525,7 @@ render-props.color-scale p code {
   font-size: var(--font-size-xs);
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 #theme button icon[computer] {
@@ -520,4 +545,15 @@ render-props.color-scale p code {
 :is(#accent-color, #theme) [role=option]::before {
   order: 1;
   margin-inline-start: auto;
+}
+
+.sr-only {
+  display: block;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }

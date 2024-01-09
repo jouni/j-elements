@@ -77,6 +77,7 @@ export function positionPopup(popupElement, anchorElement, isFixed = true) {
   }
 
   if (!isFixed) {
+    // TODO account for scroll offset
     x -= anchor.left - anchorElement.offsetLeft;
     y -= anchor.top - anchorElement.offsetTop;
   }

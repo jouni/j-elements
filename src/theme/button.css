@@ -1,0 +1,117 @@
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-12);
+
+  /* -webkit-backdrop-filter: invert(0.08) saturate(1.5); */
+  /* backdrop-filter: invert(0.08) saturate(1.5); */
+  border: var(--button-border, 1px solid transparent); /* Should match with --textinput-border, so that the heights are equal */
+  border-radius: var(--button-border-radius, var(--border-radius-m));
+
+  font: var(--button-font, var(--font-button, inherit));
+  padding: var(--button-padding, var(--size-8) var(--size-12));
+  box-sizing: border-box;
+  margin: 0;
+  vertical-align: middle;
+  touch-action: manipulation;
+  contain: content;
+}
+
+button[theme] {
+  background: var(--border-color-low-contrast, transparent);
+  color: var(--button-color, var(--color-accent));
+}
+
+button[theme~=accent] {
+  --gray-s: 70%;
+}
+
+@media (any-hover: hover) {
+  button:not(:disabled, [aria-disabled=true]):hover {
+    /* TODO do we want default hover styles? */
+  }
+}
+
+button:not(.outline, .ghost, :disabled, [aria-disabled=true]):active,
+button:not(.outline, .ghost)[aria-expanded=true] {
+}
+
+button.primary {
+  --button-background: var(--color);
+  --button-color: var(--gray);
+}
+
+button:is(.outline, .ghost) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+button.outline {
+  border-color: var(--border-color);
+}
+
+button.accent {
+  --button-color: var(--accent-color);
+  /* filter: hue-rotate(calc((var(--accent-h) - var(--gray-h)) * 1deg)); */
+
+}
+
+button.accent.primary {
+  --button-background: var(--accent-color);
+  --button-color: var(--gray);
+}
+
+button.accent:not(.primary, .ghost, .outline) {
+  --button-background: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.1);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+button.outline.accent:not(:disabled, [aria-disabled=true]) {
+  border-color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.4);
+}
+
+button.small {
+  --button-font: var(--font-button-small);
+  --button-padding: var(--size-6) var(--size-12);
+}
+
+button:is(:disabled, [aria-disabled=true]) {
+  --button-color: var(--color-disabled);
+}
+
+button:not(.outline, .ghost):is(:disabled, [aria-disabled=true]) {
+  --button-background: var(--background-ui);
+  --button-color: var(--color-disabled);
+}
+
+button icon {
+  margin: 0 calc(var(--size-4) * -1);
+}
+
+button.small icon {
+  margin: 0 calc(var(--size-6) * -1);
+}
+
+button:not(:disabled, [aria-disabled=true]):active,
+button[aria-expanded=true] {
+  -webkit-backdrop-filter: brightness(80%);
+  backdrop-filter: brightness(95%);
+  filter: brightness(var(--filter-active-brightness));
+}
+
+/* button.primary:not(:disabled, [aria-disabled=true]):active,
+button.primary[aria-expanded=true] {
+  filter: invert() brightness(var(--filter-active-brightness));
+} */
+
+button.primary.accent:not(:disabled, [aria-disabled=true]):active,
+button.primary.accent[aria-expanded=true] {
+  /* -webkit-backdrop-filter: brightness(var(--filter-active-brightness));
+  backdrop-filter: brightness(var(--filter-active-brightness));
+  filter: brightness(var(--filter-active-brightness)); */
+}

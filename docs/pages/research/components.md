@@ -1,9 +1,9 @@
 ---
-title: Basic Components
+title: Components
 layout: page
 eleventyNavigation:
   parent: Research
-  key: Basic Components
+  key: Components
   order: 20
 ---
 

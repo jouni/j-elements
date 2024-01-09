@@ -1,0 +1,125 @@
+
+:is(
+  input[type=checkbox],
+  input[type=radio]
+) {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  background: var(--optionbox-background, var(--background-ui));
+  border: var(--optionbox-border, var(--border-ui));
+  color: var(--optionbox-color, var(--color));
+  width: var(--optionbox-size, 1rem);
+  height: var(--optionbox-size, 1rem);
+  font: inherit;
+  border-radius: var(--optionbox-border-radius, var(--border-radius-s));
+  margin: 0;
+  vertical-align: middle;
+  flex: none;
+  transition: background-color var(--transition-duration-1), border-color var(--transition-duration-1);
+  --outline-offset: 2px;
+  contain: strict;
+}
+
+@media (any-hover: hover) {
+  :is(
+    input[type=checkbox],
+    input[type=radio]
+  ):not(:disabled):hover {
+    background: var(--optionbox-hover-background, var(--background-ui-hover));
+    border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
+    color: var(--optionbox-hover-color, var(--optionbox-color, var(--color)));
+  }
+}
+
+:is(
+  input[type=checkbox],
+  input[type=radio]
+):not(:disabled):active {
+  background: var(--optionbox-active-background, var(--background-ui-active));
+  border: var(--optionbox-active-border, var(--optionbox-border, var(--border-ui-active)));
+  color: var(--optionbox-active-color, var(--optionbox-color, var(--color)));
+  transition: none;
+}
+
+/* Can't use :is(:checked, :indeterminate) with type=radio, it always matches */
+input[type=checkbox]:is(:checked, :indeterminate),
+input[type=radio]:checked {
+  background: var(--optionbox-checked-background, var(--background-accent));
+  border: var(--optionbox-checked-border, var(--optionbox-border, 0));
+  color: var(--optionbox-checked-color, var(--background));
+}
+
+@media (any-hover: hover) {
+  :is(
+    input[type=checkbox],
+    input[type=radio]
+  ):checked:not(:disabled):hover {
+    background: var(--optionbox-checked-hover-background, var(--background-accent-hover));
+    border: var(--optionbox-checked-hover-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
+    color: var(--optionbox-checked-hover-color, var(--optionbox-checked-color, var(--background)));
+  }
+}
+
+:is(
+  input[type=checkbox],
+  input[type=radio]
+):checked:not(:disabled):active {
+  background: var(--optionbox-checked-active-background, var(--background-accent-active));
+  border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
+  color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
+}
+
+:is(
+  input[type=checkbox],
+  input[type=radio]
+):disabled {
+  background: var(--optionbox-disabled-background, var(--background-ui));
+  border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
+  color: var(--optionbox-disabled-color, var(--color-low-contrast));
+}
+
+:is(
+  input[type=checkbox]:is(:checked, :indeterminate),
+  input[type=radio]:checked
+)::before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  background-color: currentColor;
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  --mask-image: var(--icon-checkmark-small);
+}
+
+input[type=checkbox]:indeterminate::before {
+  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>');
+}
+
+@media (forced-colors: active) {
+  input[type=checkbox] {
+    -webkit-appearance: checkbox;
+    appearance: checkbox;
+  }
+
+  input[type=radio] {
+    -webkit-appearance: radio;
+    appearance: radio;
+  }
+}
+
+
+
+
+
+/* Radio Button ---------------------------------------------------- */
+
+input[type=radio] {
+  border-radius: 50%;
+}
+
+input[type=radio]:checked::before {
+  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3"/></svg>');
+}

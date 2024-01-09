@@ -10,6 +10,9 @@ eleventyNavigation:
 
 Icons are a fundamental part of the visual appearance of an application.
 
+> #### This page is partly outdated
+> The Vaadin icon component has gained more feature since I wrote this, making it easier to use icons.
+
 The current way of defining and using icons in a Vaadin application involves JavaScript, which is not natural for designers, and prevents using the icons with standard HTML elements (a `<vaadin-icon>` element is needed to use an icon).
 
 For icons used in components, a custom icon font is needed to be able to override them. This leads to duplication of the same icon in two formats.
@@ -44,7 +47,7 @@ TODO how to define RTL compatible icons easily?
 -->
 
 
-## Authoring an Using Icons
+## Authoring and Using Icons
 
 Authoring an icon set can be considered equally cumbersome in both options. In CSS the SVG needs to be URL encoded and each icon separately defined using a CSS selector, while in JavaScript some boilerplate code is needed, both JS and SVG. A tool that generates the definitions from a collection of SVG files can be created for either option.
 

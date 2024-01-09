@@ -1,0 +1,101 @@
+:is(
+  details,
+  summary
+) {
+  /* Can't inherit because of Chrome's implementation, slot element in between */
+  border-radius: var(--border-radius-l);
+}
+
+summary {
+  font-weight: var(--font-weight-strong);
+  color: var(--color);
+  padding: var(--size-8) 0;
+  transition: color var(--transition-duration-1);
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  contain: content;
+}
+
+@media (any-hover: hover) {
+  details:not([disabled]) > summary:hover {
+    color: var(--color-high-contrast);
+  }
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::marker {
+  content: "";
+}
+
+summary > * {
+  flex: 1;
+}
+
+summary::before {
+  /* Styles duplicated from <icon> */
+  display: inline-block;
+  vertical-align: baseline;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  overflow: hidden;
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  background-color: currentColor;
+  flex: none;
+  margin-top: calc((var(--icon-size) - 1em) * -1.75);
+  margin-bottom: calc((var(--icon-size) - 1em) * -1.75);
+  -webkit-user-select: none;
+  user-select: none;
+  /* End of duplicated styles */
+  content: "";
+  --mask-image: var(--icon-chevron-down);
+  transition: var(--transition-duration-1);
+  transition-property: transform, color;
+}
+
+details:not([open]) summary::before {
+  transform: rotate(-90deg);
+}
+
+@media (forced-colors: active) {
+  summary::before {
+    background: ButtonText;
+  }
+}
+
+[dir=rtl] details:not([open]) summary::before,
+details[dir=rtl]:not([open]) summary::before,
+:host([dir=rtl]) details:not([open]) summary::before {
+  transform: rotate(90deg);
+}
+
+details[theme~=filled] {
+  background: var(--background-below);
+  padding: var(--size-16);
+}
+
+details[theme~=filled] summary {
+  margin: calc(var(--size-16) * -1);
+  padding-inline: var(--size-8);
+}
+
+details[theme~=filled][open] summary {
+  margin-bottom: 0;
+}
+
+details[theme~=reverse][theme~=filled] summary {
+  padding-inline-start: var(--size-16);
+}
+
+details[theme~=reverse] summary::before {
+  order: 1;
+  margin-inline-start: auto;
+}
+
+details summary[tabindex="-1"] {
+  pointer-events: none;
+}

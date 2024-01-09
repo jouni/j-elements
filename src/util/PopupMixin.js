@@ -27,6 +27,7 @@ export const PopupMixin = superClass => class extends superClass {
       <style>
         :host {
           --popup-mode: modal;
+          width: fit-content;
         }
 
         dialog {
@@ -58,6 +59,17 @@ export const PopupMixin = superClass => class extends superClass {
           overflow: auto;
           display: block;
           box-sizing: border-box;
+        }
+
+        /* Needed to support backdrop filter: https://stackoverflow.com/questions/60997948/backdrop-filter-not-working-for-nested-elements-in-chrome) */
+        [part=popup]::before {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          inset: 0;
+          border-radius: inherit;
+          -webkit-backdrop-filter: var(--backdrop-filter);
+          backdrop-filter: var(--backdrop-filter);
         }
       </style>
       <slot name=trigger></slot>
@@ -151,13 +163,12 @@ export const PopupMixin = superClass => class extends superClass {
       e.stopPropagation();
       e.preventDefault();
       this.closePopup();
-      this._triggerElement.focus();
     }
   }
 
   _onClosePopup() {
     this._triggerElement.setAttribute('aria-expanded', 'false');
-    this._triggerElement.focus();
+    this._triggerElement.focus({ preventScroll: true });
     window.removeEventListener('scroll', this._positionPopup, { capture: true, passive: true });
     window.visualViewport.removeEventListener('resize', this._positionPopup);
   }
@@ -165,6 +176,6 @@ export const PopupMixin = superClass => class extends superClass {
   _positionPopup() {
     this.style.setProperty('--trigger-width', `${Math.round(this._triggerElement.offsetWidth)}px`);
     this.style.setProperty('--trigger-height', `${Math.round(this._triggerElement.offsetHeight)}px`);
-    positionPopup(this._popup, this._anchorElement || this._triggerElement, this.isModal);
+    positionPopup(this._popup, this._triggerElement, this.isModal);
   }
 }

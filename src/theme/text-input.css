@@ -1,0 +1,185 @@
+input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  background: var(--textinput-background, var(--background));
+  border: var(--textinput-border, var(--border-ui));
+  border-radius: var(--textinput-border-radius, var(--border-radius-m));
+  font: var(--textinput-font, var(--font-textinput, inherit));
+  color: var(--textinput-color, var(--color));
+  padding: var(--textinput-padding, var(--size-8));
+  box-sizing: border-box;
+  margin: 0;
+  vertical-align: middle;
+  transition: border var(--transition-duration-1);
+  contain: content;
+}
+
+textarea {
+  resize: vertical;
+  /* TODO this assumes that --textinput-padding is always just a single value, and that --line-height-s-ps is used */
+  min-height: calc(var(--textinput-padding, var(--size-8)) * 2 + var(--line-height-s-px));
+}
+
+@media (any-hover: hover) {
+  :is(
+    input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+    textarea,
+    select
+  ):not(:disabled, [aria-disabled=true]):not(:focus):hover {
+    background: var(--textinput-hover-background, var(--textinput-background, var(--background)));
+    border: var(--textinput-hover-border, var(--textinput-border, var(--border-ui-hover)));
+  }
+}
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):not(:disabled, [aria-disabled=true]):not(:focus):active {
+  background: var(--textinput-active-background, var(--textinput-background, var(--background)));
+  border: var(--textinput-active-border, var(--textinput-border, var(--border-ui-active)));
+}
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):focus {
+  --outline-offset: -1px;
+  border: var(--textinput-focus-border, var(--textinput-border, var(--border-ui-focus)));
+  transition: none;
+}
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):is(:disabled, [aria-disabled=true]) {
+  color: var(--textinput-disabled-color, var(--color-disabled));
+  border: var(--textinput-disabled-border, 1px solid var(--border-color-low-contrast));
+  background: var(--textinput-disabled-background, var(--textinput-background, var(--background)));
+}
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):is([readonly]) {
+  cursor: default;
+}
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):is([readonly]):not(:focus) {
+  border: var(--textinput-readonly-border, 1px solid var(--border-color-low-contrast));
+  background: var(--textinput-readonly-background, var(--textinput-background, var(--background)));
+}
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea
+)::placeholder {
+  color: var(--textinput-placeholder-color, var(--color-low-contrast));
+}
+
+/* TODO invalid fields which have not been edited should not be marked */
+/*
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):invalid {
+  border: var(--textinput-invalid-border, 1px solid var(--red-500));
+}
+*/
+
+:is(
+  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
+  textarea,
+  select
+):is([theme~=small]) {
+  --textinput-font: var(--font-textinput-small);
+  padding: var(--textinput-small-padding, var(--size-6));
+}
+
+
+
+
+
+/* Select ---------------------------------------------------- */
+
+select {
+  --_padding-inline-end: var(--select-padding-inline-end, calc(var(--icon-size) + var(--size-8) * 2));
+  padding-inline-end: var(--_padding-inline-end) !important;
+  background-image: var(--select-background-image) !important;
+  background-repeat: no-repeat !important;
+  background-size: var(--icon-size) !important;
+  background-position: right calc((var(--_padding-inline-end) - var(--icon-size)) / 2) center !important;
+  background-blend-mode: var(--select-background-blend-mode, multiply) !important;
+  --select-background-image: var(--icon-chevron-down-gray);
+  contain: content;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --select-background-blend-mode: screen !important;
+  }
+}
+
+[theme~=dark] {
+  --select-background-blend-mode: screen !important;
+}
+
+[dir=rtl] select,
+select[dir=rtl],
+:host([dir=rtl]) select {
+  background-position-x: var(--select-background-position-x, var(--size-8)) !important;
+}
+
+
+
+
+
+/* Date input ---------------------------------------------------- */
+
+input::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+input::-webkit-datetime-edit,
+input::-webkit-datetime-edit-day-field,
+input::-webkit-datetime-edit-month-field,
+input::-webkit-datetime-edit-year-field,
+input::-webkit-datetime-edit-hour-field,
+input::-webkit-datetime-edit-minute-field,
+input::-webkit-datetime-edit-second-field,
+input::-webkit-datetime-edit-millisecond-field,
+input::-webkit-datetime-edit-meridiem-field {
+  padding-block: 0;
+}
+
+input:-webkit-calendar-picker-indicator {
+  --mask-image: var(--icon-calendar);
+  -webkit-mask-image: var(--mask-image);
+  mask-image: var(--mask-image);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background: currentColor;
+  width: 1em;
+  height: 1em;
+}
+
+
+
+
+
+/* Search input ---------------------------------------------------- */
+
+input[type=search]::-webkit-search-cancel-button {
+  display: none;
+}

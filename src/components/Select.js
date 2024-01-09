@@ -42,10 +42,10 @@ export class Select extends MutationsMixin(Menu) {
     }
     const selected = this.querySelector('[selected], [aria-selected=true]');
     if (selected) {
-      trigger.innerHTML = selected.innerHTML;
+      trigger.innerHTML = selected.getAttribute('label') ?? selected.innerHTML;
       trigger.setAttribute('value', selected.hasAttribute('value') ? selected.getAttribute('value') : selected.textContent);
     } else {
-      trigger.textContent = "Select option";
+      trigger.innerHTML = '';
       trigger.removeAttribute('value');
     }
   }

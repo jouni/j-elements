@@ -1,45 +1,4 @@
-html,
-:host {
-  font-family: var(--font-family);
-
-  /* Set to auto to disable grayscale/antialiased font smoothing (and use default sub-pixel antialiasing) */
-  -webkit-font-smoothing: var(--font-smoothing, antialiased);
-  -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
-
-  cursor: default;
-
-  /* We assume apps are built with responsive layouting in mind */
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
-body {
-  font-size: var(--font-size-m);
-  line-height: var(--line-height-m);
-}
-
-html,
-[theme~=light],
-[theme~=dark] {
-  accent-color: var(--accent-ui);
-  background: var(--background);
-  color: var(--color);
-}
-
-[theme~=light] {
-  color-scheme: light;
-}
-
-[theme~=dark] {
-  color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  html,
-  :host {
-    color-scheme: dark;
-  }
-}
+/* TODO split per component and move any "core styles" into the component shadow DOM */
 
 
 
@@ -49,15 +8,15 @@ html,
 
 :focus:not(:focus-visible) {
   /* Support Windows High Contrast Mode */
-  outline: 3px solid transparent;
+  /* outline: 3px solid transparent; */
 }
 
-:focus-visible {
+/* :focus-visible {
   outline: 3px solid transparent;
   box-shadow:
-    0 0 0 var(--outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
-}
+    0 0 0 var(--outline-offset, 2px) var(--gray),
+    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--accent-color));
+} */
 
 /* Safari */
 @supports not selector(:focus-visible) {
@@ -83,402 +42,6 @@ a:visited {
   color: var(--link-visited-color, var(--color-accent-high-contrast));
 }
 
-
-
-
-
-/* Text Input, Text Area, Select ---------------------------------------------------- */
-
-input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-textarea,
-select {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  background: var(--textinput-background, var(--background));
-  border: var(--textinput-border, var(--border-ui));
-  border-radius: var(--textinput-border-radius, var(--border-radius-m));
-  font: var(--textinput-font, var(--font-textinput, inherit));
-  color: var(--textinput-color, var(--color));
-  padding: var(--textinput-padding, var(--size-8, 0.5rem));
-  box-sizing: border-box;
-  margin: 0;
-  vertical-align: middle;
-  transition: border var(--transition-duration-1);
-  contain: content;
-}
-
-textarea {
-  resize: vertical;
-  /* TODO this assumes that --textinput-padding is always just a single value, and that --line-height-s-ps is used */
-  min-height: calc(var(--textinput-padding, var(--size-8, 0.5rem)) * 2 + var(--line-height-s-px));
-}
-
-@media (any-hover: hover) {
-  :is(
-    input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-    textarea,
-    select
-  ):not(:disabled, [aria-disabled=true]):not(:focus):hover {
-    background: var(--textinput-hover-background, var(--textinput-background, var(--background)));
-    border: var(--textinput-hover-border, var(--textinput-border, var(--border-ui-hover)));
-  }
-}
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):not(:disabled, [aria-disabled=true]):not(:focus):active {
-  background: var(--textinput-active-background, var(--textinput-background, var(--background)));
-  border: var(--textinput-active-border, var(--textinput-border, var(--border-ui-active)));
-}
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):focus {
-  --outline-offset: -1px;
-  border: var(--textinput-focus-border, var(--textinput-border, var(--border-ui-focus)));
-  transition: none;
-}
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):is(:disabled, [aria-disabled=true]) {
-  color: var(--textinput-disabled-color, var(--color-disabled));
-  border: var(--textinput-disabled-border, 1px solid var(--border-color-low-contrast));
-  background: var(--textinput-disabled-background, var(--textinput-background, var(--background)));
-}
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):is([readonly]) {
-  cursor: default;
-}
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):is([readonly]):not(:focus) {
-  border: var(--textinput-readonly-border, 1px solid var(--border-color-low-contrast));
-  background: var(--textinput-readonly-background, var(--textinput-background, var(--background)));
-}
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea
-)::placeholder {
-  color: var(--textinput-placeholder-color, var(--color-low-contrast));
-}
-
-/* TODO invalid fields which have not been edited should not be marked */
-/*
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):invalid {
-  border: var(--textinput-invalid-border, 1px solid var(--red-500));
-}
-*/
-
-:is(
-  input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
-  textarea,
-  select
-):is([theme~=small]) {
-  --textinput-font: var(--font-textinput-small);
-  padding: var(--textinput-small-padding, var(--size-6, 0.375rem));
-}
-
-
-
-
-
-/* Select ---------------------------------------------------- */
-
-select {
-  --_padding-inline-end: var(--select-padding-inline-end, calc(var(--icon-size, 1.125em) + var(--size-8, 0.5rem) * 2));
-  padding-inline-end: var(--_padding-inline-end) !important;
-  background-image: var(--select-background-image) !important;
-  background-repeat: no-repeat !important;
-  background-size: var(--icon-size, 1.125em) !important;
-  background-position: right calc((var(--_padding-inline-end) - var(--icon-size, 1.125em)) / 2) center !important;
-  background-blend-mode: var(--select-background-blend-mode, multiply) !important;
-  --select-background-image: var(--icon-chevron-down-gray);
-  contain: content;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    --select-background-blend-mode: screen !important;
-  }
-}
-
-[theme~=dark] {
-  --select-background-blend-mode: screen !important;
-}
-
-[dir=rtl] select,
-select[dir=rtl],
-:host([dir=rtl]) select {
-  background-position-x: var(--select-background-position-x, var(--size-8, 0.5rem)) !important;
-}
-
-
-
-
-
-/* Date input ---------------------------------------------------- */
-
-input[type^=date]::-webkit-datetime-edit-fields-wrapper {
-  padding: 0;
-}
-
-input[type^=date]::-webkit-calendar-picker-indicator {
-  --mask-image: var(--icon-calendar);
-  -webkit-mask-image: var(--mask-image);
-  mask-image: var(--mask-image);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  background: currentColor;
-  width: 1em;
-  height: 1em;
-}
-
-
-
-
-
-/* Search input ---------------------------------------------------- */
-
-input[type=search]::-webkit-search-cancel-button {
-  display: none;
-}
-
-
-
-
-
-/* Button ---------------------------------------------------- */
-
-button {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--size-12, 0.75rem);
-  background: var(--button-background, var(--background-ui));
-  border: var(--button-border, 1px solid transparent); /* Should match with --textinput-border, so that the heights are equal */
-  border-radius: var(--button-border-radius, var(--border-radius-m));
-  color: var(--button-color, var(--color-accent));
-  font: var(--button-font, var(--font-button, inherit));
-  padding: var(--button-padding, var(--size-8, 0.5rem) var(--size-16, 1rem));
-  min-width: var(--button-min-width, var(--size-40, 2.5rem));
-  min-height: var(--button-min-height, var(--size-40, 2.5rem));
-  box-sizing: border-box;
-  margin: 0;
-  vertical-align: middle;
-  touch-action: manipulation;
-  transition: background-color var(--transition-duration-1), color var(--transition-duration-1), border-color var(--transition-duration-1);
-  contain: content;
-}
-
-@media (any-hover: hover) {
-  button:not(:disabled, [aria-disabled=true]):hover {
-    background: var(--button-hover-background, var(--button-background, var(--background-ui-hover)));
-    border: var(--button-hover-border, var(--button-border, 1px solid transparent));
-    color: var(--button-hover-color, var(--button-color, var(--color-accent-high-contrast)));
-  }
-}
-
-button:not(:disabled, [aria-disabled=true]):active {
-  background: var(--button-active-background, var(--button-background, var(--background-ui-active)));
-  border: var(--button-active-border, var(--button-border, 1px solid transparent));
-  color: var(--button-active-color, var(--button-color, var(--color-high-contrast)));
-  transition: none;
-}
-
-button[aria-expanded=true] {
-  background: var(--background-ui-hover);
-}
-
-button[theme~=filled] {
-  --button-background: var(--background-accent);
-  --button-hover-background: var(--background-accent-hover);
-  --button-active-background: var(--background-accent-active);
-  --button-color: var(--background);
-}
-
-button[theme~=outline] {
-  --button-border: 1px solid var(--border-color-low-contrast) !important;
-  --button-hover-border: 1px solid var(--border-color);
-  --button-active-border: 1px solid var(--border-color);
-}
-
-button[theme~=outline],
-button[theme~=ghost] {
-  --button-background: transparent !important;
-  --button-hover-background: var(--background-ui);
-  --button-active-background: var(--background-ui-hover);
-}
-
-button[theme~=small] {
-  --button-font: var(--font-button-small);
-  --button-padding: var(--size-6, 0.375rem) var(--size-12, 0.75rem);
-  --button-min-width: var(--size-32, 2rem);
-  --button-min-height: var(--size-32, 2rem);
-}
-
-button:is(:disabled, [aria-disabled=true]) {
-  --button-color: var(--color-disabled);
-  --button-background: var(--background-ui);
-  --button-border: var(--button-border, 1px solid transparent);
-}
-
-button icon {
-  margin: 0 calc(var(--size-8, 0.5rem) * -1);
-}
-
-
-
-
-
-/* Checkbox & Radio Button ---------------------------------------------------- */
-
-:is(
-  input[type=checkbox],
-  input[type=radio]
-) {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  background: var(--optionbox-background, var(--background-ui));
-  border: var(--optionbox-border, var(--border-ui));
-  color: var(--optionbox-color, var(--color));
-  width: var(--optionbox-size, 1rem);
-  height: var(--optionbox-size, 1rem);
-  font: inherit;
-  border-radius: var(--optionbox-border-radius, var(--border-radius-s));
-  margin: 0;
-  vertical-align: middle;
-  flex: none;
-  transition: background-color var(--transition-duration-1), border-color var(--transition-duration-1);
-  --outline-offset: 2px;
-  contain: strict;
-}
-
-@media (any-hover: hover) {
-  :is(
-    input[type=checkbox],
-    input[type=radio]
-  ):not(:disabled):hover {
-    background: var(--optionbox-hover-background, var(--background-ui-hover));
-    border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
-    color: var(--optionbox-hover-color, var(--optionbox-color, var(--color)));
-  }
-}
-
-:is(
-  input[type=checkbox],
-  input[type=radio]
-):not(:disabled):active {
-  background: var(--optionbox-active-background, var(--background-ui-active));
-  border: var(--optionbox-active-border, var(--optionbox-border, var(--border-ui-active)));
-  color: var(--optionbox-active-color, var(--optionbox-color, var(--color)));
-  transition: none;
-}
-
-/* Can't use :is(:checked, :indeterminate) with type=radio, it always matches */
-input[type=checkbox]:is(:checked, :indeterminate),
-input[type=radio]:checked {
-  background: var(--optionbox-checked-background, var(--background-accent));
-  border: var(--optionbox-checked-border, var(--optionbox-border, 0));
-  color: var(--optionbox-checked-color, var(--background));
-}
-
-@media (any-hover: hover) {
-  :is(
-    input[type=checkbox],
-    input[type=radio]
-  ):checked:not(:disabled):hover {
-    background: var(--optionbox-checked-hover-background, var(--background-accent-hover));
-    border: var(--optionbox-checked-hover-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
-    color: var(--optionbox-checked-hover-color, var(--optionbox-checked-color, var(--background)));
-  }
-}
-
-:is(
-  input[type=checkbox],
-  input[type=radio]
-):checked:not(:disabled):active {
-  background: var(--optionbox-checked-active-background, var(--background-accent-active));
-  border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
-  color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
-}
-
-:is(
-  input[type=checkbox],
-  input[type=radio]
-):disabled {
-  background: var(--optionbox-disabled-background, var(--background-ui));
-  border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
-  color: var(--optionbox-disabled-color, var(--color-low-contrast));
-}
-
-:is(
-  input[type=checkbox]:is(:checked, :indeterminate),
-  input[type=radio]:checked
-)::before {
-  content: "";
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  vertical-align: top;
-  background-color: currentColor;
-  -webkit-mask-image: var(--mask-image);
-  mask-image: var(--mask-image);
-  --mask-image: var(--icon-checkmark-small);
-}
-
-input[type=checkbox]:indeterminate::before {
-  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>');
-}
-
-@media (forced-colors: active) {
-  input[type=checkbox] {
-    -webkit-appearance: checkbox;
-    appearance: checkbox;
-  }
-
-  input[type=radio] {
-    -webkit-appearance: radio;
-    appearance: radio;
-  }
-}
-
-
-
-
-
-/* Radio Button ---------------------------------------------------- */
-
-input[type=radio] {
-  border-radius: 50%;
-}
-
-input[type=radio]:checked::before {
-  --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="3"/></svg>');
-}
 
 
 
@@ -532,8 +95,8 @@ j-field[inline] {
   display: inline-grid;
   grid-template-columns: auto auto;
   align-items: center;
-  column-gap: var(--size-8, 0.5rem);
-  row-gap: var(--size-4, 0.25rem);
+  column-gap: var(--size-8);
+  row-gap: var(--size-4);
   vertical-align: middle;
 }
 
@@ -611,220 +174,6 @@ j-field-group j-field {
 
 
 
-/* Slider ---------------------------------------------------- */
-
-input[type=range] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  width: calc(var(--size-16, 1rem) * 8);
-  --outline-offset: 2px;
-  contain: layout;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  background: var(--slider-track-background, var(--background-ui-hover));
-  border-radius: var(--slider-track-border-radius, var(--border-radius-s));
-  height: var(--slider-track-size, var(--size-4, 0.25rem));
-  transition: background-color var(--transition-duration-1);
-}
-
-input[type=range]::-moz-range-track {
-  background: var(--slider-track-background, var(--background-ui-hover));
-  border-radius: var(--slider-track-border-radius, var(--border-radius-s));
-  height: var(--slider-track-size, var(--size-4, 0.25rem));
-  transition: background-color var(--transition-duration-1);
-}
-
-input[type=range]:not(:disabled):is(:hover, :focus)::-webkit-slider-runnable-track {
-  background: var(--slider-track-hover-background, var(--background-ui-active));
-}
-
-input[type=range]:not(:disabled):is(:hover, :focus)::-moz-range-track {
-  background: var(--slider-track-hover-background, var(--background-ui-active));
-}
-
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--size-4, 0.25rem))) / -2);
-  background: var(--slider-thumb-background, var(--background-accent));
-  height: var(--slider-thumb-size, var(--size-16, 1rem));
-  width: var(--slider-thumb-size, var(--size-16, 1rem));
-  border-radius: var(--slider-thumb-border-radius, 50%);
-  border: 0;
-  transition: background-color var(--transition-duration-1);
-}
-
-input[type=range]::-moz-range-thumb {
-  margin-top: calc((var(--slider-thumb-size, var(--size-16, 1rem)) - var(--slider-track-size, var(--size-4, 0.25rem))) / -2);
-  background: var(--slider-thumb-background, var(--background-accent));
-  height: var(--slider-thumb-size, var(--size-16, 1rem));
-  width: var(--slider-thumb-size, var(--size-16, 1rem));
-  border-radius: var(--slider-thumb-border-radius, 50%);
-  border: 0;
-  transition: background-color var(--transition-duration-1);
-}
-
-input[type=range]:not(:disabled)::-webkit-slider-thumb:hover {
-  background: var(--slider-thumb-hover-background, var(--background-accent-hover));
-}
-
-input[type=range]:not(:disabled)::-moz-range-thumb:hover {
-  background: var(--slider-thumb-hover-background, var(--background-accent-hover));
-}
-
-input[type=range]:not(:disabled)::-webkit-slider-thumb:active {
-  background: var(--slider-thumb-active-background, var(--background-accent-active));
-  transition: none;
-}
-
-input[type=range]:not(:disabled)::-moz-range-thumb:active {
-  background: var(--slider-thumb-active-background, var(--background-accent-active));
-  transition: none;
-}
-
-input[type=range]:is(:focus, :focus-visible) {
-  box-shadow: none !important;
-}
-
-input[type=range]:focus-visible::-webkit-slider-thumb {
-  outline: none;
-  box-shadow:
-    0 0 0 var(--outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
-}
-
-input[type=range]:focus-visible::-moz-range-thumb {
-  outline: none;
-  box-shadow:
-    0 0 0 var(--outline-offset, 2px) var(--background),
-    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
-}
-
-/* Safari */
-@supports not selector(:focus-visible) {
-  input[type=range]:focus::-webkit-slider-thumb {
-    outline: none;
-    box-shadow:
-      0 0 0 var(--outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
-  }
-}
-
-input[type=range]:disabled {
-  --slider-thumb-background: var(--background-ui-active);
-}
-
-@media (forced-colors: active) {
-  :where(input[type=range]) {
-    outline: 1px solid;
-  }
-
-  :where(input[type=range])::-webkit-slider-thumb {
-    -webkit-appearance: sliderthumb-horizontal;
-  }
-}
-
-
-
-
-
-/* Progress bar (meter) ---------------------------------------------------- */
-meter,
-progress {
-  appearance: none;
-  height: var(--size-6, 0.375rem);
-  width: var(--size-96, 6rem);
-  background: var(--background-ui-hover);
-  border-radius: var(--border-radius-m);
-  border: 0;
-  vertical-align: initial;
-  /* Workaround for ::-internal-fallback pseudo-element-selector not working */
-  overflow: hidden;
-  contain: strict;
-}
-
-meter::-internal-fallback {
-  display: none;
-}
-
-meter::-webkit-meter-inner-element,
-progress::-webkit-progress-inner-element {
-  display: block;
-  border-radius: inherit;
-}
-
-meter::-webkit-meter-bar,
-progress::-webkit-progress-bar {
-  position: static;
-  background: transparent;
-  border: 0;
-  border-radius: inherit;
-}
-
-meter::-webkit-meter-optimum-value,
-meter::-webkit-meter-suboptimum-value,
-meter::-webkit-meter-even-less-good-value,
-progress::-webkit-progress-value {
-  border-radius: inherit;
-}
-meter::-moz-meter-bar,
-progress::-moz-progress-bar {
-  border-radius: inherit;
-}
-
-/* TODO should be a semantic token */
-meter::-webkit-meter-optimum-value {
-  background: var(--green-500);
-}
-meter:-moz-meter-optimum::-moz-meter-bar {
-  background: var(--green-500);
-}
-
-/* TODO should be a semantic token */
-meter::-webkit-meter-suboptimum-value,
-meter:not([optimum])::-webkit-meter-optimum-value,
-progress::-webkit-progress-value {
-  background: var(--background-accent);
-}
-meter:-moz-meter-sub-optimum::-moz-meter-bar,
-meter:not([optimum])::-moz-meter-bar,
-progress::-moz-progress-bar {
-  background: var(--background-accent);
-}
-
-/* TODO should be a semantic token */
-meter::-webkit-meter-even-less-good-value {
-  background: var(--orange-500);
-}
-meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-  background: var(--orange-500);
-}
-
-/* Indeterminate progress */
-progress:not([value])::-webkit-progress-value {
-  width: 50% !important;
-  background: var(--background-accent);
-  /* TODO animation doesn't work in Chrome */
-  animation: progress-indeterminate 0.8s ease-in-out infinite alternate;
-}
-progress:not([value])::-moz-progress-bar {
-  width: 50%;
-  background: var(--background-accent);
-  animation: progress-indeterminate 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes progress-indeterminate {
-  0% {
-    transform: translateX(calc(-100% + var(--size-6, 0.375rem)));
-  }
-  100% {
-    transform: translateX(calc(200% - var(--size-6, 0.375rem)));
-  }
-}
-
-
-
 
 /* Overflow menu ---------------------------------------------------- */
 
@@ -834,7 +183,7 @@ j-overflow-menu:focus {
 }
 
 j-overflow-menu {
-  gap: var(--size-4, 0.25rem);
+  gap: var(--size-4);
   contain: layout;
 }
 
@@ -845,127 +194,19 @@ j-overflow-menu {
 /* Popup ---------------------------------------------------- */
 
 ::part(popup) {
-  background: var(--background-above);
+  background: var(--background-surface-4a);
+  background-blend-mode: var(--background-blend-mode-surface);
+  --backdrop-filter: var(--backdrop-filter-surface);
   /* TODO create shadow tokens */
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 16px -2px rgba(0,0,0,0.2);
-  padding: var(--size-8, 0.5rem);
+  padding: calc(var(--size-8) - 1px);
   border-radius: var(--border-radius-l);
   color: var(--color);
   /* For forced color mode */
   outline: 2px solid transparent;
 }
 
-[theme=dark] ::part(popup) {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 4px 16px -2px rgba(0,0,0,0.2);
-}
-
-
-
-
-
-/* Details ---------------------------------------------------- */
-
-:is(
-  details,
-  summary
-) {
-  /* Can't inherit because of Chrome's implementation, slot element in between */
-  border-radius: var(--border-radius-l);
-}
-
-summary {
-  font-weight: var(--font-weight-strong);
-  color: var(--color);
-  padding: var(--size-8, 0.5rem) 0;
-  transition: color var(--transition-duration-1);
-  display: flex;
-  align-items: center;
-  gap: var(--size-4, 0.25rem);
-  contain: content;
-}
-
-@media (any-hover: hover) {
-  details:not([disabled]) > summary:hover {
-    color: var(--color-high-contrast);
-  }
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-
-summary::marker {
-  content: "";
-}
-
-summary > * {
-  flex: 1;
-}
-
-summary::before {
-  /* Styles duplicated from <icon> */
-  display: inline-block;
-  vertical-align: baseline;
-  width: var(--icon-size, 1.125em);
-  height: var(--icon-size, 1.125em);
-  overflow: hidden;
-  -webkit-mask-image: var(--mask-image);
-  mask-image: var(--mask-image);
-  background-color: currentColor;
-  flex: none;
-  margin-top: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
-  margin-bottom: calc((var(--icon-size, 1.125em) - 1em) * -1.75);
-  -webkit-user-select: none;
-  user-select: none;
-  /* End of duplicated styles */
-  content: "";
-  --mask-image: var(--icon-chevron-down);
-  transition: var(--transition-duration-1);
-  transition-property: transform, color;
-}
-
-details:not([open]) summary::before {
-  transform: rotate(-90deg);
-}
-
-@media (forced-colors: active) {
-  summary::before {
-    background: ButtonText;
-  }
-}
-
-[dir=rtl] details:not([open]) summary::before,
-details[dir=rtl]:not([open]) summary::before,
-:host([dir=rtl]) details:not([open]) summary::before {
-  transform: rotate(90deg);
-}
-
-details[theme~=filled] {
-  background: var(--background-below);
-  padding: var(--size-16, 1rem);
-}
-
-details[theme~=filled] summary {
-  margin: calc(var(--size-16, 1rem) * -1);
-  padding-inline: var(--size-8, 0.5rem);
-}
-
-details[theme~=filled][open] summary {
-  margin-bottom: 0;
-}
-
-details[theme~=reverse][theme~=filled] summary {
-  padding-inline-start: var(--size-16, 1rem);
-}
-
-details[theme~=reverse] summary::before {
-  order: 1;
-  margin-inline-start: auto;
-}
-
-details summary[tabindex="-1"] {
-  pointer-events: none;
-}
 
 
 
@@ -980,7 +221,7 @@ html,
 }
 
 j-avatar-group::part(popup) {
-  gap: var(--size-12, 0.75rem);
+  gap: var(--size-12);
 }
 
 /* These should be kept in sync with j-avatar styles */
@@ -998,37 +239,6 @@ j-avatar-group [slot=overflow-button] {
 
 
 
-/* Tooltip ---------------------------------------------------- */
-
-j-tooltip {
-  animation: fade-in .2s 1s both;
-  background-color: var(--background-ui);
-  color: var(--color);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 4px 16px -2px rgba(0,0,0,0.2);
-  padding: var(--size-4, 0.25rem) var(--size-6, 0.375rem);
-  margin: var(--size-4, 0.25rem);
-  width: max-content;
-  max-width: 20em;
-  font-size: var(--font-size-s);
-  line-height: var(--line-height-s);
-  border-radius: var(--border-radius-s);
-  contain: content;
-}
-
-[theme=dark] j-tooltip {
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 16px -2px rgba(0,0,0,0.2);
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-}
-
-
-
-
-
 /* Menu ---------------------------------------------------- */
 
 /* TODO should define menu item tokens */
@@ -1037,22 +247,21 @@ j-tooltip {
   all: initial;
   display: flex;
   align-items: center;
-  gap: var(--size-12, 0.75rem);
+  gap: var(--size-12);
   font: inherit;
   color: inherit;
   box-sizing: border-box;
-  padding: var(--size-6, 0.375rem) var(--size-12, 0.75rem);
-  padding-inline-end: var(--size-16, 1rem);
+  padding: var(--size-6) var(--size-12);
+  padding-inline-end: var(--size-16);
   border-radius: var(--border-radius-s);
   cursor: default;
   width: 100%;
-  /* Prevent the border from flashing when a button is removed from the overflow menu) */
-  border-color: transparent;
+  outline: none;
 }
 
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is(:focus, :active) {
   background: var(--color);
-  color: var(--background);
+  color: var(--gray);
 }
 
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is([aria-expanded=true]),
@@ -1067,13 +276,13 @@ j-tooltip {
 
 j-menu,
 j-overflow-menu {
-  --divider-margin: var(--size-6, 0.375rem) calc(var(--size-6, 0.375rem) * -1);
+  --divider-margin: var(--size-6) calc(var(--size-6) * -1);
   --divider-color: var(--border-color-low-contrast);
 }
 
 :is(j-menu, j-overflow-menu, j-select)::part(popup) {
   border-radius: var(--border-radius-m);
-  padding: var(--size-6, 0.375rem);
+  padding: var(--size-6);
 }
 
 button:not([slot=menu])+hr[slot=menu] {
@@ -1081,7 +290,7 @@ button:not([slot=menu])+hr[slot=menu] {
 }
 
 :is([role=menuitem], [role=option]) icon {
-  margin: 0 calc(var(--size-4, 0.25rem) * -1);
+  margin: 0 calc(var(--size-4) * -1);
 }
 
 
@@ -1099,7 +308,7 @@ j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
 :is(j-select, j-menu) [role=option]::before {
   content: "";
   /* Copied from icons.css */
-  --_size: var(--icon-size, 1.249em);
+  --_size: var(--icon-size);
   display: inline-block;
   vertical-align: baseline;
   width: var(--_size);
@@ -1119,7 +328,7 @@ j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
   -webkit-user-select: none;
   user-select: none;
   contain: strict;
-  margin: 0 calc(var(--size-6, 0.375rem) * -1);
+  margin: 0 calc(var(--size-6) * -1);
 }
 
 :is(j-select, j-menu) button[slot=trigger]::after {
@@ -1129,6 +338,10 @@ j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
 
 j-select [role=option]:is([selected], [aria-selected=true])::before {
   --mask-image: var(--icon-checkmark);
+}
+
+j-select [slot=trigger]:empty::before {
+  content: "Select option";
 }
 
 j-menu [role=menuitem][aria-haspopup]::after {

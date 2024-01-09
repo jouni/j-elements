@@ -52,7 +52,7 @@ vaadin-text-field::part(label) {
 ```
 The specificity of that selector is not enough to override the built-in hover color. The developer will likely need to open the browser inspector to identify the selector they need to override.
 
-TODO: actually, using ::part will override any shadow DOM styles, so this point is moot if we package styles inside shadow DOM (though, which I'm arguing against at the moment).
+TODO: actually, using ::part will override any shadow DOM styles, so this point is moot if we package styles inside shadow DOM (though, which I'm arguing against at the moment - but those would only be the "theme style", not "core styles").
 
 ### Proposal: use CSS cascale layers
 The previous proposal for less elaborate visual styling/effects will help, but in addition, we should use `@layer` to reduce selector specificity and make overriding styles that much easier.

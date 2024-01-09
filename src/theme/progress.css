@@ -1,0 +1,92 @@
+meter,
+progress {
+  appearance: none;
+  height: var(--size-6);
+  width: var(--size-96);
+  background: var(--background-ui-hover);
+  border-radius: var(--border-radius-m);
+  border: 0;
+  vertical-align: initial;
+  /* Workaround for ::-internal-fallback pseudo-element-selector not working */
+  overflow: hidden;
+  contain: strict;
+}
+
+meter::-internal-fallback {
+  display: none;
+}
+
+meter::-webkit-meter-inner-element,
+progress::-webkit-progress-inner-element {
+  display: block;
+  border-radius: inherit;
+}
+
+meter::-webkit-meter-bar,
+progress::-webkit-progress-bar {
+  position: static;
+  background: transparent;
+  border: 0;
+  border-radius: inherit;
+}
+
+meter::-webkit-meter-optimum-value,
+meter::-webkit-meter-suboptimum-value,
+meter::-webkit-meter-even-less-good-value,
+progress::-webkit-progress-value {
+  border-radius: inherit;
+}
+meter::-moz-meter-bar,
+progress::-moz-progress-bar {
+  border-radius: inherit;
+}
+
+/* TODO should be a semantic token */
+meter::-webkit-meter-optimum-value {
+  background: var(--green-500);
+}
+meter:-moz-meter-optimum::-moz-meter-bar {
+  background: var(--green-500);
+}
+
+/* TODO should be a semantic token */
+meter::-webkit-meter-suboptimum-value,
+meter:not([optimum])::-webkit-meter-optimum-value,
+progress::-webkit-progress-value {
+  background: var(--background-accent);
+}
+meter:-moz-meter-sub-optimum::-moz-meter-bar,
+meter:not([optimum])::-moz-meter-bar,
+progress::-moz-progress-bar {
+  background: var(--background-accent);
+}
+
+/* TODO should be a semantic token */
+meter::-webkit-meter-even-less-good-value {
+  background: var(--orange-500);
+}
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+  background: var(--orange-500);
+}
+
+/* Indeterminate progress */
+progress:not([value])::-webkit-progress-value {
+  width: 50% !important;
+  background: var(--background-accent);
+  /* TODO animation doesn't work in Chrome */
+  animation: progress-indeterminate 0.8s ease-in-out infinite alternate;
+}
+progress:not([value])::-moz-progress-bar {
+  width: 50%;
+  background: var(--background-accent);
+  animation: progress-indeterminate 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(calc(-100% + var(--size-6)));
+  }
+  100% {
+    transform: translateX(calc(200% - var(--size-6)));
+  }
+}

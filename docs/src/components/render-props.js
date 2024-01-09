@@ -1,19 +1,24 @@
 let exampleId = 1;
 
 /* TODO rerun this after color-scheme changes */
-window.customElements.define('render-props', class extends HTMLElement {
+customElements.define('render-props', class extends HTMLElement {
   async connectedCallback() {
+    this.updatePreviews();
+  }
+
+  updatePreviews() {
     const props = [...this.querySelectorAll(':scope > p > code:first-child')];
-    const style = window.getComputedStyle(document.documentElement)
+    const style = getComputedStyle(document.documentElement)
     props.forEach(prop => {
       const val = style.getPropertyValue(prop.textContent).trim();
-      const preview = document.createElement('span');
-      preview.classList.add('preview');
+      let preview = prop.parentNode.querySelector('.preview');
+      if (!preview) {
+        preview = document.createElement('span');
+        preview.classList.add('preview');
+      }
       preview.style.setProperty('--value', val);
       preview.innerHTML = `<span>${val}</span>`;
-      if (val.match(/#|rgb|hsl|hwb|lch|lab|color/)) {
-        preview.classList.add('color');
-      }
+      preview.classList.toggle('color', val.match(/#|rgb|hsl|hwb|lch|lab|color/));
       prop.parentNode.insertBefore(preview, prop.nextElementSibling);
     });
   }

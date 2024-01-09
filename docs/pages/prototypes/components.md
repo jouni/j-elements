@@ -1,12 +1,13 @@
 ---
-title: Component Themes
+title: Components
 layout: page
 eleventyNavigation:
-  key: Component Themes
+  key: Components
   parent: Prototypes
   order: 20
 imports:
-  /src/theme/components.css
+  /src/theme/button.css
+  /src/theme/tooltip.css
 ---
 
 ## Token Names
@@ -53,60 +54,77 @@ render-example:not(.flex) :is(input[type=radio], input[type=checkbox]) + :is(inp
 
 Buttons don't define a fixed height. They are sized by their content. Different states are indicated with a background or text color change, with a subtle transition.
 
-<render-example class="flex"></render-example>
+<j-field>
+  <label>Button Color</label>
+  <j-select id="button-color">
+    <button slot="trigger" class="small">Choose value</button>
+    <div role="option" selected>Neutral</div>
+    <div role="option">Accent</div>
+  </j-select>
+</j-field>
+<script>
+  document.querySelector('#button-color').onchange = (e) => {
+    document.querySelectorAll('render-example.buttons button').forEach(button => {
+      // button.classList.toggle('accent', e.detail.value == 'Accent');
+      button.setAttribute('theme', e.detail.value.toLowerCase());
+    });
+  }
+</script>
+
+<render-example class="flex buttons"></render-example>
 ```html
-<!-- TODO add "accent" variant which uses the accent color (others use gray) -->
+
 <div>
-  <button theme="filled">Filled</button>
-  <button>Normal</button>
-  <button theme="outline">Outline</button>
-  <button theme="ghost">Ghost</button>
+  <button class="primary">Primary</button>
+  <button>Secondary</button>
+  <button class="outline">Outline</button>
+  <button class="ghost">Ghost</button>
 </div>
 <div>
-  <button theme="filled">Filled <icon chevron-down></icon></button>
-  <button><icon search></icon> Normal</button>
-  <button theme="outline">Outline <icon sun></icon></button>
-  <button theme="ghost">Ghost <icon arrow-right></icon></button>
+  <button class="primary">Primary <icon chevron-down></icon></button>
+  <button>Secondary <icon chevron-down></icon></button>
+  <button class="outline">Outline <icon sun></icon></button>
+  <button class="ghost">Ghost <icon arrow-right></icon></button>
 </div>
 <h5>Small</h5>
 <div>
-  <button theme="filled small">Filled</button>
-  <button theme="small">Normal</button>
-  <button theme="outline small">Outline</button>
-  <button theme="ghost small">Ghost</button>
+  <button class="primary small">Primary</button>
+  <button class="small">Secondary</button>
+  <button class="outline small">Outline</button>
+  <button class="ghost small">Ghost</button>
 </div>
 <div>
-  <button theme="filled small">Filled <icon chevron-down></icon></button>
-  <button theme="small"><icon search></icon> Normal</button>
-  <button theme="outline small">Outline <icon sun></icon></button>
-  <button theme="ghost small">Ghost <icon arrow-right></icon></button>
+  <button class="primary small">Primary <icon chevron-down></icon></button>
+  <button class="small">Secondary <icon chevron-down></icon></button>
+  <button class="outline small">Outline <icon sun></icon></button>
+  <button class="ghost small">Ghost <icon arrow-right></icon></button>
 </div>
 <h5>Icon</h5>
 <div>
-  <button theme="filled"><icon search></icon></button>
-  <button theme=""><icon search></icon></button>
-  <button theme="outline"><icon search></icon></button>
-  <button theme="ghost"><icon search></icon></button>
+  <button class="primary"><icon search></icon></button>
+  <button><icon search></icon></button>
+  <button class="outline"><icon search></icon></button>
+  <button class="ghost"><icon search></icon></button>
 </div>
 <div>
-  <button theme="filled small"><icon search></icon></button>
-  <button theme="small"><icon search></icon></button>
-  <button theme="outline small"><icon search></icon></button>
-  <button theme="ghost small"><icon search></icon></icon></button>
+  <button class="primary small"><icon search></icon></button>
+  <button class="small"><icon search></icon></button>
+  <button class="outline small"><icon search></icon></button>
+  <button class="ghost small"><icon search></icon></icon></button>
 </div>
 <h5>Disabled</h5>
 <div>
   <h6>Native</h6>
-  <button disabled theme="filled">Filled</button>
-  <button disabled>Normal</button>
-  <button disabled theme="outline">Outline</button>
-  <button disabled theme="ghost">Ghost</button>
+  <button disabled class="primary">Primary</button>
+  <button disabled>Secondary</button>
+  <button disabled class="outline">Outline</button>
+  <button disabled class="ghost">Ghost</button>
 
   <h6>ARIA-disabled</h6>
-  <button aria-disabled="true" theme="filled">Filled</button>
-  <button aria-disabled="true">Normal</button>
-  <button aria-disabled="true" theme="outline">Outline</button>
-  <button aria-disabled="true" theme="ghost">Ghost</button>
+  <button aria-disabled="true" class="primary">Primary</button>
+  <button aria-disabled="true">Secondary</button>
+  <button aria-disabled="true" class="outline">Outline</button>
+  <button aria-disabled="true" class="ghost">Ghost</button>
 </div>
 ```
 
@@ -123,22 +141,10 @@ The line-height should match the line-height defined in `--textinput-font`.
 
 `--button-background` `var(--background-ui)`
 
-`--button-hover-background` `var(--button-background, var(--background-ui-hover))`
-
-`--button-active-background` `var(--button-background, var(--background-ui-active))`
-
 `--button-color` `var(--color)`
-
-`--button-hover-color` `var(--button-color)`
-
-`--button-active-color` `var(--button-color)`
 
 `--button-border` `1px solid transparent`
 The border width should match the width defined in `--textinput-border`.
-
-`--button-hover-border` `var(--button-border)`
-
-`--button-active-border` `var(--button-border)`
 
 </render-props>
 

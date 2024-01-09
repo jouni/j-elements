@@ -1,4 +1,6 @@
 html {
+  /* TODO lh unit not widely supported yet */
+  --icon-size: 1lh;
   /* From Heroicons */
   --icon-chevron-down: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>');
   --icon-chevron-down-gray: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="rgb(122,122,122)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>');
@@ -18,7 +20,7 @@ html {
 }
 
 :where(icon) {
-  --_size: var(--icon-size, 1.249em); /* with 1.25em iOS Safari doesn't always render the icon as a square */
+  --_size: var(--icon-size);
   display: inline-block;
   vertical-align: baseline;
   width: var(--_size);

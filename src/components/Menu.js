@@ -14,6 +14,7 @@ const styles = `
     ::slotted([role=group]) {
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
     :is(slot:not([name]), slot[name=""]),

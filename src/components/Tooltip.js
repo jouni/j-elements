@@ -5,7 +5,7 @@ import { positionPopup } from '../util/positionPopup.js';
 export const tooltipElement = document.createElement('j-tooltip');
 tooltipElement.style.setProperty('position', 'fixed');
 // TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable)
-tooltipElement.style.setProperty('pointer-events', 'none');
+// tooltipElement.style.setProperty('pointer-events', 'none');
 tooltipElement.style.setProperty('z-index', 'var(--tooltip-z-index, 9999)');
 tooltipElement.style.setProperty('top', '0');
 tooltipElement.style.setProperty('left', '0');
@@ -16,6 +16,7 @@ tooltipElement.addEventListener('mouseleave', hideTooltip);
 // the observer whenever the tooltip is shown
 tooltipElement.style.setProperty('display', 'none');
 document.body.append(tooltipElement);
+// TODO add ESC key listener to hide the tooltip
 
 export function startObservingTooltips(root) {
   if (!root.__tooltipObserver) {
@@ -121,6 +122,7 @@ function showTooltip() {
     tooltipElement.textContent = this.getAttribute('tooltip');
     tooltipElement.style.removeProperty('display');
   }
+  // TODO clear animation-name: none (assuming it will restart the fade-in animation)
   updateTooltipPosition();
 }
 
@@ -132,6 +134,7 @@ function updateTooltipPosition() {
 
 function hideTooltip() {
   clearTimeout(hideTimeout);
+  // TODO set animation-name: none
   hideTimeout = setTimeout(() => {
     tooltipElement.textContent = '';
     tooltipElement.style.setProperty('display', 'none');

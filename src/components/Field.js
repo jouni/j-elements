@@ -84,6 +84,7 @@ export class Field extends MutationsMixin(HTMLElement) {
 
     if (this._isGroup() || !this._isInGroup()) {
       const inputElements = [...this.querySelectorAll('input, textarea, select')];
+      // TODO consider all non-label and non-input text content as descriptions (avoid the attribute selectors)
       const descriptions = [...this.querySelectorAll('[validation-message], [description]')];
       inputElements.forEach(inputElement=> {
         // TODO the public API is hard to decide (should it be class names, should it be attributes, should it be slots?)

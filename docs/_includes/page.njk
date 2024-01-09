@@ -12,15 +12,14 @@ title: JElements
     <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-light.css' | url }}" media="(prefers-color-scheme: light)" id="prism-light">
     <link rel="stylesheet" href="{{ '/docs/src/styles/prism-one-dark.css' | url }}" media="(prefers-color-scheme: dark)" id="prism-dark">
 
-    <link rel="stylesheet" href="{{ '/src/theme/colors.css' | url }}">
+    {# <link rel="stylesheet" href="{{ '/src/theme/colors.css' | url }}"> #}
     <link rel="stylesheet" href="{{ '/src/theme/tokens.css' | url }}">
-    <link rel="stylesheet" href="{{ '/src/theme/components.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/body.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/icons.css' | url }}">
-
-    <link rel="stylesheet" href="{{ '/src/theme/zinc.css' | url }}" class="accent-color zinc" disabled>
-    <link rel="stylesheet" href="{{ '/src/theme/orange.css' | url }}" class="accent-color orange" disabled>
-    <link rel="stylesheet" href="{{ '/src/theme/sky.css' | url }}" class="accent-color sky" disabled>
-    <link rel="stylesheet" href="{{ '/src/theme/emerald.css' | url }}" class="accent-color emerald" disabled>
+    <link rel="stylesheet" href="{{ '/src/theme/tooltip.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/button.css' | url }}">
+    {# TODO remove components.css #}
+    <link rel="stylesheet" href="{{ '/src/theme/components.css' | url }}">
 
     <script type="module" src="{{ '/docs/src/components/module-size.js' | url }}"></script>
     <script type="module" src="{{ '/docs/src/components/table-of-contents.js' | url }}"></script>
@@ -28,6 +27,7 @@ title: JElements
     <script type="module" src="{{ '/docs/src/components/render-props.js' | url }}"></script>
 
     <script type="module" src="{{ '/src/components/Select.js' | url }}"></script>
+    <script type="module" src="{{ '/src/components/Field.js' | url }}"></script>
     <script type="module" src="{{ '/src/components/Tooltip.js' | url }}"></script>
 
     <script type="module">
@@ -52,27 +52,8 @@ title: JElements
       <h1><a href="/">JElements</a></h1>
 
       <div class="prefs">
-        <j-select aria-label="Select accent color" id="accent-color">
-          <button slot="trigger" theme="small ghost"></button>
-          <div role="option" value="" aria-selected="true">
-            <span>Indigo</span>
-          </div>
-          <div role="option" value="zinc">
-            <span>Zinc</span>
-          </div>
-          <div role="option" value="emerald">
-            <span>Emerald</span>
-          </div>
-          <div role="option" value="sky">
-            <span>Sky</span>
-          </div>
-          <div role="option" value="orange">
-            <span>Orange</span>
-          </div>
-        </j-select>
-
         <j-select aria-label="Select theme" id="theme">
-          <button slot="trigger" theme="small ghost"></button>
+          <button slot="trigger" class="ghost">Theme</button>
           <div role="option" value="" aria-selected="true">
             <icon computer></icon> <span>System</span>
           </div>
@@ -82,32 +63,51 @@ title: JElements
           <div role="option" value="dark">
             <icon moon></icon> <span>Dark</span>
           </div>
+          <div role="option" value="custom" label="Custom">
+            <input type="range" min="0" max="100" value="96" id="gray-l">
+          </div>
         </j-select>
       </div>
 
       <script>
+        const lightness = document.querySelector('#gray-l');
         const theme = localStorage.getItem('theme')?.trim();
-        if (theme !== undefined) {
-          document.documentElement.setAttribute('theme', theme);
-          document.querySelectorAll('#theme [role=option]').forEach(option => {
-            if (option.getAttribute('value') == theme) {
-              option.setAttribute('aria-selected', 'true');
-            } else {
-              option.removeAttribute('aria-selected');
-            }
-          });
-        }
-
-        document.querySelector('#theme').addEventListener('change', (e) => {
-          const theme = e.detail.value;
-          document.documentElement.setAttribute('theme', theme);
-          togglePrismTheme(theme);
-          localStorage.setItem('theme', theme);
-        });
 
         const lightSheet = document.querySelector('#prism-light');
         const darkSheet = document.querySelector('#prism-dark');
-        togglePrismTheme(theme);
+
+        const themeSelect = document.querySelector('#theme');
+        const darkMedia = matchMedia('(prefers-color-scheme: dark)');
+
+        updateTheme(theme);
+
+        themeSelect.addEventListener('change', (e) => {
+          if (e.target == themeSelect) {
+            updateTheme(e.detail.value);
+          }
+        });
+
+        function updateTheme(theme) {
+          if (theme === undefined) {
+            theme = '';
+          } else if (theme != 'light' && theme != 'dark' && theme != 'custom' && theme !== '') {
+            lightness.value = parseInt(theme);
+            theme = 'custom';
+          }
+          document.documentElement.style.removeProperty('--gray-l');
+          if (theme == 'custom') {
+            document.documentElement.style.setProperty('--gray-l', lightness.value + '%');
+            localStorage.setItem('theme', lightness.value);
+            document.documentElement.setAttribute('theme', lightness.value > 50 ? 'light' : 'dark');
+          } else {
+            localStorage.setItem('theme', theme);
+            document.documentElement.setAttribute('theme', theme);
+          }
+          updateThemeSelect(theme);
+          togglePrismTheme(lightness.value > 50 ? 'light' : 'dark');
+
+          document.querySelectorAll('render-props').forEach(rp => rp.updatePreviews());
+        }
 
         function togglePrismTheme(theme) {
           lightSheet.toggleAttribute('disabled', theme === 'dark');
@@ -116,30 +116,19 @@ title: JElements
           darkSheet.media = theme ? '' : '(prefers-color-scheme: dark)';
         }
 
-
-        document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
-        const accentColor = localStorage.getItem('accent-color')?.trim();
-        if (accentColor !== undefined) {
-          if (accentColor) {
-            document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
-          }
-          document.querySelectorAll('#accent-color [role=option]').forEach(option => {
-            if (option.getAttribute('value') == accentColor) {
-              option.setAttribute('aria-selected', 'true');
-            } else {
-              option.removeAttribute('aria-selected');
-            }
-          });
+        lightness.oninput = () => {
+          updateTheme(lightness.value);
         }
 
-        document.querySelector('#accent-color').addEventListener('change', (e) => {
-          document.querySelectorAll('link.accent-color').forEach(link => link.disabled = true);
-          const accentColor = e.detail.value;
-          if (accentColor) {
-            document.querySelector(`link.accent-color.${accentColor}`).disabled = false;
-          }
-          localStorage.setItem('accent-color', accentColor);
-        });
+        function updateThemeSelect(theme) {
+          document.querySelectorAll('#theme [role="option"]').forEach(option => {
+            option.removeAttribute('selected');
+            option.removeAttribute('aria-selected');
+          });
+          const selected = document.querySelector(`#theme [role="option"][value="${theme}"]`)
+          selected?.setAttribute('selected', '');
+          selected?.setAttribute('aria-selected', 'true');
+        }
       </script>
       <details theme="reverse"><summary>Menu</summary></details>
       <nav>
@@ -147,7 +136,7 @@ title: JElements
       </nav>
     </header>
       <main>
-        <h1>{{ title }}</h1>
+        <h1><span>{{ eleventyNavigation.parent }}</span> <span class="sr-only">/</span> {{ title }}</h1>
         <table-of-contents></table-of-contents>
         {% if imports %}
         <module-size modules="{{ imports }}"></module-size>

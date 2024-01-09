@@ -1,0 +1,37 @@
+html,
+:host {
+  font-family: var(--font-family);
+
+  /* Set to auto to disable grayscale/antialiased font smoothing (and use default sub-pixel antialiasing) */
+  -webkit-font-smoothing: var(--font-smoothing, antialiased);
+  -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
+
+  cursor: default;
+
+  /* We assume apps are built with responsive layouting in mind */
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+body {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+}
+
+html,
+[theme~=light],
+[theme~=dark] {
+  accent-color: var(--accent-color);
+  background: var(--background-surface-2);
+  color: var(--color);
+}
+
+:focus {
+  /* Support Windows High Contrast Mode */
+  outline: 3px solid transparent;
+}
+
+:focus-visible {
+  outline: var(--outline-width, 2px) solid var(--outline-color, var(--accent-color));
+  outline-offset: var(--outline-offset, 2px);
+}
