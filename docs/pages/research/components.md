@@ -191,6 +191,15 @@ See the [prototype theme implementation for details](/prototypes/component-theme
 
 ---
 
+
+### Accordion
+
+`<vaadin-accordion>` → `<details name="...">` + `<details name="...">` ...
+
+Drawbacks:
+
+- `<details name="...">` isn't supported in Firefox at the time of writing.
+
 <!--
 ### `<vaadin-progress-bar>` → `<progress>`
 https://web.dev/building-a-loading-bar-component/

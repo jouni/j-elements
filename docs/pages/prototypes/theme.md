@@ -1,13 +1,17 @@
 ---
-title: Components
+title: UI Theme
 layout: page
 eleventyNavigation:
-  key: Components
+  key: UI Theme
   parent: Prototypes
   order: 20
 imports:
+  /src/theme/body.css
   /src/theme/button.css
   /src/theme/tooltip.css
+  /src/theme/optionbox.css
+  /src/theme/popup.css
+  /src/theme/textinput.css
 ---
 
 ## Token Names
@@ -65,8 +69,7 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 <script>
   document.querySelector('#button-color').onchange = (e) => {
     document.querySelectorAll('render-example.buttons button').forEach(button => {
-      // button.classList.toggle('accent', e.detail.value == 'Accent');
-      button.setAttribute('theme', e.detail.value.toLowerCase());
+      button.classList.toggle('accent', e.detail.value == 'Accent');
     });
   }
 </script>
@@ -77,54 +80,46 @@ Buttons don't define a fixed height. They are sized by their content. Different 
 <div>
   <button class="primary">Primary</button>
   <button>Secondary</button>
-  <button class="outline">Outline</button>
-  <button class="ghost">Ghost</button>
+  <button class="tertiary">Tertiary</button>
 </div>
 <div>
   <button class="primary">Primary <icon chevron-down></icon></button>
   <button>Secondary <icon chevron-down></icon></button>
-  <button class="outline">Outline <icon sun></icon></button>
-  <button class="ghost">Ghost <icon arrow-right></icon></button>
+  <button class="tertiary">Tertiary <icon arrow-right></icon></button>
 </div>
 <h5>Small</h5>
 <div>
   <button class="primary small">Primary</button>
   <button class="small">Secondary</button>
-  <button class="outline small">Outline</button>
-  <button class="ghost small">Ghost</button>
+  <button class="tertiary small">Tertiary</button>
 </div>
 <div>
   <button class="primary small">Primary <icon chevron-down></icon></button>
   <button class="small">Secondary <icon chevron-down></icon></button>
-  <button class="outline small">Outline <icon sun></icon></button>
-  <button class="ghost small">Ghost <icon arrow-right></icon></button>
+  <button class="tertiary small">Tertiary <icon arrow-right></icon></button>
 </div>
 <h5>Icon</h5>
 <div>
   <button class="primary"><icon search></icon></button>
   <button><icon search></icon></button>
-  <button class="outline"><icon search></icon></button>
-  <button class="ghost"><icon search></icon></button>
+  <button class="tertiary"><icon search></icon></button>
 </div>
 <div>
   <button class="primary small"><icon search></icon></button>
   <button class="small"><icon search></icon></button>
-  <button class="outline small"><icon search></icon></button>
-  <button class="ghost small"><icon search></icon></icon></button>
+  <button class="tertiary small"><icon search></icon></icon></button>
 </div>
 <h5>Disabled</h5>
 <div>
   <h6>Native</h6>
   <button disabled class="primary">Primary</button>
   <button disabled>Secondary</button>
-  <button disabled class="outline">Outline</button>
-  <button disabled class="ghost">Ghost</button>
+  <button disabled class="tertiary">Tertiary</button>
 
   <h6>ARIA-disabled</h6>
-  <button aria-disabled="true" class="primary">Primary</button>
-  <button aria-disabled="true">Secondary</button>
-  <button aria-disabled="true" class="outline">Outline</button>
-  <button aria-disabled="true" class="ghost">Ghost</button>
+  <button aria-disabled="true" class="primary" tooltip="With aria-disabled you can inform the user why a button is disabled">Primary</button>
+  <button aria-disabled="true" tooltip="With aria-disabled you can inform the user why a button is disabled">Secondary</button>
+  <button aria-disabled="true" class="tertiary" tooltip="With aria-disabled you can inform the user why a button is disabled">Tertiary</button>
 </div>
 ```
 
@@ -356,12 +351,12 @@ TODO
 ## Details
 <render-example></render-example>
 ```html
-<details>
+<details name="test">
   <summary>Summary</summary>
   <div>Detail contents</div>
 </details>
 
-<details theme="reverse">
+<details name="test" theme="reverse">
   <summary>Summary</summary>
   <div>Detail contents</div>
 </details>

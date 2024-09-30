@@ -1,153 +1,221 @@
-html,
-:host,
-[theme],
-:host([theme]) {
-  /* TODO refactor to bg-h, bg-s, and bg-l */
-  --gray-h: 230;
-  --gray-s: 10%;
-  --gray: hsl(var(--gray-h) var(--gray-s) var(--gray-l));
-
-  --_o: clamp(0%, var(--gray-l) - 50%, 1%); /* 0% for dark palettes, 1% for light palettes */
-  --background-surface-opacity-1: calc(25% + 25 * var(--_o));
-  --background-surface-opacity-0: calc(50% + 50 * var(--_o));
-  /* Always combine these with var(--background-blend-mode-surface) */
-  --background-surface-4: var(--gray) linear-gradient(hsl(0 0% 100% / var(--background-surface-opacity-0)), hsl(0 0% 100% / var(--background-surface-opacity-0)));
-  --background-surface-4a: hsl(var(--gray-h) var(--gray-s) var(--gray-l) / 0.7) linear-gradient(hsl(0 0% 100% / calc(var(--background-surface-opacity-0) * 0.7)), hsl(0 0% 100% / calc(var(--background-surface-opacity-0) * 0.7)));
-  --background-surface-3: var(--gray) linear-gradient(hsl(0 0% 100% / var(--background-surface-opacity-1)), hsl(0 0% 100% / var(--background-surface-opacity-1)));
-  --background-surface-3a: hsl(var(--gray-h) var(--gray-s) var(--gray-l) / 0.7) linear-gradient(hsl(0 0% 100% / calc(var(--background-surface-opacity-1) * 0.7)), hsl(0 0% 100% / calc(var(--background-surface-opacity-1) * 0.7)));
-  --background-surface-2: var(--gray);
-  --background-surface-1: var(--gray) linear-gradient(hsl(0 0% 0% / var(--background-surface-opacity-1)), hsl(0 0% 0% / var(--background-surface-opacity-1)));
-  --background-surface-0: var(--gray) linear-gradient(hsl(0 0% 0% / var(--background-surface-opacity-0)), hsl(0 0% 0% / var(--background-surface-opacity-0)));
-  --background-blend-mode-surface: soft-light;
-  --backdrop-filter-surface: blur(6px);
-
-  --background-ui: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.05);
-
-  --_d: clamp(-1%, var(--gray-l) - 50%, 1%); /* -1% for dark palettes, 1% for light palettes */
-  --_l: calc(50% - (50 * var(--_d))); /* 100% for dark palettes, 0% for light palettes */
-  /* TODO refactor to fg-h, fg-s, and fg-l */
-  --color-high-contrast: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.9);
-  --color: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.8);
-  --color-low-contrast: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.62);
-  --color-disabled: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.5);
-
-  --border-color-high-contrast: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.32);
-  --border-color: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.16);
-  --border-color-low-contrast: hsl(var(--gray-h) var(--gray-s) var(--_l) / 0.08);
-
-  --accent-h: 240;
-  --accent-s: 80%;
-  --accent-color: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
-
-  --filter-active-brightness: calc(90% + clamp(-1%, var(--gray-l) - 50%, 1%) * 5);
-
-  background: var(--gray);
-  color: var(--color);
-}
-
-html,
-:host,
-[theme~=light],
-:host([theme~=light]) {
-  color-scheme: light;
-  --gray-l: 96%; /* Values between 3-16 and 80-98 are feasible */
-  --accent-l: 60%;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer j.color {
   html,
-  :host {
+  [theme] {
+    --bg-c: 0;
+    --bg-h: 250;
+    --bg: oklch(var(--bg-l) var(--bg-c) var(--bg-h));
+
+    /* Threshold when to switch from dark to light foreground color based on the lightness of the background color */
+    /* https://lea.verou.me/blog/2024/contrast-color/ */
+    --l-threshold: 0.67;
+
+    --fg-l: clamp(0, (var(--l-threshold) - var(--bg-l)) * 1000, 1);
+    --fg-c: 0;
+    --fg-h: var(--bg-h);
+    --fg: oklch(var(--fg-l) var(--fg-c) var(--fg-h));
+
+    --surface-l: max(0.25, var(--bg-l) + 0.17);
+    --surface-c: calc(var(--bg-c) - (1 - var(--fg-l)) / 2);
+    --surface-h: var(--bg-h);
+    --surface-backdrop-filter: blur(6px);
+    --surface: oklch(var(--surface-l) var(--surface-c) var(--surface-h));
+    --surface-a75: oklch(from var(--surface) l c h / 75%);
+    --surface-a50: oklch(from var(--surface) l c h / 50%);
+    --surface-box-shadow: 0 2px 2px -1px oklch(0 0 0 / var(--c100));
+
+    --c50: 4%;
+    --c100: 8%;
+    --c200: 11%;
+    --c300: 28%;
+    --c400: 40%;
+    --c500: 50%;
+    --c600: 60%;
+    --c700: 70%;
+    --c800: 80%;
+    --c900: 90%;
+    --contrast-50: oklch(from var(--fg) l c h / var(--c50));
+    --contrast-100: oklch(from var(--fg) l c h / var(--c100));
+    --contrast-200: oklch(from var(--fg) l c h / var(--c200));
+    --contrast-300: oklch(from var(--fg) l c h / var(--c300));
+    --contrast-400: oklch(from var(--fg) l c h / var(--c400));
+    --contrast-500: oklch(from var(--fg) l c h / var(--c500));
+    --contrast-600: oklch(from var(--fg) l c h / var(--c600));
+    --contrast-700: oklch(from var(--fg) l c h / var(--c700));
+    --contrast-800: oklch(from var(--fg) l c h / var(--c800));
+    --contrast-900: oklch(from var(--fg) l c h / var(--c900));
+
+    --color-high-contrast: var(--contrast-900);
+    --color: var(--contrast-600);
+    --color-low-contrast: var(--contrast-400);
+
+    --accent-l: var(--fg-l);
+    --accent-c: var(--fg-c);
+    --accent-h: var(--fg-h);
+    --accent: oklch(var(--accent-l) var(--accent-c) var(--accent-h));
+
+    --accent-fg-l: clamp(0, (var(--l-threshold) - var(--accent-l)) * 1000, 1);
+    --accent-fg-c: 0;
+    --accent-fg-h: var(--accent-h);
+    --accent-fg: oklch(var(--accent-fg-l) var(--accent-fg-c) var(--accent-fg-h));
+
+    --focus-color: var(--accent);
+
+    --yellow-l: 0.6;
+    --yellow-c: 0.18;
+    --yellow-h: 80;
+    --yellow: oklch(var(--yellow-l) var(--yellow-c) var(--yellow-h));
+
+    --red-l: 0.5;
+    --red-c: 0.2;
+    --red-h: 20;
+    --red: oklch(var(--red-l) var(--red-c) var(--red-h));
+
+    --gradient: linear-gradient(oklch(1 0 0 / var(--gradient-opacity, 0.05)), transparent);
+    --gradient-a25: linear-gradient(oklch(1 0 0 / calc(var(--gradient-opacity, 0.05) / 4)), transparent);
+  }
+
+  html,
+  [theme~=light] {
+    color-scheme: light;
+    --bg-l: 0.96;
+    --surface-background-clip: padding-box;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+      --bg-l: 0;
+
+      --c50: 4%;
+      --c100: 8%;
+      --c200: 11%;
+      --c300: 28%;
+      --c400: 40%;
+      --c500: 51%;
+      --c600: 62%;
+      --c700: 73%;
+      --c800: 84%;
+      --c900: 95%;
+
+      --surface-background-clip: border-box;
+
+      --yellow-l: 0.75;
+      --red-l: 0.75;
+    }
+  }
+
+  [theme~=dark] {
     color-scheme: dark;
-    --gray-l: 12%;
-    --accent-l: 77%;
+    --bg-l: 0;
+
+    --c50: 4%;
+    --c100: 7%;
+    --c200: 12%;
+    --c300: 28%;
+    --c400: 40%;
+    --c500: 51%;
+    --c600: 62%;
+    --c700: 73%;
+    --c800: 84%;
+    --c900: 95%;
+
+    --surface-background-clip: border-box;
+
+    --yellow-l: 0.75;
+    --red-l: 0.75;
   }
 }
 
-[theme~=dark],
-:host([theme~=dark]) {
-  color-scheme: dark;
-  --gray-l: 12%;
-  --accent-l: 77%;
+@layer j.typography {
+  html {
+    --font-family-sans-serif: system-ui, ui-sans-serif, -apple-system, sans-serif;
+    --font-family-serif: ui-serif, serif;
+    --font-family-monospace: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+    --font-family: var(--font-family-sans-serif);
+
+    --font-size-3xl: 2rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-xl: 1.25rem;
+    --font-size-l: 1.0625rem;
+    --font-size-m: 0.9375rem;
+    --font-size-s: 0.875rem;
+    --font-size-xs: 0.8125rem;
+    --font-size-2xs: 0.75rem;
+
+    --line-height-xl: 1.75rem;
+    --line-height-l: 1.625rem;
+    --line-height-m: 1.375rem;
+    --line-height-s: 1.125rem;
+    --line-height-xs: 1rem;
+    --line-height-xxs: 0.875rem;
+
+    --font-weight-strongest: 650;
+    --font-weight-strong: 500;
+    --font-weight: 450;
+
+    /* Font presets */
+
+    --font: var(--font-weight) var(--font-size-m)/var(--line-height-m) var(--font-family);
+    --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s) var(--font-family);
+    --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs) var(--font-family);
+    --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s) var(--font-family);
+    --font-textinput-small: var(--font-weight) var(--font-size-s)/var(--line-height-xs) var(--font-family);
+    --font-field-label: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s) var(--font-family);
+    --font-field-description: var(--font-weight) var(--font-size-s)/var(--line-height-s) var(--font-family);
+  }
+
+  @media (pointer: coarse) {
+    html {
+      --font-size-3xl: 1.875rem;
+      --font-size-2xl: 1.5rem;
+      --font-size-xl: 1.25rem;
+      --font-size-l: 1.125rem;
+      --font-size-m: 1rem;
+      --font-size-s: 0.9375rem;
+      --font-size-xs: 0.875rem;
+      --font-size-2xs: 0.8125rem;
+
+      --space-25: 8px;
+      --space-50: 12px;
+      --space-75: 16px;
+      --space-100: 20px;
+      --space-150: 28px;
+      --space-200: 36px;
+    }
+  }
 }
 
-/* Border styles */
-html,
-:host {
-  --border-ui: 1px solid var(--border-color);
-  --border-ui-hover: 1px solid var(--border-color-high-contrast);
-  --border-ui-active: 1px solid var(--border-color-high-contrast);
-  --border-ui-focus: 1px solid var(--border-color-accent);
+@layer j.border {
+  html {
+    --border-width: 1px;
+    --border-color: var(--contrast-100);
+    --border-color-high-contrast: var(--contrast-200);
 
-  --border-radius-l: 0.5rem;
-  --border-radius-m: 0.375rem;
-  --border-radius-s: 0.25rem;
+    --border-radius-l: 12px;
+    --border-radius-m: 8px;
+    --border-radius-s: 5px;
+
+    /* Presets */
+    --border-ui: var(--border-width) solid var(--border-color-high-contrast);
+  }
 }
 
-/* Typography */
-html,
-:host {
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-serif: ui-serif, serif;
-  --font-family-monospace: ui-monospace, "Menlo", "Monaco", "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-  --font-family: var(--font-family-sans-serif);
-
-  --font-size-3xl: 2.5rem;
-  --font-size-2xl: 2.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-l: 1.25rem;
-  --font-size-m: 1rem;
-  --font-size-s: 0.875rem;
-  --font-size-xs: 0.8125rem;
-  --font-size-2xs: 0.75rem;
-
-  --font-weight-strongest: 600;
-  --font-weight-strong: 500;
-  --font-weight: 400;
-  --font-weight-weak: 300;
-  --font-weight-weakest: 300;
-
-  --line-height-m: 1.5;
-  --line-height-s: 1.25;
-  --line-height-xs: 1;
-
-  --line-height-m-px: 24px;
-  --line-height-s-px: 20px;
-  --line-height-xs-px: 16px;
-
-  /* Font presets */
-
-  --font: var(--font-weight) var(--font-size-m)/var(--line-height-m) var(--font-family);
-  --font-button: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
-  --font-button-small: var(--font-weight-strong) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
-  --font-textinput: var(--font-weight) var(--font-size-m)/var(--line-height-s-px) var(--font-family);
-  --font-textinput-small: var(--font-weight) var(--font-size-s)/var(--line-height-xs-px) var(--font-family);
-  --font-field-label: var(--font-weight-strong) var(--font-size-m)/var(--line-height-s) var(--font-family);
-  --font-field-description: var(--font-weight) var(--font-size-s)/var(--line-height-s) var(--font-family);
+@layer j.space {
+  html {
+    --space-25: 4px;
+    --space-50: 8px;
+    --space-75: 12px;
+    --space-100: 16px;
+    --space-150: 24px;
+    --space-200: 32px;
+  }
 }
 
-/* Size / space */
-html,
-:host {
-  --size-1: 1px;
-  --size-2: 2px;
-  --size-4: 4px;
-  --size-6: 6px;
-  --size-8: 8px;
-  --size-12: 12px;
-  --size-16: 16px;
-  --size-24: 24px;
-  --size-28: 28px;
-  --size-32: 32px;
-  --size-40: 40px;
-  --size-48: 48px;
-  --size-56: 56px;
-  --size-64: 64px;
-  --size-96: 96px;
-  --size-128: 128px;
-}
-
-/* Other */
-html,
-:host {
-  --transition-duration-1: 80ms;
+@layer j {
+  html {
+    --transition-duration-fast: 100ms;
+    --transition-duration-short: 300ms;
+    --transition-duration-long: 600ms;
+    --transition-duration-slow: 1000ms;
+  }
 }

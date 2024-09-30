@@ -25,9 +25,10 @@ class ModuleSize extends HTMLElement {
       <details>
         <summary>${modules.length} ${modules.length > 1 ? 'requests' : 'request'}, ${fullSize}</summary>
         <dl>
+          <dt>Module</dt><dd>File size</dd><dd>Compressed</dd>
           ${modules.map(module => {
             const mod = this._json.find(item => item.path == module);
-            return `<dt>${module}</dt><dd>${(mod?.size / 1024).toFixed(2)} KB (${(mod?.compressed / 1024).toFixed(2)} KB compressed)</dd>`
+            return `<dt>${module}</dt><dd>${(mod?.size / 1024).toFixed(2)} KB</dd><dd>${(mod?.compressed / 1024).toFixed(2)} KB</dd>`
           }).join('')}
         </dl>
       </details>

@@ -1,6 +1,5 @@
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-strongest);
-  line-height: var(--line-height-s);
   margin: 0;
   margin-top: 2em;
   color: var(--color-high-contrast);
@@ -12,6 +11,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3 {
   letter-spacing: -0.0125em;
+  line-height: var(--line-height-l);
 }
 
 h1 {
@@ -31,19 +31,20 @@ h3 {
 
 h4 {
   font-size: var(--font-size-l);
+  line-height: var(--line-height-m);
   margin-bottom: 0.5em;
 }
 
 h5 {
   font-size: var(--font-size-m);
+  line-height: var(--line-height-s);
   margin-bottom: 0.25em;
 }
 
 h6 {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-xs);
   margin-bottom: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
 }
 
 body {
@@ -52,19 +53,29 @@ body {
 
 table-of-contents+p {
   font-size: var(--font-size-l);
+  line-height: var(--line-height-l);
 }
 
-.main-nav h1 {
+.main-nav .home {
+  color: var(--color-high-contrast);
+  font-weight: var(--font-weight-strongest);
   font-size: var(--font-size-l);
-  margin-inline-start: 0.5rem;
-  margin-bottom: 0;
-  flex: auto;
+  margin-inline-end: auto;
+  text-decoration: none;
+  padding: var(--space-50) 0.5rem;
+  display: flex;
+  gap: var(--space-25);
+  align-items: center;
+  border-radius: var(--border-radius-m);
 }
 
-.main-nav h1 a:any-link {
-  color: inherit;
-  text-decoration: none;
-  margin-inline-end: 0.5em;
+.main-nav .home span {
+  border-radius: var(--border-radius-s);
+  background: var(--accent);
+  color: var(--accent-fg);
+  padding: 0 0.5em;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
 }
 
 .main-nav ul {
@@ -82,8 +93,10 @@ table-of-contents+p {
 }
 
 .main-nav nav .active>a {
+  -webkit-backdrop-filter: invert(0.08) saturate(1.5);
   backdrop-filter: invert(0.08) saturate(1.5);
   color: var(--color-high-contrast);
+  width: fit-content;
 }
 
 .main-nav ul a:hover,
@@ -97,14 +110,14 @@ table-of-contents+p {
 }
 
 .main-nav .has-children>a:any-link {
-  font-weight: 600;
-  margin-bottom: var(--size-4);
+  font-weight: var(--font-weight-strong);
+  color: var(--color-high-contrast);
 }
 
 main>h1 span {
   display: block;
   font-size: var(--font-size-m);
-  color: var(--color-low-contrast);
+  color: var(--color);
 }
 
 main>h1::after {
@@ -129,8 +142,8 @@ main>footer {
   align-items: center;
   justify-content: space-between;
   font-size: var(--font-size-xs);
-  color: var(--color-low-contrast);
-  border-top: 1px solid var(--border-color-low-contrast);
+  color: var(--color);
+  border-top: 1px solid var(--border-color);
   margin-top: 5rem;
   padding-top: 2rem;
 }
@@ -159,14 +172,14 @@ main>footer {
 
 table-of-contents h6 {
   font-size: var(--font-size-2xs);
-  color: var(--color-low-contrast);
+  color: var(--color);
 }
 
 table-of-contents>ol {
   list-style: none;
   margin: 1em 0 2em;
   padding-inline-start: 1.5em;
-  border-inline-start: 1px solid var(--border-color-low-contrast);
+  border-inline-start: 1px solid var(--border-color);
 }
 
 table-of-contents>ol ol {
@@ -180,12 +193,12 @@ table-of-contents li {
 }
 
 table-of-contents a:any-link {
-  color: var(--color-low-contrast);
+  color: var(--color);
   text-decoration: none;
 }
 
 table-of-contents a:hover {
-  color: var(--color);
+  color: var(--color-high-contrast);
 }
 
 main>footer a:any-link {
@@ -194,11 +207,11 @@ main>footer a:any-link {
 }
 
 main>footer a:hover {
-  color: var(--color-accent);
+  color: var(--color-high-contrast);
 }
 
 blockquote {
-  border: 1px solid var(--border-color-accent);
+  border: 1px solid var(--accent);
   border-inline-start-width: 3px;
   margin: 1.5rem 0;
   padding: 0.25rem 1.5rem 0.1em;
@@ -276,22 +289,30 @@ h2, h3 {
 
 @keyframes flash {
   30% {
-    background-color: var(--color-accent-low-contrast);
-    color: var(--gray);
+    background-color: var(--accent);
+    color: var(--bg);
   }
 }
 
 module-size {
   font-size: var(--font-size-s);
-  color: var(--color-low-contrast);
+  color: var(--color);
+  min-height: 1lh;
+  white-space: nowrap;
 }
 
 module-size dl {
   margin: 1rem 1rem;
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
 }
 
 module-size dt {
-  color: var(--color);
+  color: var(--color-high-contrast);
+}
+
+module-size dd {
+  text-align: end;
 }
 
 main>module-size {
@@ -302,7 +323,7 @@ main>module-size {
 hr {
   border: 0;
   height: 1px;
-  background-color: var(--border-color-low-contrast);
+  background-color: var(--border-color);
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
@@ -313,7 +334,7 @@ hr {
 
 .main-nav {
   float: left;
-  height: 100vh;
+  height: 100svh;
   overflow: auto;
   padding: 1.5rem 1rem;
   width: 15rem;
@@ -325,6 +346,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-content: start;
 }
 
 [dir=rtl] .main-nav {
@@ -340,12 +362,11 @@ main {
 }
 
 .main-nav nav {
-  padding-top: 1rem;
-  padding-bottom: 5rem;
+  padding-block: 1rem;
 }
 
 @media (max-width: 50rem) {
-  .main-nav h1 {
+  .main-nav .home {
     flex: auto;
   }
 
@@ -398,7 +419,7 @@ main {
   font-family: var(--font-family-monospace);
   font-weight: 500;
   padding: 0;
-  color: var(--color-low-contrast);
+  color: var(--color);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-s);
   margin: 0;
@@ -428,15 +449,15 @@ main {
 
 render-props {
   display: flow-root;
-  border: 1px solid var(--border-color-low-contrast);
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius-l);
 }
 
 render-props p {
   font-size: var(--font-size-xs);
-  color: var(--color-low-contrast);
+  color: var(--color);
   padding: 1.25rem 2.5rem 0;
-  border-top: 1px solid var(--border-color-low-contrast);
+  border-top: 1px solid var(--border-color);
   margin-top: 0;
 }
 
@@ -455,36 +476,6 @@ render-props>p>code:first-child {
 
 #theme [slot=trigger] span {
   display: none;
-}
-
-#accent-color :is(button, [role=option]) span {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  overflow: hidden;
-  color: transparent;
-  margin: 0 calc(var(--size-4, 0.25rem) * -1);
-}
-
-#accent-color [value=zinc] span {
-  background-color: var(--zinc-600);
-}
-
-#accent-color [value=""] span {
-  background-color: var(--indigo-500);
-}
-
-#accent-color [value=emerald] span {
-  background-color: var(--emerald-600);
-}
-
-#accent-color [value=sky] span {
-  background-color: var(--sky-600);
-}
-
-#accent-color [value=orange] span {
-  background-color: var(--orange-600);
 }
 
 render-props.color-scale {
@@ -538,11 +529,17 @@ render-props.color-scale p code {
   }
 }
 
-:is(#accent-color, #theme) [slot=trigger]::after {
+#theme [slot=trigger] input {
   display: none;
 }
 
-:is(#accent-color, #theme) [role=option]::before {
+#theme [slot=trigger]::after,
+html[theme=light] #theme [slot=trigger] icon[moon],
+html[theme=dark] #theme [slot=trigger] icon[sun] {
+  display: none;
+}
+
+#theme [role=option]::before {
   order: 1;
   margin-inline-start: auto;
 }
@@ -556,4 +553,25 @@ render-props.color-scale p code {
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
+}
+
+html[theme] {
+  --accent-c: calc(0.25 * var(--vibrancy) / 100);
+  --accent-l: calc((1 - var(--accent-c) * 1.1) * var(--vibrancy) / 100);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([theme=light]) {
+    --accent-l: calc(1 - var(--accent-c) * var(--vibrancy) / 100 * 2);
+  }
+}
+
+html[theme=dark] {
+  --accent-l: calc(1 - var(--accent-c) * var(--vibrancy) / 100 * 2);
+}
+
+#accent-h {
+  appearance: none;
+  background: linear-gradient(to right, oklch(0.6 0.2 0) 0%, oklch(0.6 0.2 61) 17%, oklch(0.6 0.2 118) 33%, oklch(0.6 0.2 180) 50%, oklch(0.6 0.2 241) 67%, oklch(0.6 0.2 299) 83%, oklch(0.6 0.2 360) 100%);
+  border-radius: var(--border-radius-l);
 }

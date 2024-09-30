@@ -9,11 +9,11 @@
 summary {
   font-weight: var(--font-weight-strong);
   color: var(--color);
-  padding: var(--size-8) 0;
-  transition: color var(--transition-duration-1);
+  padding: var(--space-50) 0;
+  transition: color var(--transition-duration-fast);
   display: flex;
   align-items: center;
-  gap: var(--size-4);
+  gap: var(--space-25);
   contain: content;
 }
 
@@ -75,12 +75,12 @@ details[dir=rtl]:not([open]) summary::before,
 
 details[theme~=filled] {
   background: var(--background-below);
-  padding: var(--size-16);
+  padding: var(--space-100);
 }
 
 details[theme~=filled] summary {
-  margin: calc(var(--size-16) * -1);
-  padding-inline: var(--size-8);
+  margin: calc(var(--space-100) * -1);
+  padding-inline: var(--space-50);
 }
 
 details[theme~=filled][open] summary {
@@ -88,7 +88,7 @@ details[theme~=filled][open] summary {
 }
 
 details[theme~=reverse][theme~=filled] summary {
-  padding-inline-start: var(--size-16);
+  padding-inline-start: var(--space-100);
 }
 
 details[theme~=reverse] summary::before {

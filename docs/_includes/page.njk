@@ -17,7 +17,12 @@ title: JElements
     <link rel="stylesheet" href="{{ '/src/theme/body.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/icons.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/tooltip.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/popup.css' | url }}">
     <link rel="stylesheet" href="{{ '/src/theme/button.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/optionbox.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/textinput.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/slider.css' | url }}">
+    <link rel="stylesheet" href="{{ '/src/theme/details.css' | url }}">
     {# TODO remove components.css #}
     <link rel="stylesheet" href="{{ '/src/theme/components.css' | url }}">
 
@@ -49,11 +54,11 @@ title: JElements
   </head>
   <body>
     <header class="main-nav">
-      <h1><a href="/">JElements</a></h1>
+      <a href="/" class="home"><span>J</span>Elements</a>
 
       <div class="prefs">
         <j-select aria-label="Select theme" id="theme">
-          <button slot="trigger" class="ghost">Theme</button>
+          <button slot="trigger" class="tertiary">Theme</button>
           <div role="option" value="" aria-selected="true">
             <icon computer></icon> <span>System</span>
           </div>
@@ -63,14 +68,19 @@ title: JElements
           <div role="option" value="dark">
             <icon moon></icon> <span>Dark</span>
           </div>
-          <div role="option" value="custom" label="Custom">
-            <input type="range" min="0" max="100" value="96" id="gray-l">
+          <div role="option" value="custom">
+            <icon moon></icon>
+            <input type="range" min="0" max="1" value="0.96" step="0.01" id="bg-l">
+            <icon sun></icon>
           </div>
+          <hr>
+          <label for="vibrancy">Vibrancy</label><input type="range" min="0" max="100" value="0" id="vibrancy">
+          <label for="accent-h">Hue</label><input type="range" min="0" max="360" value="0" id="accent-h">
         </j-select>
       </div>
 
       <script>
-        const lightness = document.querySelector('#gray-l');
+        const lightness = document.querySelector('#bg-l');
         const theme = localStorage.getItem('theme')?.trim();
 
         const lightSheet = document.querySelector('#prism-light');
@@ -91,20 +101,21 @@ title: JElements
           if (theme === undefined) {
             theme = '';
           } else if (theme != 'light' && theme != 'dark' && theme != 'custom' && theme !== '') {
-            lightness.value = parseInt(theme);
+            lightness.value = parseFloat(theme);
             theme = 'custom';
           }
-          document.documentElement.style.removeProperty('--gray-l');
+          document.documentElement.style.removeProperty('--bg-l');
           if (theme == 'custom') {
-            document.documentElement.style.setProperty('--gray-l', lightness.value + '%');
+            document.documentElement.style.setProperty('--bg-l', lightness.value);
             localStorage.setItem('theme', lightness.value);
-            document.documentElement.setAttribute('theme', lightness.value > 50 ? 'light' : 'dark');
+            document.documentElement.setAttribute('theme', lightness.value >= 0.67 ? 'light' : 'dark');
           } else {
             localStorage.setItem('theme', theme);
             document.documentElement.setAttribute('theme', theme);
+            //lightness.value =
           }
           updateThemeSelect(theme);
-          togglePrismTheme(lightness.value > 50 ? 'light' : 'dark');
+          togglePrismTheme(lightness.value >= 0.67 ? 'light' : 'dark');
 
           document.querySelectorAll('render-props').forEach(rp => rp.updatePreviews());
         }
@@ -128,6 +139,28 @@ title: JElements
           const selected = document.querySelector(`#theme [role="option"][value="${theme}"]`)
           selected?.setAttribute('selected', '');
           selected?.setAttribute('aria-selected', 'true');
+        }
+
+        const vibrancy = document.querySelector('#vibrancy');
+        const v = parseFloat(localStorage.getItem('vibrancy')?.trim()) || 0;
+        vibrancy.oninput = updateVibrancy;
+        vibrancy.value = v;
+        updateVibrancy();
+
+        function updateVibrancy() {
+          document.documentElement.style.setProperty('--vibrancy', vibrancy.value);
+          localStorage.setItem('vibrancy', vibrancy.value);
+        }
+
+        const accentH = document.querySelector('#accent-h');
+        const hue = parseInt(localStorage.getItem('accent-h')?.trim()) || 220;
+        accentH.oninput = updateAccentH;
+        accentH.value = hue;
+        updateAccentH();
+
+        function updateAccentH() {
+          document.documentElement.style.setProperty('--accent-h', accentH.value);
+          localStorage.setItem('accent-h', accentH.value);
         }
       </script>
       <details theme="reverse"><summary>Menu</summary></details>

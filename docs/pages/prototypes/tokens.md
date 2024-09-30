@@ -42,18 +42,20 @@ You can customize the hue, saturation, and lightness of the grayscale colors eas
 <div theme="custom-theme">Custom theme</div>
 <style>
   [theme="custom-theme"] {
-    --gray-h: 200;
-    --gray-s: 20%;
-    --gray-l: 20%;
+    --bg-h: 200;
+    --bg-c: 0.1;
+    --bg-l: 0.4;
   }
 </style>
 ```
 <style>
   div[theme] {
-    padding: 0.5em;
+    padding: var(--space-50) var(--space-75);
     border-radius: 0.5em;
     margin: 0;
     border: var(--border-ui);
+    background: var(--bg);
+    color: var(--color-high-contrast);
   }
 </style>
 

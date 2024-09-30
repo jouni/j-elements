@@ -4,26 +4,26 @@ select {
   -webkit-appearance: none;
   appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background: var(--textinput-background, var(--background));
-  border: var(--textinput-border, var(--border-ui));
+  background: var(--textinput-background, var(--surface)) border-box var(--surface-background-clip);
+  border: var(--textinput-border, var(--border-width) solid var(--border-color-high-contrast));
   border-radius: var(--textinput-border-radius, var(--border-radius-m));
   font: var(--textinput-font, var(--font-textinput, inherit));
-  color: var(--textinput-color, var(--color));
-  padding: var(--textinput-padding, var(--size-8));
+  color: var(--textinput-color, var(--color-high-contrast));
+  padding: var(--textinput-padding, calc(var(--space-50) - var(--border-width)));
   box-sizing: border-box;
   margin: 0;
   vertical-align: middle;
-  transition: border var(--transition-duration-1);
+  transition: border var(--transition-duration-fast);
   contain: content;
 }
 
 textarea {
   resize: vertical;
-  /* TODO this assumes that --textinput-padding is always just a single value, and that --line-height-s-ps is used */
-  min-height: calc(var(--textinput-padding, var(--size-8)) * 2 + var(--line-height-s-px));
+  /* TODO this assumes that --textinput-padding is always just a single value, and that --line-height-s is used */
+  min-height: calc(var(--textinput-padding, var(--space-50)) * 2 + var(--line-height-s));
 }
 
-@media (any-hover: hover) {
+/* @media (any-hover: hover) {
   :is(
     input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
     textarea,
@@ -41,7 +41,7 @@ textarea {
 ):not(:disabled, [aria-disabled=true]):not(:focus):active {
   background: var(--textinput-active-background, var(--textinput-background, var(--background)));
   border: var(--textinput-active-border, var(--textinput-border, var(--border-ui-active)));
-}
+} */
 
 :is(
   input:not([type=range], [type=radio], [type=checkbox], [type=button], [type=color], [type=file], [type=image], [type=reset], [type=submit]),
@@ -49,7 +49,7 @@ textarea {
   select
 ):focus {
   --outline-offset: -1px;
-  border: var(--textinput-focus-border, var(--textinput-border, var(--border-ui-focus)));
+  /* border: var(--textinput-focus-border, var(--textinput-border, var(--border-ui-focus))); */
   transition: none;
 }
 
@@ -104,7 +104,7 @@ textarea {
   select
 ):is([theme~=small]) {
   --textinput-font: var(--font-textinput-small);
-  padding: var(--textinput-small-padding, var(--size-6));
+  padding: var(--textinput-small-padding, var(--space-50));
 }
 
 
@@ -114,7 +114,7 @@ textarea {
 /* Select ---------------------------------------------------- */
 
 select {
-  --_padding-inline-end: var(--select-padding-inline-end, calc(var(--icon-size) + var(--size-8) * 2));
+  --_padding-inline-end: var(--select-padding-inline-end, calc(var(--icon-size) + var(--space-50) * 2));
   padding-inline-end: var(--_padding-inline-end) !important;
   background-image: var(--select-background-image) !important;
   background-repeat: no-repeat !important;
@@ -138,7 +138,7 @@ select {
 [dir=rtl] select,
 select[dir=rtl],
 :host([dir=rtl]) select {
-  background-position-x: var(--select-background-position-x, var(--size-8)) !important;
+  background-position-x: var(--select-background-position-x, var(--space-50)) !important;
 }
 
 

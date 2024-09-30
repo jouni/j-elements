@@ -1,0 +1,13 @@
+::part(popup) {
+  background: var(--gradient-a25) var(--surface-a75);
+  border: 1px solid rgba(255, 255, 255, var(--c100));
+  /* TODO create shadow tokens */
+  box-shadow: 0 0 0 1px rgba(0,0,0,var(--c50)), 0 4px 16px -2px rgba(0,0,0,0.2);
+  padding: calc(var(--space-50) - 1px);
+  border-radius: var(--border-radius-l);
+  color: var(--color);
+  /* Because of a Chrome bug/limitation, backdrop filter is set on a pseudo element inside the Popup component */
+  --backdrop-filter: var(--surface-backdrop-filter);
+  /* For forced color mode */
+  outline: 2px solid transparent;
+}

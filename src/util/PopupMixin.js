@@ -28,11 +28,12 @@ export const PopupMixin = superClass => class extends superClass {
         :host {
           --popup-mode: modal;
           width: fit-content;
+          display: block;
         }
 
         dialog {
           box-sizing: border-box;
-          margin: 0;
+          margin: var(--popup-margin, 2px);
           overflow: visible;
           background: transparent;
           border: 0;
@@ -41,8 +42,8 @@ export const PopupMixin = superClass => class extends superClass {
           max-height: 100%;
           outline: none;
           display: flex;
-          top: 0;
-          left: 0;
+          top: var(--_popup-inset, 0);
+          left: var(--_popup-inset, 0);
           z-index: 100;
         }
 
@@ -98,6 +99,13 @@ export const PopupMixin = superClass => class extends superClass {
     this._popup.addEventListener('close', this._onClosePopup.bind(this));
     this._popup.addEventListener('click', this._onPopupClick);
     this._popup.addEventListener('keydown', this._onPopupKeydown);
+
+    // Clicking on the host should not trigger regular click handlers
+    this.addEventListener('click', (e) => {
+      if (e.target == this && !this._popup.open) {
+        e.stopPropagation();
+      }
+    }, { capture: true });
   }
 
   _onTriggerSlotChange() {

@@ -3,35 +3,6 @@
 
 
 
-/* TODO: Safari now supports rounded outlines */
-/* Focus outline ---------------------------------------------------- */
-
-:focus:not(:focus-visible) {
-  /* Support Windows High Contrast Mode */
-  /* outline: 3px solid transparent; */
-}
-
-/* :focus-visible {
-  outline: 3px solid transparent;
-  box-shadow:
-    0 0 0 var(--outline-offset, 2px) var(--gray),
-    0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--accent-color));
-} */
-
-/* Safari */
-@supports not selector(:focus-visible) {
-  :focus {
-    outline: 3px solid transparent;
-    box-shadow:
-      0 0 0 var(--outline-offset, 2px) var(--background),
-      0 0 0 calc(var(--outline-width, 2px) + var(--outline-offset, 2px)) var(--outline-color, var(--border-color-accent));
-  }
-}
-
-
-
-
-
 /* Link/Anchor ---------------------------------------------------- */
 
 a {
@@ -53,7 +24,7 @@ j-field,
 j-field-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8, 0.5rem);
+  gap: var(--space-50);
   contain: layout;
 }
 
@@ -79,14 +50,6 @@ j-field[inline] {
   font: var(--font-field-label);
 }
 
-/* TODO consider removing */
-:is(
-  j-field,
-  j-field-group
-):focus-within > label:first-child {
-  color: var(--color-accent);
-}
-
 :is(
   j-field[type=radio],
   j-field[type=checkbox],
@@ -95,8 +58,8 @@ j-field[inline] {
   display: inline-grid;
   grid-template-columns: auto auto;
   align-items: center;
-  column-gap: var(--size-8);
-  row-gap: var(--size-4);
+  column-gap: var(--space-50);
+  row-gap: var(--space-25);
   vertical-align: middle;
 }
 
@@ -137,11 +100,11 @@ j-field[inline] {
 ) {
   font: var(--font-field-description);
   margin: 0;
-  color: var(--color-low-contrast);
+  color: var(--color);
 }
 
 [required-indicator] {
-  color: var(--color-low-contrast);
+  color: var(--color);
   margin: 0 0.25em;
 }
 
@@ -177,35 +140,12 @@ j-field-group j-field {
 
 /* Overflow menu ---------------------------------------------------- */
 
-/* Needed for Safari (Tech Preview) */
-j-overflow-menu:focus {
-  box-shadow: none;
-}
-
 j-overflow-menu {
-  gap: var(--size-4);
+  gap: var(--space-25);
   contain: layout;
 }
 
 
-
-
-
-/* Popup ---------------------------------------------------- */
-
-::part(popup) {
-  background: var(--background-surface-4a);
-  background-blend-mode: var(--background-blend-mode-surface);
-  --backdrop-filter: var(--backdrop-filter-surface);
-  /* TODO create shadow tokens */
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 16px -2px rgba(0,0,0,0.2);
-  padding: calc(var(--size-8) - 1px);
-  border-radius: var(--border-radius-l);
-  color: var(--color);
-  /* For forced color mode */
-  outline: 2px solid transparent;
-}
 
 
 
@@ -221,7 +161,7 @@ html,
 }
 
 j-avatar-group::part(popup) {
-  gap: var(--size-12);
+  gap: var(--space-75);
 }
 
 /* These should be kept in sync with j-avatar styles */
@@ -241,48 +181,60 @@ j-avatar-group [slot=overflow-button] {
 
 /* Menu ---------------------------------------------------- */
 
+:is(j-menu, j-select):not(:defined) :not([slot=trigger]) {
+  display: none !important;
+}
+
 /* TODO should define menu item tokens */
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]),
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):where(:hover, :active, :focus) {
-  all: initial;
+  all: unset;
   display: flex;
   align-items: center;
-  gap: var(--size-12);
-  font: inherit;
-  color: inherit;
+  gap: var(--space-50);
+  font: var(--button-font, var(--font-button, inherit));
+  color: var(--color-high-contrast);
   box-sizing: border-box;
-  padding: var(--size-6) var(--size-12);
-  padding-inline-end: var(--size-16);
+  padding: var(--space-50) var(--space-75);
+  padding-inline-end: var(--space-100);
   border-radius: var(--border-radius-s);
   cursor: default;
   width: 100%;
   outline: none;
 }
 
-:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is(:focus, :active) {
-  background: var(--color);
-  color: var(--gray);
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is([aria-expanded=true]),
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]):focus-visible {
+  background: var(--contrast-100);
+  filter: none;
 }
 
-:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is([aria-expanded=true]),
-:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]):focus-visible {
-  background: var(--background-ui-hover);
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):not(:disabled, [aria-disabled=true]):is(:focus, :active) {
+  background: var(--accent);
+  color: var(--accent-fg);
+  filter: none;
 }
 
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]) {
-  color: var(--color-disabled);
+  color: var(--color-low-contrast);
   cursor: not-allowed;
+  opacity: 1;
 }
 
+:is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]):focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+j-select,
 j-menu,
 j-overflow-menu {
-  --divider-margin: var(--size-6) calc(var(--size-6) * -1);
-  --divider-color: var(--border-color-low-contrast);
+  --divider-margin: var(--space-25) calc(var(--space-25) * -1);
+  --divider-color: var(--border-color);
 }
 
 :is(j-menu, j-overflow-menu, j-select)::part(popup) {
   border-radius: var(--border-radius-m);
-  padding: var(--size-6);
+  padding: var(--space-25);
 }
 
 button:not([slot=menu])+hr[slot=menu] {
@@ -291,6 +243,10 @@ button:not([slot=menu])+hr[slot=menu] {
 
 :is([role=menuitem], [role=option]) icon {
   margin: 0 calc(var(--size-4) * -1);
+}
+
+j-menu[slot=menu] {
+  width: auto;
 }
 
 
@@ -304,7 +260,11 @@ j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
   display: none;
 }
 
-:is(j-select, j-menu) button[slot=trigger]::after,
+:is(j-select, j-menu) [slot=trigger] {
+  vertical-align: top;
+}
+
+:is(j-select, j-menu) [slot=trigger]::after,
 :is(j-select, j-menu) [role=option]::before {
   content: "";
   /* Copied from icons.css */
@@ -334,6 +294,7 @@ j-select:not(:defined):not(:has([selected])) button:not(:first-of-type) {
 :is(j-select, j-menu) button[slot=trigger]::after {
   --mask-image: var(--icon-chevron-down);
   --icon-size: 1em;
+  margin-inline-start: auto;
 }
 
 j-select [role=option]:is([selected], [aria-selected=true])::before {

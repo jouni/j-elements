@@ -57,7 +57,7 @@ The CSS alternative assumes it is convenient to import a style sheet into a comp
 
 
 
-See [Icons](/icons) for a prototype.
+See [Icons](/prototypes/icons) for a prototype.
 
 
 <!-- TODO look into https://pepelsbey.dev/articles/svg-sprites -->

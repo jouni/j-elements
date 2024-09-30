@@ -25,6 +25,7 @@ html {
   vertical-align: baseline;
   width: var(--_size);
   height: var(--_size);
+  flex: none;
   overflow: hidden;
   --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"></svg>');
   -webkit-mask-image: var(--mask-image);
@@ -36,7 +37,7 @@ html {
   mask-position: 50%;
   mask-repeat: no-repeat;
   background: currentColor;
-  flex: none;
+  -webkit-text-fill-color: transparent; /* Allow using semi-transparent icon fill color */
   -webkit-user-select: none;
   user-select: none;
   contain: strict;

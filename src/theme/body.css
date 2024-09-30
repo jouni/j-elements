@@ -1,8 +1,11 @@
-html,
-:host {
+html {
   font-family: var(--font-family);
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: var(--font-weight);
+  line-height: var(--line-height-s);
 
-  /* Set to auto to disable grayscale/antialiased font smoothing (and use default sub-pixel antialiasing) */
+  /* Set to auto to disable grayscale/anti-aliased font smoothing (and use default sub-pixel anti-aliasing) */
   -webkit-font-smoothing: var(--font-smoothing, antialiased);
   -moz-osx-font-smoothing: var(--font-smoothing, grayscale);
 
@@ -13,16 +16,23 @@ html,
   text-size-adjust: none;
 }
 
+@media (pointer: coarse) {
+  :where(html) {
+    /* Support iOS dynamic text size */
+    font: -apple-system-body;
+  }
+}
+
 body {
   font-size: var(--font-size-m);
   line-height: var(--line-height-m);
 }
 
-html,
-[theme~=light],
-[theme~=dark] {
-  accent-color: var(--accent-color);
-  background: var(--background-surface-2);
+html[theme] {
+  accent-color: var(--accent);
+  background: var(--gradient), var(--bg);
+  background-size: 100% 100svh;
+  background-attachment: fixed;
   color: var(--color);
 }
 
@@ -32,6 +42,6 @@ html,
 }
 
 :focus-visible {
-  outline: var(--outline-width, 2px) solid var(--outline-color, var(--accent-color));
-  outline-offset: var(--outline-offset, 2px);
+  outline: var(--outline-width, 2px) solid var(--outline-color, var(--accent));
+  outline-offset: var(--outline-offset, 0);
 }

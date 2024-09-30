@@ -41,6 +41,7 @@ const styles = `
       --_p1: initial;
       --_p2: initial;
       --_p3: initial;
+      --_popup-inset: calc(var(--popup-margin, 2px) * -1);
     }
 
     ::slotted(j-menu)::after {
@@ -95,7 +96,7 @@ export class Menu extends PopupMixin(HTMLElement) {
         // Clicked on a menu item. Close the popup, and allow the event to propagate.
         this.closePopup();
       }
-    } else if (e.target === this._popup || (e.target.assignedSlot || e.target).closest('[part=popup]')) {
+    } else if (e.target === this._popup || (e.target.assignedSlot || e.target).closest('[part=popup]') || e.target.assignedSlot?.name == 'tooltip') {
       // Clicked inside the popup element. Consume the event.
       e.stopPropagation();
     }
@@ -219,6 +220,7 @@ export class Menu extends PopupMixin(HTMLElement) {
   }
 
   _updateItemTabIndexes(makeFirstFocusable) {
+    // TODO should remember the original value, and restore that when a menu item is disconnected/moved out of the menu
     const activeItems = this._menuItems.filter(item => !item.hasAttribute('disabled'));
     activeItems.forEach((menuitem, i) => {
       menuitem.setAttribute('tabindex', ((makeFirstFocusable && i == 0) || menuitem === document.activeElement) ? '0' : '-1');

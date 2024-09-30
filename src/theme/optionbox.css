@@ -6,22 +6,22 @@
   -webkit-appearance: none;
   appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background: var(--optionbox-background, var(--background-ui));
+  background: var(--optionbox-background, var(--surface-a75));
+  background-clip: var(--surface-background-clip);
   border: var(--optionbox-border, var(--border-ui));
-  color: var(--optionbox-color, var(--color));
-  width: var(--optionbox-size, 1rem);
-  height: var(--optionbox-size, 1rem);
+  color: var(--optionbox-color, var(--color-high-contrast));
+  width: var(--optionbox-size, 1.125rem);
+  height: var(--optionbox-size, 1.125rem);
   font: inherit;
   border-radius: var(--optionbox-border-radius, var(--border-radius-s));
   margin: 0;
   vertical-align: middle;
   flex: none;
-  transition: background-color var(--transition-duration-1), border-color var(--transition-duration-1);
-  --outline-offset: 2px;
+  transition: background-color var(--transition-duration-1), border-color var(--transition-duration-fast);
   contain: strict;
 }
 
-@media (any-hover: hover) {
+/* @media (any-hover: hover) {
   :is(
     input[type=checkbox],
     input[type=radio]
@@ -30,9 +30,9 @@
     border: var(--optionbox-hover-border, var(--optionbox-border, var(--border-ui-hover)));
     color: var(--optionbox-hover-color, var(--optionbox-color, var(--color)));
   }
-}
+} */
 
-:is(
+/* :is(
   input[type=checkbox],
   input[type=radio]
 ):not(:disabled):active {
@@ -40,17 +40,17 @@
   border: var(--optionbox-active-border, var(--optionbox-border, var(--border-ui-active)));
   color: var(--optionbox-active-color, var(--optionbox-color, var(--color)));
   transition: none;
-}
+} */
 
 /* Can't use :is(:checked, :indeterminate) with type=radio, it always matches */
-input[type=checkbox]:is(:checked, :indeterminate),
+/* input[type=checkbox]:is(:checked, :indeterminate),
 input[type=radio]:checked {
   background: var(--optionbox-checked-background, var(--background-accent));
   border: var(--optionbox-checked-border, var(--optionbox-border, 0));
   color: var(--optionbox-checked-color, var(--background));
-}
+} */
 
-@media (any-hover: hover) {
+/* @media (any-hover: hover) {
   :is(
     input[type=checkbox],
     input[type=radio]
@@ -59,24 +59,27 @@ input[type=radio]:checked {
     border: var(--optionbox-checked-hover-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
     color: var(--optionbox-checked-hover-color, var(--optionbox-checked-color, var(--background)));
   }
-}
+} */
 
-:is(
+/* :is(
   input[type=checkbox],
   input[type=radio]
 ):checked:not(:disabled):active {
   background: var(--optionbox-checked-active-background, var(--background-accent-active));
   border: var(--optionbox-checked-active-border, var(--optionbox-checked-border, var(--optionbox-border, 0)));
   color: var(--optionbox-checked-active-color, var(--optionbox-checked-color, var(--background)));
-}
+} */
 
 :is(
   input[type=checkbox],
   input[type=radio]
 ):disabled {
-  background: var(--optionbox-disabled-background, var(--background-ui));
+  opacity: 0.5;
+  cursor: default;
+  box-shadow: var(--button-box-shadow, none);
+  /* background: var(--optionbox-disabled-background, var(--background-ui));
   border: var(--optionbox-disabled-border, var(--optionbox-border, 0));
-  color: var(--optionbox-disabled-color, var(--color-low-contrast));
+  color: var(--optionbox-disabled-color, var(--color-low-contrast)); */
 }
 
 :is(
@@ -88,7 +91,8 @@ input[type=radio]:checked {
   width: 100%;
   height: 100%;
   vertical-align: top;
-  background-color: currentColor;
+  background: currentColor;
+  border-radius: inherit;
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
   --mask-image: var(--icon-checkmark-small);

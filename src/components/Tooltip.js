@@ -1,7 +1,5 @@
 import { positionPopup } from '../util/positionPopup.js';
 
-// TODO accessibility (aria-describedby, make sure the elements are in the same DOM scope)
-
 export const tooltipElement = document.createElement('j-tooltip');
 tooltipElement.style.setProperty('position', 'fixed');
 // TODO this feels correct, but accessibility guidelines perhaps advocate against this (i.e., tooltips should be selectable)
@@ -11,12 +9,13 @@ tooltipElement.style.setProperty('top', '0');
 tooltipElement.style.setProperty('left', '0');
 tooltipElement.addEventListener('mouseenter', showTooltip);
 tooltipElement.addEventListener('mouseleave', hideTooltip);
+tooltipElement.id = 'j-tooltip';
 // Prefer to keep the tooltip element always in the DOM
 // (and toggle the visibility instead) to avoid triggering
 // the observer whenever the tooltip is shown
 tooltipElement.style.setProperty('display', 'none');
 document.body.append(tooltipElement);
-// TODO add ESC key listener to hide the tooltip
+// TODO add ESC key listener to hide the tooltip (only if focus is on the trigger element?)
 
 export function startObservingTooltips(root) {
   if (!root.__tooltipObserver) {
@@ -106,8 +105,18 @@ function showTooltip() {
         host = host.getRootNode().host;
       }
       if (host) {
+        // Safari has a bug where focus is removed from the target element when it’s inside a dialog. Restore it after the tooltip is visible.
+        const focused = document.activeElement === currentTarget;
+
         tooltipElement.setAttribute('slot', 'tooltip');
         host.appendChild(tooltipElement);
+
+        // Restore focus now that the tooltip is visible.
+        if (focused) {
+          requestAnimationFrame(() => {
+            currentTarget.focus({ focusVisible: false });
+          });
+        }
       } else {
         // Let's hope the dialog element is not clipping its contents...
         tooltipElement.removeAttribute('slot');
@@ -121,6 +130,8 @@ function showTooltip() {
 
     tooltipElement.textContent = this.getAttribute('tooltip');
     tooltipElement.style.removeProperty('display');
+    // TODO check for existing values
+    currentTarget.setAttribute('aria-describedby', tooltipElement.id);
   }
   // TODO clear animation-name: none (assuming it will restart the fade-in animation)
   updateTooltipPosition();
@@ -138,8 +149,10 @@ function hideTooltip() {
   hideTimeout = setTimeout(() => {
     tooltipElement.textContent = '';
     tooltipElement.style.setProperty('display', 'none');
+    // TODO check for other values (only remove the tooltip element id)
+    currentTarget.removeAttribute('aria-describedby');
     currentTarget = null;
-  }, 500);
+  }, 300);
 }
 
 startObservingTooltips(document.body);
