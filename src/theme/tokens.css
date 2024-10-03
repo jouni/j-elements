@@ -77,7 +77,7 @@
   html,
   [theme~=light] {
     color-scheme: light;
-    --bg-l: 0.96;
+    --bg-l: 0.97;
     --surface-background-clip: padding-box;
   }
 

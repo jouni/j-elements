@@ -112,7 +112,6 @@ title: JElements
           } else {
             localStorage.setItem('theme', theme);
             document.documentElement.setAttribute('theme', theme);
-            //lightness.value =
           }
           updateThemeSelect(theme);
           togglePrismTheme(lightness.value >= 0.67 ? 'light' : 'dark');
@@ -130,6 +129,8 @@ title: JElements
         lightness.oninput = () => {
           updateTheme(lightness.value);
         }
+
+        lightness.onclick = (e) => e.stopPropagation();
 
         function updateThemeSelect(theme) {
           document.querySelectorAll('#theme [role="option"]').forEach(option => {

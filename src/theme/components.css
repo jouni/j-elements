@@ -213,6 +213,9 @@ j-avatar-group [slot=overflow-button] {
   background: var(--accent);
   color: var(--accent-fg);
   filter: none;
+  --contrast-100: var(--surface);
+  --contrast-200: var(--surface);
+  --contrast-300: var(--surface);
 }
 
 :is(j-menu, j-select, j-overflow-menu) :is([role=menuitem], [role=option]):is(:disabled, [aria-disabled=true]) {

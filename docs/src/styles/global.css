@@ -226,8 +226,7 @@ blockquote :is(h2, h3, h4, h5, h6):first-child {
 code {
   font-family: var(--font-family-monospace);
   font-size: 0.875em;
-  background: var(--background-surface-1);
-  background-blend-mode: var(--background-blend-mode-surface);
+  background: var(--surface-a75);
 }
 
 code:not([class*="language"]) {
@@ -243,8 +242,8 @@ render-example {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border: 1px solid var(--border-color);
-  background: var(--background-surface-3);
-  background-blend-mode: var(--background-blend-mode-surface);
+  background: var(--surface-a50);
+  background-clip: var(--surface-background-clip);
 }
 [class^="example-"] {
   margin-bottom: 0;
@@ -572,6 +571,10 @@ html[theme=dark] {
 
 #accent-h {
   appearance: none;
-  background: linear-gradient(to right, oklch(0.6 0.2 0) 0%, oklch(0.6 0.2 61) 17%, oklch(0.6 0.2 118) 33%, oklch(0.6 0.2 180) 50%, oklch(0.6 0.2 241) 67%, oklch(0.6 0.2 299) 83%, oklch(0.6 0.2 360) 100%);
+  --slider-track-background: linear-gradient(to right, oklch(0.6 0.2 0) 0%, oklch(0.6 0.2 61) 17%, oklch(0.6 0.2 118) 33%, oklch(0.6 0.2 180) 50%, oklch(0.6 0.2 241) 67%, oklch(0.6 0.2 299) 83%, oklch(0.6 0.2 360) 100%);
   border-radius: var(--border-radius-l);
+}
+
+#bg-l {
+  --slider-track-background: linear-gradient(to right, transparent, transparent 40%, var(--red) 48%, var(--red) 67%, transparent 74%) var(--contrast-200);
 }
