@@ -575,6 +575,46 @@ html[theme=dark] {
   border-radius: var(--border-radius-l);
 }
 
+#bg-l,
+#accent-h,
+#vibrancy {
+  --slider-track-size: 2em;
+  --slider-track-border-radius: 1em;
+  --slider-thumb-background: white;
+}
+
 #bg-l {
-  --slider-track-background: linear-gradient(to right, transparent, transparent 40%, var(--red) 48%, var(--red) 67%, transparent 74%) var(--contrast-200);
+  width: 14em;
+  --slider-track-background:
+    var(--icon-error) 57% 40% / var(--space-100) no-repeat,
+    linear-gradient(to right, transparent, transparent 40%, var(--red) 48%, var(--red) 67%, transparent 74%),
+    linear-gradient(to right, oklch(0 0 0), oklch(1 0 0));
+  --slider-thumb-background: var(--fg);
+  border-radius: 1em;
+}
+
+#vibrancy {
+  --slider-track-background:
+    linear-gradient(to right,
+      oklch(0.2 00 var(--accent-h)),
+      oklch(0.8 0.2 var(--accent-h))
+    );
+}
+
+@media (prefers-color-scheme: dark) {
+  #vibrancy {
+    --slider-track-background:
+      linear-gradient(to right,
+        oklch(2 0 var(--accent-h)),
+        oklch(0.55 0.25 var(--accent-h))
+      );
+  }
+}
+
+html[theme=dark] #vibrancy {
+  --slider-track-background:
+    linear-gradient(to right,
+      oklch(2 0 var(--accent-h)),
+      oklch(0.5 0.25 var(--accent-h))
+    );
 }

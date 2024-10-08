@@ -9,14 +9,14 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-runnable-track {
   background: var(--slider-track-background, var(--contrast-200));
-  border-radius: var(--border-radius-s);
+  border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--space-25));
   transition: background-color var(--transition-duration-fast);
 }
 
 input[type=range]::-moz-range-track {
   background: var(--slider-track-background, var(--contrast-200));
-  border-radius: var(--border-radius-s);
+  border-radius: var(--slider-track-border-radius, var(--border-radius-s));
   height: var(--slider-track-size, var(--space-25));
   transition: background-color var(--transition-duration-fast);
 }

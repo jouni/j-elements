@@ -110,8 +110,9 @@ title: JElements
             localStorage.setItem('theme', lightness.value);
             document.documentElement.setAttribute('theme', lightness.value >= 0.67 ? 'light' : 'dark');
           } else {
-            localStorage.setItem('theme', theme);
             document.documentElement.setAttribute('theme', theme);
+            localStorage.setItem('theme', theme);
+            lightness.value = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bg-l'));
           }
           updateThemeSelect(theme);
           togglePrismTheme(lightness.value >= 0.67 ? 'light' : 'dark');
