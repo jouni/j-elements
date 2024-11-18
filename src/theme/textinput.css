@@ -135,9 +135,7 @@ select {
   --select-background-blend-mode: screen !important;
 }
 
-[dir=rtl] select,
-select[dir=rtl],
-:host([dir=rtl]) select {
+select:dir(rtl) {
   background-position-x: var(--select-background-position-x, var(--space-50)) !important;
 }
 

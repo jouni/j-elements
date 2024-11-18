@@ -160,7 +160,7 @@ main>footer {
     width: 13rem;
   }
 
-  [dir=rtl] table-of-contents {
+  table-of-contents:dir(rtl) {
     float: left;
   }
 
@@ -219,8 +219,15 @@ blockquote {
 }
 
 blockquote :is(h2, h3, h4, h5, h6):first-child {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+}
+
+blockquote :is(h2, h3, h4, h5, h6):first-child + p {
+  margin-top: 0.5em;
+  margin-bottom: 0.75em;
 }
 
 code {
@@ -348,7 +355,7 @@ hr {
   align-content: start;
 }
 
-[dir=rtl] .main-nav {
+.main-nav:dir(rtl) {
   float: right;
 }
 
@@ -378,11 +385,11 @@ main {
     padding: 0 1rem;
   }
 
-  [dir=rtl] .main-nav {
+  .main-nav:dir(rtl) {
     float: none;
   }
 
-  [dir=rtl] .main-nav details {
+  .main-nav:dir(rtl) details {
     float: left;
   }
 

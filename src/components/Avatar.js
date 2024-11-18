@@ -39,7 +39,6 @@ const styles = `
 
   .clip {
     y: calc(var(--gap) / -1);
-    /* TODO RTL support */
     x: calc(100% - var(--overlap));
     width: calc(var(--size) + var(--gap) * 2);
     height: calc(var(--size) + var(--gap) * 2);

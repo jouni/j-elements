@@ -67,9 +67,7 @@ details:not([open]) summary::before {
   }
 }
 
-[dir=rtl] details:not([open]) summary::before,
-details[dir=rtl]:not([open]) summary::before,
-:host([dir=rtl]) details:not([open]) summary::before {
+details:dir(rtl):not([open]) summary::before {
   transform: rotate(90deg);
 }
 

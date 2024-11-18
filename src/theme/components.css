@@ -312,6 +312,6 @@ j-menu [role=menuitem][aria-haspopup]::after {
   rotate: -90deg;
 }
 
-[dir=rtl] j-menu [role=menuitem][aria-haspopup]::after {
+j-menu:dir(rtl) [role=menuitem][aria-haspopup]::after {
   rotate: 90deg;
 }
