@@ -3,17 +3,19 @@ import { MutationsMixin } from '../util/MutationsMixin.js';
 const styles = `
   :host {
     display: inline-grid;
+    grid-template-columns: min-content 1fr min-content;
     vertical-align: middle;
   }
 
   slot[name],
   slot:not([name])::slotted(:is(input, textarea, select)) {
-    grid-area: 1/1;
+    grid-column: 1 / -1;
+    grid-row: 1;
     box-sizing: border-box;
-    resize: none !important;
   }
 
   slot[name] {
+    grid-column: 1 / 2;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -22,7 +24,7 @@ const styles = `
   }
 
   slot[name=suffix] {
-    margin-inline-start: auto;
+    grid-column: -2 / -1;
     flex-direction: row-reverse;
   }
 
@@ -44,6 +46,17 @@ const styles = `
 
   :host([style*=suffix-width]) slot:not([name])::slotted(input[type=range]) {
     margin-inline-end: var(--suffix-width) !important;
+  }
+
+  /* TODO use :host(:has(textarea)) once Chrome supports it */
+  :host(.textarea) {
+    width: auto;
+    align-self: stretch;
+  }
+
+  :host([autosize]) ::slotted(:is(input:not([type=range]), textarea, select)) {
+    field-sizing: content;
+    resize: none !important;
   }
 `;
 
@@ -99,7 +112,10 @@ export class InputDecorator extends MutationsMixin(HTMLElement) {
     const input = this.querySelector('input, textarea, select');
     const dimension = input.localName == 'textarea' ? 'Height' : 'Width';
 
-    if (this.hasAttribute('autosize')) {
+    // TODO Chrome doesn't support :host(:has(textarea)), so we need to help out
+    this.classList.toggle('textarea', input.localName == 'textarea');
+
+    if (!CSS.supports('field-sizing', 'content') && this.hasAttribute('autosize')) {
       if (input.localName == 'select') {
         this.style.width = '0'; // Needed for Safari
         input.style.width = '';
