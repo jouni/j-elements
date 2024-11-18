@@ -10,7 +10,7 @@ eleventyNavigation:
 
 Icons are a fundamental part of the visual appearance of an application.
 
-> #### This page is partly outdated
+> ## <icon error></icon> This Page is Partly Outdated
 > The Vaadin icon component has gained more feature since I wrote this, making it easier to use icons.
 
 The current way of defining and using icons in a Vaadin application involves JavaScript, which is not natural for designers, and prevents using the icons with standard HTML elements (a `<vaadin-icon>` element is needed to use an icon).

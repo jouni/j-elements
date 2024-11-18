@@ -26,7 +26,6 @@ html {
   width: var(--_size);
   height: var(--_size);
   flex: none;
-  overflow: hidden;
   --mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"></svg>');
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
@@ -37,13 +36,17 @@ html {
   mask-position: 50%;
   mask-repeat: no-repeat;
   background: currentColor;
-  -webkit-text-fill-color: transparent; /* Allow using semi-transparent icon fill color */
+  -webkit-text-fill-color: transparent; /* Allow using semi-transparent icon fill color (this works for Firefox as well) */
   -webkit-user-select: none;
   user-select: none;
-  contain: strict;
+  contain: size paint;
 }
 
-[dir=rtl] :where(icon[directional]) {
+:where(icon:empty)::before {
+  content: "\2003";
+}
+
+:where(icon[directional]:dir(rtl)) {
   transform: scaleX(-1);
 }
 
@@ -67,6 +70,14 @@ html {
 
 :where(icon[calendar]) {
   --mask-image: var(--icon-calendar);
+}
+
+:where(icon[cross]) {
+  --mask-image: var(--icon-cross);
+}
+
+:where(icon[error]) {
+  --mask-image: var(--icon-error);
 }
 
 :where(icon[checkmark]) {

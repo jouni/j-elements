@@ -13,7 +13,10 @@ eleventyNavigation:
 
 Place prefix and suffix elements visually inside an input element.
 
-Notice, that the input element styling is completely retained (coming from the theme), instead of being applied on the `<j-input-decorator>` element. The decorator element needs to be a CSS grid container (`grid` or `inline-grid`).
+Notice, that the input element styling is completely retained (coming from the theme), instead of being applied on the `<j-input-decorator>` element.
+
+> #### <icon error></icon> Input Decorator Should Be a Grid
+> The decorator element needs to be a CSS grid container: a `grid` or an `inline-grid`. Otherwise the prefix and suffix elements are rendered visually outside the input element.
 
 <style>
 render-example {
@@ -93,7 +96,7 @@ input {
 
 ## Auto-Size
 
-The `autosize` attribute makes the contained input change its size based on the contained text value. Manual text area resizing is disabled when auto size is used.
+The `autosize` attribute makes the contained input change its size based on the contained text value. User resizing is disabled when auto size is used.
 
 <render-example></render-example>
 ```html
@@ -104,8 +107,8 @@ The `autosize` attribute makes the contained input change its size based on the 
 </j-input-decorator>
 
 <j-input-decorator autosize>
-  <textarea>Text area value</textarea>
   <icon slot="prefix" search></icon>
+  <textarea>Text area value</textarea>
 </j-input-decorator>
 
 <j-input-decorator autosize>

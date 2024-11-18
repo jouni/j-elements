@@ -11,7 +11,7 @@ JElements is a personal web development research project by Jouni Koivuviita, a 
 No external dependencies are used for the components, utilities, and styles. Here’s a breakdown of the source code contents of this project:
 <module-size></module-size>
 
-> #### Not recommended for production use
+> ## <icon error></icon> Not recommended for production use
 > I'm mainly looking for feedback from developers, if the problems/issues are valid and if the proposed solutions solve them effectively.
 >
 > The prototypes only work in modern web browsers.
