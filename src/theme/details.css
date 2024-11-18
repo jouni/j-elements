@@ -41,7 +41,6 @@ summary::before {
   vertical-align: baseline;
   width: var(--icon-size);
   height: var(--icon-size);
-  overflow: hidden;
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
   background-color: currentColor;
@@ -55,6 +54,9 @@ summary::before {
   --mask-image: var(--icon-chevron-down);
   transition: var(--transition-duration-1);
   transition-property: transform, color;
+  /* Fix a strange rendering issue in Safari */
+  mask-position: 0.5px;
+  mask-repeat: no-repeat;
 }
 
 details:not([open]) summary::before {
