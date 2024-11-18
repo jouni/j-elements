@@ -5,10 +5,14 @@ export class TableOfContents extends HTMLElement {
 
   updateTOC() {
     this.innerHTML = '<h6>Contents</h6><ol></ol>';
+    this.classList.add('empty');
 
     let currentOl;
 
-    Array.from(document.querySelectorAll(':is(main, [role="main"]) :is(h2, h3)')).forEach(heading => {
+    Array.from(document.querySelectorAll(':is(main, [role="main"]) :is(h2, h3)'))
+      .filter(h => !h.closest('blockquote'))
+      .forEach(heading => {
+      this.classList.remove('empty');
       if (heading.localName == "h2") {
         const li = this.createLink(heading);
         this.querySelector('ol').appendChild(li);

@@ -201,6 +201,10 @@ table-of-contents a:hover {
   color: var(--color-high-contrast);
 }
 
+table-of-contents.empty {
+  display: none;
+}
+
 main>footer a:any-link {
   color: inherit;
   text-align: end;
